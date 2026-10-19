@@ -1,0 +1,37 @@
+[
+  {
+    "name": "ILC (Interno)",
+    "slug": "ilc",
+    "logoUrl": "/assets/logos/ilc.png?t=1791579200206",
+    "token": "ilc-interno-2026",
+    "description": "Projetos e demandas corporativas ILC"
+  },
+  {
+    "name": "Mirassol",
+    "slug": "mirassol",
+    "logoUrl": "/assets/logos/mirassol.png?t=1791579205262",
+    "token": "mirassol-acesso-2026",
+    "description": "Demandas e tecnologia Mirassol"
+  },
+  {
+    "name": "John Deere",
+    "slug": "john-deere",
+    "logoUrl": "/assets/logos/john-deere.png?t=1791579235167",
+    "token": "jd-acesso-2026",
+    "description": "Projetos integrados John Deere"
+  },
+  {
+    "name": "Petrobras",
+    "slug": "petrobras",
+    "logoUrl": "/assets/logos/petrobras.png?t=1791579243358",
+    "token": "petrobras-acesso-2026",
+    "description": "Iniciativas logísticas Petrobras"
+  },
+  {
+    "name": "Boge Ruber",
+    "slug": "boge-ruber",
+    "logoUrl": "/assets/logos/boge-ruber.png?t=1791579251016",
+    "token": "boge-acesso-2026",
+    "description": "Projetos e integrações Boge Rubber & Plastics"
+  }
+]

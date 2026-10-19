@@ -1,0 +1,11 @@
+{
+  "name": "dashboard-gerencial-projetos",
+  "version": "1.0.0",
+  "description": "Dashboard Gerencial de Projetos em Angular com Sincronização Azure DevOps",
+  "scripts": {
+    "start": "node server/index.js",
+    "server": "node server/index.js",
+    "frontend:dev": "cd frontend && npm start",
+    "frontend:build": "cd frontend && npm run build"
+  }
+}
