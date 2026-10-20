@@ -87,15 +87,14 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
         <!-- ======================================================== -->
         <div class="rounded-2xl border border-slate-200/90 bg-white text-slate-900 shadow-2xs p-4 sm:p-5 transition-all">
           
-          <div class="flex flex-col xl:flex-row xl:items-center justify-between gap-5">
-            <!-- Left: Headline Statement -->
-            <div class="max-w-xl">
-              <div class="flex items-center gap-2 mb-1.5 text-[10px] font-bold text-blue-700 tracking-wider uppercase">
+          <div class="flex flex-col xl:flex-row xl:items-center justify-between gap-4">
+            <!-- Left: Headline Statement / Emission Date -->
+            <div class="flex flex-col justify-center">
+              <div class="flex items-center gap-2 text-[11px] font-bold text-blue-700 tracking-wider uppercase">
                 <span>🗓️ Emissão: {{ formatDate(currentReport()?.meetingDate) }}</span>
-                <span>•</span>
-                <span>Ciclo Semanal Oficial</span>
               </div>
-              <h2 class="text-sm sm:text-base font-extrabold text-slate-900 tracking-tight leading-snug">
+              <h2 *ngIf="currentReport()?.executiveSummary && !currentReport()?.executiveSummary?.includes('Visão executiva consolidada')"
+                class="text-sm font-extrabold text-slate-900 tracking-tight leading-snug mt-1 max-w-xl">
                 {{ currentReport()?.executiveSummary }}
               </h2>
             </div>

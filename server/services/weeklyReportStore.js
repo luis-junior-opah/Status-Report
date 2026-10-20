@@ -436,7 +436,7 @@ class WeeklyReportStore {
       title: `Semana ${currentWeekNumber} / 2026`,
       period: '13/10/2026 a 17/10/2026',
       meetingDate: now.toISOString().split('T')[0],
-      executiveSummary: 'Visão executiva consolidada para a Reunião de Diretoria. Acompanhamento dos projetos estratégicos em andamento, riscos mapeados e pipeline no radar.',
+      executiveSummary: '',
       statusPulse: {
         totalActive: mappedProjects.length,
         onTrack: onTrack,
