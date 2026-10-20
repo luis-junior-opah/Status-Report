@@ -320,7 +320,9 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
         <!-- ======================================================== -->
         <!-- 4. BARRA DE FILTROS & BUSCA DO PORTFÓLIO                 -->
         <!-- ======================================================== -->
-        <app-filters></app-filters>
+        <div class="pt-4 sm:pt-6">
+          <app-filters></app-filters>
+        </div>
 
         <!-- ======================================================== -->
         <!-- 5. CARDS EXECUTIVOS DOS PROJETOS                         -->

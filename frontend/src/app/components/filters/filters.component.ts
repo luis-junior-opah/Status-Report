@@ -7,6 +7,9 @@ import { ProjectService } from '../../services/project.service';
   selector: 'app-filters',
   standalone: true,
   imports: [CommonModule, FormsModule],
+  host: {
+    class: 'block'
+  },
   template: `
     <div class="bg-white p-3.5 rounded-2xl border border-slate-200/90 shadow-sm mb-6 space-y-3">
       <!-- Top Row: Status Tabs & Search -->
