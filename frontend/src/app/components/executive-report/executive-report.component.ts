@@ -533,6 +533,12 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
                 </div>
               </div>
 
+              <!-- Attention Point callout if any (logo abaixo da barra de progressão) -->
+              <div *ngIf="p.ragStatus === 'red' || p.ragStatus === 'amber'"
+                class="p-2.5 rounded-xl text-[10px] leading-snug mb-3 bg-rose-50 text-rose-900 border border-rose-200 shadow-2xs">
+                <strong>⚠️ Ponto de Atenção:</strong> {{ p.attentionPoints }}
+              </div>
+
               <!-- Status Report Anterior & Atual -->
               <div class="space-y-2 mb-2.5">
                 <!-- Status Report Anterior -->
@@ -554,12 +560,6 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
                     {{ p.statusReport || 'Nenhum reporte registrado para este ciclo.' }}
                   </p>
                 </div>
-              </div>
-
-              <!-- Attention Point callout if any -->
-              <div *ngIf="p.ragStatus === 'red' || p.ragStatus === 'amber'"
-                class="p-2 rounded-lg text-[10px] leading-snug mb-2 bg-rose-50 text-rose-900 border border-rose-200">
-                <strong>⚠️ Ponto de Atenção:</strong> {{ p.attentionPoints }}
               </div>
 
               <!-- Equipe Alocada -->
