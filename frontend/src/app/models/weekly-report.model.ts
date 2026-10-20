@@ -22,6 +22,7 @@ export interface WeeklyReportProject {
   name: string;
   client: string;
   clientLogo?: string | null;
+  status?: 'Ativo' | 'Finalizado' | 'Congelado';
   currentMilestone: string;
   progress: number;
   ragStatus: 'green' | 'amber' | 'red';

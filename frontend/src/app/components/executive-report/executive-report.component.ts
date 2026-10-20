@@ -504,11 +504,19 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
                     {{ p.currentMilestone }}
                   </span>
                 </div>
-                <span
-                  class="px-2 py-0.2 rounded-full text-[10px] font-extrabold shrink-0"
-                  [ngClass]="getRagPillClass(p.ragStatus)">
-                  {{ p.ragStatus === 'red' ? 'Desvio' : (p.ragStatus === 'amber' ? 'Atenção' : 'No Prazo') }}
-                </span>
+                <div class="flex items-center gap-1.5 shrink-0">
+                  <span
+                    *ngIf="p.status && p.status !== 'Ativo'"
+                    class="px-2 py-0.2 rounded-full text-[10px] font-extrabold"
+                    [ngClass]="p.status === 'Finalizado' ? 'bg-blue-100 text-blue-800 border border-blue-200' : 'bg-slate-200 text-slate-700 border border-slate-300'">
+                    {{ p.status }}
+                  </span>
+                  <span
+                    class="px-2 py-0.2 rounded-full text-[10px] font-extrabold shrink-0"
+                    [ngClass]="getRagPillClass(p.ragStatus, p.status)">
+                    {{ getRagLabel(p) }}
+                  </span>
+                </div>
               </div>
 
               <!-- Project Name -->
@@ -536,14 +544,18 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
                 <div class="w-full bg-slate-100 rounded-full h-1.5 overflow-hidden">
                   <div
                     class="h-full rounded-full"
-                    [ngClass]="p.ragStatus === 'red' ? 'bg-rose-500' : (p.ragStatus === 'amber' ? 'bg-amber-500' : 'bg-blue-600')"
+                    [ngClass]="p.status === 'Congelado' ? 'bg-slate-400' : (p.status === 'Finalizado' ? 'bg-emerald-600' : (p.ragStatus === 'red' ? 'bg-rose-500' : (p.ragStatus === 'amber' ? 'bg-amber-500' : 'bg-blue-600')))"
                     [style.width.%]="p.progress">
                   </div>
                 </div>
               </div>
 
               <!-- Attention Point callout if any (logo abaixo da barra de progressão) -->
-              <div *ngIf="p.ragStatus === 'red' || p.ragStatus === 'amber'"
+              <div *ngIf="p.status === 'Congelado'"
+                class="p-2.5 rounded-xl text-[10px] leading-snug mb-3 bg-slate-100 text-slate-800 border border-slate-300 shadow-2xs">
+                <strong>⏸️ Projeto Congelado:</strong> Atividades temporariamente pausadas pela gestão.
+              </div>
+              <div *ngIf="p.status !== 'Congelado' && (p.ragStatus === 'red' || p.ragStatus === 'amber')"
                 class="p-2.5 rounded-xl text-[10px] leading-snug mb-3 bg-rose-50 text-rose-900 border border-rose-200 shadow-2xs">
                 <strong>⚠️ Ponto de Atenção:</strong> {{ p.attentionPoints }}
               </div>
@@ -658,8 +670,8 @@ export class ExecutiveReportComponent implements OnInit {
     let list = report.activeProjects.slice();
 
     // 1. Status Tab Filter (from FiltersComponent)
-    if (status !== 'Todos' && status !== 'Ativo') {
-      return []; // In Status Report, all projects in the active report are active
+    if (status !== 'Todos') {
+      list = list.filter(p => (p.status || 'Ativo') === status);
     }
 
     // 2. Client Dropdown Filter (from FiltersComponent)
@@ -737,37 +749,41 @@ export class ExecutiveReportComponent implements OnInit {
   }
 
   getActiveCount(): number {
-    return this.currentReport()?.activeProjects?.length || this.currentReport()?.statusPulse?.totalActive || 0;
+    const list = this.currentReport()?.activeProjects || [];
+    return list.filter(p => (p.status || 'Ativo') === 'Ativo').length;
   }
 
   getOnTrackCount(): number {
     const list = this.currentReport()?.activeProjects || [];
-    return list.filter(p => p.ragStatus === 'green').length;
+    return list.filter(p => (p.status || 'Ativo') === 'Ativo' && p.ragStatus === 'green').length;
   }
 
   getAttentionCount(): number {
     const list = this.currentReport()?.activeProjects || [];
-    return list.filter(p => p.ragStatus === 'amber').length;
+    return list.filter(p => (p.status || 'Ativo') === 'Ativo' && p.ragStatus === 'amber').length;
   }
 
   getCriticalCount(): number {
     const list = this.currentReport()?.activeProjects || [];
-    return list.filter(p => p.ragStatus === 'red').length;
+    return list.filter(p => (p.status || 'Ativo') === 'Ativo' && p.ragStatus === 'red').length;
   }
 
   getCompletedCount(): number {
-    return this.service.projects().filter(p => p.status === 'Finalizado').length;
+    const list = this.currentReport()?.activeProjects || [];
+    return list.filter(p => p.status === 'Finalizado').length;
   }
 
   getFrozenCount(): number {
-    return this.service.projects().filter(p => p.status === 'Congelado').length;
+    const list = this.currentReport()?.activeProjects || [];
+    return list.filter(p => p.status === 'Congelado').length;
   }
 
   getAverageProgress(): number {
     const list = this.currentReport()?.activeProjects || [];
-    if (list.length === 0) return this.currentReport()?.statusPulse?.averageProgress || 0;
-    const total = list.reduce((acc, p) => acc + (p.progress || 0), 0);
-    return Math.round(total / list.length);
+    const activeList = list.filter(p => (p.status || 'Ativo') === 'Ativo');
+    if (activeList.length === 0) return this.currentReport()?.statusPulse?.averageProgress || 0;
+    const total = activeList.reduce((acc, p) => acc + (p.progress || 0), 0);
+    return Math.round(total / activeList.length);
   }
 
   getPercent(count?: number, total?: number): number {
@@ -906,7 +922,17 @@ export class ExecutiveReportComponent implements OnInit {
     this.service.loadWeeklyReport(reportId);
   }
 
-  getRagPillClass(rag: string) {
+  getRagLabel(p: WeeklyReportProject): string {
+    if (p.status === 'Congelado') return 'Congelado';
+    if (p.status === 'Finalizado') return 'Finalizado';
+    if (p.ragStatus === 'red') return 'Desvio';
+    if (p.ragStatus === 'amber') return 'Atenção';
+    return 'No Prazo';
+  }
+
+  getRagPillClass(rag: string, status?: string) {
+    if (status === 'Congelado') return 'bg-slate-100 text-slate-700 border border-slate-300';
+    if (status === 'Finalizado') return 'bg-blue-100 text-blue-800 border border-blue-200';
     if (rag === 'red') return 'bg-rose-100 text-rose-800 border border-rose-200';
     if (rag === 'amber') return 'bg-amber-100 text-amber-800 border border-amber-200';
     return 'bg-emerald-100 text-emerald-800 border border-emerald-200';

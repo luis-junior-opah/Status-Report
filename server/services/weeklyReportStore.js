@@ -336,8 +336,8 @@ class WeeklyReportStore {
   syncReportWithProjects(report) {
     if (!report) return;
     const allProjects = projectStore.getAllProjects() || [];
-    const active = allProjects
-      .filter(p => p.status === 'Ativo' && p.isVisible)
+    const visibleProjects = allProjects
+      .filter(p => p.isVisible)
       .sort((a, b) => projectStore.compareProjects(a, b));
 
     const existingMap = new Map();
@@ -354,13 +354,16 @@ class WeeklyReportStore {
     let attention = 0;
     let critical = 0;
     let totalProgress = 0;
+    let totalActive = 0;
 
-    const mappedProjects = active.map(p => {
-      if (p.ragStatus === 'red') critical++;
-      else if (p.ragStatus === 'amber') attention++;
-      else onTrack++;
-
-      totalProgress += (p.progress || 0);
+    const mappedProjects = visibleProjects.map(p => {
+      if (p.status === 'Ativo') {
+        totalActive++;
+        if (p.ragStatus === 'red') critical++;
+        else if (p.ragStatus === 'amber') attention++;
+        else onTrack++;
+        totalProgress += (p.progress || 0);
+      }
 
       const cleanName = (p.name || '').replace(/^Mirassol\s*-\s*/i, '').toLowerCase().trim();
       const existing = existingMap.get(p.id) ||
@@ -375,6 +378,7 @@ class WeeklyReportStore {
         name: p.name,
         client: p.client,
         clientLogo: clientLogo,
+        status: p.status || 'Ativo',
         currentMilestone: p.currentMilestone || 'Planejamento',
         progress: p.progress || 0,
         ragStatus: p.ragStatus || 'green',
@@ -397,9 +401,9 @@ class WeeklyReportStore {
     });
 
     report.activeProjects = mappedProjects;
-    const avgProgress = mappedProjects.length > 0 ? Math.round(totalProgress / mappedProjects.length) : 0;
+    const avgProgress = totalActive > 0 ? Math.round(totalProgress / totalActive) : 0;
     report.statusPulse = {
-      totalActive: mappedProjects.length,
+      totalActive: totalActive,
       onTrack: onTrack,
       attention: attention,
       critical: critical,
@@ -459,21 +463,24 @@ class WeeklyReportStore {
     const period = getWeekPeriodString(now);
 
     const allProjects = projectStore.getAllProjects() || [];
-    const active = allProjects
-      .filter(p => p.status === 'Ativo' && p.isVisible)
+    const visibleProjects = allProjects
+      .filter(p => p.isVisible)
       .sort((a, b) => projectStore.compareProjects(a, b));
 
     let onTrack = 0;
     let attention = 0;
     let critical = 0;
     let totalProgress = 0;
+    let totalActive = 0;
 
-    const mappedProjects = active.map(p => {
-      if (p.ragStatus === 'red') critical++;
-      else if (p.ragStatus === 'amber') attention++;
-      else onTrack++;
-
-      totalProgress += (p.progress || 0);
+    const mappedProjects = visibleProjects.map(p => {
+      if (p.status === 'Ativo') {
+        totalActive++;
+        if (p.ragStatus === 'red') critical++;
+        else if (p.ragStatus === 'amber') attention++;
+        else onTrack++;
+        totalProgress += (p.progress || 0);
+      }
 
       const details = resolveProjectWeeklyDetails(p);
       const clientLogo = projectStore.getClientLogo ? projectStore.getClientLogo(p.client) : null;
@@ -483,6 +490,7 @@ class WeeklyReportStore {
         name: p.name,
         client: p.client,
         clientLogo: clientLogo,
+        status: p.status || 'Ativo',
         currentMilestone: p.currentMilestone || 'Planejamento',
         progress: p.progress || 0,
         ragStatus: p.ragStatus || 'green',
@@ -504,7 +512,7 @@ class WeeklyReportStore {
       };
     });
 
-    const avgProgress = mappedProjects.length > 0 ? Math.round(totalProgress / mappedProjects.length) : 0;
+    const avgProgress = totalActive > 0 ? Math.round(totalProgress / totalActive) : 0;
 
     return {
       id: id,
@@ -515,7 +523,7 @@ class WeeklyReportStore {
       meetingDate: now.toISOString().split('T')[0],
       executiveSummary: '',
       statusPulse: {
-        totalActive: mappedProjects.length,
+        totalActive: totalActive,
         onTrack: onTrack,
         attention: attention,
         critical: critical,
