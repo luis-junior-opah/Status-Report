@@ -1034,7 +1034,7 @@ import { WeeklyReport, WeeklyReportProject, RoadmapProject, BoardDecision } from
                     (ngModelChange)="onSelectWeeklyReportToEdit($event)"
                     class="bg-slate-50 border border-slate-300 text-slate-800 text-xs rounded-xl px-3 py-1.5 focus:outline-none focus:ring-2 focus:ring-blue-500 font-bold">
                     <option *ngFor="let rep of service.weeklyReports()" [value]="rep.id">
-                      {{ rep.title }} ({{ rep.period }})
+                      {{ service.formatEditionTitle(rep) }} ({{ rep.period }})
                     </option>
                   </select>
                 </div>

@@ -202,6 +202,15 @@ export class ProjectService {
     return `Integrantes da equipe: ${allMembers.join(', ')}`;
   }
 
+  formatEditionTitle(rep: any): string {
+    if (!rep) return '';
+    if (rep.weekNumber && rep.year) {
+      return `Semana ${rep.weekNumber} / ${rep.year}`;
+    }
+    const match = (rep.title || '').match(/Semana\s+\d+\s*\/\s*\d+/i);
+    return match ? match[0] : (rep.title || '');
+  }
+
   // Reactive Stats: Strictly ACTIVE projects for RAG indicators!
   // Frozen and Completed projects NEVER count towards onTrack / warning / delayed!
   stats = computed<ProjectStats>(() => {

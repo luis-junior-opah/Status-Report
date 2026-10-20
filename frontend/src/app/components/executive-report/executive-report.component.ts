@@ -37,7 +37,7 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
               </h1>
             </div>
             <p class="text-[11px]" [ngClass]="service.presentationMode() ? 'text-slate-400' : 'text-slate-500'">
-              Edição: <strong [ngClass]="service.presentationMode() ? 'text-slate-200' : 'text-slate-800'">{{ currentReport()?.title }}</strong>
+              Edição: <strong [ngClass]="service.presentationMode() ? 'text-slate-200' : 'text-slate-800'">{{ service.formatEditionTitle(currentReport()) }}</strong>
               • Período: {{ currentReport()?.period }}
             </p>
           </div>
@@ -97,7 +97,7 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
             class="text-[11px] font-bold rounded-xl px-2.5 py-1.5 border focus:outline-none focus:ring-1 focus:ring-blue-500 shadow-2xs cursor-pointer"
             [ngClass]="service.presentationMode() ? 'bg-slate-800 border-slate-700 text-white' : 'bg-slate-50 border-slate-300 text-slate-800'">
             <option *ngFor="let rep of service.weeklyReports()" [value]="rep.id">
-              {{ rep.title }}
+              {{ service.formatEditionTitle(rep) }}
             </option>
           </select>
 
