@@ -511,6 +511,12 @@ class ProjectStore {
     return this.clients.find(c => c.slug.toLowerCase() === slug.toLowerCase()) || null;
   }
 
+  getClientLogo(clientName) {
+    if (!clientName) return null;
+    const client = this.clients.find(c => c.name.toLowerCase() === clientName.toLowerCase());
+    return client?.logoUrl || null;
+  }
+
   updateClient(slug, updates) {
     const idx = this.clients.findIndex(c => c.slug.toLowerCase() === slug.toLowerCase());
     if (idx === -1) return null;

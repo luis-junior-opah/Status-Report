@@ -452,6 +452,12 @@ class WeeklyReportStore {
   }
 
   buildReportForCurrentWeek() {
+    const now = new Date();
+    const currentWeekNumber = getISOWeekNumber(now);
+    const year = now.getFullYear();
+    const id = `${year}-W${currentWeekNumber}`;
+    const period = getWeekPeriodString(now);
+
     const allProjects = projectStore.getAllProjects() || [];
     const active = allProjects
       .filter(p => p.status === 'Ativo' && p.isVisible)
@@ -499,13 +505,6 @@ class WeeklyReportStore {
     });
 
     const avgProgress = mappedProjects.length > 0 ? Math.round(totalProgress / mappedProjects.length) : 0;
-
-    // Determine current ISO week
-    const now = new Date();
-    const currentWeekNumber = getISOWeekNumber(now);
-    const year = now.getFullYear();
-    const id = `${year}-W${currentWeekNumber}`;
-    const period = getWeekPeriodString(now);
 
     return {
       id: id,
