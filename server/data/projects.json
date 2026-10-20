@@ -1,5 +1,5 @@
 {
-  "lastSync": "2026-10-16T23:09:43.415Z",
+  "lastSync": "2026-10-20T17:30:30.899Z",
   "projects": [
     {
       "id": "a197458f-88c5-4fec-8ce7-a981ee3f6709",
@@ -25,7 +25,7 @@
       "progress": 46,
       "manualRagStatus": "amber",
       "executiveSummary": "Projeto integrado ao Azure DevOps. Iteração atual: Iteration 26.",
-      "azureLastUpdated": "2026-10-16T23:09:15.367Z",
+      "azureLastUpdated": "2026-10-20T17:30:16.542Z",
       "currentIterationName": "Iteration 26",
       "ragStatus": "amber",
       "varianceDays": 0,
@@ -4700,7 +4700,7 @@
       "progress": 0,
       "manualRagStatus": "auto",
       "executiveSummary": "Projeto Safety está em fase de elicitação de requisitos.",
-      "azureLastUpdated": "2026-10-16T23:09:18.628Z",
+      "azureLastUpdated": "2026-10-20T17:30:17.801Z",
       "currentIterationName": null,
       "ragStatus": "green",
       "varianceDays": 0,
@@ -4960,7 +4960,7 @@
       "progress": 92,
       "manualRagStatus": "auto",
       "executiveSummary": "Projeto integrado ao Azure DevOps. Iteração atual: Em andamento.",
-      "azureLastUpdated": "2026-10-16T23:09:20.694Z",
+      "azureLastUpdated": "2026-10-20T17:30:18.585Z",
       "currentIterationName": null,
       "ragStatus": "red",
       "varianceDays": 0,
@@ -5332,7 +5332,7 @@
       "progress": 0,
       "manualRagStatus": "auto",
       "executiveSummary": "Projeto integrado ao Azure DevOps. Iteração atual: Em andamento.",
-      "azureLastUpdated": "2026-10-16T23:09:21.691Z",
+      "azureLastUpdated": "2026-10-20T17:30:19.241Z",
       "currentIterationName": null,
       "ragStatus": "green",
       "varianceDays": 0,
@@ -5655,7 +5655,7 @@
       "progress": 0,
       "manualRagStatus": "auto",
       "executiveSummary": "Projeto integrado ao Azure DevOps. Iteração atual: Em andamento.",
-      "azureLastUpdated": "2026-10-16T23:09:22.963Z",
+      "azureLastUpdated": "2026-10-20T17:30:20.048Z",
       "currentIterationName": null,
       "ragStatus": "green",
       "varianceDays": 0,
@@ -5756,7 +5756,7 @@
       "progress": 41,
       "manualRagStatus": "auto",
       "executiveSummary": "Projeto integrado ao Azure DevOps. Iteração atual: Iteration 4.",
-      "azureLastUpdated": "2026-10-16T23:09:24.419Z",
+      "azureLastUpdated": "2026-10-20T17:30:20.658Z",
       "currentIterationName": "Iteration 4",
       "ragStatus": "red",
       "varianceDays": 0,
@@ -5992,9 +5992,9 @@
       "progress": 97,
       "manualRagStatus": "auto",
       "executiveSummary": "Projeto integrado ao Azure DevOps. Iteração atual: Em andamento.",
-      "azureLastUpdated": "2026-10-16T23:09:25.713Z",
+      "azureLastUpdated": "2026-10-20T17:30:22.085Z",
       "currentIterationName": null,
-      "ragStatus": "green",
+      "ragStatus": "red",
       "varianceDays": 0,
       "hasManualProgress": false,
       "hasManualPlannedDates": true,
@@ -6017,8 +6017,8 @@
           "ilcHoursTotal": 72,
           "clientHours": 0,
           "status": "in-progress",
-          "isDelayed": false,
-          "isTightMargin": true,
+          "isDelayed": true,
+          "isTightMargin": false,
           "linkedTasks": [
             {
               "id": 6515,
@@ -6117,8 +6117,8 @@
           "ilcHoursTotal": 114,
           "clientHours": 0,
           "status": "in-progress",
-          "isDelayed": false,
-          "isTightMargin": true,
+          "isDelayed": true,
+          "isTightMargin": false,
           "linkedTasks": [
             {
               "id": 6508,
@@ -6327,8 +6327,8 @@
           "ilcHoursTotal": 86,
           "clientHours": 0,
           "status": "in-progress",
-          "isDelayed": false,
-          "isTightMargin": true,
+          "isDelayed": true,
+          "isTightMargin": false,
           "linkedTasks": [
             {
               "id": 7276,
@@ -7279,7 +7279,9 @@
         "progress": true,
         "dates": true
       },
-      "inconsistencies": [],
+      "inconsistencies": [
+        "DELAYED_ITEMS"
+      ],
       "hasManualIlcHours": false,
       "hasManualAgreedDates": false,
       "priority": "P1",
@@ -7319,9 +7321,9 @@
       "progress": 68,
       "manualRagStatus": "auto",
       "executiveSummary": "Desenvolvimento concluido, testes realizados. Homologado junto a John Deere, próximo passo treinar usuários.",
-      "azureLastUpdated": "2026-10-16T23:09:26.509Z",
+      "azureLastUpdated": "2026-10-20T17:30:22.586Z",
       "currentIterationName": "Iteration 01",
-      "ragStatus": "green",
+      "ragStatus": "red",
       "varianceDays": 0,
       "hasManualProgress": false,
       "hasManualPlannedDates": true,
@@ -7524,8 +7526,8 @@
           "ilcHoursTotal": 8,
           "clientHours": 0,
           "status": "planned",
-          "isDelayed": false,
-          "isTightMargin": true,
+          "isDelayed": true,
+          "isTightMargin": false,
           "linkedTasks": [
             {
               "id": 7216,
@@ -7599,7 +7601,9 @@
         "progress": true,
         "dates": true
       },
-      "inconsistencies": [],
+      "inconsistencies": [
+        "DELAYED_ITEMS"
+      ],
       "hasManualIlcHours": false,
       "hasManualAgreedDates": false,
       "priority": "P2",
@@ -7638,9 +7642,9 @@
       "progress": 66,
       "manualRagStatus": "auto",
       "executiveSummary": "Desenvolvimento concluido, testes realizados. Homologado junto a John Deere, próximo passo treinar usuários.",
-      "azureLastUpdated": "2026-10-16T23:09:27.309Z",
+      "azureLastUpdated": "2026-10-20T17:30:23.044Z",
       "currentIterationName": "Iteration 1",
-      "ragStatus": "green",
+      "ragStatus": "red",
       "varianceDays": 0,
       "hasManualProgress": false,
       "hasManualPlannedDates": true,
@@ -7663,8 +7667,8 @@
           "ilcHoursTotal": 8,
           "clientHours": 0,
           "status": "planned",
-          "isDelayed": false,
-          "isTightMargin": true,
+          "isDelayed": true,
+          "isTightMargin": false,
           "linkedTasks": [
             {
               "id": 7196,
@@ -7918,7 +7922,9 @@
         "progress": true,
         "dates": true
       },
-      "inconsistencies": [],
+      "inconsistencies": [
+        "DELAYED_ITEMS"
+      ],
       "hasManualIlcHours": false,
       "hasManualAgreedDates": false,
       "priority": "P2",
@@ -7957,7 +7963,7 @@
       "progress": 100,
       "manualRagStatus": "auto",
       "executiveSummary": "Projeto integrado ao Azure DevOps. Iteração atual: Em andamento.",
-      "azureLastUpdated": "2026-10-16T23:09:28.628Z",
+      "azureLastUpdated": "2026-10-20T17:30:23.692Z",
       "currentIterationName": null,
       "ragStatus": "green",
       "varianceDays": 0,
@@ -9163,10 +9169,10 @@
         "start": "2026-09-21",
         "end": null
       },
-      "progress": 35,
+      "progress": 38,
       "manualRagStatus": "auto",
       "executiveSummary": "Projeto em fase de desenvolvimento backend volume total de horas acordado 157.",
-      "azureLastUpdated": "2026-10-16T23:09:30.246Z",
+      "azureLastUpdated": "2026-10-20T17:30:24.477Z",
       "currentIterationName": "Iteration 1",
       "ragStatus": "green",
       "varianceDays": 0,
@@ -9185,8 +9191,8 @@
           "startDate": "2026-10-13",
           "targetDate": "2026-10-28",
           "dateStr": "28/10/2026",
-          "ilcHours": 0,
-          "ilcHoursTotal": 28.499999999999993,
+          "ilcHours": 8,
+          "ilcHoursTotal": 36.499999999999986,
           "clientHours": 0,
           "status": "in-progress",
           "isDelayed": false,
@@ -9242,9 +9248,20 @@
               "type": "Task",
               "state": "Active",
               "assignedTo": "Thiago Rodrigues Do Nascimento Silva",
+              "originalEstimate": 8,
+              "completedWork": 8,
+              "startDate": "2026-10-16",
+              "targetDate": "2026-10-16"
+            },
+            {
+              "id": 7357,
+              "title": "[BE] INTEGRAÇÃO XFORMS - ZAPSIGN",
+              "type": "Task",
+              "state": "Active",
+              "assignedTo": "Thiago Rodrigues Do Nascimento Silva",
               "originalEstimate": 0,
               "completedWork": 0,
-              "startDate": "2026-10-16",
+              "startDate": "2026-10-19",
               "targetDate": "2026-11-20"
             },
             {
@@ -9307,7 +9324,7 @@
               "title": "[BE] - Adequar payload Rodopar",
               "type": "Task",
               "state": "New",
-              "assignedTo": "Thiago Rodrigues do Nascimento Silva",
+              "assignedTo": "Thiago Rodrigues Do Nascimento Silva",
               "originalEstimate": 1.9,
               "completedWork": 0,
               "startDate": "2026-09-21",
@@ -9318,7 +9335,7 @@
               "title": "[BE] - Incluir dados do Subcontratado selecionado",
               "type": "Task",
               "state": "New",
-              "assignedTo": "Thiago Rodrigues do Nascimento Silva",
+              "assignedTo": "Thiago Rodrigues Do Nascimento Silva",
               "originalEstimate": 1.9,
               "completedWork": 0,
               "startDate": "2026-09-21",
@@ -9329,7 +9346,7 @@
               "title": "[BE] - Incluir referência do contrato assinado",
               "type": "Task",
               "state": "New",
-              "assignedTo": "Thiago Rodrigues do Nascimento Silva",
+              "assignedTo": "Thiago Rodrigues Do Nascimento Silva",
               "originalEstimate": 1.9,
               "completedWork": 0,
               "startDate": "2026-09-21",
@@ -9340,7 +9357,7 @@
               "title": "[BE] - Implementar envio para inbox Rodopar",
               "type": "Task",
               "state": "New",
-              "assignedTo": "Thiago Rodrigues do Nascimento Silva",
+              "assignedTo": "Thiago Rodrigues Do Nascimento Silva",
               "originalEstimate": 1.9,
               "completedWork": 0,
               "startDate": "2026-09-21",
@@ -9351,7 +9368,7 @@
               "title": "[BE] - Tratar retorno do Rodopar",
               "type": "Task",
               "state": "New",
-              "assignedTo": "Thiago Rodrigues do Nascimento Silva",
+              "assignedTo": "Thiago Rodrigues Do Nascimento Silva",
               "originalEstimate": 1.9,
               "completedWork": 0,
               "startDate": "2026-09-21",
@@ -9362,7 +9379,7 @@
               "title": "[BE] - Liberar onboarding após condições concluídas",
               "type": "Task",
               "state": "New",
-              "assignedTo": "Thiago Rodrigues do Nascimento Silva",
+              "assignedTo": "Thiago Rodrigues Do Nascimento Silva",
               "originalEstimate": 1.9,
               "completedWork": 0,
               "startDate": "2026-09-21",
@@ -9816,7 +9833,7 @@
               "title": "[BE] - Implementar idempotência do webhook",
               "type": "Task",
               "state": "New",
-              "assignedTo": "Thiago Rodrigues do Nascimento Silva",
+              "assignedTo": "Thiago Rodrigues Do Nascimento Silva",
               "originalEstimate": 1.9,
               "completedWork": 0,
               "startDate": "2026-09-21",
@@ -9827,7 +9844,7 @@
               "title": "[BE] - Persistir referência ao documento final e Audit Trail",
               "type": "Task",
               "state": "New",
-              "assignedTo": "Thiago Rodrigues do Nascimento Silva",
+              "assignedTo": "Thiago Rodrigues Do Nascimento Silva",
               "originalEstimate": 1.9,
               "completedWork": 0,
               "startDate": "2026-09-21",
@@ -9838,7 +9855,7 @@
               "title": "[BE] - Implementar logs da integração ZapSign",
               "type": "Task",
               "state": "New",
-              "assignedTo": "Thiago Rodrigues do Nascimento Silva",
+              "assignedTo": "Thiago Rodrigues Do Nascimento Silva",
               "originalEstimate": 1.9,
               "completedWork": 0,
               "startDate": "2026-09-21",
@@ -10028,10 +10045,10 @@
       "hours": {
         "clientPlanned": 0,
         "clientExecuted": 0,
-        "ilcPlanned": 162.5,
-        "ilcExecuted": 63,
-        "totalPlanned": 162.5,
-        "totalExecuted": 63,
+        "ilcPlanned": 170.49999999999997,
+        "ilcExecuted": 71,
+        "totalPlanned": 170.49999999999997,
+        "totalExecuted": 71,
         "distribution": [
           {
             "phase": "Planejamento",
@@ -10041,9 +10058,9 @@
           },
           {
             "phase": "Desenvolvimento",
-            "planned": 71.5,
-            "executed": 0,
-            "percentage": 0
+            "planned": 79.49999999999999,
+            "executed": 8,
+            "percentage": 10
           },
           {
             "phase": "Homologação",
@@ -10066,9 +10083,9 @@
         ]
       },
       "azureOriginal": {
-        "ilcPlanned": 179.60000000000005,
-        "ilcExecuted": 63,
-        "progress": 35,
+        "ilcPlanned": 187.60000000000005,
+        "ilcExecuted": 71,
+        "progress": 38,
         "agreedDates": {
           "start": "2026-08-31",
           "end": "2026-12-05"
@@ -10126,7 +10143,7 @@
       "progress": 47,
       "manualRagStatus": "auto",
       "executiveSummary": "Etapa de gerenciamento de parâmetros em fase final de desenvolvimento.",
-      "azureLastUpdated": "2026-10-16T23:09:31.251Z",
+      "azureLastUpdated": "2026-10-20T17:30:25.149Z",
       "currentIterationName": "Iteration 1",
       "ragStatus": "green",
       "varianceDays": 0,
@@ -10219,7 +10236,7 @@
           "clientHours": 0,
           "status": "in-progress",
           "isDelayed": false,
-          "isTightMargin": false,
+          "isTightMargin": true,
           "linkedTasks": [
             {
               "id": 7259,
@@ -10253,7 +10270,7 @@
           "clientHours": 0,
           "status": "in-progress",
           "isDelayed": false,
-          "isTightMargin": false,
+          "isTightMargin": true,
           "linkedTasks": [
             {
               "id": 7258,
@@ -10839,7 +10856,7 @@
       "progress": 62,
       "manualRagStatus": "auto",
       "executiveSummary": "Projeto integrado ao Azure DevOps. Iteração atual: SPRINT 7a.",
-      "azureLastUpdated": "2026-10-16T23:09:34.742Z",
+      "azureLastUpdated": "2026-10-20T17:30:26.966Z",
       "currentIterationName": "SPRINT 7a",
       "ragStatus": "red",
       "varianceDays": 0,
@@ -12558,8 +12575,8 @@
         ]
       },
       "azureOriginal": {
-        "ilcPlanned": 3055.25,
-        "ilcExecuted": 1891.25,
+        "ilcPlanned": 3061.25,
+        "ilcExecuted": 1897.25,
         "progress": 62,
         "agreedDates": {
           "start": "2025-05-14",
@@ -12613,7 +12630,7 @@
       "progress": 44,
       "manualRagStatus": "auto",
       "executiveSummary": "Projeto integrado ao Azure DevOps. Iteração atual: SPRINT JUL - 2022 - 1 QUINZENA.",
-      "azureLastUpdated": "2026-10-16T23:09:38.392Z",
+      "azureLastUpdated": "2026-10-20T17:30:28.327Z",
       "currentIterationName": "SPRINT JUL - 2022 - 1 QUINZENA",
       "ragStatus": "red",
       "varianceDays": 0,
@@ -13675,7 +13692,7 @@
       "progress": 100,
       "manualRagStatus": "auto",
       "executiveSummary": "Projeto integrado ao Azure DevOps. Iteração atual: Em andamento.",
-      "azureLastUpdated": "2026-10-16T23:09:40.679Z",
+      "azureLastUpdated": "2026-10-20T17:30:29.041Z",
       "currentIterationName": null,
       "ragStatus": "green",
       "varianceDays": 0,
@@ -14514,7 +14531,7 @@
       "progress": 94,
       "manualRagStatus": "auto",
       "executiveSummary": "Projeto integrado ao Azure DevOps. Iteração atual: Iteration 20.",
-      "azureLastUpdated": "2026-10-16T23:09:42.437Z",
+      "azureLastUpdated": "2026-10-20T17:30:30.429Z",
       "currentIterationName": "Iteration 20",
       "ragStatus": "red",
       "varianceDays": 0,
@@ -19353,8 +19370,8 @@
       "progress": 65,
       "manualRagStatus": "auto",
       "executiveSummary": "Projeto integrado ao Azure DevOps. Iteração atual: Sprint 5.",
-      "azureLastUpdated": "2026-10-16T23:09:43.415Z",
-      "currentIterationName": "Sprint 5",
+      "azureLastUpdated": "2026-10-20T17:30:30.898Z",
+      "currentIterationName": "Sprint 6",
       "ragStatus": "red",
       "varianceDays": 0,
       "hasManualProgress": false,
@@ -20328,7 +20345,7 @@
       "progress": 0,
       "manualRagStatus": "auto",
       "executiveSummary": "Projeto sincronizado com o Azure DevOps. Iteração: Iteration 1.",
-      "azureLastUpdated": "2026-10-16T23:09:36.764Z",
+      "azureLastUpdated": "2026-10-20T17:30:27.635Z",
       "currentIterationName": "Iteration 1",
       "activities": [
         {
@@ -20691,6 +20708,107 @@
         ]
       },
       "hasManualAgreedDates": false
+    },
+    {
+      "id": "caaaa6c3-0dd9-49bb-81c4-a7b757102304",
+      "azureId": "caaaa6c3-0dd9-49bb-81c4-a7b757102304",
+      "isManual": false,
+      "name": "Mirassol - Torre de Controle 4.0",
+      "description": "Desenvolvimento da Torre de Controle 4PL, para gestão de demandas das unidades da Mirassol",
+      "client": "Mirassol",
+      "status": "Ativo",
+      "isVisible": true,
+      "currentMilestone": "Desenvolvimento",
+      "agreedDates": {
+        "start": "2026-08-01",
+        "end": "2027-01-31"
+      },
+      "plannedDates": {
+        "start": "2026-08-01",
+        "end": "2027-01-31"
+      },
+      "executedDates": {
+        "start": "2026-08-01",
+        "end": null
+      },
+      "progress": 0,
+      "manualRagStatus": "auto",
+      "executiveSummary": "Projeto sincronizado com o Azure DevOps. Iteração: Em andamento.",
+      "azureLastUpdated": "2026-10-20T17:30:21.285Z",
+      "currentIterationName": null,
+      "activities": [],
+      "priority": "P2",
+      "systems": [],
+      "team": {
+        "leader": "",
+        "members": []
+      },
+      "lockedFields": {
+        "ilcHours": true,
+        "progress": true,
+        "dates": true
+      },
+      "azureOriginal": {
+        "ilcPlanned": 0,
+        "ilcExecuted": 0,
+        "progress": 0,
+        "agreedDates": {
+          "start": "2026-08-01",
+          "end": "2027-01-31"
+        },
+        "plannedDates": {
+          "start": "2026-08-01",
+          "end": "2027-01-31"
+        }
+      },
+      "hours": {
+        "clientPlanned": 0,
+        "clientExecuted": 0,
+        "ilcPlanned": 0,
+        "ilcExecuted": 0,
+        "totalPlanned": 0,
+        "totalExecuted": 0,
+        "distribution": [
+          {
+            "phase": "Planejamento",
+            "planned": 0,
+            "executed": 0,
+            "percentage": 0
+          },
+          {
+            "phase": "Desenvolvimento",
+            "planned": 0,
+            "executed": 0,
+            "percentage": 0
+          },
+          {
+            "phase": "Homologação",
+            "planned": 0,
+            "executed": 0,
+            "percentage": 0
+          },
+          {
+            "phase": "Treinamento",
+            "planned": 0,
+            "executed": 0,
+            "percentage": 0
+          },
+          {
+            "phase": "Operação Assistida",
+            "planned": 0,
+            "executed": 0,
+            "percentage": 0
+          }
+        ]
+      },
+      "ragStatus": "green",
+      "varianceDays": 0,
+      "inconsistencies": [
+        "NO_AZURE_ITEMS",
+        "NO_HOURS"
+      ],
+      "hasManualIlcHours": false,
+      "hasManualProgress": false
     }
   ]
 }

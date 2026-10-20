@@ -1,4 +1,16 @@
-require('dotenv').config();
+const path = require('path');
+const fs = require('fs');
+
+const serverEnv = path.join(__dirname, '.env');
+const rootEnv = path.join(__dirname, '../.env');
+
+if (fs.existsSync(serverEnv)) {
+  require('dotenv').config({ path: serverEnv });
+} else if (fs.existsSync(rootEnv)) {
+  require('dotenv').config({ path: rootEnv });
+} else {
+  require('dotenv').config();
+}
 
 module.exports = {
   port: process.env.PORT || 3000,
