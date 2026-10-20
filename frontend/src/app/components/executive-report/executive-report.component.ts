@@ -166,138 +166,7 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
         </div>
 
         <!-- ======================================================== -->
-        <!-- 2. EXECUTIVE CALLOUT: FOCO IMEDIATO DA DIRETORIA         -->
-        <!-- ======================================================== -->
-        <div *ngIf="topCriticalProjects().length > 0"
-          class="rounded-2xl border border-rose-200/90 bg-rose-50/50 p-4 transition-all">
-          
-          <div class="flex items-center justify-between pb-2.5 mb-3 border-b border-rose-200/60">
-            <div class="flex items-center gap-2">
-              <span class="text-xs">🚨</span>
-              <h3 class="text-xs font-black tracking-tight text-rose-950">
-                Radar de Atenção Imediata da Diretoria ({{ topCriticalProjects().length }} Projetos com Desvio ou Atenção Crítica)
-              </h3>
-            </div>
-            <span class="text-[10px] font-bold text-rose-700">
-              Itens prioritários para deliberação na reunião de hoje
-            </span>
-          </div>
-
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
-            <div
-              *ngFor="let item of topCriticalProjects()"
-              class="p-3 rounded-xl border border-rose-200 bg-white text-slate-800 shadow-2xs flex flex-col justify-between">
-              <div>
-                <div class="flex items-center justify-between gap-1 mb-1">
-                  <span class="text-[10px] font-bold text-slate-500">{{ item.client }}</span>
-                  <span class="text-[9px] font-black px-1.5 py-0.2 rounded-full bg-rose-100 text-rose-800 border border-rose-200">
-                    {{ item.ragStatus === 'red' ? 'Com Desvio' : 'Atenção' }}
-                  </span>
-                </div>
-                <h4 class="text-xs font-black leading-snug truncate" [title]="item.name">{{ item.name }}</h4>
-                <p class="text-[11px] text-rose-900 mt-1 leading-snug font-medium line-clamp-2">
-                  {{ item.attentionPoints }}
-                </p>
-              </div>
-              <div class="mt-2 pt-1.5 border-t border-slate-100 flex items-center justify-between text-[10px] text-slate-500">
-                <span>Fase: <strong class="text-slate-700">{{ item.currentMilestone }}</strong></span>
-                <span class="font-bold text-rose-600">{{ item.progress }}% concluído</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- ======================================================== -->
-        <!-- 3. CARDS EXECUTIVOS DOS PROJETOS                         -->
-        <!-- ======================================================== -->
-        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3.5">
-          <div
-            *ngFor="let p of displayedProjects()"
-            class="rounded-2xl border border-slate-200/90 bg-white p-4 flex flex-col justify-between transition-all hover:shadow-xs">
-            
-            <div>
-              <!-- Card Top -->
-              <div class="flex items-center justify-between gap-2 mb-2">
-                <div class="flex items-center gap-1.5 flex-wrap">
-                  <!-- Priority Pill -->
-                  <span
-                    class="text-[9px] font-black px-1.5 py-0.2 rounded border shadow-2xs shrink-0 cursor-default"
-                    [ngClass]="service.getPriorityBadgeClass(p.priority || 'P2')"
-                    [title]="'Prioridade ' + (p.priority || 'P2') + ' (' + service.getPriorityLabel(p.priority || 'P2') + ')'">
-                    {{ p.priority || 'P2' }}
-                  </span>
-                  <span class="text-[10px] font-bold px-1.5 py-0.2 rounded border bg-slate-100 border-slate-200 text-slate-700">
-                    {{ p.client }}
-                  </span>
-                  <span [ngClass]="service.getMilestoneBadgeClass(p.currentMilestone)" class="px-2 py-0.2 rounded font-semibold text-[10px]">
-                    {{ p.currentMilestone }}
-                  </span>
-                </div>
-                <span
-                  class="px-2 py-0.2 rounded-full text-[10px] font-extrabold shrink-0"
-                  [ngClass]="getRagPillClass(p.ragStatus)">
-                  {{ p.ragStatus === 'red' ? 'Desvio' : (p.ragStatus === 'amber' ? 'Atenção' : 'No Prazo') }}
-                </span>
-              </div>
-
-              <!-- Project Name -->
-              <h4 class="text-xs sm:text-sm font-extrabold tracking-tight truncate leading-snug mb-1 text-slate-900"
-                [title]="p.name">
-                {{ p.name }}
-              </h4>
-
-              <!-- Systems Involved -->
-              <div *ngIf="p.systems && p.systems.length > 0" class="flex flex-wrap items-center gap-1 mb-2.5">
-                <span
-                  *ngFor="let sys of p.systems"
-                  [ngClass]="service.getSystemBadgeClass(sys)"
-                  class="px-1.5 py-0.2 rounded text-[9px] font-bold border shadow-2xs">
-                  {{ sys }}
-                </span>
-              </div>
-
-              <!-- Progress bar -->
-              <div class="mb-3">
-                <div class="flex items-center justify-between text-[10px] font-bold mb-1 text-slate-500">
-                  <span>Progresso</span>
-                  <span class="font-black text-slate-800">{{ p.progress }}%</span>
-                </div>
-                <div class="w-full bg-slate-100 rounded-full h-1.5 overflow-hidden">
-                  <div
-                    class="h-full rounded-full"
-                    [ngClass]="p.ragStatus === 'red' ? 'bg-rose-500' : (p.ragStatus === 'amber' ? 'bg-amber-500' : 'bg-blue-600')"
-                    [style.width.%]="p.progress">
-                  </div>
-                </div>
-              </div>
-
-              <!-- Highlights paragraph -->
-              <p class="text-[11px] leading-relaxed mb-2 text-slate-700">
-                {{ p.statusReport }}
-              </p>
-
-              <!-- Attention Point callout if any -->
-              <div *ngIf="p.ragStatus === 'red' || p.ragStatus === 'amber'"
-                class="p-2 rounded-lg text-[10px] leading-snug mb-2 bg-rose-50 text-rose-900 border border-rose-200">
-                <strong>⚠️ Ponto de Atenção:</strong> {{ p.attentionPoints }}
-              </div>
-            </div>
-
-            <!-- Card Bottom -->
-            <div class="pt-2 border-t border-slate-100 flex items-center justify-between text-[10px] text-slate-400">
-              <span>Meta: <strong class="text-slate-600">{{ formatDate(p.targetDelivery) }}</strong></span>
-              <button
-                (click)="service.openEapForProject(p.projectId)"
-                class="text-blue-600 font-bold hover:underline cursor-pointer">
-                Ver EAP →
-              </button>
-            </div>
-
-          </div>
-        </div>
-
-        <!-- ======================================================== -->
-        <!-- 4. BOTTOM GRID: ROADMAP (PIPELINE) & BOARD DECISIONS     -->
+        <!-- 2. ROADMAP (PIPELINE) & DELIBERAÇÕES DA DIRETORIA        -->
         <!-- ======================================================== -->
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
           
@@ -399,6 +268,137 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
 
           </div>
 
+        </div>
+
+        <!-- ======================================================== -->
+        <!-- 3. EXECUTIVE CALLOUT: FOCO IMEDIATO DA DIRETORIA         -->
+        <!-- ======================================================== -->
+        <div *ngIf="topCriticalProjects().length > 0"
+          class="rounded-2xl border border-rose-200/90 bg-rose-50/50 p-4 transition-all">
+          
+          <div class="flex items-center justify-between pb-2.5 mb-3 border-b border-rose-200/60">
+            <div class="flex items-center gap-2">
+              <span class="text-xs">🚨</span>
+              <h3 class="text-xs font-black tracking-tight text-rose-950">
+                Radar de Atenção Imediata da Diretoria ({{ topCriticalProjects().length }} Projetos com Desvio ou Atenção Crítica)
+              </h3>
+            </div>
+            <span class="text-[10px] font-bold text-rose-700">
+              Itens prioritários para deliberação na reunião de hoje
+            </span>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+            <div
+              *ngFor="let item of topCriticalProjects()"
+              class="p-3 rounded-xl border border-rose-200 bg-white text-slate-800 shadow-2xs flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between gap-1 mb-1">
+                  <span class="text-[10px] font-bold text-slate-500">{{ item.client }}</span>
+                  <span class="text-[9px] font-black px-1.5 py-0.2 rounded-full bg-rose-100 text-rose-800 border border-rose-200">
+                    {{ item.ragStatus === 'red' ? 'Com Desvio' : 'Atenção' }}
+                  </span>
+                </div>
+                <h4 class="text-xs font-black leading-snug truncate" [title]="item.name">{{ item.name }}</h4>
+                <p class="text-[11px] text-rose-900 mt-1 leading-snug font-medium line-clamp-2">
+                  {{ item.attentionPoints }}
+                </p>
+              </div>
+              <div class="mt-2 pt-1.5 border-t border-slate-100 flex items-center justify-between text-[10px] text-slate-500">
+                <span>Fase: <strong class="text-slate-700">{{ item.currentMilestone }}</strong></span>
+                <span class="font-bold text-rose-600">{{ item.progress }}% concluído</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ======================================================== -->
+        <!-- 4. CARDS EXECUTIVOS DOS PROJETOS                         -->
+        <!-- ======================================================== -->
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3.5">
+          <div
+            *ngFor="let p of displayedProjects()"
+            class="rounded-2xl border border-slate-200/90 bg-white p-4 flex flex-col justify-between transition-all hover:shadow-xs">
+            
+            <div>
+              <!-- Card Top -->
+              <div class="flex items-center justify-between gap-2 mb-2">
+                <div class="flex items-center gap-1.5 flex-wrap">
+                  <!-- Priority Pill -->
+                  <span
+                    class="text-[9px] font-black px-1.5 py-0.2 rounded border shadow-2xs shrink-0 cursor-default"
+                    [ngClass]="service.getPriorityBadgeClass(p.priority || 'P2')"
+                    [title]="'Prioridade ' + (p.priority || 'P2') + ' (' + service.getPriorityLabel(p.priority || 'P2') + ')'">
+                    {{ p.priority || 'P2' }}
+                  </span>
+                  <span class="text-[10px] font-bold px-1.5 py-0.2 rounded border bg-slate-100 border-slate-200 text-slate-700">
+                    {{ p.client }}
+                  </span>
+                  <span [ngClass]="service.getMilestoneBadgeClass(p.currentMilestone)" class="px-2 py-0.2 rounded font-semibold text-[10px]">
+                    {{ p.currentMilestone }}
+                  </span>
+                </div>
+                <span
+                  class="px-2 py-0.2 rounded-full text-[10px] font-extrabold shrink-0"
+                  [ngClass]="getRagPillClass(p.ragStatus)">
+                  {{ p.ragStatus === 'red' ? 'Desvio' : (p.ragStatus === 'amber' ? 'Atenção' : 'No Prazo') }}
+                </span>
+              </div>
+
+              <!-- Project Name -->
+              <h4 class="text-xs sm:text-sm font-extrabold tracking-tight truncate leading-snug mb-1 text-slate-900"
+                [title]="p.name">
+                {{ p.name }}
+              </h4>
+
+              <!-- Systems Involved -->
+              <div *ngIf="p.systems && p.systems.length > 0" class="flex flex-wrap items-center gap-1 mb-2.5">
+                <span
+                  *ngFor="let sys of p.systems"
+                  [ngClass]="service.getSystemBadgeClass(sys)"
+                  class="px-1.5 py-0.2 rounded text-[9px] font-bold border shadow-2xs">
+                  {{ sys }}
+                </span>
+              </div>
+
+              <!-- Progress bar -->
+              <div class="mb-3">
+                <div class="flex items-center justify-between text-[10px] font-bold mb-1 text-slate-500">
+                  <span>Progresso</span>
+                  <span class="font-black text-slate-800">{{ p.progress }}%</span>
+                </div>
+                <div class="w-full bg-slate-100 rounded-full h-1.5 overflow-hidden">
+                  <div
+                    class="h-full rounded-full"
+                    [ngClass]="p.ragStatus === 'red' ? 'bg-rose-500' : (p.ragStatus === 'amber' ? 'bg-amber-500' : 'bg-blue-600')"
+                    [style.width.%]="p.progress">
+                  </div>
+                </div>
+              </div>
+
+              <!-- Highlights paragraph -->
+              <p class="text-[11px] leading-relaxed mb-2 text-slate-700">
+                {{ p.statusReport }}
+              </p>
+
+              <!-- Attention Point callout if any -->
+              <div *ngIf="p.ragStatus === 'red' || p.ragStatus === 'amber'"
+                class="p-2 rounded-lg text-[10px] leading-snug mb-2 bg-rose-50 text-rose-900 border border-rose-200">
+                <strong>⚠️ Ponto de Atenção:</strong> {{ p.attentionPoints }}
+              </div>
+            </div>
+
+            <!-- Card Bottom -->
+            <div class="pt-2 border-t border-slate-100 flex items-center justify-between text-[10px] text-slate-400">
+              <span>Meta: <strong class="text-slate-600">{{ formatDate(p.targetDelivery) }}</strong></span>
+              <button
+                (click)="service.openEapForProject(p.projectId)"
+                class="text-blue-600 font-bold hover:underline cursor-pointer">
+                Ver EAP →
+              </button>
+            </div>
+
+          </div>
         </div>
 
       </div>
