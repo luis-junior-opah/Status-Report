@@ -216,17 +216,17 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
         <!-- 3. DELIBERAÇÕES & DECISÕES DA DIRETORIA (EFEITO / AÇÃO)  -->
         <!-- ======================================================== -->
         <div
-          class="rounded-2xl border border-slate-200/90 bg-white shadow-2xs p-4 sm:p-5 transition-all">
+          class="rounded-2xl border border-amber-200/90 bg-amber-50/50 p-4 sm:p-5 transition-all">
           
-          <div class="flex items-center justify-between pb-2.5 mb-3 border-b border-slate-100">
+          <div class="flex items-center justify-between pb-2.5 mb-3 border-b border-amber-200/60">
             <div class="flex items-center gap-2">
               <span class="text-xs">⚖️</span>
-              <h3 class="text-xs sm:text-sm font-extrabold text-slate-900">
+              <h3 class="text-xs sm:text-sm font-black tracking-tight text-amber-950">
                 Deliberações & Decisões Esperadas da Diretoria ({{ currentReport()?.boardDecisions?.length || 0 }})
               </h3>
             </div>
-            <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-50 text-amber-800 border border-amber-200">
-              Pauta
+            <span class="text-[10px] font-bold text-amber-800">
+              Pauta prioritária para deliberação executiva
             </span>
           </div>
 
@@ -235,30 +235,30 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
             class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
             <div
               *ngFor="let dec of currentReport()?.boardDecisions"
-              class="p-3.5 rounded-xl border border-slate-200/80 bg-slate-50/60 flex flex-col justify-between">
+              class="p-3.5 rounded-xl border border-amber-200 bg-white text-slate-800 shadow-2xs flex flex-col justify-between">
               <div>
                 <div class="flex items-center justify-between gap-1 mb-1.5">
                   <span class="text-[10px] font-bold text-slate-500 uppercase">{{ dec.client }}</span>
                   <span class="text-[9px] font-bold px-1.5 py-0.5 rounded-full"
-                    [ngClass]="dec.status === 'Aprovado' ? 'bg-emerald-100 text-emerald-800' : 'bg-amber-100 text-amber-800'">
+                    [ngClass]="dec.status === 'Aprovado' ? 'bg-emerald-100 text-emerald-800 border border-emerald-200' : 'bg-amber-100 text-amber-800 border border-amber-200'">
                     {{ dec.status }}
                   </span>
                 </div>
                 <h4 class="text-xs font-black leading-snug text-slate-900">
                   {{ dec.title }}
                 </h4>
-                <p class="text-[11px] text-slate-600 leading-snug mt-1.5">
+                <p class="text-[11px] text-amber-950/80 leading-snug mt-1.5 font-medium">
                   {{ dec.impact }}
                 </p>
               </div>
-              <div class="mt-3 pt-2 border-t border-slate-200/70 flex items-center justify-between text-[10px]">
-                <span class="text-slate-400">Prazo:</span>
-                <strong class="text-blue-600 font-bold">{{ dec.deadline }}</strong>
+              <div class="mt-3 pt-2 border-t border-slate-100 flex items-center justify-between text-[10px] text-slate-500">
+                <span>Prazo:</span>
+                <strong class="text-amber-800 font-bold">{{ dec.deadline }}</strong>
               </div>
             </div>
           </div>
           <ng-template #emptyDecisions>
-            <p class="text-xs text-slate-400 italic py-2">Nenhuma deliberação registrada para esta semana.</p>
+            <p class="text-xs text-amber-800/70 italic py-2">Nenhuma deliberação registrada para esta semana.</p>
           </ng-template>
 
         </div>
@@ -267,17 +267,17 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
         <!-- 4. PROJETOS NO RADAR & ROADMAP ESTRATÉGICO (FUTURO)      -->
         <!-- ======================================================== -->
         <div
-          class="rounded-2xl border border-slate-200/90 bg-white shadow-2xs p-4 sm:p-5 transition-all">
+          class="rounded-2xl border border-blue-200/90 bg-blue-50/50 p-4 sm:p-5 transition-all">
           
-          <div class="flex items-center justify-between pb-2.5 mb-3 border-b border-slate-100">
+          <div class="flex items-center justify-between pb-2.5 mb-3 border-b border-blue-200/60">
             <div class="flex items-center gap-2">
               <span class="text-xs">🔭</span>
-              <h3 class="text-xs sm:text-sm font-extrabold text-slate-900">
+              <h3 class="text-xs sm:text-sm font-black tracking-tight text-blue-950">
                 Projetos no Radar & Roadmap Estratégico ({{ currentReport()?.roadmapProjects?.length || 0 }})
               </h3>
             </div>
-            <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-indigo-50 text-indigo-700 border border-indigo-200">
-              Pipeline
+            <span class="text-[10px] font-bold text-blue-700">
+              Pipeline de novas demandas e expansões
             </span>
           </div>
 
@@ -286,10 +286,10 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
             class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-3">
             <div
               *ngFor="let road of currentReport()?.roadmapProjects"
-              class="p-3 rounded-xl border border-slate-200/80 bg-slate-50/60 flex flex-col justify-between">
+              class="p-3.5 rounded-xl border border-blue-200 bg-white text-slate-800 shadow-2xs flex flex-col justify-between">
               <div>
                 <div class="flex items-center justify-between gap-1 mb-1">
-                  <span class="text-[9px] font-bold px-1.5 py-0.5 rounded bg-white border border-slate-200 text-slate-700">
+                  <span class="text-[9px] font-bold px-1.5 py-0.5 rounded bg-blue-50 border border-blue-200 text-blue-800">
                     {{ road.client }}
                   </span>
                   <span class="text-[9px] font-bold px-1.5 py-0.5 rounded-full"
@@ -301,18 +301,18 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
                   [title]="road.name">
                   {{ road.name }}
                 </h4>
-                <p class="text-[10px] leading-snug line-clamp-2 mt-1 text-slate-500">
+                <p class="text-[10px] leading-snug line-clamp-2 mt-1 text-slate-600 font-medium">
                   {{ road.description }}
                 </p>
               </div>
-              <div class="mt-2.5 pt-1.5 border-t border-slate-200/70 flex items-center justify-between text-[9px] text-slate-400">
+              <div class="mt-2.5 pt-1.5 border-t border-slate-100 flex items-center justify-between text-[9px] text-slate-500">
                 <span>Início: <strong class="text-slate-700">{{ road.estimatedStart }}</strong></span>
-                <span class="font-extrabold text-indigo-600">{{ road.strategicValue }}</span>
+                <span class="font-extrabold text-blue-700">{{ road.strategicValue }}</span>
               </div>
             </div>
           </div>
           <ng-template #emptyRoadmap>
-            <p class="text-xs text-slate-400 italic py-2">Nenhum projeto em roadmap nesta edição.</p>
+            <p class="text-xs text-blue-800/70 italic py-2">Nenhum projeto em roadmap nesta edição.</p>
           </ng-template>
 
         </div>
