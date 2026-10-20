@@ -469,7 +469,32 @@
         "responsible": "Projetos ILC"
       }
     ],
-    "boardDecisions": []
+    "boardDecisions": [
+      {
+        "id": "dec-1",
+        "title": "Aprovação da Data de Go-Live - Duplicação de Pedidos",
+        "client": "John Deere",
+        "impact": "Homologação final e implantação assistida agendada para final de Outubro.",
+        "status": "Aguardando Aval",
+        "deadline": "16/10/2026"
+      },
+      {
+        "id": "dec-2",
+        "title": "Priorização de Squad: Fluxo de Recusa vs Assinatura Digital",
+        "client": "Mirassol",
+        "impact": "Alocação dedicada de 2 engenheiros de software para aceleração da entrega.",
+        "status": "Em Deliberação",
+        "deadline": "Reunião de Hoje"
+      },
+      {
+        "id": "dec-3",
+        "title": "Janela de Manutenção: Conclusão Migração Data Center Matrix",
+        "client": "ILC (Interno)",
+        "impact": "Virada final do tráfego de produção sem indisponibilidade para parceiros externos.",
+        "status": "Alinhado",
+        "deadline": "19/10/2026"
+      }
+    ]
   },
   {
     "id": "2026-W41",
