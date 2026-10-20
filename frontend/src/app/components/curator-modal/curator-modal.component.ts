@@ -141,9 +141,36 @@ import { WeeklyReport, WeeklyReportProject, RoadmapProject, BoardDecision } from
                   <button
                     (click)="onlyInconsistent.set(!onlyInconsistent())"
                     [ngClass]="onlyInconsistent() ? 'bg-amber-100 text-amber-800 border-amber-300 font-extrabold' : 'bg-slate-100 text-slate-600 border-slate-200'"
-                    class="px-2 py-1 rounded-lg border text-[11px] font-semibold transition shrink-0"
+                    class="px-2 py-1 rounded-lg border text-[11px] font-semibold transition shrink-0 cursor-pointer"
                     title="Filtrar projetos que necessitam de atenção ou dados">
                     ⚠️ Alertas
+                  </button>
+                </div>
+
+                <!-- Origin Filter (Todos / Azure / Manual) -->
+                <div class="flex items-center gap-1 bg-slate-100 p-0.5 rounded-xl border border-slate-200 text-[10px] font-bold">
+                  <button
+                    type="button"
+                    (click)="originFilter.set('Todos')"
+                    [ngClass]="originFilter() === 'Todos' ? 'bg-white text-slate-900 shadow-2xs' : 'text-slate-500 hover:text-slate-800'"
+                    class="flex-1 py-1 px-1.5 rounded-lg transition text-center cursor-pointer">
+                    Todos ({{ getOriginCount('Todos') }})
+                  </button>
+                  <button
+                    type="button"
+                    (click)="originFilter.set('Azure')"
+                    [ngClass]="originFilter() === 'Azure' ? 'bg-blue-600 text-white shadow-2xs' : 'text-slate-500 hover:text-slate-800'"
+                    class="flex-1 py-1 px-1.5 rounded-lg transition text-center cursor-pointer flex items-center justify-center gap-1">
+                    <span>☁️ Azure</span>
+                    <span class="text-[9px] opacity-80">({{ getOriginCount('Azure') }})</span>
+                  </button>
+                  <button
+                    type="button"
+                    (click)="originFilter.set('Manual')"
+                    [ngClass]="originFilter() === 'Manual' ? 'bg-amber-500 text-white shadow-2xs' : 'text-slate-500 hover:text-slate-800'"
+                    class="flex-1 py-1 px-1.5 rounded-lg transition text-center cursor-pointer flex items-center justify-center gap-1">
+                    <span>✍️ Manual</span>
+                    <span class="text-[9px] opacity-80">({{ getOriginCount('Manual') }})</span>
                   </button>
                 </div>
               </div>
@@ -160,11 +187,19 @@ import { WeeklyReport, WeeklyReportProject, RoadmapProject, BoardDecision } from
                     <span class="text-xs font-bold leading-tight line-clamp-1" [title]="p.name">
                       {{ p.name }}
                     </span>
-                    <span
-                      class="text-[9px] font-extrabold px-1.5 py-0.2 rounded shrink-0 uppercase"
-                      [ngClass]="p.status === 'Ativo' ? 'bg-emerald-100 text-emerald-800' : (p.status === 'Finalizado' ? 'bg-blue-100 text-blue-800' : 'bg-amber-100 text-amber-800')">
-                      {{ p.status }}
-                    </span>
+                    <div class="flex items-center gap-1 shrink-0">
+                      <!-- Origin Badge -->
+                      <span
+                        class="text-[9px] font-black px-1.5 py-0.2 rounded"
+                        [ngClass]="isManualProject(p) ? 'bg-amber-100 text-amber-800 border border-amber-200' : 'bg-sky-100 text-sky-800 border border-sky-200'">
+                        {{ isManualProject(p) ? '✍️ Manual' : '☁️ Azure' }}
+                      </span>
+                      <span
+                        class="text-[9px] font-extrabold px-1.5 py-0.2 rounded uppercase"
+                        [ngClass]="p.status === 'Ativo' ? 'bg-emerald-100 text-emerald-800' : (p.status === 'Finalizado' ? 'bg-blue-100 text-blue-800' : 'bg-amber-100 text-amber-800')">
+                        {{ p.status }}
+                      </span>
+                    </div>
                   </div>
 
                   <div class="flex items-center justify-between text-[10px] text-slate-500 font-medium">
@@ -1262,29 +1297,61 @@ import { WeeklyReport, WeeklyReportProject, RoadmapProject, BoardDecision } from
 
             <!-- Ajuste Fino dos Projetos Ativos -->
             <div *ngIf="editableReport()" class="bg-white rounded-2xl border border-slate-200 p-5 shadow-xs space-y-4">
-              <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-slate-100 gap-3">
                 <div class="flex items-center gap-2">
                   <span class="text-base">📌</span>
                   <div>
                     <h4 class="text-xs sm:text-sm font-extrabold text-slate-900">
-                      Pontos de Atenção & Status dos Projetos Ativos ({{ editableReport()!.activeProjects?.length || 0 }})
+                      Pontos de Atenção & Status dos Projetos Ativos ({{ filteredWeeklyActiveProjects().length }})
                     </h4>
                     <p class="text-[11px] text-slate-500">
                       Personalize o texto que a diretoria verá nos cards executivos desta edição.
                     </p>
                   </div>
                 </div>
+
+                <!-- Origin Filter for Weekly Active Projects -->
+                <div class="flex items-center gap-1 bg-slate-100 p-0.5 rounded-xl border border-slate-200 text-[10px] font-bold">
+                  <button
+                    type="button"
+                    (click)="weeklyOriginFilter.set('Todos')"
+                    [ngClass]="weeklyOriginFilter() === 'Todos' ? 'bg-white text-slate-900 shadow-2xs' : 'text-slate-500 hover:text-slate-800'"
+                    class="py-1 px-2.5 rounded-lg transition text-center cursor-pointer">
+                    Todos ({{ getWeeklyOriginCount('Todos') }})
+                  </button>
+                  <button
+                    type="button"
+                    (click)="weeklyOriginFilter.set('Azure')"
+                    [ngClass]="weeklyOriginFilter() === 'Azure' ? 'bg-blue-600 text-white shadow-2xs' : 'text-slate-500 hover:text-slate-800'"
+                    class="py-1 px-2.5 rounded-lg transition text-center cursor-pointer flex items-center gap-1">
+                    <span>☁️ Azure</span>
+                    <span class="text-[9px] opacity-80">({{ getWeeklyOriginCount('Azure') }})</span>
+                  </button>
+                  <button
+                    type="button"
+                    (click)="weeklyOriginFilter.set('Manual')"
+                    [ngClass]="weeklyOriginFilter() === 'Manual' ? 'bg-amber-500 text-white shadow-2xs' : 'text-slate-500 hover:text-slate-800'"
+                    class="py-1 px-2.5 rounded-lg transition text-center cursor-pointer flex items-center gap-1">
+                    <span>✍️ Manual</span>
+                    <span class="text-[9px] opacity-80">({{ getWeeklyOriginCount('Manual') }})</span>
+                  </button>
+                </div>
               </div>
 
               <div class="space-y-4">
                 <div
-                  *ngFor="let p of editableReport()!.activeProjects"
+                  *ngFor="let p of filteredWeeklyActiveProjects()"
                   class="p-4 bg-slate-50 border border-slate-200 rounded-xl space-y-2.5">
                   
                   <div class="flex items-center justify-between gap-2">
                     <div class="flex items-center gap-2">
                       <span class="text-xs font-black text-slate-800">{{ p.name }}</span>
                       <span class="text-[10px] font-bold text-slate-500">({{ p.client }})</span>
+                      <span
+                        class="text-[9px] font-black px-1.5 py-0.2 rounded"
+                        [ngClass]="isManualProject(p) ? 'bg-amber-100 text-amber-800 border border-amber-200' : 'bg-sky-100 text-sky-800 border border-sky-200'">
+                        {{ isManualProject(p) ? '✍️ Manual' : '☁️ Azure' }}
+                      </span>
                     </div>
                     <div class="flex items-center gap-2">
                       <span [ngClass]="service.getMilestoneBadgeClass(p.currentMilestone)" class="px-2 py-0.5 rounded font-semibold text-[10px]">
@@ -1807,6 +1874,8 @@ export class CuratorModalComponent implements OnInit {
   selectedProjectId = signal<string | null>(null);
   projectSearch = signal<string>('');
   clientFilter = signal<string>('Todos');
+  originFilter = signal<'Todos' | 'Manual' | 'Azure'>('Todos');
+  weeklyOriginFilter = signal<'Todos' | 'Manual' | 'Azure'>('Todos');
   onlyInconsistent = signal<boolean>(false);
 
   // Custom links state
@@ -1890,15 +1959,45 @@ export class CuratorModalComponent implements OnInit {
     }
   }
 
+  isManualProject(p: any): boolean {
+    if (!p) return false;
+    return !!(p.isManual || (p.id && String(p.id).startsWith('manual-')) || (p.projectId && String(p.projectId).startsWith('manual-')));
+  }
+
+  isAzureProject(p: any): boolean {
+    return !this.isManualProject(p);
+  }
+
+  getOriginCount(type: 'Todos' | 'Manual' | 'Azure'): number {
+    const list = this.service.adminProjects();
+    if (type === 'Todos') return list.length;
+    if (type === 'Manual') return list.filter(p => this.isManualProject(p)).length;
+    return list.filter(p => this.isAzureProject(p)).length;
+  }
+
+  getWeeklyOriginCount(type: 'Todos' | 'Manual' | 'Azure'): number {
+    const list = this.editableReport()?.activeProjects || [];
+    if (type === 'Todos') return list.length;
+    if (type === 'Manual') return list.filter(p => this.isManualProject(p)).length;
+    return list.filter(p => this.isAzureProject(p)).length;
+  }
+
   // Filtered project list for the left column
   filteredAdminProjects = computed(() => {
     let list = this.service.adminProjects();
     const query = this.projectSearch().toLowerCase().trim();
     const client = this.clientFilter();
+    const origin = this.originFilter();
     const alertOnly = this.onlyInconsistent();
 
     return list
       .filter(p => {
+        if (origin === 'Manual' && !this.isManualProject(p)) {
+          return false;
+        }
+        if (origin === 'Azure' && !this.isAzureProject(p)) {
+          return false;
+        }
         if (client !== 'Todos' && p.client.toLowerCase() !== client.toLowerCase()) {
           return false;
         }
@@ -1917,6 +2016,15 @@ export class CuratorModalComponent implements OnInit {
         if (clientDiff !== 0) return clientDiff;
         return (a.name || '').localeCompare(b.name || '', 'pt-BR', { sensitivity: 'base' });
       });
+  });
+
+  // Filtered active projects for Weekly Report tab
+  filteredWeeklyActiveProjects = computed(() => {
+    const list = this.editableReport()?.activeProjects || [];
+    const origin = this.weeklyOriginFilter();
+    if (origin === 'Manual') return list.filter(p => this.isManualProject(p));
+    if (origin === 'Azure') return list.filter(p => this.isAzureProject(p));
+    return list;
   });
 
   // Active project for the right detail editor
