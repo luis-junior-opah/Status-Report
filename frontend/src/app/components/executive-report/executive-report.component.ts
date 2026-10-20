@@ -94,8 +94,8 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
           <!-- 10 Sleek Executive Pulse Metrics (Light Theme) -->
           <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 2xl:grid-cols-10 gap-2 w-full">
             <!-- 1. Ativos -->
-            <div class="px-2.5 py-2 bg-slate-50 rounded-xl border border-slate-200/80 text-center shadow-2xs">
-              <span class="text-[9px] font-bold text-slate-500 uppercase tracking-wider block truncate">Ativos</span>
+            <div class="px-1.5 py-2 bg-slate-50 rounded-xl border border-slate-200/80 text-center shadow-2xs">
+              <span class="text-[8px] font-bold text-slate-500 uppercase tracking-tight block truncate">Ativos</span>
               <span class="text-xl font-black text-slate-900 block mt-0.5">
                 {{ getActiveCount() }}
               </span>
@@ -103,8 +103,8 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
             </div>
 
             <!-- 2. No Prazo -->
-            <div class="px-2.5 py-2 bg-emerald-50/70 rounded-xl border border-emerald-200/80 text-center shadow-2xs">
-              <span class="text-[9px] font-bold text-emerald-800 uppercase tracking-wider block truncate">No Prazo</span>
+            <div class="px-1.5 py-2 bg-emerald-50/70 rounded-xl border border-emerald-200/80 text-center shadow-2xs">
+              <span class="text-[8px] font-bold text-emerald-800 uppercase tracking-tight block truncate">No Prazo</span>
               <span class="text-xl font-black text-emerald-700 block mt-0.5">
                 {{ getOnTrackCount() }}
               </span>
@@ -114,8 +114,8 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
             </div>
 
             <!-- 3. Em Atenção -->
-            <div class="px-2.5 py-2 bg-amber-50/70 rounded-xl border border-amber-200/80 text-center shadow-2xs">
-              <span class="text-[9px] font-bold text-amber-800 uppercase tracking-wider block truncate">Em Atenção</span>
+            <div class="px-1.5 py-2 bg-amber-50/70 rounded-xl border border-amber-200/80 text-center shadow-2xs">
+              <span class="text-[8px] font-bold text-amber-800 uppercase tracking-tight block truncate">Em Atenção</span>
               <span class="text-xl font-black text-amber-800 block mt-0.5">
                 {{ getAttentionCount() }}
               </span>
@@ -123,8 +123,8 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
             </div>
 
             <!-- 4. Com Desvio -->
-            <div class="px-2.5 py-2 bg-rose-50/70 rounded-xl border border-rose-200/80 text-center shadow-2xs">
-              <span class="text-[9px] font-bold text-rose-800 uppercase tracking-wider block truncate">Com Desvio</span>
+            <div class="px-1.5 py-2 bg-rose-50/70 rounded-xl border border-rose-200/80 text-center shadow-2xs">
+              <span class="text-[8px] font-bold text-rose-800 uppercase tracking-tight block truncate">Com Desvio</span>
               <span class="text-xl font-black text-rose-700 block mt-0.5">
                 {{ getCriticalCount() }}
               </span>
@@ -132,8 +132,8 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
             </div>
 
             <!-- 5. Concluídos -->
-            <div class="px-2.5 py-2 bg-teal-50/70 rounded-xl border border-teal-200/80 text-center shadow-2xs">
-              <span class="text-[9px] font-bold text-teal-800 uppercase tracking-wider block truncate">Concluídos</span>
+            <div class="px-1.5 py-2 bg-teal-50/70 rounded-xl border border-teal-200/80 text-center shadow-2xs">
+              <span class="text-[8px] font-bold text-teal-800 uppercase tracking-tight block truncate">Concluídos</span>
               <span class="text-xl font-black text-teal-700 block mt-0.5">
                 {{ getCompletedCount() }}
               </span>
@@ -141,8 +141,8 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
             </div>
 
             <!-- 6. Congelados -->
-            <div class="px-2.5 py-2 bg-slate-50 rounded-xl border border-slate-200/80 text-center shadow-2xs">
-              <span class="text-[9px] font-bold text-slate-500 uppercase tracking-wider block truncate">Congelados</span>
+            <div class="px-1.5 py-2 bg-slate-50 rounded-xl border border-slate-200/80 text-center shadow-2xs">
+              <span class="text-[8px] font-bold text-slate-500 uppercase tracking-tight block truncate">Congelados</span>
               <span class="text-xl font-black text-slate-600 block mt-0.5">
                 {{ getFrozenCount() }}
               </span>
@@ -150,8 +150,8 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
             </div>
 
             <!-- 7. No radar (antes: Atenção) -->
-            <div class="px-2.5 py-2 bg-orange-50/70 rounded-xl border border-orange-200/80 text-center shadow-2xs">
-              <span class="text-[9px] font-bold text-orange-800 uppercase tracking-wider block truncate">🚨 No radar</span>
+            <div class="px-1.5 py-2 bg-orange-50/70 rounded-xl border border-orange-200/80 text-center shadow-2xs">
+              <span class="text-[8px] font-bold text-orange-800 uppercase tracking-tight block truncate">🚨 No radar</span>
               <span class="text-xl font-black text-orange-700 block mt-0.5">
                 {{ topCriticalProjects().length }}
               </span>
@@ -159,8 +159,8 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
             </div>
 
             <!-- 8. Deliberações -->
-            <div class="px-2.5 py-2 bg-purple-50/70 rounded-xl border border-purple-200/80 text-center shadow-2xs">
-              <span class="text-[9px] font-bold text-purple-800 uppercase tracking-wider block truncate">⚖️ Deliberações</span>
+            <div class="px-1.5 py-2 bg-purple-50/70 rounded-xl border border-purple-200/80 text-center shadow-2xs">
+              <span class="text-[8px] font-bold text-purple-800 uppercase tracking-tight block truncate">⚖️ Deliberações</span>
               <span class="text-xl font-black text-purple-800 block mt-0.5">
                 {{ currentReport()?.boardDecisions?.length || 0 }}
               </span>
@@ -168,8 +168,8 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
             </div>
 
             <!-- 9. Roadmap -->
-            <div class="px-2.5 py-2 bg-blue-50/70 rounded-xl border border-blue-200/80 text-center shadow-2xs">
-              <span class="text-[9px] font-bold text-blue-800 uppercase tracking-wider block truncate">🔭 Roadmap</span>
+            <div class="px-1.5 py-2 bg-blue-50/70 rounded-xl border border-blue-200/80 text-center shadow-2xs">
+              <span class="text-[8px] font-bold text-blue-800 uppercase tracking-tight block truncate">🔭 Roadmap</span>
               <span class="text-xl font-black text-blue-700 block mt-0.5">
                 {{ currentReport()?.roadmapProjects?.length || 0 }}
               </span>
@@ -177,8 +177,8 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
             </div>
 
             <!-- 10. Avanço Médio -->
-            <div class="px-2.5 py-2 bg-slate-50 rounded-xl border border-slate-200/80 text-center shadow-2xs">
-              <span class="text-[9px] font-bold text-slate-600 uppercase tracking-wider block truncate">Avanço Médio</span>
+            <div class="px-1.5 py-2 bg-slate-50 rounded-xl border border-slate-200/80 text-center shadow-2xs">
+              <span class="text-[8px] font-bold text-slate-600 uppercase tracking-tight block truncate">Avanço Médio</span>
               <span class="text-xl font-black text-blue-700 block mt-0.5">
                 {{ getAverageProgress() }}%
               </span>
