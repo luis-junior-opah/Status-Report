@@ -1297,19 +1297,29 @@ import { WeeklyReport, WeeklyReportProject, RoadmapProject, BoardDecision } from
                     </div>
                   </div>
 
-                  <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                  <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
                     <div>
-                      <label class="block text-[10px] font-bold text-blue-700 mb-1">Avanço da Semana (O que foi entregue)</label>
+                      <label class="block text-[10px] font-bold text-slate-600 mb-1">Status Report Anterior</label>
                       <textarea
                         rows="2"
-                        [(ngModel)]="p.statusReport"
+                        [(ngModel)]="p.previousStatusReport"
+                        placeholder="Reporte do ciclo anterior..."
                         class="w-full bg-white border border-slate-300 rounded-lg p-2 text-xs text-slate-700 outline-none leading-relaxed"></textarea>
                     </div>
                     <div>
-                      <label class="block text-[10px] font-bold text-rose-700 mb-1">Pontos de Atenção & Riscos Mapeados</label>
+                      <label class="block text-[10px] font-bold text-blue-700 mb-1">Status Report Atual</label>
+                      <textarea
+                        rows="2"
+                        [(ngModel)]="p.statusReport"
+                        placeholder="Avanço da semana / entregas..."
+                        class="w-full bg-white border border-slate-300 rounded-lg p-2 text-xs text-slate-700 outline-none leading-relaxed"></textarea>
+                    </div>
+                    <div>
+                      <label class="block text-[10px] font-bold text-rose-700 mb-1">Pontos de Atenção & Riscos</label>
                       <textarea
                         rows="2"
                         [(ngModel)]="p.attentionPoints"
+                        placeholder="Riscos e bloqueios mapeados..."
                         class="w-full bg-white border border-slate-300 rounded-lg p-2 text-xs text-slate-700 outline-none leading-relaxed"></textarea>
                     </div>
                   </div>

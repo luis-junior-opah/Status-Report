@@ -29,6 +29,7 @@ export interface WeeklyReportProject {
   targetDelivery: string | null;
   varianceDays: number;
   statusReport: string;
+  previousStatusReport?: string;
   attentionPoints: string;
   hoursExecuted?: number;
   hoursPlanned?: number;

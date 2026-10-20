@@ -85,6 +85,7 @@ function resolveProjectWeeklyDetails(p) {
     const riskLine = lines.find(l => l.startsWith('RISCOS:'));
 
     return {
+      previousStatusReport: 'Validação técnica preliminar e alinhamento de escopo operacional com os líderes de projeto.',
       statusReport: mainHighlights || summary,
       attentionPoints: riskLine ? riskLine.replace('RISCOS:', '').trim() : (p.ragStatus === 'red' ? 'Revisão do caminho crítico necessária para conter desvio.' : 'Execução fluindo dentro dos marcos acordados.')
     };
@@ -93,68 +94,79 @@ function resolveProjectWeeklyDetails(p) {
   // Tailored domain-specific summaries for each project
   const nameLower = name.toLowerCase();
 
-  if (nameLower.includes('smart tracking')) {
+  if (nameLower.includes('smart tracking') || nameLower.includes('torre de controle')) {
     return {
+      previousStatusReport: 'Desenvolvimento dos conectores de telemetria e testes de comunicação com rastreadores veiculares.',
       statusReport: 'Módulo de tracking e telemetria veicular 100% desenvolvido. Validação de homologação em campo com frotas parceiras.',
       attentionPoints: 'Aguardando validação dos testes operacionais com motoristas da frota dedicada.'
     };
   }
-  if (nameLower.includes('ilc mobile')) {
+  if (nameLower.includes('ilc mobile') || nameLower.includes('app ilc')) {
     return {
+      previousStatusReport: 'Alinhamento inicial de escopo e arquitetura técnica com stakeholders internos.',
       statusReport: 'Desenvolvimento das telas operacionais e serviços offline (41% concluído). Ajuste no fluxo de autenticação.',
       attentionPoints: 'Sincronização necessária com infraestrutura para liberação de build iOS de teste homologado.'
     };
   }
   if (nameLower.includes('gestão de demandas')) {
     return {
+      previousStatusReport: 'Prototipação de telas de solicitação de demandas e aprovação gerencial.',
       statusReport: 'Fluxo central de abertura e aprovação de demandas estruturado (94%). Validação de usabilidade com gestores.',
       attentionPoints: 'Alinhamento dos critérios finais de aceite antes do encerramento da fase de planejamento.'
     };
   }
   if (nameLower.includes('integrator v0') || nameLower.includes('migração angular')) {
     return {
+      previousStatusReport: 'Mapeamento de rotinas legadas e estruturação inicial dos componentes Angular.',
       statusReport: 'Homologação das telas legadas migradas para Angular (65%). Testes de regressão e validação de performance em curso.',
       attentionPoints: 'Mapeamento de inconsistências em rotinas legadas de faturamento e mensageria.'
     };
   }
   if (nameLower.includes('integrator')) {
     return {
+      previousStatusReport: 'Definição das rotas de integração e protocolo de mensageria assíncrona.',
       statusReport: 'Camada de mensageria e barramento de integração em construção (62%). Integrações com APIs legadas em validação.',
       attentionPoints: 'Revisão da alocação de desenvolvedores sênior para aceleração das rotas críticas.'
     };
   }
   if (nameLower.includes('smart x')) {
     return {
+      previousStatusReport: 'Arquitetura de dados para telemetria em tempo real e especificação de barramentos.',
       statusReport: 'Evolução dos módulos de telemetria inteligente e conectividade veicular (46%). Sprint atual focado em microserviços.',
       attentionPoints: 'Atenção à cadência de entregas técnicas para garantir marco de entrega intermediário.'
     };
   }
   if (nameLower.includes('gestão embarcada') || nameLower.includes('ge -')) {
     return {
+      previousStatusReport: 'Análise de telemetria embarcada e requisitos de comunicação de campo.',
       statusReport: 'Revisão das regras de negócio e barramento dos módulos embarcados John Deere (44%).',
       attentionPoints: 'Priorização de alinhamento com a engenharia de produto John Deere sobre protocolos de comunicação.'
     };
   }
   if (nameLower.includes('adição de item na promessa')) {
     return {
+      previousStatusReport: 'Desenvolvimento das regras de inclusão de novos itens e testes unitários concluídos.',
       statusReport: 'Desenvolvimento e testes de sistema finalizados. Homologado junto à John Deere (68%).',
       attentionPoints: 'Agendamento do cronograma de capacitação e treinamento dos usuários operacionais.'
     };
   }
   if (nameLower.includes('frete expresso 2.0')) {
     return {
+      previousStatusReport: 'Levantamento das tabelas tarifárias de frete e desenho técnico dos serviços de parametrização.',
       statusReport: 'Módulo de parametrização de tarifas dinâmicas e cálculo de frete em fase final de desenvolvimento (44%).',
       attentionPoints: 'Aguardando homologação de credenciais do ambiente de homologação John Deere.'
     };
   }
   if (nameLower.includes('duplicação de pedidos')) {
     return {
+      previousStatusReport: 'Mapeamento das condições de duplicidade e validação da lógica de eliminação com a operação.',
       statusReport: 'Módulo de identificação e tratamento de duplicações homologado junto ao time de negócio John Deere (66%).',
       attentionPoints: 'Definição da janela de virada em produção e plano de treinamento da equipe.'
     };
   }
   if (nameLower.includes('projetos john deere')) {
     return {
+      previousStatusReport: 'Estruturação do roadmap de iniciativas estratégicas conjuntas para o trimestre.',
       statusReport: 'Iniciação e alinhamento do portfólio de demandas do próximo ciclo com a diretoria John Deere.',
       attentionPoints: 'Aguardando fechamento da ordem de serviço para início do desenvolvimento técnico.'
     };
@@ -162,47 +174,55 @@ function resolveProjectWeeklyDetails(p) {
   if (nameLower.includes('atualização de documentos')) {
     if (nameLower.includes('recusa')) {
       return {
+        previousStatusReport: 'Levantamento das regras fiscais e operacionais para devolução de cargas.',
         statusReport: 'Mapeamento da jornada de recusas de carga e regras fiscais finalizado. Wireframes em aprovação.',
         attentionPoints: 'Definição das regras de contingência operacional com a liderança Mirassol.'
       };
     }
     return {
+      previousStatusReport: 'Validação de esquemas XML de documentos fiscais e testes de parser.',
       statusReport: 'Desenvolvimento dos módulos de upload, validação e custódia de CTe/NFe em reta final (93%).',
       attentionPoints: 'Correção de divergências em validação de schema XML de notas fiscais de terceiros.'
     };
   }
   if (nameLower.includes('input gestão de demandas')) {
     return {
+      previousStatusReport: 'Desenho dos formulários dinâmicos e validação preliminar de campos.',
       statusReport: 'Construção dos formulários dinâmicos e regras de validação concluída (97%). Em homologação.',
       attentionPoints: 'Ajuste final no envio de notificações automáticas via e-mail corporativo.'
     };
   }
   if (nameLower.includes('assinatura digital')) {
     return {
+      previousStatusReport: 'Definição do modelo de custódia e requisitos jurídicos ICP-Brasil para canhotos digitais.',
       statusReport: 'Planejamento da arquitetura de certificados digitais e conformidade jurídica ICP-Brasil (86%).',
       attentionPoints: 'Avaliação de custos de APIs de certificadora parceira junto à diretoria financeira.'
     };
   }
-  if (nameLower.includes('videos treinamento')) {
+  if (nameLower.includes('videos treinamento') || nameLower.includes('safety')) {
     return {
+      previousStatusReport: 'Iniciação do projeto, mapeamento preliminar das rotinas de segurança e entrevistas operacionais.',
       statusReport: 'Roteirização dos módulos de capacitação e segurança operacional (Safety) de motoristas em andamento.',
       attentionPoints: 'Aguardando validação dos roteiros técnicos com a equipe de SESMT da Mirassol.'
     };
   }
   if (nameLower.includes('cockpit petrobras')) {
     return {
+      previousStatusReport: 'Implantação em ambiente produtivo e acompanhamento inicial de telemetria.',
       statusReport: 'Painel operacional em produção assistida (100%), garantindo visibilidade total das operações logísticas.',
       attentionPoints: 'Operação estabilizada sem incidentes de suporte registrados no ciclo.'
     };
   }
   if (nameLower.includes('boge')) {
     return {
+      previousStatusReport: 'Reunião de diagnóstico preliminar de processos operacionais de armazenagem.',
       statusReport: 'Alinhamento inicial de escopo e levantamento de requisitos para automação da planta logística.',
       attentionPoints: 'Elaboração da proposta técnica e definição da data de kick-off do projeto piloto.'
     };
   }
 
   return {
+    previousStatusReport: 'Atividades em planejamento e acompanhamento técnico preliminar.',
     statusReport: `Projeto na fase de ${p.currentMilestone} com ${p.progress}% de avanço concluído.`,
     attentionPoints: p.ragStatus === 'red' ? 'Desvio acumulado no cronograma. Revisão de tarefas prioritárias em andamento.' : 'Atividades transcorrendo dentro dos parâmetros planejados.'
   };
@@ -312,6 +332,7 @@ class WeeklyReportStore {
         targetDelivery: p.executedDates?.end || p.plannedDates?.end || null,
         varianceDays: p.varianceDays || 0,
         statusReport: (existing && existing.statusReport) ? existing.statusReport : details.statusReport,
+        previousStatusReport: (existing && existing.previousStatusReport) ? existing.previousStatusReport : (details.previousStatusReport || 'Sem reporte anterior registrado.'),
         attentionPoints: (existing && existing.attentionPoints) ? existing.attentionPoints : details.attentionPoints,
         hoursExecuted: p.hours?.totalExecuted || 0,
         hoursPlanned: p.hours?.totalPlanned || 0,
@@ -411,6 +432,7 @@ class WeeklyReportStore {
         targetDelivery: p.executedDates?.end || p.plannedDates?.end || null,
         varianceDays: p.varianceDays || 0,
         statusReport: details.statusReport,
+        previousStatusReport: details.previousStatusReport || 'Sem reporte anterior registrado.',
         attentionPoints: details.attentionPoints,
         hoursExecuted: p.hours?.totalExecuted || 0,
         hoursPlanned: p.hours?.totalPlanned || 0,

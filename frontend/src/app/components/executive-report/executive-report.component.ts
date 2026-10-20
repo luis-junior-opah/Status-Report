@@ -533,10 +533,28 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
                 </div>
               </div>
 
-              <!-- Highlights paragraph -->
-              <p class="text-[11px] leading-relaxed mb-2 text-slate-700">
-                {{ p.statusReport }}
-              </p>
+              <!-- Status Report Anterior & Atual -->
+              <div class="space-y-2 mb-2.5">
+                <!-- Status Report Anterior -->
+                <div class="p-2.5 rounded-xl bg-slate-50 border border-slate-200/80">
+                  <span class="text-[9px] font-bold text-slate-500 uppercase tracking-wider block mb-1">
+                    Status report anterior
+                  </span>
+                  <p class="text-[11px] leading-relaxed text-slate-600">
+                    {{ p.previousStatusReport || 'Sem reporte anterior registrado.' }}
+                  </p>
+                </div>
+
+                <!-- Status Report Atual -->
+                <div class="p-2.5 rounded-xl bg-blue-50/40 border border-blue-200/70">
+                  <span class="text-[9px] font-bold text-blue-800 uppercase tracking-wider block mb-1">
+                    Status report atual
+                  </span>
+                  <p class="text-[11px] leading-relaxed text-slate-800 font-medium">
+                    {{ p.statusReport || 'Nenhum reporte registrado para este ciclo.' }}
+                  </p>
+                </div>
+              </div>
 
               <!-- Attention Point callout if any -->
               <div *ngIf="p.ragStatus === 'red' || p.ragStatus === 'amber'"
@@ -653,8 +671,9 @@ export class ExecutiveReportComponent implements OnInit {
         const systemMatch = (p.systems || []).some(s => s.toLowerCase().includes(query));
         const milestoneMatch = (p.currentMilestone || '').toLowerCase().includes(query);
         const statusReportMatch = (p.statusReport || '').toLowerCase().includes(query);
+        const previousStatusReportMatch = (p.previousStatusReport || '').toLowerCase().includes(query);
         const attentionMatch = (p.attentionPoints || '').toLowerCase().includes(query);
-        return nameMatch || clientMatch || leaderMatch || membersMatch || systemMatch || milestoneMatch || statusReportMatch || attentionMatch;
+        return nameMatch || clientMatch || leaderMatch || membersMatch || systemMatch || milestoneMatch || statusReportMatch || previousStatusReportMatch || attentionMatch;
       });
     }
 
