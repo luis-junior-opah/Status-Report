@@ -153,9 +153,12 @@ import { Project, EapPhase } from '../../models/project.model';
         <!-- Card Footer: Team, Hours breakdown & Open EAP button -->
         <div class="p-3.5 bg-slate-50/70 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500 gap-2">
           <div class="min-w-0">
-            <div *ngIf="p.team?.leader" class="flex items-center gap-1 font-semibold text-slate-700 truncate text-[11px]">
-              <span title="Líder do Projeto">👤</span>
-              <span class="truncate" [title]="p.team!.leader">{{ p.team!.leader }}</span>
+            <div
+              *ngIf="p.team?.leader"
+              class="flex items-center gap-1 font-semibold text-slate-700 truncate text-[11px] cursor-help"
+              [title]="service.getTeamTooltip(p)">
+              <span>👤</span>
+              <span class="truncate">{{ p.team!.leader }}</span>
               <span *ngIf="p.team?.members && p.team!.members!.length > 0" class="text-[10px] text-slate-400 font-normal">
                 (+{{ p.team!.members!.length }})
               </span>

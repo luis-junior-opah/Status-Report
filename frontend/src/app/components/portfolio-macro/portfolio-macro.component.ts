@@ -117,7 +117,10 @@ import { Project } from '../../models/project.model';
                   </span>
 
                   <!-- Team Leader -->
-                  <span *ngIf="p.team?.leader" class="text-[9px] text-slate-500 font-medium flex items-center gap-0.5 ml-auto" title="Líder do Projeto">
+                  <span
+                    *ngIf="p.team?.leader"
+                    class="text-[9px] text-slate-500 font-medium flex items-center gap-0.5 ml-auto cursor-help"
+                    [title]="service.getTeamTooltip(p)">
                     <span>👤</span>
                     <span class="truncate max-w-[120px]">{{ p.team!.leader }}</span>
                   </span>

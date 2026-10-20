@@ -167,7 +167,7 @@ import { Project, ProjectActivity, EapPhase, AzureAuditReport } from '../../mode
           <!-- Right: Equipe Alocada (Líder / GP + Membros) -->
           <div class="flex flex-wrap items-center gap-2 pt-2 md:pt-0 border-t md:border-t-0 border-slate-200/60">
             <!-- Líder do Projeto -->
-            <div *ngIf="project.team?.leader" class="flex items-center gap-1.5 px-3 py-1 bg-white rounded-xl border border-slate-200 shadow-2xs">
+            <div *ngIf="project.team?.leader" class="flex items-center gap-1.5 px-3 py-1 bg-white rounded-xl border border-slate-200 shadow-2xs cursor-help" [title]="service.getTeamTooltip(project)">
               <span class="text-[10px] font-black uppercase text-slate-400">Líder / GP:</span>
               <span class="font-extrabold text-slate-900 flex items-center gap-1">
                 <span>👤</span>
@@ -176,11 +176,11 @@ import { Project, ProjectActivity, EapPhase, AzureAuditReport } from '../../mode
             </div>
 
             <!-- Membros / Especialistas Alocados -->
-            <div *ngIf="project.team?.members && project.team!.members!.length > 0" class="flex items-center gap-1.5 px-3 py-1 bg-white rounded-xl border border-slate-200 shadow-2xs">
+            <div *ngIf="project.team?.members && project.team!.members!.length > 0" class="flex items-center gap-1.5 px-3 py-1 bg-white rounded-xl border border-slate-200 shadow-2xs cursor-help" [title]="service.getTeamTooltip(project)">
               <span class="text-[10px] font-black uppercase text-slate-400">Equipe:</span>
               <span class="font-bold text-slate-700 flex items-center gap-1">
                 <span>👥</span>
-                <span class="truncate max-w-xs" [title]="project.team!.members!.join(', ')">
+                <span class="truncate max-w-xs">
                   {{ project.team!.members!.join(', ') }}
                 </span>
                 <span class="text-[10px] font-bold text-slate-400 bg-slate-100 px-1.5 py-0.2 rounded-full">

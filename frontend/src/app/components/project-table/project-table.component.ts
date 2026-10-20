@@ -80,11 +80,11 @@ import { ProjectService } from '../../services/project.service';
               </td>
               <!-- Equipe -->
               <td class="py-3 px-4 whitespace-nowrap text-[11px]">
-                <div *ngIf="p.team?.leader" class="font-bold text-slate-700 flex items-center gap-1" [title]="'Líder: ' + p.team!.leader">
+                <div *ngIf="p.team?.leader" class="font-bold text-slate-700 flex items-center gap-1 cursor-help" [title]="service.getTeamTooltip(p)">
                   <span>👤</span>
                   <span class="truncate max-w-[110px]">{{ p.team!.leader }}</span>
                 </div>
-                <div *ngIf="p.team?.members && p.team!.members!.length > 0" class="text-[10px] text-slate-400 truncate max-w-[120px]" [title]="p.team!.members!.join(', ')">
+                <div *ngIf="p.team?.members && p.team!.members!.length > 0" class="text-[10px] text-slate-400 truncate max-w-[120px] cursor-help" [title]="service.getTeamTooltip(p)">
                   {{ p.team!.members!.length }} membro(s)
                 </div>
                 <span *ngIf="!p.team?.leader && (!p.team?.members || p.team!.members!.length === 0)" class="text-slate-300">-</span>

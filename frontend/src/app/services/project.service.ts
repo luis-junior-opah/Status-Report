@@ -179,6 +179,29 @@ export class ProjectService {
     return 'bg-slate-100 text-slate-700 border border-slate-200';
   }
 
+  getTeamTooltip(project: Project | null | undefined): string {
+    if (!project || !project.team) return 'Equipe não cadastrada';
+    const leader = project.team.leader?.trim() || '';
+    const rawMembers = project.team.members || [];
+
+    // Collect all unique team members
+    const allMembers: string[] = [];
+    if (leader) allMembers.push(leader);
+    for (const m of rawMembers) {
+      const trimmed = m?.trim();
+      if (trimmed && !allMembers.includes(trimmed)) {
+        allMembers.push(trimmed);
+      }
+    }
+
+    if (allMembers.length === 0) return 'Equipe não cadastrada';
+
+    if (leader) {
+      return `Líder: ${leader}\nIntegrantes da equipe: ${allMembers.join(', ')}`;
+    }
+    return `Integrantes da equipe: ${allMembers.join(', ')}`;
+  }
+
   // Reactive Stats: Strictly ACTIVE projects for RAG indicators!
   // Frozen and Completed projects NEVER count towards onTrack / warning / delayed!
   stats = computed<ProjectStats>(() => {
