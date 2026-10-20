@@ -94,10 +94,11 @@ import { ProjectService } from '../../services/project.service';
             (ngModelChange)="service.selectedSystem.set($event)"
             class="bg-slate-800 border border-slate-700 text-slate-200 text-xs rounded-xl px-2.5 py-1.5 focus:outline-none focus:ring-2 focus:ring-blue-500 font-semibold cursor-pointer">
             <option value="Todos" class="bg-slate-800 text-white">Todos os Sistemas</option>
-            <option value="Portal Integrator" class="bg-slate-800 text-white">🌐 Portal Integrator</option>
-            <option value="App Smart Tracking" class="bg-slate-800 text-white">📱 App Smart Tracking</option>
-            <option value="Smart X" class="bg-slate-800 text-white">📋 Smart X</option>
-            <option value="App ILC" class="bg-slate-800 text-white">🚚 App ILC</option>
+            <option value="Portal Integrator" class="bg-slate-800 text-white">🌐 Portal Integrator ({{ getCountBySystem('Portal Integrator') }})</option>
+            <option value="App Smart Tracking" class="bg-slate-800 text-white">📱 App Smart Tracking ({{ getCountBySystem('App Smart Tracking') }})</option>
+            <option value="Smart X" class="bg-slate-800 text-white">📋 Smart X ({{ getCountBySystem('Smart X') }})</option>
+            <option value="App ILC" class="bg-slate-800 text-white">🚚 App ILC ({{ getCountBySystem('App ILC') }})</option>
+            <option value="Infraestrutura" class="bg-slate-800 text-white">🏗️ Infraestrutura ({{ getCountBySystem('Infraestrutura') }})</option>
           </select>
         </div>
 
@@ -141,6 +142,10 @@ export class FiltersComponent {
 
   getCountByPriority(priority: string) {
     return this.service.projects().filter(p => (p.priority || 'P2') === priority).length;
+  }
+
+  getCountBySystem(system: string) {
+    return this.service.projects().filter(p => (p.systems || []).includes(system)).length;
   }
 
   hasActiveFilters(): boolean {

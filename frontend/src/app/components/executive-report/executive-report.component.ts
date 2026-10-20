@@ -253,6 +253,44 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
               </button>
             </div>
           </div>
+
+          <!-- Systems Distribution Bar -->
+          <div *ngIf="systemMetrics().length > 0"
+            class="mt-3.5 pt-3.5 border-t border-slate-100 flex flex-col md:flex-row md:items-center justify-between gap-3">
+            <div class="flex items-center gap-2">
+              <span class="text-xs">🖥️</span>
+              <span class="text-xs font-black text-slate-900 tracking-tight">Projetos por Sistema:</span>
+              <span class="text-[11px] text-slate-500 font-medium hidden sm:inline">Volume de projetos ativos por ecossistema tecnológico</span>
+              <button
+                *ngIf="service.selectedSystem() !== 'Todos'"
+                type="button"
+                (click)="service.selectedSystem.set('Todos')"
+                class="text-[10px] font-bold text-blue-600 hover:text-blue-800 underline ml-1 cursor-pointer">
+                (Limpar filtro: {{ service.selectedSystem() }})
+              </button>
+            </div>
+
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2">
+              <button
+                *ngFor="let s of systemMetrics()"
+                type="button"
+                (click)="toggleSystemFilter(s.name)"
+                [ngClass]="service.selectedSystem() === s.name ? s.activeClass : s.idleClass"
+                class="px-3 py-2 rounded-xl border text-left flex items-center justify-between gap-2.5 transition-all cursor-pointer shadow-2xs"
+                [title]="'Filtrar por Sistema ' + s.name">
+                <div class="flex items-center gap-1.5 min-w-0">
+                  <span class="text-xs shrink-0">{{ s.icon }}</span>
+                  <div class="flex flex-col min-w-0">
+                    <span class="text-[9px] font-black truncate leading-tight" [ngClass]="s.textClass">{{ s.name }}</span>
+                    <span class="text-[9px] text-slate-400 font-medium mt-0.5 leading-none">sistema</span>
+                  </div>
+                </div>
+                <span class="text-base font-black leading-none shrink-0" [ngClass]="s.countClass">
+                  {{ s.count }}
+                </span>
+              </button>
+            </div>
+          </div>
         </div>
 
         <!-- ======================================================== -->
@@ -604,6 +642,90 @@ export class ExecutiveReportComponent {
       this.service.selectedPriority.set('Todos');
     } else {
       this.service.selectedPriority.set(priority);
+    }
+  }
+
+  systemMetrics = computed(() => {
+    const list = this.currentReport()?.activeProjects || [];
+    const map = new Map<string, number>();
+
+    for (const p of list) {
+      for (const sys of (p.systems || [])) {
+        if (sys) {
+          map.set(sys, (map.get(sys) || 0) + 1);
+        }
+      }
+    }
+
+    const systemMeta: Record<string, { icon: string; activeClass: string; idleClass: string; textClass: string; countClass: string }> = {
+      'Portal Integrator': {
+        icon: '🌐',
+        activeClass: 'ring-2 ring-indigo-500 bg-indigo-100/90 border-indigo-300',
+        idleClass: 'bg-indigo-50/70 hover:bg-indigo-100/60 border-indigo-200/80',
+        textClass: 'text-indigo-800',
+        countClass: 'text-indigo-700'
+      },
+      'App ILC': {
+        icon: '🚚',
+        activeClass: 'ring-2 ring-cyan-500 bg-cyan-100/90 border-cyan-300',
+        idleClass: 'bg-cyan-50/70 hover:bg-cyan-100/60 border-cyan-200/80',
+        textClass: 'text-cyan-800',
+        countClass: 'text-cyan-700'
+      },
+      'App Smart Tracking': {
+        icon: '📱',
+        activeClass: 'ring-2 ring-emerald-500 bg-emerald-100/90 border-emerald-300',
+        idleClass: 'bg-emerald-50/70 hover:bg-emerald-100/60 border-emerald-200/80',
+        textClass: 'text-emerald-800',
+        countClass: 'text-emerald-700'
+      },
+      'Smart X': {
+        icon: '📋',
+        activeClass: 'ring-2 ring-purple-500 bg-purple-100/90 border-purple-300',
+        idleClass: 'bg-purple-50/70 hover:bg-purple-100/60 border-purple-200/80',
+        textClass: 'text-purple-800',
+        countClass: 'text-purple-700'
+      },
+      'Infraestrutura': {
+        icon: '🏗️',
+        activeClass: 'ring-2 ring-sky-500 bg-sky-100/90 border-sky-300',
+        idleClass: 'bg-sky-50/70 hover:bg-sky-100/60 border-sky-200/80',
+        textClass: 'text-sky-800',
+        countClass: 'text-sky-700'
+      }
+    };
+
+    const order = ['Portal Integrator', 'App ILC', 'App Smart Tracking', 'Smart X', 'Infraestrutura'];
+    const systems = Array.from(map.keys()).sort((a, b) => {
+      const idxA = order.indexOf(a);
+      const idxB = order.indexOf(b);
+      if (idxA !== -1 && idxB !== -1) return idxA - idxB;
+      if (idxA !== -1) return -1;
+      if (idxB !== -1) return 1;
+      return (map.get(b) || 0) - (map.get(a) || 0);
+    });
+
+    return systems.map(sys => {
+      const meta = systemMeta[sys] || {
+        icon: '⚙️',
+        activeClass: 'ring-2 ring-slate-500 bg-slate-100/90 border-slate-300',
+        idleClass: 'bg-slate-50/70 hover:bg-slate-100/60 border-slate-200/80',
+        textClass: 'text-slate-800',
+        countClass: 'text-slate-700'
+      };
+      return {
+        name: sys,
+        count: map.get(sys) || 0,
+        ...meta
+      };
+    });
+  });
+
+  toggleSystemFilter(systemName: string): void {
+    if (this.service.selectedSystem() === systemName) {
+      this.service.selectedSystem.set('Todos');
+    } else {
+      this.service.selectedSystem.set(systemName);
     }
   }
 

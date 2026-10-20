@@ -176,6 +176,7 @@ export class ProjectService {
     if (s.includes('smart tracking')) return 'bg-emerald-50 text-emerald-700 border border-emerald-200';
     if (s.includes('smart x')) return 'bg-purple-50 text-purple-700 border border-purple-200';
     if (s.includes('app ilc')) return 'bg-cyan-50 text-cyan-700 border border-cyan-200';
+    if (s.includes('infraestrutura')) return 'bg-sky-50 text-sky-700 border border-sky-200';
     return 'bg-slate-100 text-slate-700 border border-slate-200';
   }
 
