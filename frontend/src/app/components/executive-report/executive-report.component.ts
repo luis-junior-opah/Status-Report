@@ -543,9 +543,14 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
               <div class="space-y-2 mb-2.5">
                 <!-- Status Report Anterior -->
                 <div class="p-2.5 rounded-xl bg-slate-50 border border-slate-200/80">
-                  <span class="text-[9px] font-bold text-slate-500 uppercase tracking-wider block mb-1">
-                    Status report anterior
-                  </span>
+                  <div class="flex items-center justify-between gap-1.5 mb-1">
+                    <span class="text-[9px] font-bold text-slate-500 uppercase tracking-wider">
+                      Status report anterior
+                    </span>
+                    <span class="text-[9px] font-semibold text-slate-500 bg-slate-200/70 px-1.5 py-0.2 rounded">
+                      {{ getPreviousReportDate(p) }}
+                    </span>
+                  </div>
                   <p class="text-[11px] leading-relaxed text-slate-600">
                     {{ p.previousStatusReport || 'Sem reporte anterior registrado.' }}
                   </p>
@@ -553,9 +558,14 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
 
                 <!-- Status Report Atual -->
                 <div class="p-2.5 rounded-xl bg-blue-50/40 border border-blue-200/70">
-                  <span class="text-[9px] font-bold text-blue-800 uppercase tracking-wider block mb-1">
-                    Status report atual
-                  </span>
+                  <div class="flex items-center justify-between gap-1.5 mb-1">
+                    <span class="text-[9px] font-bold text-blue-800 uppercase tracking-wider">
+                      Status report atual
+                    </span>
+                    <span class="text-[9px] font-bold text-blue-700 bg-blue-100/80 px-1.5 py-0.2 rounded">
+                      {{ getCurrentReportDate(p) }}
+                    </span>
+                  </div>
                   <p class="text-[11px] leading-relaxed text-slate-800 font-medium">
                     {{ p.statusReport || 'Nenhum reporte registrado para este ciclo.' }}
                   </p>
@@ -564,13 +574,10 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
 
               <!-- Equipe Alocada -->
               <div *ngIf="getAllTeamMembers(p).length > 0" class="mt-2.5 pt-2 border-t border-slate-100">
-                <div class="flex items-center justify-between gap-1 mb-1.5">
+                <div class="flex items-center gap-1 mb-1.5">
                   <span class="text-[10px] font-bold text-slate-500 uppercase tracking-wider flex items-center gap-1">
                     <span>👥</span>
                     <span>Equipe Alocada</span>
-                  </span>
-                  <span class="text-[9px] font-bold text-slate-500 bg-slate-100 px-1.5 py-0.2 rounded-full">
-                    {{ getAllTeamMembers(p).length }} pessoa{{ getAllTeamMembers(p).length > 1 ? 's' : '' }}
                   </span>
                 </div>
                 <div class="flex flex-wrap gap-1">
@@ -913,6 +920,24 @@ export class ExecutiveReportComponent implements OnInit {
     } catch {
       return dateStr;
     }
+  }
+
+  getCurrentReportDate(p?: WeeklyReportProject): string {
+    if (p?.statusReportDate) return this.formatDate(p.statusReportDate);
+    const meetingDate = this.currentReport()?.meetingDate;
+    if (meetingDate) return this.formatDate(meetingDate);
+    return '16/10/2026';
+  }
+
+  getPreviousReportDate(p?: WeeklyReportProject): string {
+    if (p?.previousStatusReportDate) return this.formatDate(p.previousStatusReportDate);
+    const current = this.currentReport();
+    const summaries = this.service.weeklyReports();
+    if (current && summaries.length > 0) {
+      const prev = summaries.find(s => s.id !== current.id && (s.weekNumber < current.weekNumber || s.id < current.id));
+      if (prev?.meetingDate) return this.formatDate(prev.meetingDate);
+    }
+    return '06/10/2026';
   }
 
   printReport() {
