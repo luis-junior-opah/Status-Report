@@ -44,21 +44,23 @@ import { Project } from '../../models/project.model';
           <div class="flex border-b border-slate-200 bg-slate-900 text-white text-xs font-bold py-2.5 px-4 sticky top-0 z-10">
             <!-- Project metadata column -->
             <div class="w-[420px] shrink-0 uppercase tracking-wider text-slate-400 text-[11px]">
-              Prioridade • Projeto • Marco • Sistemas
+              Projeto • Criticidade • Marco • Sistemas
             </div>
 
             <!-- Percentage Axis (0% to 100%) -->
-            <div class="flex-1 relative flex justify-between px-3 text-[11px] text-slate-300">
-              <span class="w-0 text-left">0%</span>
-              <span class="w-0 text-center">20%</span>
-              <span class="w-0 text-center">40%</span>
-              <span class="w-0 text-center">60%</span>
-              <span class="w-0 text-center">80%</span>
-              <span class="w-0 text-right">100%</span>
+            <div class="flex-1 px-3 text-[11px] text-slate-300 font-bold">
+              <div class="relative w-full h-4">
+                <span class="absolute left-0 top-0">0%</span>
+                <span class="absolute left-[20%] top-0 -translate-x-1/2">20%</span>
+                <span class="absolute left-[40%] top-0 -translate-x-1/2">40%</span>
+                <span class="absolute left-[60%] top-0 -translate-x-1/2">60%</span>
+                <span class="absolute left-[80%] top-0 -translate-x-1/2">80%</span>
+                <span class="absolute right-0 top-0 text-right">100%</span>
+              </div>
             </div>
 
             <!-- Action column -->
-            <div class="w-12 shrink-0 text-center text-slate-400 text-[11px] uppercase">
+            <div class="w-14 shrink-0 text-center text-slate-400 text-[11px] uppercase tracking-wider font-extrabold pl-1">
               EAP
             </div>
           </div>
@@ -75,16 +77,21 @@ import { Project } from '../../models/project.model';
               (click)="service.openEapForProject(p.id)"
               class="flex items-center py-3 px-4 hover:bg-blue-50/50 transition cursor-pointer group">
               
-              <!-- Left: Project Details (Priority, Name, Milestone, Systems, Leader) -->
+              <!-- Left: Project Details (Logo + Name in line 1; Priority, Milestone, Systems, Leader in line 2) -->
               <div class="w-[420px] shrink-0 pr-4">
                 <div class="flex items-center justify-between gap-1.5">
                   <div class="flex items-center gap-1.5 min-w-0">
-                    <!-- Priority Pill -->
+                    <!-- Client Logo or Text Fallback -->
+                    <img
+                      *ngIf="service.getClientLogo(p.client)"
+                      [src]="service.getClientLogo(p.client)"
+                      [alt]="p.client"
+                      class="h-5 max-w-[55px] object-contain rounded bg-white px-1 py-0.5 border border-slate-200 shadow-2xs shrink-0"
+                    />
                     <span
-                      class="text-[9px] font-black px-1.5 py-0.2 rounded border shadow-2xs shrink-0 cursor-default"
-                      [ngClass]="service.getPriorityBadgeClass(p.priority || 'P2')"
-                      [title]="'Prioridade ' + (p.priority || 'P2') + ' (' + service.getPriorityLabel(p.priority || 'P2') + ')'">
-                      {{ p.priority || 'P2' }}
+                      *ngIf="!service.getClientLogo(p.client)"
+                      class="h-5 px-1.5 inline-flex items-center font-bold text-slate-700 bg-slate-100 border border-slate-200 rounded text-[10px] shrink-0 leading-none">
+                      {{ p.client }}
                     </span>
                     <span class="text-xs font-bold text-slate-900 group-hover:text-blue-600 transition truncate" [title]="p.name">
                       {{ p.name }}
@@ -92,34 +99,40 @@ import { Project } from '../../models/project.model';
                   </div>
                   <span
                     *ngIf="p.status !== 'Ativo'"
-                    class="text-[10px] px-1.5 py-0.2 rounded font-semibold shrink-0"
+                    class="h-5 px-2 inline-flex items-center text-[10px] rounded font-semibold shrink-0 leading-none"
                     [ngClass]="p.status === 'Finalizado' ? 'bg-emerald-100 text-emerald-800' : 'bg-slate-200 text-slate-700'">
                     {{ p.status }}
                   </span>
                 </div>
 
-                <div class="flex flex-wrap items-center gap-1.5 mt-1 text-[10px]">
-                  <img
-                    *ngIf="service.getClientLogo(p.client)"
-                    [src]="service.getClientLogo(p.client)"
-                    [alt]="p.client"
-                    class="h-4 max-w-[48px] object-contain rounded bg-white px-0.5 border border-slate-200"
-                  />
-                  <span *ngIf="!service.getClientLogo(p.client)" class="font-bold text-slate-700 bg-slate-100 px-1.5 py-0.5 rounded">{{ p.client }}</span>
-                  <span [ngClass]="service.getMilestoneBadgeClass(p.currentMilestone)" class="px-1.5 py-0.5 rounded font-semibold text-[10px]">{{ p.currentMilestone }}</span>
+                <div class="flex flex-wrap items-center gap-1.5 mt-1.5">
+                  <!-- Criticidade (Priority Pill) - Same height h-5 -->
+                  <span
+                    class="h-5 px-2 inline-flex items-center rounded text-[10px] font-black border shadow-2xs shrink-0 cursor-default leading-none"
+                    [ngClass]="service.getPriorityBadgeClass(p.priority || 'P2')"
+                    [title]="'Prioridade ' + (p.priority || 'P2') + ' (' + service.getPriorityLabel(p.priority || 'P2') + ')'">
+                    {{ p.priority || 'P2' }}
+                  </span>
 
-                  <!-- Systems Badges -->
+                  <!-- Etapa (Marco da EAP) - Same height h-5 -->
+                  <span
+                    [ngClass]="service.getMilestoneBadgeClass(p.currentMilestone)"
+                    class="h-5 px-2 inline-flex items-center rounded text-[10px] font-semibold border shadow-2xs shrink-0 leading-none">
+                    {{ p.currentMilestone }}
+                  </span>
+
+                  <!-- Sistemas Badges - Same height h-5 -->
                   <span
                     *ngFor="let sys of p.systems"
                     [ngClass]="service.getSystemBadgeClass(sys)"
-                    class="px-1.5 py-0.2 rounded font-bold text-[9px] border shadow-2xs">
+                    class="h-5 px-2 inline-flex items-center rounded text-[10px] font-bold border shadow-2xs shrink-0 leading-none">
                     {{ sys }}
                   </span>
 
                   <!-- Team Leader -->
                   <span
                     *ngIf="p.team?.leader"
-                    class="text-[9px] text-slate-500 font-medium flex items-center gap-0.5 ml-auto cursor-help"
+                    class="h-5 inline-flex items-center gap-1 text-[10px] text-slate-500 font-medium ml-auto cursor-help leading-none"
                     [title]="service.getTeamTooltip(p)">
                     <span>👤</span>
                     <span class="truncate max-w-[120px]">{{ p.team!.leader }}</span>
@@ -156,7 +169,7 @@ import { Project } from '../../models/project.model';
               </div>
 
               <!-- Right: EAP Button (NO Hours column) -->
-              <div class="w-12 shrink-0 flex items-center justify-center">
+              <div class="w-14 shrink-0 flex items-center justify-center pl-1">
                 <button
                   class="w-7 h-7 rounded-lg bg-slate-100 group-hover:bg-blue-600 group-hover:text-white text-slate-500 flex items-center justify-center transition shadow-2xs"
                   title="Abrir Cronograma EAP Detalhado">
