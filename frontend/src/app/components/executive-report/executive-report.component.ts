@@ -20,23 +20,37 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
       <!-- TOP EXECUTIVE CONTROL BAR                                -->
       <!-- ======================================================== -->
       <div
-        class="bg-white rounded-2xl border border-slate-200/90 shadow-2xs px-4 py-3 flex flex-col md:flex-row md:items-center md:justify-between gap-3 print:hidden">
+        class="bg-white rounded-2xl border border-slate-200/90 shadow-2xs px-4 py-3 flex flex-col md:flex-row md:items-start md:justify-between gap-3 print:hidden">
         
-        <!-- Left: Co-branding & Title -->
-        <div class="flex items-center gap-3">
-          <div class="w-9 h-9 rounded-xl bg-slate-900 text-white flex items-center justify-center font-black text-base shadow-xs shrink-0">
+        <!-- Left: Co-branding, Title & Edition Selector -->
+        <div class="flex items-start gap-3">
+          <div class="w-9 h-9 rounded-xl bg-slate-900 text-white flex items-center justify-center font-black text-base shadow-xs shrink-0 mt-0.5">
             📊
           </div>
-          <div>
-            <div class="flex items-center gap-2">
-              <h1 class="text-sm sm:text-base font-extrabold tracking-tight text-slate-900">
-                Status Report
-              </h1>
-            </div>
-            <p class="text-[11px] text-slate-500">
-              Edição: <strong class="text-slate-800">{{ service.formatEditionTitle(currentReport()) }}</strong>
-              • Período: {{ currentReport()?.period }}
+          <div class="flex flex-col">
+            <!-- Linha 1 -->
+            <h1 class="text-sm sm:text-base font-extrabold tracking-tight text-slate-900 leading-tight">
+              Status Report
+            </h1>
+            <!-- Linha 2 -->
+            <p class="text-[11px] font-semibold text-slate-700 mt-0.5">
+              Edição {{ service.formatEditionTitle(currentReport()) }}
             </p>
+            <!-- Linha 3 -->
+            <p class="text-[11px] text-slate-500 mt-0.5">
+              Período {{ currentReport()?.period }}
+            </p>
+            <!-- Dropdown da Edição abaixo de Período -->
+            <div class="mt-2">
+              <select
+                [ngModel]="service.selectedReportId()"
+                (ngModelChange)="onSelectReport($event)"
+                class="text-[11px] font-bold rounded-xl px-2.5 py-1.5 border border-slate-300 bg-slate-50 text-slate-800 focus:outline-none focus:ring-1 focus:ring-blue-500 shadow-2xs cursor-pointer">
+                <option *ngFor="let rep of service.weeklyReports()" [value]="rep.id">
+                  {{ service.formatEditionTitle(rep) }}
+                </option>
+              </select>
+            </div>
           </div>
         </div>
 
@@ -66,16 +80,6 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
               <span>({{ getAlertCount() }})</span>
             </button>
           </div>
-
-          <!-- History Dropdown -->
-          <select
-            [ngModel]="service.selectedReportId()"
-            (ngModelChange)="onSelectReport($event)"
-            class="text-[11px] font-bold rounded-xl px-2.5 py-1.5 border border-slate-300 bg-slate-50 text-slate-800 focus:outline-none focus:ring-1 focus:ring-blue-500 shadow-2xs cursor-pointer">
-            <option *ngFor="let rep of service.weeklyReports()" [value]="rep.id">
-              {{ service.formatEditionTitle(rep) }}
-            </option>
-          </select>
 
           <!-- Presentation Mode Button -->
           <button
