@@ -71,25 +71,6 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
             </button>
           </div>
 
-          <!-- Layout Mode Switcher (One Page Matrix vs Detailed Cards) -->
-          <div class="flex items-center bg-slate-100 p-0.5 rounded-xl text-[11px] font-bold"
-            [ngClass]="service.presentationMode() ? '!bg-slate-800 text-slate-300' : 'text-slate-600'">
-            <button
-              (click)="viewMode.set('matrix')"
-              [ngClass]="viewMode() === 'matrix' ? 'bg-white shadow-xs text-slate-900' : 'hover:text-slate-900'"
-              class="px-2.5 py-1 rounded-lg transition flex items-center gap-1"
-              title="Tabela Executiva Compacta de Altíssima Densidade (Recomendado)">
-              <span>📑 Matriz Síntese</span>
-            </button>
-            <button
-              (click)="viewMode.set('cards')"
-              [ngClass]="viewMode() === 'cards' ? 'bg-white shadow-xs text-slate-900' : 'hover:text-slate-900'"
-              class="px-2.5 py-1 rounded-lg transition flex items-center gap-1"
-              title="Visão em Cards Compactos">
-              <span>🗂️ Cards</span>
-            </button>
-          </div>
-
           <!-- History Dropdown -->
           <select
             [ngModel]="service.selectedReportId()"
@@ -240,167 +221,9 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
         </div>
 
         <!-- ======================================================== -->
-        <!-- 3. MATRIZ EXECUTIVA DO PORTFÓLIO (HIGH-DENSITY MATRIX)   -->
+        <!-- 3. CARDS EXECUTIVOS DOS PROJETOS                         -->
         <!-- ======================================================== -->
-        <div *ngIf="viewMode() === 'matrix'"
-          class="rounded-2xl border shadow-2xs overflow-hidden"
-          [ngClass]="service.presentationMode() ? 'bg-slate-900 border-slate-800' : 'bg-white border-slate-200/90'">
-          
-          <!-- Matrix Header Bar -->
-          <div class="p-3.5 border-b flex items-center justify-between gap-3"
-            [ngClass]="service.presentationMode() ? 'bg-slate-900 border-slate-800' : 'bg-slate-50/70 border-slate-100'">
-            <div class="flex items-center gap-2">
-              <span class="w-6 h-6 rounded-lg bg-blue-100 text-blue-700 flex items-center justify-center font-black text-xs">
-                📌
-              </span>
-              <h3 class="text-xs sm:text-sm font-extrabold"
-                [ngClass]="service.presentationMode() ? 'text-white' : 'text-slate-900'">
-                Matriz Consolidada de Projetos Ativos ({{ displayedProjects().length }})
-              </h3>
-            </div>
-
-            <!-- EAP Badges Legend helper -->
-            <div class="hidden md:flex items-center gap-1.5 text-[10px]">
-              <span class="font-bold text-slate-400 mr-0.5 uppercase text-[9px]">Fases EAP:</span>
-              <span class="px-1.5 py-0.2 rounded font-semibold bg-purple-50 text-purple-700 border border-purple-200">Planejamento</span>
-              <span class="px-1.5 py-0.2 rounded font-semibold bg-blue-50 text-blue-700 border border-blue-200">Desenvolvimento</span>
-              <span class="px-1.5 py-0.2 rounded font-semibold bg-orange-50 text-orange-700 border border-orange-200">Homologação</span>
-              <span class="px-1.5 py-0.2 rounded font-semibold bg-teal-50 text-teal-700 border border-teal-200">Treinamento</span>
-              <span class="px-1.5 py-0.2 rounded font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">Operação Assistida</span>
-            </div>
-          </div>
-
-          <!-- The Table -->
-          <div class="overflow-x-auto">
-            <table class="w-full text-left text-xs border-collapse">
-              <thead>
-                <tr class="text-[10px] uppercase tracking-wider font-extrabold border-b"
-                  [ngClass]="service.presentationMode() ? 'bg-slate-950/60 text-slate-400 border-slate-800' : 'bg-slate-100/80 text-slate-500 border-slate-200'">
-                  <th class="py-2.5 px-3.5 w-36">Cliente</th>
-                  <th class="py-2.5 px-3 w-64">Projeto</th>
-                  <th class="py-2.5 px-3 w-36">Etapa EAP</th>
-                  <th class="py-2.5 px-3 w-32">Progresso</th>
-                  <th class="py-2.5 px-3 w-28">Saúde</th>
-                  <th class="py-2.5 px-3 w-24">Entrega</th>
-                  <th class="py-2.5 px-3">Destaque da Semana & Ponto de Atenção</th>
-                  <th class="py-2.5 px-3 w-16 text-center">EAP</th>
-                </tr>
-              </thead>
-              <tbody class="divide-y" [ngClass]="service.presentationMode() ? 'divide-slate-800' : 'divide-slate-100'">
-                <tr
-                  *ngFor="let p of displayedProjects()"
-                  class="transition group"
-                  [ngClass]="service.presentationMode() ? 'hover:bg-slate-800/60' : 'hover:bg-blue-50/40'">
-                  
-                  <!-- Cliente -->
-                  <td class="py-2.5 px-3.5 whitespace-nowrap">
-                    <span class="font-bold text-[11px] px-2 py-0.5 rounded-md border"
-                      [ngClass]="service.presentationMode() ? 'bg-slate-800 border-slate-700 text-slate-200' : 'bg-slate-100 border-slate-200 text-slate-700'">
-                      {{ p.client }}
-                    </span>
-                  </td>
-
-                  <!-- Projeto, Prioridade & Sistemas -->
-                  <td class="py-2.5 px-3 font-extrabold"
-                    [ngClass]="service.presentationMode() ? 'text-white' : 'text-slate-900'">
-                    <div class="flex items-center gap-1.5 min-w-0">
-                      <!-- Priority Pill -->
-                      <span
-                        class="text-[9px] font-black px-1.5 py-0.2 rounded border shadow-2xs shrink-0 cursor-default"
-                        [ngClass]="service.getPriorityBadgeClass(p.priority || 'P2')"
-                        [title]="'Prioridade ' + (p.priority || 'P2') + ' (' + service.getPriorityLabel(p.priority || 'P2') + ')'">
-                        {{ p.priority || 'P2' }}
-                      </span>
-                      <span class="truncate block max-w-xs group-hover:text-blue-600 transition" [title]="p.name">
-                        {{ p.name }}
-                      </span>
-                    </div>
-                    <!-- Systems Chips -->
-                    <div *ngIf="p.systems && p.systems.length > 0" class="flex flex-wrap items-center gap-1 mt-1 font-normal">
-                      <span
-                        *ngFor="let sys of p.systems"
-                        [ngClass]="service.getSystemBadgeClass(sys)"
-                        class="px-1.5 py-0.2 rounded text-[9px] font-bold border shadow-2xs">
-                        {{ sys }}
-                      </span>
-                    </div>
-                  </td>
-
-                  <!-- Etapa EAP -->
-                  <td class="py-2.5 px-3 whitespace-nowrap">
-                    <span [ngClass]="service.getMilestoneBadgeClass(p.currentMilestone)" class="px-2 py-0.5 rounded-md font-semibold text-[10px]">
-                      {{ p.currentMilestone }}
-                    </span>
-                  </td>
-
-                  <!-- Progresso -->
-                  <td class="py-2.5 px-3 whitespace-nowrap">
-                    <div class="flex items-center gap-2">
-                      <div class="w-16 bg-slate-200 rounded-full h-1.5 overflow-hidden"
-                        [ngClass]="service.presentationMode() ? '!bg-slate-700' : ''">
-                        <div
-                          class="h-full rounded-full"
-                          [ngClass]="p.ragStatus === 'red' ? 'bg-rose-500' : (p.ragStatus === 'amber' ? 'bg-amber-500' : 'bg-blue-600')"
-                          [style.width.%]="p.progress">
-                        </div>
-                      </div>
-                      <span class="font-black text-[11px]"
-                        [ngClass]="service.presentationMode() ? 'text-slate-200' : 'text-slate-800'">
-                        {{ p.progress }}%
-                      </span>
-                    </div>
-                  </td>
-
-                  <!-- Saúde RAG -->
-                  <td class="py-2.5 px-3 whitespace-nowrap">
-                    <span
-                      class="px-2 py-0.5 rounded-full text-[10px] font-extrabold inline-block"
-                      [ngClass]="getRagPillClass(p.ragStatus)">
-                      {{ p.ragStatus === 'red' ? 'Desvio' : (p.ragStatus === 'amber' ? 'Atenção' : 'No Prazo') }}
-                    </span>
-                  </td>
-
-                  <!-- Entrega -->
-                  <td class="py-2.5 px-3 whitespace-nowrap font-medium text-[11px]"
-                    [ngClass]="service.presentationMode() ? 'text-slate-400' : 'text-slate-600'">
-                    {{ formatDate(p.targetDelivery) }}
-                  </td>
-
-                  <!-- Resumo da Semana & Atenção -->
-                  <td class="py-2 px-3 text-[11px] leading-snug">
-                    <div class="line-clamp-2">
-                      <span [ngClass]="service.presentationMode() ? 'text-slate-200' : 'text-slate-800 font-medium'">
-                        {{ p.statusReport }}
-                      </span>
-                      <span *ngIf="p.ragStatus === 'red' || p.ragStatus === 'amber'"
-                        class="ml-1 font-bold inline-flex items-center gap-0.5"
-                        [ngClass]="p.ragStatus === 'red' ? 'text-rose-600' : 'text-amber-600'">
-                        • ⚠️ {{ p.attentionPoints }}
-                      </span>
-                    </div>
-                  </td>
-
-                  <!-- EAP Link -->
-                  <td class="py-2.5 px-3 whitespace-nowrap text-center">
-                    <button
-                      (click)="service.openEapForProject(p.projectId)"
-                      class="text-blue-600 hover:text-blue-800 font-bold hover:underline cursor-pointer"
-                      title="Abrir Cronograma EAP Detalhado">
-                      Ver EAP
-                    </button>
-                  </td>
-
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-        <!-- ======================================================== -->
-        <!-- ALTERNATIVE VIEW: CARDS EXECUTIVOS COMPACTOS             -->
-        <!-- ======================================================== -->
-        <div *ngIf="viewMode() === 'cards'"
-          class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3.5">
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3.5">
           <div
             *ngFor="let p of displayedProjects()"
             class="rounded-2xl border p-4 flex flex-col justify-between transition-all hover:shadow-xs"
@@ -617,7 +440,6 @@ export class ExecutiveReportComponent {
   service = inject(ProjectService);
 
   selectedClientFilter = signal<string>('Todos');
-  viewMode = signal<'matrix' | 'cards'>('matrix');
 
   currentReport = computed(() => this.service.currentWeeklyReport());
 
