@@ -304,13 +304,10 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
                 (click)="toggleSystemFilter(s.name)"
                 [ngClass]="service.selectedSystem() === s.name ? s.activeClass : s.idleClass"
                 class="px-3 py-2 rounded-xl border text-left flex items-center justify-between gap-2.5 transition-all cursor-pointer shadow-2xs"
-                [title]="'Filtrar por Sistema ' + s.name">
+                [title]="'Filtrar por ' + s.name">
                 <div class="flex items-center gap-1.5 min-w-0">
                   <span class="text-xs shrink-0">{{ s.icon }}</span>
-                  <div class="flex flex-col min-w-0">
-                    <span class="text-[9px] font-black truncate leading-tight" [ngClass]="s.textClass">{{ s.name }}</span>
-                    <span class="text-[9px] text-slate-400 font-medium mt-0.5 leading-none">sistema</span>
-                  </div>
+                  <span class="text-[10px] font-black truncate leading-tight" [ngClass]="s.textClass">{{ s.name }}</span>
                 </div>
                 <span class="text-base font-black leading-none shrink-0" [ngClass]="s.countClass">
                   {{ s.count }}
