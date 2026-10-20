@@ -103,63 +103,63 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
       <div *ngIf="!service.isLoadingReport() && currentReport()" class="space-y-5">
 
         <!-- ======================================================== -->
-        <!-- 1. HERO BANNER: HEADLINE & EXECUTIVE PULSE KPIS          -->
+        <!-- 1. HERO BANNER: HEADLINE & EXECUTIVE PULSE KPIS (LIGHT)  -->
         <!-- ======================================================== -->
-        <div class="rounded-2xl border border-slate-800 bg-slate-900 text-white shadow-sm p-4 sm:p-5 transition-all">
+        <div class="rounded-2xl border border-slate-200/90 bg-white text-slate-900 shadow-2xs p-4 sm:p-5 transition-all">
           
           <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-5">
             <!-- Left: Headline Statement -->
             <div class="max-w-2xl">
-              <div class="flex items-center gap-2 mb-1.5 text-[10px] font-bold text-blue-400 tracking-wider uppercase">
-                <span>🗓️ Reunião de Diretoria: {{ formatDate(currentReport()?.meetingDate) }}</span>
+              <div class="flex items-center gap-2 mb-1.5 text-[10px] font-bold text-blue-700 tracking-wider uppercase">
+                <span>🗓️ Emissão: {{ formatDate(currentReport()?.meetingDate) }}</span>
                 <span>•</span>
                 <span>Ciclo Semanal Oficial</span>
               </div>
-              <h2 class="text-sm sm:text-base font-extrabold text-white tracking-tight leading-snug">
+              <h2 class="text-sm sm:text-base font-extrabold text-slate-900 tracking-tight leading-snug">
                 {{ currentReport()?.executiveSummary }}
               </h2>
             </div>
 
-            <!-- Right: 4 Sleek Pulse Metrics -->
+            <!-- Right: 4 Sleek Pulse Metrics (Light Theme) -->
             <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 shrink-0">
               <!-- Active Projects -->
-              <div class="px-3.5 py-2.5 bg-white/5 rounded-xl border border-white/10 text-center min-w-[95px]">
-                <span class="text-[9px] font-bold text-slate-400 uppercase tracking-wider block">Projetos Ativos</span>
-                <span class="text-xl font-black text-white block mt-0.5">
+              <div class="px-3.5 py-2.5 bg-slate-50 rounded-xl border border-slate-200/80 text-center min-w-[95px] shadow-2xs">
+                <span class="text-[9px] font-bold text-slate-500 uppercase tracking-wider block">Projetos Ativos</span>
+                <span class="text-xl font-black text-slate-900 block mt-0.5">
                   {{ currentReport()?.statusPulse?.totalActive || 0 }}
                 </span>
-                <span class="text-[9px] text-slate-400">100% monitorados</span>
+                <span class="text-[9px] text-slate-500 font-medium">100% monitorados</span>
               </div>
 
               <!-- On Track -->
-              <div class="px-3.5 py-2.5 bg-emerald-500/10 rounded-xl border border-emerald-500/20 text-center min-w-[95px]">
-                <span class="text-[9px] font-bold text-emerald-400 uppercase tracking-wider block">No Prazo</span>
-                <span class="text-xl font-black text-emerald-400 block mt-0.5">
+              <div class="px-3.5 py-2.5 bg-emerald-50/70 rounded-xl border border-emerald-200/80 text-center min-w-[95px] shadow-2xs">
+                <span class="text-[9px] font-bold text-emerald-800 uppercase tracking-wider block">No Prazo</span>
+                <span class="text-xl font-black text-emerald-700 block mt-0.5">
                   {{ currentReport()?.statusPulse?.onTrack || 0 }}
                 </span>
-                <span class="text-[9px] text-emerald-300">
+                <span class="text-[9px] text-emerald-700 font-medium">
                   {{ getPercent(currentReport()?.statusPulse?.onTrack, currentReport()?.statusPulse?.totalActive) }}% do portfólio
                 </span>
               </div>
 
               <!-- Attention & Critical -->
-              <div class="px-3.5 py-2.5 bg-rose-500/10 rounded-xl border border-rose-500/20 text-center min-w-[95px]">
-                <span class="text-[9px] font-bold text-rose-400 uppercase tracking-wider block">Em Alerta / Desvio</span>
-                <span class="text-xl font-black text-rose-400 block mt-0.5">
+              <div class="px-3.5 py-2.5 bg-rose-50/70 rounded-xl border border-rose-200/80 text-center min-w-[95px] shadow-2xs">
+                <span class="text-[9px] font-bold text-rose-800 uppercase tracking-wider block">Em Alerta / Desvio</span>
+                <span class="text-xl font-black text-rose-700 block mt-0.5">
                   {{ (currentReport()?.statusPulse?.critical || 0) + (currentReport()?.statusPulse?.attention || 0) }}
                 </span>
-                <span class="text-[9px] text-rose-300">
+                <span class="text-[9px] text-rose-700 font-medium">
                   {{ getPercent((currentReport()?.statusPulse?.critical || 0) + (currentReport()?.statusPulse?.attention || 0), currentReport()?.statusPulse?.totalActive) }}% demandam foco
                 </span>
               </div>
 
               <!-- Average Progress -->
-              <div class="px-3.5 py-2.5 bg-blue-500/10 rounded-xl border border-blue-500/20 text-center min-w-[95px]">
-                <span class="text-[9px] font-bold text-blue-400 uppercase tracking-wider block">Avanço Médio</span>
-                <span class="text-xl font-black text-blue-400 block mt-0.5">
+              <div class="px-3.5 py-2.5 bg-blue-50/70 rounded-xl border border-blue-200/80 text-center min-w-[95px] shadow-2xs">
+                <span class="text-[9px] font-bold text-blue-800 uppercase tracking-wider block">Avanço Médio</span>
+                <span class="text-xl font-black text-blue-700 block mt-0.5">
                   {{ currentReport()?.statusPulse?.averageProgress || 0 }}%
                 </span>
-                <span class="text-[9px] text-blue-300">conclusão física</span>
+                <span class="text-[9px] text-blue-700 font-medium">conclusão física</span>
               </div>
             </div>
           </div>
