@@ -267,7 +267,7 @@ class WeeklyReportStore {
     if (!report) return;
     const allProjects = projectStore.getAllProjects() || [];
     const active = allProjects
-      .filter(p => p.status === 'Ativo')
+      .filter(p => p.status === 'Ativo' && p.isVisible)
       .sort((a, b) => projectStore.compareProjects(a, b));
 
     const existingMap = new Map();
@@ -379,7 +379,7 @@ class WeeklyReportStore {
   buildReportForCurrentWeek() {
     const allProjects = projectStore.getAllProjects() || [];
     const active = allProjects
-      .filter(p => p.status === 'Ativo')
+      .filter(p => p.status === 'Ativo' && p.isVisible)
       .sort((a, b) => projectStore.compareProjects(a, b));
 
     let onTrack = 0;
