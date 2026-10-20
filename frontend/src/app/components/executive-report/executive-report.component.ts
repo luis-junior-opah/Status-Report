@@ -1,4 +1,4 @@
-import { Component, inject, computed, signal } from '@angular/core';
+import { Component, inject, computed, signal, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { FiltersComponent } from '../filters/filters.component';
@@ -579,8 +579,12 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
     </div>
   `
 })
-export class ExecutiveReportComponent {
+export class ExecutiveReportComponent implements OnInit {
   service = inject(ProjectService);
+
+  ngOnInit() {
+    this.service.sortBy.set('targetDelivery');
+  }
 
   currentReport = computed(() => this.service.currentWeeklyReport());
 
@@ -639,17 +643,23 @@ export class ExecutiveReportComponent {
         const pA = priorityOrder[a.priority || 'P2'] || 99;
         const pB = priorityOrder[b.priority || 'P2'] || 99;
         if (pA !== pB) return pA - pB;
-        return (a.name || '').localeCompare(b.name || '', 'pt-BR');
+        return this.compareByTargetDelivery(a, b);
       });
     } else if (sort === 'progress') {
-      list.sort((a, b) => (b.progress || 0) - (a.progress || 0));
-    } else {
-      // default: client (A-Z)
+      list.sort((a, b) => {
+        const progDiff = (b.progress || 0) - (a.progress || 0);
+        if (progDiff !== 0) return progDiff;
+        return this.compareByTargetDelivery(a, b);
+      });
+    } else if (sort === 'client') {
       list.sort((a, b) => {
         const cDiff = (a.client || '').localeCompare(b.client || '', 'pt-BR', { sensitivity: 'base' });
         if (cDiff !== 0) return cDiff;
-        return (a.name || '').localeCompare(b.name || '', 'pt-BR', { sensitivity: 'base' });
+        return this.compareByTargetDelivery(a, b);
       });
+    } else {
+      // default: Data "Meta" da mais próxima para a mais distante (targetDelivery)
+      list.sort((a, b) => this.compareByTargetDelivery(a, b));
     }
 
     return list;
@@ -660,6 +670,14 @@ export class ExecutiveReportComponent {
     if (!report || !report.activeProjects) return [];
     return report.activeProjects.filter(p => p.ragStatus === 'red' || p.ragStatus === 'amber').slice(0, 3);
   });
+
+  compareByTargetDelivery(a: WeeklyReportProject, b: WeeklyReportProject): number {
+    const dateA = a.targetDelivery || '9999-12-31';
+    const dateB = b.targetDelivery || '9999-12-31';
+    const dateDiff = dateA.localeCompare(dateB);
+    if (dateDiff !== 0) return dateDiff;
+    return (a.name || '').localeCompare(b.name || '', 'pt-BR');
+  }
 
   getPercent(count?: number, total?: number): number {
     if (!count || !total || total === 0) return 0;

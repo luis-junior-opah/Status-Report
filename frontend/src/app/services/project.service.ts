@@ -25,7 +25,7 @@ export class ProjectService {
   selectedStatus = signal<string>('Todos'); // 'Todos' | 'Ativo' | 'Finalizado' | 'Congelado'
   selectedPriority = signal<string>('Todos'); // 'Todos' | 'P1' | 'P2' | 'P3' | 'P4'
   selectedSystem = signal<string>('Todos'); // 'Todos' | 'Portal Integrator' | 'App Smart Tracking' | 'Smart X' | 'App ILC'
-  sortBy = signal<'client' | 'priority' | 'progress'>('client');
+  sortBy = signal<'targetDelivery' | 'client' | 'priority' | 'progress'>('targetDelivery');
   searchQuery = signal<string>('');
   activeView = signal<'macro' | 'eap-gantt' | 'cards' | 'table' | 'report'>('macro');
 
@@ -151,7 +151,18 @@ export class ProjectService {
       return filtered.slice().sort((a, b) => (b.progress || 0) - (a.progress || 0));
     }
 
-    return filtered.slice().sort((a, b) => this.compareProjects(a, b));
+    if (sort === 'client') {
+      return filtered.slice().sort((a, b) => this.compareProjects(a, b));
+    }
+
+    // Default / 'targetDelivery': Meta da mais próxima para a mais distante
+    return filtered.slice().sort((a, b) => {
+      const dateA = a.executedDates?.end || a.plannedDates?.end || a.agreedDates?.end || '9999-12-31';
+      const dateB = b.executedDates?.end || b.plannedDates?.end || b.agreedDates?.end || '9999-12-31';
+      const dateDiff = dateA.localeCompare(dateB);
+      if (dateDiff !== 0) return dateDiff;
+      return this.compareProjects(a, b);
+    });
   });
 
   getPriorityBadgeClass(priority?: string): string {

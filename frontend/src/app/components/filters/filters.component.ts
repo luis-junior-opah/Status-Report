@@ -109,6 +109,7 @@ import { ProjectService } from '../../services/project.service';
             [ngModel]="service.sortBy()"
             (ngModelChange)="service.sortBy.set($event)"
             class="bg-slate-800 border border-slate-700 text-slate-200 text-xs rounded-xl px-2.5 py-1.5 focus:outline-none focus:ring-2 focus:ring-blue-500 font-semibold cursor-pointer">
+            <option value="targetDelivery" class="bg-slate-800 text-white">📅 Meta (Mais próxima)</option>
             <option value="client" class="bg-slate-800 text-white">Cliente (A-Z)</option>
             <option value="priority" class="bg-slate-800 text-white">Prioridade (P1 → P4)</option>
             <option value="progress" class="bg-slate-800 text-white">Maior Progresso</option>
@@ -153,7 +154,7 @@ export class FiltersComponent {
       this.service.selectedPriority() !== 'Todos' ||
       this.service.selectedSystem() !== 'Todos' ||
       this.service.selectedStatus() !== 'Todos' ||
-      this.service.sortBy() !== 'client' ||
+      this.service.sortBy() !== 'targetDelivery' ||
       !!this.service.searchQuery();
   }
 
@@ -162,7 +163,7 @@ export class FiltersComponent {
     this.service.selectedPriority.set('Todos');
     this.service.selectedSystem.set('Todos');
     this.service.selectedStatus.set('Todos');
-    this.service.sortBy.set('client');
+    this.service.sortBy.set('targetDelivery');
     this.service.searchQuery.set('');
   }
 }
