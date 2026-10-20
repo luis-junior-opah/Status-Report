@@ -18,35 +18,22 @@ import { Project } from '../../models/project.model';
               Visão Macro do Portfólio
             </span>
           </h2>
-          <p class="text-xs text-slate-500 mt-0.5">
-            Acompanhe o avanço físico consolidado de cada projeto. A cor da barra reflete a saúde do projeto. Clique em qualquer linha para abrir a <strong>EAP detalhada</strong>.
-          </p>
         </div>
 
-        <!-- Legend reflecting bar colors & EAP stages -->
-        <div class="flex flex-col sm:items-end gap-1.5 text-xs text-slate-500 font-medium">
-          <div class="flex items-center gap-3">
-            <span class="flex items-center gap-1.5">
-              <span class="w-3 h-2 rounded bg-emerald-500"></span> No Prazo
-            </span>
-            <span class="flex items-center gap-1.5">
-              <span class="w-3 h-2 rounded bg-amber-500"></span> Em Atenção
-            </span>
-            <span class="flex items-center gap-1.5">
-              <span class="w-3 h-2 rounded bg-rose-500"></span> Com Desvio
-            </span>
-            <span class="flex items-center gap-1.5">
-              <span class="w-3 h-2 rounded bg-slate-400"></span> Congelado
-            </span>
-          </div>
-          <div class="flex items-center flex-wrap gap-1.5 text-[10px]">
-            <span class="font-bold text-slate-400 uppercase tracking-wider text-[9px] mr-0.5">Etapas:</span>
-            <span class="px-1.5 py-0.2 rounded font-semibold bg-purple-50 text-purple-700 border border-purple-200">Planejamento</span>
-            <span class="px-1.5 py-0.2 rounded font-semibold bg-blue-50 text-blue-700 border border-blue-200">Desenvolvimento</span>
-            <span class="px-1.5 py-0.2 rounded font-semibold bg-orange-50 text-orange-700 border border-orange-200">Homologação</span>
-            <span class="px-1.5 py-0.2 rounded font-semibold bg-teal-50 text-teal-700 border border-teal-200">Treinamento</span>
-            <span class="px-1.5 py-0.2 rounded font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">Operação Assistida</span>
-          </div>
+        <!-- Legend reflecting bar colors -->
+        <div class="flex items-center gap-3 text-xs text-slate-500 font-medium">
+          <span class="flex items-center gap-1.5">
+            <span class="w-3 h-2 rounded bg-emerald-500"></span> No Prazo
+          </span>
+          <span class="flex items-center gap-1.5">
+            <span class="w-3 h-2 rounded bg-amber-500"></span> Em Atenção
+          </span>
+          <span class="flex items-center gap-1.5">
+            <span class="w-3 h-2 rounded bg-rose-500"></span> Com Desvio
+          </span>
+          <span class="flex items-center gap-1.5">
+            <span class="w-3 h-2 rounded bg-slate-400"></span> Congelado
+          </span>
         </div>
       </div>
 
