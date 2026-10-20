@@ -187,17 +187,25 @@ import { WeeklyReport, WeeklyReportProject, RoadmapProject, BoardDecision } from
                     <span class="text-xs font-bold leading-tight line-clamp-1" [title]="p.name">
                       {{ p.name }}
                     </span>
-                    <div class="flex items-center gap-1 shrink-0">
+                    <div class="flex items-center gap-1 shrink-0 flex-wrap justify-end">
                       <!-- Origin Badge -->
                       <span
                         class="text-[9px] font-black px-1.5 py-0.2 rounded"
                         [ngClass]="isManualProject(p) ? 'bg-amber-100 text-amber-800 border border-amber-200' : 'bg-sky-100 text-sky-800 border border-sky-200'">
                         {{ isManualProject(p) ? '✍️ Manual' : '☁️ Azure' }}
                       </span>
+                      <!-- Status Badge -->
                       <span
                         class="text-[9px] font-extrabold px-1.5 py-0.2 rounded uppercase"
                         [ngClass]="p.status === 'Ativo' ? 'bg-emerald-100 text-emerald-800' : (p.status === 'Finalizado' ? 'bg-blue-100 text-blue-800' : 'bg-amber-100 text-amber-800')">
                         {{ p.status }}
+                      </span>
+                      <!-- Visibility Badge -->
+                      <span
+                        class="text-[9px] font-bold px-1.5 py-0.2 rounded flex items-center gap-0.5"
+                        [ngClass]="p.isVisible ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' : 'bg-slate-100 text-slate-500 border border-slate-300'"
+                        [title]="p.isVisible ? 'Projeto visível no Dashboard' : 'Projeto oculto no Dashboard'">
+                        <span>{{ p.isVisible ? '👁️ Visível' : '🚫 Oculto' }}</span>
                       </span>
                     </div>
                   </div>
@@ -982,6 +990,10 @@ import { WeeklyReport, WeeklyReportProject, RoadmapProject, BoardDecision } from
                         <span class="font-semibold">{{ p.client }}</span>
                         <span>•</span>
                         <span [ngClass]="p.status === 'Ativo' ? 'text-blue-600' : 'text-slate-400'">{{ p.status }}</span>
+                        <span>•</span>
+                        <span [ngClass]="p.isVisible ? 'text-emerald-600 font-semibold' : 'text-slate-400 font-medium'">
+                          {{ p.isVisible ? '👁️ Visível' : '🚫 Oculto' }}
+                        </span>
                       </div>
                     </div>
                   </div>
