@@ -34,7 +34,20 @@
         "systems": [
           "App ILC"
         ],
-        "teamLeader": "Luis Santos"
+        "teamLeader": "Luis Santos",
+        "teamMembers": [
+          "Luis Santos",
+          "Mike Andrade",
+          "Francisco Molaia"
+        ],
+        "team": {
+          "leader": "Luis Santos",
+          "members": [
+            "Luis Santos",
+            "Mike Andrade",
+            "Francisco Molaia"
+          ]
+        }
       },
       {
         "projectId": "manual-1791566380216",
@@ -55,7 +68,18 @@
         "systems": [
           "Infraestrutura"
         ],
-        "teamLeader": "Francisco Molaia"
+        "teamLeader": "Francisco Molaia",
+        "teamMembers": [
+          "Francisco Molaia",
+          "Silvio Torres"
+        ],
+        "team": {
+          "leader": "Francisco Molaia",
+          "members": [
+            "Francisco Molaia",
+            "Silvio Torres"
+          ]
+        }
       },
       {
         "projectId": "4d1d445e-584d-4bdb-a176-afce663b0300",
@@ -76,7 +100,18 @@
         "systems": [
           "Portal Integrator"
         ],
-        "teamLeader": "Luis Santos"
+        "teamLeader": "Luis Santos",
+        "teamMembers": [
+          "Luis Santos",
+          "Silvio Torres"
+        ],
+        "team": {
+          "leader": "Luis Santos",
+          "members": [
+            "Luis Santos",
+            "Silvio Torres"
+          ]
+        }
       },
       {
         "projectId": "7a1136ad-134c-41fe-a684-79e8b2ab5c93",
@@ -98,7 +133,18 @@
           "Portal Integrator",
           "App ILC"
         ],
-        "teamLeader": "Luis Santos"
+        "teamLeader": "Luis Santos",
+        "teamMembers": [
+          "Luis Santos",
+          "Silvio Torres"
+        ],
+        "team": {
+          "leader": "Luis Santos",
+          "members": [
+            "Luis Santos",
+            "Silvio Torres"
+          ]
+        }
       },
       {
         "projectId": "c99e39c8-2702-4961-8624-117ce09beac7",
@@ -119,7 +165,18 @@
         "systems": [
           "Portal Integrator"
         ],
-        "teamLeader": "Luis Santos"
+        "teamLeader": "Luis Santos",
+        "teamMembers": [
+          "Luis Santos",
+          "Silvio Torres"
+        ],
+        "team": {
+          "leader": "Luis Santos",
+          "members": [
+            "Luis Santos",
+            "Silvio Torres"
+          ]
+        }
       },
       {
         "projectId": "c064a093-ea7c-45e6-8ec6-5bf10a5794a9",
@@ -141,7 +198,22 @@
           "App Smart Tracking",
           "Smart X"
         ],
-        "teamLeader": "Vito Neves"
+        "teamLeader": "Vito Neves",
+        "teamMembers": [
+          "Vitor Neves",
+          "Luis Santos",
+          "Thiago Rodrigues",
+          "Mike Andrade"
+        ],
+        "team": {
+          "leader": "Vito Neves",
+          "members": [
+            "Vitor Neves",
+            "Luis Santos",
+            "Thiago Rodrigues",
+            "Mike Andrade"
+          ]
+        }
       },
       {
         "projectId": "a5fcfbb4-ab62-4aff-b0fa-3f623219a49c",
@@ -163,7 +235,18 @@
           "Portal Integrator",
           "App ILC"
         ],
-        "teamLeader": "Vitor Neves"
+        "teamLeader": "Vitor Neves",
+        "teamMembers": [
+          "Luis Santos",
+          "Silvio Torres"
+        ],
+        "team": {
+          "leader": "Vitor Neves",
+          "members": [
+            "Luis Santos",
+            "Silvio Torres"
+          ]
+        }
       },
       {
         "projectId": "eb438ca6-f25e-4c5c-ab4b-a45e1b243ba1",
@@ -184,7 +267,20 @@
         "systems": [
           "App Smart Tracking"
         ],
-        "teamLeader": "Vitor Neves"
+        "teamLeader": "Vitor Neves",
+        "teamMembers": [
+          "Vitor Neves",
+          "Luis Santos",
+          "Mike Andrade"
+        ],
+        "team": {
+          "leader": "Vitor Neves",
+          "members": [
+            "Vitor Neves",
+            "Luis Santos",
+            "Mike Andrade"
+          ]
+        }
       },
       {
         "projectId": "caaaa6c3-0dd9-49bb-81c4-a7b757102304",
@@ -205,7 +301,18 @@
         "systems": [
           "Portal Integrator"
         ],
-        "teamLeader": "Vitor Neves"
+        "teamLeader": "Vitor Neves",
+        "teamMembers": [
+          "Vitor Neves",
+          "Silvio Torres"
+        ],
+        "team": {
+          "leader": "Vitor Neves",
+          "members": [
+            "Vitor Neves",
+            "Silvio Torres"
+          ]
+        }
       }
     ],
     "roadmapProjects": [
@@ -322,7 +429,20 @@
         "systems": [
           "App ILC"
         ],
-        "teamLeader": "Luis Santos"
+        "teamLeader": "Luis Santos",
+        "teamMembers": [
+          "Luis Santos",
+          "Mike Andrade",
+          "Francisco Molaia"
+        ],
+        "team": {
+          "leader": "Luis Santos",
+          "members": [
+            "Luis Santos",
+            "Mike Andrade",
+            "Francisco Molaia"
+          ]
+        }
       },
       {
         "projectId": "manual-1791566380216",
@@ -343,7 +463,18 @@
         "systems": [
           "Infraestrutura"
         ],
-        "teamLeader": "Francisco Molaia"
+        "teamLeader": "Francisco Molaia",
+        "teamMembers": [
+          "Francisco Molaia",
+          "Silvio Torres"
+        ],
+        "team": {
+          "leader": "Francisco Molaia",
+          "members": [
+            "Francisco Molaia",
+            "Silvio Torres"
+          ]
+        }
       },
       {
         "projectId": "4d1d445e-584d-4bdb-a176-afce663b0300",
@@ -364,7 +495,18 @@
         "systems": [
           "Portal Integrator"
         ],
-        "teamLeader": "Luis Santos"
+        "teamLeader": "Luis Santos",
+        "teamMembers": [
+          "Luis Santos",
+          "Silvio Torres"
+        ],
+        "team": {
+          "leader": "Luis Santos",
+          "members": [
+            "Luis Santos",
+            "Silvio Torres"
+          ]
+        }
       },
       {
         "projectId": "7a1136ad-134c-41fe-a684-79e8b2ab5c93",
@@ -386,7 +528,18 @@
           "Portal Integrator",
           "App ILC"
         ],
-        "teamLeader": "Luis Santos"
+        "teamLeader": "Luis Santos",
+        "teamMembers": [
+          "Luis Santos",
+          "Silvio Torres"
+        ],
+        "team": {
+          "leader": "Luis Santos",
+          "members": [
+            "Luis Santos",
+            "Silvio Torres"
+          ]
+        }
       },
       {
         "projectId": "c99e39c8-2702-4961-8624-117ce09beac7",
@@ -407,7 +560,18 @@
         "systems": [
           "Portal Integrator"
         ],
-        "teamLeader": "Luis Santos"
+        "teamLeader": "Luis Santos",
+        "teamMembers": [
+          "Luis Santos",
+          "Silvio Torres"
+        ],
+        "team": {
+          "leader": "Luis Santos",
+          "members": [
+            "Luis Santos",
+            "Silvio Torres"
+          ]
+        }
       },
       {
         "projectId": "c064a093-ea7c-45e6-8ec6-5bf10a5794a9",
@@ -429,7 +593,22 @@
           "App Smart Tracking",
           "Smart X"
         ],
-        "teamLeader": "Vito Neves"
+        "teamLeader": "Vito Neves",
+        "teamMembers": [
+          "Vitor Neves",
+          "Luis Santos",
+          "Thiago Rodrigues",
+          "Mike Andrade"
+        ],
+        "team": {
+          "leader": "Vito Neves",
+          "members": [
+            "Vitor Neves",
+            "Luis Santos",
+            "Thiago Rodrigues",
+            "Mike Andrade"
+          ]
+        }
       },
       {
         "projectId": "a5fcfbb4-ab62-4aff-b0fa-3f623219a49c",
@@ -451,7 +630,18 @@
           "Portal Integrator",
           "App ILC"
         ],
-        "teamLeader": "Vitor Neves"
+        "teamLeader": "Vitor Neves",
+        "teamMembers": [
+          "Luis Santos",
+          "Silvio Torres"
+        ],
+        "team": {
+          "leader": "Vitor Neves",
+          "members": [
+            "Luis Santos",
+            "Silvio Torres"
+          ]
+        }
       },
       {
         "projectId": "eb438ca6-f25e-4c5c-ab4b-a45e1b243ba1",
@@ -472,7 +662,20 @@
         "systems": [
           "App Smart Tracking"
         ],
-        "teamLeader": "Vitor Neves"
+        "teamLeader": "Vitor Neves",
+        "teamMembers": [
+          "Vitor Neves",
+          "Luis Santos",
+          "Mike Andrade"
+        ],
+        "team": {
+          "leader": "Vitor Neves",
+          "members": [
+            "Vitor Neves",
+            "Luis Santos",
+            "Mike Andrade"
+          ]
+        }
       },
       {
         "projectId": "caaaa6c3-0dd9-49bb-81c4-a7b757102304",
@@ -493,7 +696,18 @@
         "systems": [
           "Portal Integrator"
         ],
-        "teamLeader": "Vitor Neves"
+        "teamLeader": "Vitor Neves",
+        "teamMembers": [
+          "Vitor Neves",
+          "Silvio Torres"
+        ],
+        "team": {
+          "leader": "Vitor Neves",
+          "members": [
+            "Vitor Neves",
+            "Silvio Torres"
+          ]
+        }
       }
     ],
     "roadmapProjects": [

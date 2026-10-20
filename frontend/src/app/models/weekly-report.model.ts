@@ -35,6 +35,11 @@ export interface WeeklyReportProject {
   priority?: 'P1' | 'P2' | 'P3' | 'P4';
   systems?: string[];
   teamLeader?: string;
+  teamMembers?: string[];
+  team?: {
+    leader?: string;
+    members?: string[];
+  };
 }
 
 export interface RoadmapProject {

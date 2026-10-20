@@ -317,7 +317,9 @@ class WeeklyReportStore {
         hoursPlanned: p.hours?.totalPlanned || 0,
         priority: p.priority || 'P2',
         systems: p.systems || [],
-        teamLeader: p.team?.leader || (p.team?.members ? p.team.members.join(', ') : '')
+        teamLeader: p.team?.leader || (p.team?.members ? p.team.members.join(', ') : ''),
+        teamMembers: p.team?.members || [],
+        team: p.team || { leader: p.team?.leader || '', members: [] }
       };
     });
 
@@ -414,7 +416,9 @@ class WeeklyReportStore {
         hoursPlanned: p.hours?.totalPlanned || 0,
         priority: p.priority || 'P2',
         systems: p.systems || [],
-        teamLeader: p.team?.leader || ''
+        teamLeader: p.team?.leader || '',
+        teamMembers: p.team?.members || [],
+        team: p.team || { leader: p.team?.leader || '', members: [] }
       };
     });
 

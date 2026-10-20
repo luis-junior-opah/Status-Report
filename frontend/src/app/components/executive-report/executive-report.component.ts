@@ -521,6 +521,39 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
                 class="p-2 rounded-lg text-[10px] leading-snug mb-2 bg-rose-50 text-rose-900 border border-rose-200">
                 <strong>⚠️ Ponto de Atenção:</strong> {{ p.attentionPoints }}
               </div>
+
+              <!-- Equipe Alocada -->
+              <div *ngIf="getAllTeamMembers(p).length > 0" class="mt-2.5 pt-2 border-t border-slate-100">
+                <div class="flex items-center justify-between gap-1 mb-1.5">
+                  <span class="text-[10px] font-bold text-slate-500 uppercase tracking-wider flex items-center gap-1">
+                    <span>👥</span>
+                    <span>Equipe Alocada</span>
+                  </span>
+                  <span class="text-[9px] font-bold text-slate-500 bg-slate-100 px-1.5 py-0.2 rounded-full">
+                    {{ getAllTeamMembers(p).length }} pessoa{{ getAllTeamMembers(p).length > 1 ? 's' : '' }}
+                  </span>
+                </div>
+                <div class="flex flex-wrap gap-1">
+                  <!-- Leader Badge -->
+                  <span
+                    *ngIf="p.teamLeader"
+                    class="inline-flex items-center gap-1 text-[9px] font-extrabold px-2 py-0.5 rounded-md bg-blue-50 border border-blue-200 text-blue-900 shadow-2xs"
+                    [title]="'Líder Técnico: ' + p.teamLeader">
+                    <span>👑</span>
+                    <span>{{ p.teamLeader }}</span>
+                    <span class="text-[8px] font-bold px-1 rounded bg-blue-200/80 text-blue-800">Líder</span>
+                  </span>
+
+                  <!-- Other Members Badges -->
+                  <span
+                    *ngFor="let member of getNonLeaderMembers(p)"
+                    class="inline-flex items-center gap-1 text-[9px] font-semibold px-2 py-0.5 rounded-md bg-slate-50 border border-slate-200 text-slate-700 shadow-2xs"
+                    [title]="'Integrante da equipe: ' + member">
+                    <span class="text-[8px] text-slate-400">👤</span>
+                    <span>{{ member }}</span>
+                  </span>
+                </div>
+              </div>
             </div>
 
             <!-- Card Bottom -->
@@ -590,11 +623,12 @@ export class ExecutiveReportComponent {
         const nameMatch = (p.name || '').toLowerCase().includes(query);
         const clientMatch = (p.client || '').toLowerCase().includes(query);
         const leaderMatch = (p.teamLeader || '').toLowerCase().includes(query);
+        const membersMatch = (p.teamMembers || p.team?.members || []).some(m => m.toLowerCase().includes(query));
         const systemMatch = (p.systems || []).some(s => s.toLowerCase().includes(query));
         const milestoneMatch = (p.currentMilestone || '').toLowerCase().includes(query);
         const statusReportMatch = (p.statusReport || '').toLowerCase().includes(query);
         const attentionMatch = (p.attentionPoints || '').toLowerCase().includes(query);
-        return nameMatch || clientMatch || leaderMatch || systemMatch || milestoneMatch || statusReportMatch || attentionMatch;
+        return nameMatch || clientMatch || leaderMatch || membersMatch || systemMatch || milestoneMatch || statusReportMatch || attentionMatch;
       });
     }
 
@@ -727,6 +761,36 @@ export class ExecutiveReportComponent {
     } else {
       this.service.selectedSystem.set(systemName);
     }
+  }
+
+  getTeamMembers(p: WeeklyReportProject): string[] {
+    let members = p.team?.members || p.teamMembers || [];
+    if (!members || members.length === 0) {
+      const proj = this.service.projects().find(x => x.id === p.projectId || x.name === p.name);
+      members = proj?.team?.members || [];
+    }
+    return members;
+  }
+
+  getAllTeamMembers(p: WeeklyReportProject): string[] {
+    const list: string[] = [];
+    const leader = (p.teamLeader || p.team?.leader || '').trim();
+    if (leader) list.push(leader);
+
+    const members = this.getTeamMembers(p);
+    for (const m of members) {
+      const trimmed = m.trim();
+      if (trimmed && !list.some(x => x.toLowerCase() === trimmed.toLowerCase())) {
+        list.push(trimmed);
+      }
+    }
+    return list;
+  }
+
+  getNonLeaderMembers(p: WeeklyReportProject): string[] {
+    const leader = (p.teamLeader || p.team?.leader || '').trim().toLowerCase();
+    const all = this.getAllTeamMembers(p);
+    return all.filter(m => m.trim().toLowerCase() !== leader);
   }
 
   onSelectReport(reportId: string) {
