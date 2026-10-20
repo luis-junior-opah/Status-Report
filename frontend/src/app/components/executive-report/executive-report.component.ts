@@ -159,6 +159,100 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
               </div>
             </div>
           </div>
+
+          <!-- Priority Distribution Bar -->
+          <div class="mt-4 pt-3.5 border-t border-slate-100 flex flex-col md:flex-row md:items-center justify-between gap-3">
+            <div class="flex items-center gap-2">
+              <span class="text-xs">🎯</span>
+              <span class="text-xs font-black text-slate-900 tracking-tight">Prioridade do Projeto:</span>
+              <span class="text-[11px] text-slate-500 font-medium hidden sm:inline">Volume de projetos ativos por nível de criticidade</span>
+              <button
+                *ngIf="service.selectedPriority() !== 'Todos'"
+                type="button"
+                (click)="service.selectedPriority.set('Todos')"
+                class="text-[10px] font-bold text-blue-600 hover:text-blue-800 underline ml-1 cursor-pointer">
+                (Limpar filtro: {{ service.selectedPriority() }})
+              </button>
+            </div>
+
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+              <!-- P1 - Crítica -->
+              <button
+                type="button"
+                (click)="togglePriorityFilter('P1')"
+                [ngClass]="service.selectedPriority() === 'P1' ? 'ring-2 ring-rose-500 bg-rose-100/90 border-rose-300' : 'bg-rose-50/70 hover:bg-rose-100/60 border-rose-200/80'"
+                class="px-3 py-2 rounded-xl border text-left flex items-center justify-between gap-3 transition-all cursor-pointer shadow-2xs"
+                title="Filtrar por Prioridade P1 - Crítica">
+                <div class="flex items-center gap-1.5">
+                  <span class="w-2 h-2 rounded-full bg-rose-500 shrink-0"></span>
+                  <div class="flex flex-col">
+                    <span class="text-[9px] font-black text-rose-800 uppercase tracking-wider leading-none">P1 • Crítica</span>
+                    <span class="text-[9px] text-rose-600/80 font-medium mt-0.5 leading-none">Urgência máxima</span>
+                  </div>
+                </div>
+                <span class="text-base font-black text-rose-700 leading-none">
+                  {{ getPriorityCount('P1') }}
+                </span>
+              </button>
+
+              <!-- P2 - Alta -->
+              <button
+                type="button"
+                (click)="togglePriorityFilter('P2')"
+                [ngClass]="service.selectedPriority() === 'P2' ? 'ring-2 ring-amber-500 bg-amber-100/90 border-amber-300' : 'bg-amber-50/70 hover:bg-amber-100/60 border-amber-200/80'"
+                class="px-3 py-2 rounded-xl border text-left flex items-center justify-between gap-3 transition-all cursor-pointer shadow-2xs"
+                title="Filtrar por Prioridade P2 - Alta">
+                <div class="flex items-center gap-1.5">
+                  <span class="w-2 h-2 rounded-full bg-amber-500 shrink-0"></span>
+                  <div class="flex flex-col">
+                    <span class="text-[9px] font-black text-amber-800 uppercase tracking-wider leading-none">P2 • Alta</span>
+                    <span class="text-[9px] text-amber-600/80 font-medium mt-0.5 leading-none">Impacto direto</span>
+                  </div>
+                </div>
+                <span class="text-base font-black text-amber-800 leading-none">
+                  {{ getPriorityCount('P2') }}
+                </span>
+              </button>
+
+              <!-- P3 - Média -->
+              <button
+                type="button"
+                (click)="togglePriorityFilter('P3')"
+                [ngClass]="service.selectedPriority() === 'P3' ? 'ring-2 ring-blue-500 bg-blue-100/90 border-blue-300' : 'bg-blue-50/70 hover:bg-blue-100/60 border-blue-200/80'"
+                class="px-3 py-2 rounded-xl border text-left flex items-center justify-between gap-3 transition-all cursor-pointer shadow-2xs"
+                title="Filtrar por Prioridade P3 - Média">
+                <div class="flex items-center gap-1.5">
+                  <span class="w-2 h-2 rounded-full bg-blue-500 shrink-0"></span>
+                  <div class="flex flex-col">
+                    <span class="text-[9px] font-black text-blue-800 uppercase tracking-wider leading-none">P3 • Média</span>
+                    <span class="text-[9px] text-blue-600/80 font-medium mt-0.5 leading-none">Evolução regular</span>
+                  </div>
+                </div>
+                <span class="text-base font-black text-blue-700 leading-none">
+                  {{ getPriorityCount('P3') }}
+                </span>
+              </button>
+
+              <!-- P4 - Baixa -->
+              <button
+                type="button"
+                (click)="togglePriorityFilter('P4')"
+                [ngClass]="service.selectedPriority() === 'P4' ? 'ring-2 ring-slate-500 bg-slate-200/90 border-slate-300' : 'bg-slate-50 hover:bg-slate-100/80 border-slate-200/80'"
+                class="px-3 py-2 rounded-xl border text-left flex items-center justify-between gap-3 transition-all cursor-pointer shadow-2xs"
+                title="Filtrar por Prioridade P4 - Baixa">
+                <div class="flex items-center gap-1.5">
+                  <span class="w-2 h-2 rounded-full bg-slate-400 shrink-0"></span>
+                  <div class="flex flex-col">
+                    <span class="text-[9px] font-black text-slate-700 uppercase tracking-wider leading-none">P4 • Baixa</span>
+                    <span class="text-[9px] text-slate-500 font-medium mt-0.5 leading-none">Demanda rotina</span>
+                  </div>
+                </div>
+                <span class="text-base font-black text-slate-700 leading-none">
+                  {{ getPriorityCount('P4') }}
+                </span>
+              </button>
+            </div>
+          </div>
         </div>
 
         <!-- ======================================================== -->
@@ -498,6 +592,19 @@ export class ExecutiveReportComponent {
   getPercent(count?: number, total?: number): number {
     if (!count || !total || total === 0) return 0;
     return Math.round((count / total) * 100);
+  }
+
+  getPriorityCount(priority: string): number {
+    const list = this.currentReport()?.activeProjects || [];
+    return list.filter(p => ((p.priority || 'P2').trim().toUpperCase()) === priority.toUpperCase()).length;
+  }
+
+  togglePriorityFilter(priority: string): void {
+    if (this.service.selectedPriority() === priority) {
+      this.service.selectedPriority.set('Todos');
+    } else {
+      this.service.selectedPriority.set(priority);
+    }
   }
 
   onSelectReport(reportId: string) {
