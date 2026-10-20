@@ -42,9 +42,8 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
               Período {{ currentReport()?.period }}
             </p>
             <!-- Linha 4 -->
-            <p class="text-[11px] font-medium text-slate-500 mt-0.5 flex items-center gap-1">
-              <span>🗓️</span>
-              <span>Emissão: {{ formatDate(currentReport()?.meetingDate) }}</span>
+            <p class="text-[11px] font-medium text-slate-500 mt-0.5">
+              Emissão: {{ formatDate(currentReport()?.meetingDate) }}
             </p>
           </div>
         </div>
