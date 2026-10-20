@@ -228,6 +228,26 @@ function resolveProjectWeeklyDetails(p) {
   };
 }
 
+function getISOWeekNumber(d = new Date()) {
+  const date = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
+  const dayNum = date.getUTCDay() || 7;
+  date.setUTCDate(date.getUTCDate() + 4 - dayNum);
+  const yearStart = new Date(Date.UTC(date.getUTCFullYear(), 0, 1));
+  return Math.ceil((((date - yearStart) / 86400000) + 1) / 7);
+}
+
+function getWeekPeriodString(d = new Date()) {
+  const date = new Date(d);
+  const day = date.getDay();
+  const diffToMonday = date.getDate() - day + (day === 0 ? -6 : 1);
+  const monday = new Date(date.setDate(diffToMonday));
+  const friday = new Date(monday);
+  friday.setDate(monday.getDate() + 4);
+
+  const format = (dt) => `${String(dt.getDate()).padStart(2, '0')}/${String(dt.getMonth() + 1).padStart(2, '0')}/${dt.getFullYear()}`;
+  return `${format(monday)} a ${format(friday)}`;
+}
+
 class WeeklyReportStore {
   constructor() {
     this.reports = [];
@@ -239,6 +259,36 @@ class WeeklyReportStore {
       if (fs.existsSync(REPORTS_FILE)) {
         const raw = fs.readFileSync(REPORTS_FILE, 'utf8');
         this.reports = JSON.parse(raw);
+
+        // Normalize weekNumber and id based on title if needed
+        for (const rep of this.reports) {
+          if (rep.title) {
+            const match = rep.title.match(/Semana\s+(\d+)\s*\/\s*(\d+)/i);
+            if (match) {
+              rep.weekNumber = parseInt(match[1], 10);
+              rep.year = parseInt(match[2], 10);
+              rep.id = `${rep.year}-W${rep.weekNumber}`;
+            }
+          }
+        }
+
+        // If week 42 is missing because week 43 replaced it, re-introduce week 42 as history
+        const hasW42 = this.reports.some(r => r.id === '2026-W42' || r.weekNumber === 42);
+        const hasW43 = this.reports.some(r => r.id === '2026-W43' || r.weekNumber === 43);
+        if (hasW43 && !hasW42) {
+          const w43 = this.reports.find(r => r.id === '2026-W43');
+          const w42 = JSON.parse(JSON.stringify(w43));
+          w42.id = '2026-W42';
+          w42.weekNumber = 42;
+          w42.year = 2026;
+          w42.title = 'Semana 42 / 2026';
+          w42.period = '13/10/2026 a 17/10/2026';
+          w42.meetingDate = '2026-10-16';
+          this.reports.push(w42);
+        }
+
+        // Sort descending
+        this.reports.sort((a, b) => b.id.localeCompare(a.id));
         this.syncAllReportsWithProjects();
       } else {
         this.reports = [];
@@ -452,15 +502,17 @@ class WeeklyReportStore {
 
     // Determine current ISO week
     const now = new Date();
-    const currentWeekNumber = 42; // October mid-month
-    const id = `2026-W${currentWeekNumber}`;
+    const currentWeekNumber = getISOWeekNumber(now);
+    const year = now.getFullYear();
+    const id = `${year}-W${currentWeekNumber}`;
+    const period = getWeekPeriodString(now);
 
     return {
       id: id,
       weekNumber: currentWeekNumber,
-      year: 2026,
-      title: `Semana ${currentWeekNumber} / 2026`,
-      period: '13/10/2026 a 17/10/2026',
+      year: year,
+      title: `Semana ${currentWeekNumber} / ${year}`,
+      period: period,
       meetingDate: now.toISOString().split('T')[0],
       executiveSummary: '',
       statusPulse: {
@@ -496,15 +548,32 @@ class WeeklyReportStore {
   }
 
   saveReport(reportData) {
-    if (!reportData || !reportData.id) {
+    if (!reportData) {
+      throw new Error('Dados do relatório são obrigatórios.');
+    }
+    // Infer weekNumber and year from title if present
+    if (reportData.title) {
+      const match = reportData.title.match(/Semana\s+(\d+)\s*\/\s*(\d+)/i);
+      if (match) {
+        reportData.weekNumber = parseInt(match[1], 10);
+        reportData.year = parseInt(match[2], 10);
+        const targetId = `${reportData.year}-W${reportData.weekNumber}`;
+        if (reportData.id !== targetId) {
+          reportData.id = targetId;
+        }
+      }
+    }
+    if (!reportData.id) {
       throw new Error('ID do relatório é obrigatório.');
     }
+
     const idx = this.reports.findIndex(r => r.id === reportData.id);
     if (idx >= 0) {
       this.reports[idx] = { ...this.reports[idx], ...reportData };
     } else {
       this.reports.unshift(reportData);
     }
+    this.reports.sort((a, b) => b.id.localeCompare(a.id));
     this.persist();
     return this.reports.find(r => r.id === reportData.id);
   }

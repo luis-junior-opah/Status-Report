@@ -122,7 +122,7 @@ app.post('/api/admin/weekly-reports', checkAdminAuth, (req, res) => {
 
 app.put('/api/admin/weekly-reports/:id', checkAdminAuth, (req, res) => {
   try {
-    const updated = weeklyReportStore.saveReport({ ...req.body, id: req.params.id });
+    const updated = weeklyReportStore.saveReport({ id: req.params.id, ...req.body });
     res.json({ success: true, data: updated });
   } catch (err) {
     res.status(400).json({ success: false, message: err.message });

@@ -216,11 +216,14 @@ export class ProjectService {
 
   formatEditionTitle(rep: any): string {
     if (!rep) return '';
+    const match = (rep.title || '').match(/Semana\s+(\d+)\s*\/\s*(\d+)/i);
+    if (match) {
+      return `Semana ${match[1]} / ${match[2]}`;
+    }
     if (rep.weekNumber && rep.year) {
       return `Semana ${rep.weekNumber} / ${rep.year}`;
     }
-    const match = (rep.title || '').match(/Semana\s+\d+\s*\/\s*\d+/i);
-    return match ? match[0] : (rep.title || '');
+    return rep.title || '';
   }
 
   // Reactive Stats: Strictly ACTIVE projects for RAG indicators!
