@@ -42,12 +42,20 @@ import { Project, ProjectActivity, EapPhase, AzureAuditReport } from '../../mode
                 </span>
               </div>
 
-              <div class="flex flex-wrap items-center gap-3">
+              <div class="flex flex-wrap items-center gap-2.5">
                 <h2 class="text-2xl font-black text-slate-900 tracking-tight">
                   {{ project.name }}
                 </h2>
+                <!-- Priority Badge -->
+                <span
+                  class="text-xs font-black px-2.5 py-1 rounded-xl border shadow-2xs flex items-center gap-1 shrink-0 cursor-default"
+                  [ngClass]="service.getPriorityBadgeClass(project.priority || 'P2')"
+                  [title]="'Prioridade: ' + service.getPriorityLabel(project.priority || 'P2')">
+                  <span>🎯</span>
+                  <span>{{ service.getPriorityLabel(project.priority || 'P2') }}</span>
+                </span>
                 <!-- RAG Status Badge with pulsating light -->
-                <div [ngClass]="getRagPillClass(project.ragStatus)" class="flex items-center gap-1.5 text-xs font-extrabold px-3 py-1 rounded-full border">
+                <div [ngClass]="getRagPillClass(project.ragStatus)" class="flex items-center gap-1.5 text-xs font-extrabold px-3 py-1 rounded-full border shrink-0">
                   <span class="w-2 h-2 rounded-full animate-pulse" [ngClass]="getRagDotClass(project.ragStatus)"></span>
                   <span>{{ project.ragStatus === 'green' ? 'No Prazo' : (project.ragStatus === 'amber' ? 'Atenção' : 'Atrasado') }}</span>
                 </div>
@@ -85,7 +93,7 @@ import { Project, ProjectActivity, EapPhase, AzureAuditReport } from '../../mode
               (ngModelChange)="service.selectedEapProjectId.set($event)"
               class="bg-slate-50 border border-slate-300 text-slate-800 text-xs rounded-xl px-3 py-2 focus:ring-2 focus:ring-blue-500 font-semibold outline-none max-w-xs truncate">
               <option *ngFor="let p of service.filteredProjects()" [value]="p.id">
-                {{ p.name }}
+                [{{ p.priority || 'P2' }}] {{ p.name }}
               </option>
             </select>
 
@@ -118,6 +126,74 @@ import { Project, ProjectActivity, EapPhase, AzureAuditReport } from '../../mode
               ← Home
             </button>
           </div>
+        </div>
+
+        <!-- PROJECT GOVERNANCE BAR: PRIORIDADE, SISTEMAS ENVOLVIDOS & EQUIPE ALOCADA -->
+        <div class="p-3.5 bg-slate-50/90 rounded-2xl border border-slate-200/90 flex flex-col md:flex-row md:items-center justify-between gap-3 text-xs shadow-2xs">
+          
+          <!-- Left: Prioridade & Sistemas Envolvidos -->
+          <div class="flex flex-wrap items-center gap-3">
+            <!-- Prioridade com badge explicativo -->
+            <div class="flex items-center gap-1.5">
+              <span class="text-[10px] font-black uppercase text-slate-400 tracking-wider">Prioridade:</span>
+              <span
+                class="text-xs font-black px-2.5 py-0.5 rounded-lg border shadow-2xs flex items-center gap-1 cursor-default"
+                [ngClass]="service.getPriorityBadgeClass(project.priority || 'P2')"
+                [title]="service.getPriorityLabel(project.priority || 'P2')">
+                <span>🎯</span>
+                <span>{{ service.getPriorityLabel(project.priority || 'P2') }}</span>
+              </span>
+            </div>
+
+            <span class="text-slate-300 hidden sm:inline">|</span>
+
+            <!-- Sistemas Envolvidos -->
+            <div class="flex flex-wrap items-center gap-1.5">
+              <span class="text-[10px] font-black uppercase text-slate-400 tracking-wider">Sistemas:</span>
+              <ng-container *ngIf="project.systems && project.systems.length > 0; else noSystems">
+                <span
+                  *ngFor="let sys of project.systems"
+                  [ngClass]="service.getSystemBadgeClass(sys)"
+                  class="px-2 py-0.5 rounded-lg text-xs font-bold border shadow-2xs">
+                  {{ sys }}
+                </span>
+              </ng-container>
+              <ng-template #noSystems>
+                <span class="text-xs text-slate-400 italic">Nenhum sistema vinculado</span>
+              </ng-template>
+            </div>
+          </div>
+
+          <!-- Right: Equipe Alocada (Líder / GP + Membros) -->
+          <div class="flex flex-wrap items-center gap-2 pt-2 md:pt-0 border-t md:border-t-0 border-slate-200/60">
+            <!-- Líder do Projeto -->
+            <div *ngIf="project.team?.leader" class="flex items-center gap-1.5 px-3 py-1 bg-white rounded-xl border border-slate-200 shadow-2xs">
+              <span class="text-[10px] font-black uppercase text-slate-400">Líder / GP:</span>
+              <span class="font-extrabold text-slate-900 flex items-center gap-1">
+                <span>👤</span>
+                <span>{{ project.team!.leader }}</span>
+              </span>
+            </div>
+
+            <!-- Membros / Especialistas Alocados -->
+            <div *ngIf="project.team?.members && project.team!.members!.length > 0" class="flex items-center gap-1.5 px-3 py-1 bg-white rounded-xl border border-slate-200 shadow-2xs">
+              <span class="text-[10px] font-black uppercase text-slate-400">Equipe:</span>
+              <span class="font-bold text-slate-700 flex items-center gap-1">
+                <span>👥</span>
+                <span class="truncate max-w-xs" [title]="project.team!.members!.join(', ')">
+                  {{ project.team!.members!.join(', ') }}
+                </span>
+                <span class="text-[10px] font-bold text-slate-400 bg-slate-100 px-1.5 py-0.2 rounded-full">
+                  {{ project.team!.members!.length }}
+                </span>
+              </span>
+            </div>
+
+            <div *ngIf="!project.team?.leader && (!project.team?.members || project.team!.members!.length === 0)" class="text-xs text-slate-400 italic">
+              Equipe não cadastrada
+            </div>
+          </div>
+
         </div>
 
         <!-- STATUS REPORT DA SEMANA BANNER -->

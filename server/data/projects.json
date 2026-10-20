@@ -1,5 +1,5 @@
 {
-  "lastSync": "2026-10-20T17:30:30.899Z",
+  "lastSync": "2026-10-20T17:43:21.212Z",
   "projects": [
     {
       "id": "a197458f-88c5-4fec-8ce7-a981ee3f6709",
@@ -25,7 +25,7 @@
       "progress": 46,
       "manualRagStatus": "amber",
       "executiveSummary": "Projeto integrado ao Azure DevOps. Iteração atual: Iteration 26.",
-      "azureLastUpdated": "2026-10-20T17:30:16.542Z",
+      "azureLastUpdated": "2026-10-20T17:43:02.321Z",
       "currentIterationName": "Iteration 26",
       "ragStatus": "amber",
       "varianceDays": 0,
@@ -4641,8 +4641,8 @@
         ]
       },
       "azureOriginal": {
-        "ilcPlanned": 1672.5,
-        "ilcExecuted": 766.3,
+        "ilcPlanned": 1676.5,
+        "ilcExecuted": 770.3,
         "progress": 46,
         "agreedDates": {
           "start": "2025-07-01",
@@ -4700,7 +4700,7 @@
       "progress": 0,
       "manualRagStatus": "auto",
       "executiveSummary": "Projeto Safety está em fase de elicitação de requisitos.",
-      "azureLastUpdated": "2026-10-20T17:30:17.801Z",
+      "azureLastUpdated": "2026-10-20T17:43:02.973Z",
       "currentIterationName": null,
       "ragStatus": "green",
       "varianceDays": 0,
@@ -4925,8 +4925,10 @@
       ],
       "hasManualIlcHours": false,
       "hasManualAgreedDates": false,
-      "priority": "P2",
-      "systems": [],
+      "priority": "P3",
+      "systems": [
+        "App Smart Tracking"
+      ],
       "team": {
         "leader": "Vitor Neves",
         "members": [
@@ -4960,7 +4962,7 @@
       "progress": 92,
       "manualRagStatus": "auto",
       "executiveSummary": "Projeto integrado ao Azure DevOps. Iteração atual: Em andamento.",
-      "azureLastUpdated": "2026-10-20T17:30:18.585Z",
+      "azureLastUpdated": "2026-10-20T17:43:05.020Z",
       "currentIterationName": null,
       "ragStatus": "red",
       "varianceDays": 0,
@@ -5332,7 +5334,7 @@
       "progress": 0,
       "manualRagStatus": "auto",
       "executiveSummary": "Projeto integrado ao Azure DevOps. Iteração atual: Em andamento.",
-      "azureLastUpdated": "2026-10-20T17:30:19.241Z",
+      "azureLastUpdated": "2026-10-20T17:43:06.938Z",
       "currentIterationName": null,
       "ragStatus": "green",
       "varianceDays": 0,
@@ -5655,7 +5657,7 @@
       "progress": 0,
       "manualRagStatus": "auto",
       "executiveSummary": "Projeto integrado ao Azure DevOps. Iteração atual: Em andamento.",
-      "azureLastUpdated": "2026-10-20T17:30:20.048Z",
+      "azureLastUpdated": "2026-10-20T17:43:07.780Z",
       "currentIterationName": null,
       "ragStatus": "green",
       "varianceDays": 0,
@@ -5756,7 +5758,7 @@
       "progress": 41,
       "manualRagStatus": "auto",
       "executiveSummary": "Projeto integrado ao Azure DevOps. Iteração atual: Iteration 4.",
-      "azureLastUpdated": "2026-10-20T17:30:20.658Z",
+      "azureLastUpdated": "2026-10-20T17:43:10.609Z",
       "currentIterationName": "Iteration 4",
       "ragStatus": "red",
       "varianceDays": 0,
@@ -5971,7 +5973,7 @@
     {
       "id": "a5fcfbb4-ab62-4aff-b0fa-3f623219a49c",
       "azureId": "a5fcfbb4-ab62-4aff-b0fa-3f623219a49c",
-      "name": "Input Gestão de demandas",
+      "name": "Mirassol - Input Gestão de demandas",
       "description": "O objetivo do projeto é automatizar o recebimento e interpretação das solicitações operacionais enviadas por e-mail, transformando documentos logísticos em uma estrutura padronizada de demanda para integração com os sistemas.",
       "client": "Mirassol",
       "status": "Ativo",
@@ -5992,7 +5994,7 @@
       "progress": 97,
       "manualRagStatus": "auto",
       "executiveSummary": "Projeto integrado ao Azure DevOps. Iteração atual: Em andamento.",
-      "azureLastUpdated": "2026-10-20T17:30:22.085Z",
+      "azureLastUpdated": "2026-10-20T17:43:11.944Z",
       "currentIterationName": null,
       "ragStatus": "red",
       "varianceDays": 0,
@@ -7321,7 +7323,7 @@
       "progress": 68,
       "manualRagStatus": "auto",
       "executiveSummary": "Desenvolvimento concluido, testes realizados. Homologado junto a John Deere, próximo passo treinar usuários.",
-      "azureLastUpdated": "2026-10-20T17:30:22.586Z",
+      "azureLastUpdated": "2026-10-20T17:43:12.627Z",
       "currentIterationName": "Iteration 01",
       "ragStatus": "red",
       "varianceDays": 0,
@@ -7642,7 +7644,7 @@
       "progress": 66,
       "manualRagStatus": "auto",
       "executiveSummary": "Desenvolvimento concluido, testes realizados. Homologado junto a John Deere, próximo passo treinar usuários.",
-      "azureLastUpdated": "2026-10-20T17:30:23.044Z",
+      "azureLastUpdated": "2026-10-20T17:43:13.313Z",
       "currentIterationName": "Iteration 1",
       "ragStatus": "red",
       "varianceDays": 0,
@@ -7963,7 +7965,7 @@
       "progress": 100,
       "manualRagStatus": "auto",
       "executiveSummary": "Projeto integrado ao Azure DevOps. Iteração atual: Em andamento.",
-      "azureLastUpdated": "2026-10-20T17:30:23.692Z",
+      "azureLastUpdated": "2026-10-20T17:43:13.947Z",
       "currentIterationName": null,
       "ragStatus": "green",
       "varianceDays": 0,
@@ -9172,7 +9174,7 @@
       "progress": 38,
       "manualRagStatus": "auto",
       "executiveSummary": "Projeto em fase de desenvolvimento backend volume total de horas acordado 157.",
-      "azureLastUpdated": "2026-10-20T17:30:24.477Z",
+      "azureLastUpdated": "2026-10-20T17:43:14.601Z",
       "currentIterationName": "Iteration 1",
       "ragStatus": "green",
       "varianceDays": 0,
@@ -10143,7 +10145,7 @@
       "progress": 47,
       "manualRagStatus": "auto",
       "executiveSummary": "Etapa de gerenciamento de parâmetros em fase final de desenvolvimento.",
-      "azureLastUpdated": "2026-10-20T17:30:25.149Z",
+      "azureLastUpdated": "2026-10-20T17:43:15.233Z",
       "currentIterationName": "Iteration 1",
       "ragStatus": "green",
       "varianceDays": 0,
@@ -10856,7 +10858,7 @@
       "progress": 62,
       "manualRagStatus": "auto",
       "executiveSummary": "Projeto integrado ao Azure DevOps. Iteração atual: SPRINT 7a.",
-      "azureLastUpdated": "2026-10-20T17:30:26.966Z",
+      "azureLastUpdated": "2026-10-20T17:43:16.868Z",
       "currentIterationName": "SPRINT 7a",
       "ragStatus": "red",
       "varianceDays": 0,
@@ -12630,7 +12632,7 @@
       "progress": 44,
       "manualRagStatus": "auto",
       "executiveSummary": "Projeto integrado ao Azure DevOps. Iteração atual: SPRINT JUL - 2022 - 1 QUINZENA.",
-      "azureLastUpdated": "2026-10-20T17:30:28.327Z",
+      "azureLastUpdated": "2026-10-20T17:43:18.343Z",
       "currentIterationName": "SPRINT JUL - 2022 - 1 QUINZENA",
       "ragStatus": "red",
       "varianceDays": 0,
@@ -13692,7 +13694,7 @@
       "progress": 100,
       "manualRagStatus": "auto",
       "executiveSummary": "Projeto integrado ao Azure DevOps. Iteração atual: Em andamento.",
-      "azureLastUpdated": "2026-10-20T17:30:29.041Z",
+      "azureLastUpdated": "2026-10-20T17:43:18.872Z",
       "currentIterationName": null,
       "ragStatus": "green",
       "varianceDays": 0,
@@ -14531,7 +14533,7 @@
       "progress": 94,
       "manualRagStatus": "auto",
       "executiveSummary": "Projeto integrado ao Azure DevOps. Iteração atual: Iteration 20.",
-      "azureLastUpdated": "2026-10-20T17:30:30.429Z",
+      "azureLastUpdated": "2026-10-20T17:43:20.420Z",
       "currentIterationName": "Iteration 20",
       "ragStatus": "red",
       "varianceDays": 0,
@@ -19370,7 +19372,7 @@
       "progress": 65,
       "manualRagStatus": "auto",
       "executiveSummary": "Projeto integrado ao Azure DevOps. Iteração atual: Sprint 5.",
-      "azureLastUpdated": "2026-10-20T17:30:30.898Z",
+      "azureLastUpdated": "2026-10-20T17:43:21.212Z",
       "currentIterationName": "Sprint 6",
       "ragStatus": "red",
       "varianceDays": 0,
@@ -20345,7 +20347,7 @@
       "progress": 0,
       "manualRagStatus": "auto",
       "executiveSummary": "Projeto sincronizado com o Azure DevOps. Iteração: Iteration 1.",
-      "azureLastUpdated": "2026-10-20T17:30:27.635Z",
+      "azureLastUpdated": "2026-10-20T17:43:17.421Z",
       "currentIterationName": "Iteration 1",
       "activities": [
         {
@@ -20734,14 +20736,19 @@
       "progress": 0,
       "manualRagStatus": "auto",
       "executiveSummary": "Projeto sincronizado com o Azure DevOps. Iteração: Em andamento.",
-      "azureLastUpdated": "2026-10-20T17:30:21.285Z",
+      "azureLastUpdated": "2026-10-20T17:43:11.237Z",
       "currentIterationName": null,
       "activities": [],
-      "priority": "P2",
-      "systems": [],
+      "priority": "P1",
+      "systems": [
+        "Portal Integrator"
+      ],
       "team": {
-        "leader": "",
-        "members": []
+        "leader": "Vitor Neves",
+        "members": [
+          "Vitor Neves",
+          "Silvio Torres"
+        ]
       },
       "lockedFields": {
         "ilcHours": true,
@@ -20808,7 +20815,8 @@
         "NO_HOURS"
       ],
       "hasManualIlcHours": false,
-      "hasManualProgress": false
+      "hasManualProgress": false,
+      "hasManualAgreedDates": false
     }
   ]
 }
