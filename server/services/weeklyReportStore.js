@@ -219,6 +219,7 @@ class WeeklyReportStore {
       if (fs.existsSync(REPORTS_FILE)) {
         const raw = fs.readFileSync(REPORTS_FILE, 'utf8');
         this.reports = JSON.parse(raw);
+        this.syncAllReportsWithProjects();
       } else {
         this.reports = [];
         this.generateDefaultInitialReports();
@@ -262,7 +263,84 @@ class WeeklyReportStore {
     this.reports = [current, past];
   }
 
+  syncReportWithProjects(report) {
+    if (!report) return;
+    const allProjects = projectStore.getAllProjects() || [];
+    const active = allProjects
+      .filter(p => p.status === 'Ativo')
+      .sort((a, b) => projectStore.compareProjects(a, b));
+
+    const existingMap = new Map();
+    (report.activeProjects || []).forEach(ap => {
+      if (ap.projectId) existingMap.set(ap.projectId, ap);
+      if (ap.name) {
+        existingMap.set(ap.name.toLowerCase().trim(), ap);
+        const clean = ap.name.replace(/^Mirassol\s*-\s*/i, '').toLowerCase().trim();
+        existingMap.set(clean, ap);
+      }
+    });
+
+    let onTrack = 0;
+    let attention = 0;
+    let critical = 0;
+    let totalProgress = 0;
+
+    const mappedProjects = active.map(p => {
+      if (p.ragStatus === 'red') critical++;
+      else if (p.ragStatus === 'amber') attention++;
+      else onTrack++;
+
+      totalProgress += (p.progress || 0);
+
+      const cleanName = (p.name || '').replace(/^Mirassol\s*-\s*/i, '').toLowerCase().trim();
+      const existing = existingMap.get(p.id) ||
+                       existingMap.get((p.name || '').toLowerCase().trim()) ||
+                       existingMap.get(cleanName);
+
+      const details = resolveProjectWeeklyDetails(p);
+      const clientLogo = projectStore.getClientLogo ? projectStore.getClientLogo(p.client) : null;
+
+      return {
+        projectId: p.id,
+        name: p.name,
+        client: p.client,
+        clientLogo: clientLogo,
+        currentMilestone: p.currentMilestone || 'Planejamento',
+        progress: p.progress || 0,
+        ragStatus: p.ragStatus || 'green',
+        agreedDelivery: p.agreedDates ? p.agreedDates.end : null,
+        targetDelivery: p.executedDates?.end || p.plannedDates?.end || null,
+        varianceDays: p.varianceDays || 0,
+        statusReport: (existing && existing.statusReport) ? existing.statusReport : details.statusReport,
+        attentionPoints: (existing && existing.attentionPoints) ? existing.attentionPoints : details.attentionPoints,
+        hoursExecuted: p.hours?.totalExecuted || 0,
+        hoursPlanned: p.hours?.totalPlanned || 0,
+        priority: p.priority || 'P2',
+        systems: p.systems || [],
+        teamLeader: p.team?.leader || (p.team?.members ? p.team.members.join(', ') : '')
+      };
+    });
+
+    report.activeProjects = mappedProjects;
+    const avgProgress = mappedProjects.length > 0 ? Math.round(totalProgress / mappedProjects.length) : 0;
+    report.statusPulse = {
+      totalActive: mappedProjects.length,
+      onTrack: onTrack,
+      attention: attention,
+      critical: critical,
+      averageProgress: avgProgress
+    };
+  }
+
+  syncAllReportsWithProjects() {
+    for (const report of this.reports) {
+      this.syncReportWithProjects(report);
+    }
+    this.persist();
+  }
+
   getAllReports() {
+    this.syncAllReportsWithProjects();
     return this.reports.map(r => ({
       id: r.id,
       weekNumber: r.weekNumber,
@@ -279,9 +357,19 @@ class WeeklyReportStore {
 
   getReportById(id) {
     if (!id || id === 'latest') {
-      return this.reports[0] || null;
+      const rep = this.reports[0] || null;
+      if (rep) {
+        this.syncReportWithProjects(rep);
+        this.persist();
+      }
+      return rep;
     }
-    return this.reports.find(r => r.id === id) || null;
+    const rep = this.reports.find(r => r.id === id) || null;
+    if (rep) {
+      this.syncReportWithProjects(rep);
+      this.persist();
+    }
+    return rep;
   }
 
   getLatestReport() {

@@ -143,6 +143,7 @@ app.get('/api/admin/projects', checkAdminAuth, (req, res) => {
 
 app.post('/api/admin/projects', checkAdminAuth, (req, res) => {
   const newProj = projectStore.createManualProject(req.body);
+  try { weeklyReportStore.syncAllReportsWithProjects(); } catch (_) {}
   res.json({ success: true, data: newProj });
 });
 
@@ -151,6 +152,7 @@ app.put('/api/admin/projects/:id', checkAdminAuth, (req, res) => {
   if (!updated) {
     return res.status(404).json({ success: false, message: 'Projeto não encontrado.' });
   }
+  try { weeklyReportStore.syncAllReportsWithProjects(); } catch (_) {}
   res.json({ success: true, data: updated });
 });
 
@@ -159,6 +161,7 @@ app.delete('/api/admin/projects/:id', checkAdminAuth, (req, res) => {
   if (!deleted) {
     return res.status(404).json({ success: false, message: 'Projeto não encontrado.' });
   }
+  try { weeklyReportStore.syncAllReportsWithProjects(); } catch (_) {}
   res.json({ success: true, message: 'Projeto excluído com sucesso.', data: deleted });
 });
 

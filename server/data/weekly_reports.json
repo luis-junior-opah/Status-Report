@@ -8,11 +8,11 @@
     "meetingDate": "2026-10-16",
     "executiveSummary": "Visão executiva consolidada para a Reunião de Diretoria. Acompanhamento dos projetos estratégicos em andamento, riscos mapeados e pipeline no radar.",
     "statusPulse": {
-      "totalActive": 19,
-      "onTrack": 12,
+      "totalActive": 20,
+      "onTrack": 10,
       "attention": 1,
-      "critical": 6,
-      "averageProgress": 48
+      "critical": 9,
+      "averageProgress": 46
     },
     "activeProjects": [
       {
@@ -49,12 +49,11 @@
         "attentionPoints": "Execução fluindo dentro dos marcos acordados.",
         "hoursExecuted": 0,
         "hoursPlanned": 138,
-        "priority": "P1",
+        "priority": "P2",
         "systems": [
-          "App ILC",
-          "SAP S/4HANA"
+          "App ILC"
         ],
-        "teamLeader": "Luis Carlos"
+        "teamLeader": "Luis Santos"
       },
       {
         "projectId": "d71751f9-7b44-4e86-bd47-c89e64aabcd7",
@@ -148,8 +147,10 @@
         "hoursExecuted": 80,
         "hoursPlanned": 128,
         "priority": "P2",
-        "systems": [],
-        "teamLeader": ""
+        "systems": [
+          "Infraestrutura"
+        ],
+        "teamLeader": "Francisco Molaia"
       },
       {
         "projectId": "a197458f-88c5-4fec-8ce7-a981ee3f6709",
@@ -196,7 +197,7 @@
         "clientLogo": null,
         "currentMilestone": "Treinamento",
         "progress": 68,
-        "ragStatus": "green",
+        "ragStatus": "red",
         "agreedDelivery": "2026-11-30",
         "targetDelivery": "2026-11-30",
         "varianceDays": 0,
@@ -205,8 +206,10 @@
         "hoursExecuted": 82,
         "hoursPlanned": 120,
         "priority": "P2",
-        "systems": [],
-        "teamLeader": "Luis Carlos Oliveira Santos Junior"
+        "systems": [
+          "Portal Integrator"
+        ],
+        "teamLeader": "Luis Santos"
       },
       {
         "projectId": "7a1136ad-134c-41fe-a684-79e8b2ab5c93",
@@ -223,9 +226,12 @@
         "attentionPoints": "Execução fluindo dentro dos marcos acordados.",
         "hoursExecuted": 349,
         "hoursPlanned": 750,
-        "priority": "P2",
-        "systems": [],
-        "teamLeader": "Luis Carlos Oliveira Santos Junior"
+        "priority": "P1",
+        "systems": [
+          "Portal Integrator",
+          "App ILC"
+        ],
+        "teamLeader": "Luis Santos"
       },
       {
         "projectId": "c99e39c8-2702-4961-8624-117ce09beac7",
@@ -234,7 +240,7 @@
         "clientLogo": null,
         "currentMilestone": "Treinamento",
         "progress": 66,
-        "ragStatus": "green",
+        "ragStatus": "red",
         "agreedDelivery": "2026-11-17",
         "targetDelivery": "2026-11-17",
         "varianceDays": 0,
@@ -243,8 +249,10 @@
         "hoursExecuted": 76,
         "hoursPlanned": 116,
         "priority": "P2",
-        "systems": [],
-        "teamLeader": "Luis Carlos Oliveira Santos Junior"
+        "systems": [
+          "Portal Integrator"
+        ],
+        "teamLeader": "Luis Santos"
       },
       {
         "projectId": "5450faea-78d5-4c72-846d-56afa40ea98f",
@@ -323,13 +331,35 @@
         "teamLeader": ""
       },
       {
+        "projectId": "c064a093-ea7c-45e6-8ec6-5bf10a5794a9",
+        "name": "Mirassol - Assinatura Digital de Documentos",
+        "client": "Mirassol",
+        "clientLogo": null,
+        "currentMilestone": "Desenvolvimento",
+        "progress": 38,
+        "ragStatus": "green",
+        "agreedDelivery": "2026-12-05",
+        "targetDelivery": "2026-12-05",
+        "varianceDays": 0,
+        "statusReport": "Projeto em fase de desenvolvimento backend volume total de horas acordado 157.",
+        "attentionPoints": "Execução fluindo dentro dos marcos acordados.",
+        "hoursExecuted": 71,
+        "hoursPlanned": 170.49999999999997,
+        "priority": "P1",
+        "systems": [
+          "App Smart Tracking",
+          "Smart X"
+        ],
+        "teamLeader": "Vito Neves"
+      },
+      {
         "projectId": "a5fcfbb4-ab62-4aff-b0fa-3f623219a49c",
-        "name": "Input Gestão de demandas",
+        "name": "Mirassol - Input Gestão de demandas",
         "client": "Mirassol",
         "clientLogo": null,
         "currentMilestone": "Desenvolvimento",
         "progress": 97,
-        "ragStatus": "green",
+        "ragStatus": "red",
         "agreedDelivery": "2026-10-17",
         "targetDelivery": "2026-10-17",
         "varianceDays": 0,
@@ -337,28 +367,12 @@
         "attentionPoints": "Alinhamento dos critérios finais de aceite antes do encerramento da fase de planejamento.",
         "hoursExecuted": 619,
         "hoursPlanned": 646,
-        "priority": "P2",
-        "systems": [],
+        "priority": "P1",
+        "systems": [
+          "Portal Integrator",
+          "App ILC"
+        ],
         "teamLeader": "Vitor Neves"
-      },
-      {
-        "projectId": "c064a093-ea7c-45e6-8ec6-5bf10a5794a9",
-        "name": "Mirassol - Assinatura Digital de Documentos",
-        "client": "Mirassol",
-        "clientLogo": null,
-        "currentMilestone": "Desenvolvimento",
-        "progress": 35,
-        "ragStatus": "green",
-        "agreedDelivery": "2026-12-05",
-        "targetDelivery": "2026-12-05",
-        "varianceDays": 0,
-        "statusReport": "Projeto em fase de desenvolvimento backend volume total de horas acordado 157.",
-        "attentionPoints": "Execução fluindo dentro dos marcos acordados.",
-        "hoursExecuted": 63,
-        "hoursPlanned": 162.5,
-        "priority": "P2",
-        "systems": [],
-        "teamLeader": "Luis Carlos Oliveira Santos Junior"
       },
       {
         "projectId": "eb438ca6-f25e-4c5c-ab4b-a45e1b243ba1",
@@ -375,8 +389,31 @@
         "attentionPoints": "Execução fluindo dentro dos marcos acordados.",
         "hoursExecuted": 0,
         "hoursPlanned": 0,
-        "priority": "P2",
-        "systems": [],
+        "priority": "P3",
+        "systems": [
+          "App Smart Tracking"
+        ],
+        "teamLeader": "Vitor Neves"
+      },
+      {
+        "projectId": "caaaa6c3-0dd9-49bb-81c4-a7b757102304",
+        "name": "Mirassol - Torre de Controle 4.0",
+        "client": "Mirassol",
+        "clientLogo": null,
+        "currentMilestone": "Desenvolvimento",
+        "progress": 0,
+        "ragStatus": "green",
+        "agreedDelivery": "2027-01-31",
+        "targetDelivery": "2027-01-31",
+        "varianceDays": 0,
+        "statusReport": "Projeto sincronizado com o Azure DevOps. Iteração: Em andamento.",
+        "attentionPoints": "Execução fluindo dentro dos marcos acordados.",
+        "hoursExecuted": 0,
+        "hoursPlanned": 0,
+        "priority": "P1",
+        "systems": [
+          "Portal Integrator"
+        ],
         "teamLeader": "Vitor Neves"
       }
     ],
@@ -443,11 +480,11 @@
     "meetingDate": "2026-10-06",
     "executiveSummary": "Fechamento do ciclo anterior: Início dos testes integrados John Deere e avanço na arquitetura de migração de nuvem.",
     "statusPulse": {
-      "totalActive": 18,
-      "onTrack": 7,
-      "attention": 3,
-      "critical": 8,
-      "averageProgress": 47
+      "totalActive": 20,
+      "onTrack": 10,
+      "attention": 1,
+      "critical": 9,
+      "averageProgress": 46
     },
     "activeProjects": [
       {
@@ -464,7 +501,31 @@
         "statusReport": "Módulo de tracking e telemetria veicular 100% desenvolvido. Validação de homologação em campo com frotas parceiras.",
         "attentionPoints": "Aguardando validação dos testes operacionais com motoristas da frota dedicada.",
         "hoursExecuted": 40,
-        "hoursPlanned": 40
+        "hoursPlanned": 40,
+        "priority": "P2",
+        "systems": [],
+        "teamLeader": "Mike Andrade"
+      },
+      {
+        "projectId": "8bcd36f6-678a-4d3c-a0a6-40a92b5ea91a",
+        "name": "App ILC 2026",
+        "client": "ILC (Interno)",
+        "clientLogo": null,
+        "currentMilestone": "Planejamento",
+        "progress": 0,
+        "ragStatus": "green",
+        "agreedDelivery": "2026-11-28",
+        "targetDelivery": "2026-11-28",
+        "varianceDays": 0,
+        "statusReport": "Projeto sincronizado com o Azure DevOps. Iteração: Iteration 1.",
+        "attentionPoints": "Execução fluindo dentro dos marcos acordados.",
+        "hoursExecuted": 0,
+        "hoursPlanned": 138,
+        "priority": "P2",
+        "systems": [
+          "App ILC"
+        ],
+        "teamLeader": "Luis Santos"
       },
       {
         "projectId": "d71751f9-7b44-4e86-bd47-c89e64aabcd7",
@@ -480,7 +541,10 @@
         "statusReport": "Desenvolvimento das telas operacionais e serviços offline (41% concluído). Ajuste no fluxo de autenticação.",
         "attentionPoints": "Sincronização necessária com infraestrutura para liberação de build iOS de teste homologado.",
         "hoursExecuted": 0,
-        "hoursPlanned": 27
+        "hoursPlanned": 27,
+        "priority": "P2",
+        "systems": [],
+        "teamLeader": "Renata Dias de Avila Reis"
       },
       {
         "projectId": "e89f3868-5d0e-49da-8b15-decf3fea11bc",
@@ -496,7 +560,10 @@
         "statusReport": "Fluxo central de abertura e aprovação de demandas estruturado (94%). Validação de usabilidade com gestores.",
         "attentionPoints": "Alinhamento dos critérios finais de aceite antes do encerramento da fase de planejamento.",
         "hoursExecuted": 2344,
-        "hoursPlanned": 2497.5
+        "hoursPlanned": 2497.5,
+        "priority": "P2",
+        "systems": [],
+        "teamLeader": "Francisco Molaia Santos"
       },
       {
         "projectId": "631642d0-4957-40cf-ae78-b62dd47af334",
@@ -512,7 +579,10 @@
         "statusReport": "Camada de mensageria e barramento de integração em construção (62%). Integrações com APIs legadas em validação.",
         "attentionPoints": "Revisão da alocação de desenvolvedores sênior para aceleração das rotas críticas.",
         "hoursExecuted": 476.5,
-        "hoursPlanned": 1215.5
+        "hoursPlanned": 1215.5,
+        "priority": "P2",
+        "systems": [],
+        "teamLeader": "Renata Dias de Avila Reis"
       },
       {
         "projectId": "142cf5ca-cb09-457b-9675-eeae95487cc4",
@@ -528,7 +598,10 @@
         "statusReport": "Homologação das telas legadas migradas para Angular (65%). Testes de regressão e validação de performance em curso.",
         "attentionPoints": "Mapeamento de inconsistências em rotinas legadas de faturamento e mensageria.",
         "hoursExecuted": 0,
-        "hoursPlanned": 128
+        "hoursPlanned": 128,
+        "priority": "P2",
+        "systems": [],
+        "teamLeader": "Luis Carlos Oliveira Santos Junior"
       },
       {
         "projectId": "manual-1791566380216",
@@ -544,7 +617,12 @@
         "statusReport": "Oracle: ILC/ CCM atuando produção assistida a partir de 13/10. ENTREGAS REALIZADAS: 5 servidores de Produção configurados; Zammad migrado para homologação; Stack Zammad configurada; Roteamento ACS/OPE/TRK/TEC validado",
         "attentionPoints": "Validação da CCM – Backup 29/09 ~ 30/09 – Caso exceda o planejado necessário migrar para o próximo final de semana (19 e 20/10);",
         "hoursExecuted": 80,
-        "hoursPlanned": 128
+        "hoursPlanned": 128,
+        "priority": "P2",
+        "systems": [
+          "Infraestrutura"
+        ],
+        "teamLeader": "Francisco Molaia"
       },
       {
         "projectId": "a197458f-88c5-4fec-8ce7-a981ee3f6709",
@@ -560,7 +638,10 @@
         "statusReport": "Evolução dos módulos de telemetria inteligente e conectividade veicular (46%). Sprint atual focado em microserviços.",
         "attentionPoints": "Atenção à cadência de entregas técnicas para garantir marco de entrega intermediário.",
         "hoursExecuted": 50.5,
-        "hoursPlanned": 698
+        "hoursPlanned": 698,
+        "priority": "P2",
+        "systems": [],
+        "teamLeader": "Renata Dias de Avila Reis"
       },
       {
         "projectId": "09fbe35d-364d-4e90-b950-7aa9a5186dda",
@@ -576,7 +657,10 @@
         "statusReport": "Revisão das regras de negócio e barramento dos módulos embarcados John Deere (44%).",
         "attentionPoints": "Priorização de alinhamento com a engenharia de produto John Deere sobre protocolos de comunicação.",
         "hoursExecuted": 170.5,
-        "hoursPlanned": 327
+        "hoursPlanned": 327,
+        "priority": "P2",
+        "systems": [],
+        "teamLeader": "Filipe Andrade"
       },
       {
         "projectId": "4d1d445e-584d-4bdb-a176-afce663b0300",
@@ -585,14 +669,19 @@
         "clientLogo": null,
         "currentMilestone": "Treinamento",
         "progress": 68,
-        "ragStatus": "green",
+        "ragStatus": "red",
         "agreedDelivery": "2026-11-30",
         "targetDelivery": "2026-11-30",
         "varianceDays": 0,
         "statusReport": "Desenvolvimento concluido, testes realizados. Homologado junto a John Deere, próximo passo treinar usuários.",
         "attentionPoints": "Execução fluindo dentro dos marcos acordados.",
         "hoursExecuted": 82,
-        "hoursPlanned": 120
+        "hoursPlanned": 120,
+        "priority": "P2",
+        "systems": [
+          "Portal Integrator"
+        ],
+        "teamLeader": "Luis Santos"
       },
       {
         "projectId": "7a1136ad-134c-41fe-a684-79e8b2ab5c93",
@@ -600,15 +689,21 @@
         "client": "John Deere",
         "clientLogo": null,
         "currentMilestone": "Desenvolvimento",
-        "progress": 44,
+        "progress": 47,
         "ragStatus": "green",
         "agreedDelivery": "2027-01-16",
         "targetDelivery": "2027-01-16",
         "varianceDays": 0,
         "statusReport": "Etapa de gerenciamento de parâmetros em fase final de desenvolvimento.",
         "attentionPoints": "Execução fluindo dentro dos marcos acordados.",
-        "hoursExecuted": 331,
-        "hoursPlanned": 750
+        "hoursExecuted": 349,
+        "hoursPlanned": 750,
+        "priority": "P1",
+        "systems": [
+          "Portal Integrator",
+          "App ILC"
+        ],
+        "teamLeader": "Luis Santos"
       },
       {
         "projectId": "c99e39c8-2702-4961-8624-117ce09beac7",
@@ -617,14 +712,19 @@
         "clientLogo": null,
         "currentMilestone": "Treinamento",
         "progress": 66,
-        "ragStatus": "green",
+        "ragStatus": "red",
         "agreedDelivery": "2026-11-17",
         "targetDelivery": "2026-11-17",
         "varianceDays": 0,
         "statusReport": "Desenvolvimento concluido, testes realizados. Homologado junto a John Deere, próximo passo treinar usuários.",
         "attentionPoints": "Execução fluindo dentro dos marcos acordados.",
         "hoursExecuted": 76,
-        "hoursPlanned": 116
+        "hoursPlanned": 116,
+        "priority": "P2",
+        "systems": [
+          "Portal Integrator"
+        ],
+        "teamLeader": "Luis Santos"
       },
       {
         "projectId": "5450faea-78d5-4c72-846d-56afa40ea98f",
@@ -640,7 +740,10 @@
         "statusReport": "Iniciação e alinhamento do portfólio de demandas do próximo ciclo com a diretoria John Deere.",
         "attentionPoints": "Aguardando fechamento da ordem de serviço para início do desenvolvimento técnico.",
         "hoursExecuted": 0,
-        "hoursPlanned": 0
+        "hoursPlanned": 0,
+        "priority": "P2",
+        "systems": [],
+        "teamLeader": ""
       },
       {
         "projectId": "9725bb95-eea2-4d9f-b0f8-bc83bc8b1aa6",
@@ -648,15 +751,18 @@
         "client": "Mirassol",
         "clientLogo": null,
         "currentMilestone": "Desenvolvimento",
-        "progress": 93,
+        "progress": 92,
         "ragStatus": "red",
         "agreedDelivery": "2026-09-04",
         "targetDelivery": "2026-09-04",
         "varianceDays": 0,
         "statusReport": "Desenvolvimento dos módulos de upload, validação e custódia de CTe/NFe em reta final (93%).",
         "attentionPoints": "Correção de divergências em validação de schema XML de notas fiscais de terceiros.",
-        "hoursExecuted": 120,
-        "hoursPlanned": 129
+        "hoursExecuted": 140,
+        "hoursPlanned": 153,
+        "priority": "P2",
+        "systems": [],
+        "teamLeader": "Francisco Molaia Santos"
       },
       {
         "projectId": "manual-1791568400934",
@@ -672,7 +778,10 @@
         "statusReport": "Mapeamento da jornada de recusas de carga e regras fiscais finalizado. Wireframes em aprovação.",
         "attentionPoints": "Definição das regras de contingência operacional com a liderança Mirassol.",
         "hoursExecuted": 0,
-        "hoursPlanned": 272
+        "hoursPlanned": 272,
+        "priority": "P2",
+        "systems": [],
+        "teamLeader": ""
       },
       {
         "projectId": "1124ed6f-b9ad-4951-89c8-bf0bce11abde",
@@ -688,55 +797,96 @@
         "statusReport": "Projeto na fase de Desenvolvimento com 0% de avanço concluído.",
         "attentionPoints": "Atividades transcorrendo dentro dos parâmetros planejados.",
         "hoursExecuted": 0,
-        "hoursPlanned": 0
-      },
-      {
-        "projectId": "a5fcfbb4-ab62-4aff-b0fa-3f623219a49c",
-        "name": "Input Gestão de demandas",
-        "client": "Mirassol",
-        "clientLogo": null,
-        "currentMilestone": "Desenvolvimento",
-        "progress": 97,
-        "ragStatus": "red",
-        "agreedDelivery": "2026-10-16",
-        "targetDelivery": "2026-10-16",
-        "varianceDays": 0,
-        "statusReport": "Fluxo central de abertura e aprovação de demandas estruturado (94%). Validação de usabilidade com gestores.",
-        "attentionPoints": "Alinhamento dos critérios finais de aceite antes do encerramento da fase de planejamento.",
-        "hoursExecuted": 619,
-        "hoursPlanned": 646
+        "hoursPlanned": 0,
+        "priority": "P2",
+        "systems": [],
+        "teamLeader": ""
       },
       {
         "projectId": "c064a093-ea7c-45e6-8ec6-5bf10a5794a9",
         "name": "Mirassol - Assinatura Digital de Documentos",
         "client": "Mirassol",
         "clientLogo": null,
-        "currentMilestone": "Planejamento",
-        "progress": 86,
-        "ragStatus": "red",
-        "agreedDelivery": "2026-11-15",
-        "targetDelivery": "2026-11-15",
+        "currentMilestone": "Desenvolvimento",
+        "progress": 38,
+        "ragStatus": "green",
+        "agreedDelivery": "2026-12-05",
+        "targetDelivery": "2026-12-05",
         "varianceDays": 0,
         "statusReport": "Planejamento da arquitetura de certificados digitais e conformidade jurídica ICP-Brasil (86%).",
         "attentionPoints": "Avaliação de custos de APIs de certificadora parceira junto à diretoria financeira.",
-        "hoursExecuted": 154,
-        "hoursPlanned": 179
+        "hoursExecuted": 71,
+        "hoursPlanned": 170.49999999999997,
+        "priority": "P1",
+        "systems": [
+          "App Smart Tracking",
+          "Smart X"
+        ],
+        "teamLeader": "Vito Neves"
+      },
+      {
+        "projectId": "a5fcfbb4-ab62-4aff-b0fa-3f623219a49c",
+        "name": "Mirassol - Input Gestão de demandas",
+        "client": "Mirassol",
+        "clientLogo": null,
+        "currentMilestone": "Desenvolvimento",
+        "progress": 97,
+        "ragStatus": "red",
+        "agreedDelivery": "2026-10-17",
+        "targetDelivery": "2026-10-17",
+        "varianceDays": 0,
+        "statusReport": "Fluxo central de abertura e aprovação de demandas estruturado (94%). Validação de usabilidade com gestores.",
+        "attentionPoints": "Alinhamento dos critérios finais de aceite antes do encerramento da fase de planejamento.",
+        "hoursExecuted": 619,
+        "hoursPlanned": 646,
+        "priority": "P1",
+        "systems": [
+          "Portal Integrator",
+          "App ILC"
+        ],
+        "teamLeader": "Vitor Neves"
       },
       {
         "projectId": "eb438ca6-f25e-4c5c-ab4b-a45e1b243ba1",
-        "name": "Videos Treinamento de motoristas",
+        "name": "Mirassol - Projeto Safety",
+        "client": "Mirassol",
+        "clientLogo": null,
+        "currentMilestone": "Planejamento",
+        "progress": 0,
+        "ragStatus": "green",
+        "agreedDelivery": "2027-01-17",
+        "targetDelivery": "2027-01-17",
+        "varianceDays": 0,
+        "statusReport": "Projeto Safety está em fase de elicitação de requisitos.",
+        "attentionPoints": "Execução fluindo dentro dos marcos acordados.",
+        "hoursExecuted": 0,
+        "hoursPlanned": 0,
+        "priority": "P3",
+        "systems": [
+          "App Smart Tracking"
+        ],
+        "teamLeader": "Vitor Neves"
+      },
+      {
+        "projectId": "caaaa6c3-0dd9-49bb-81c4-a7b757102304",
+        "name": "Mirassol - Torre de Controle 4.0",
         "client": "Mirassol",
         "clientLogo": null,
         "currentMilestone": "Desenvolvimento",
         "progress": 0,
         "ragStatus": "green",
-        "agreedDelivery": "2027-01-06",
-        "targetDelivery": "2027-01-06",
+        "agreedDelivery": "2027-01-31",
+        "targetDelivery": "2027-01-31",
         "varianceDays": 0,
-        "statusReport": "Projeto Safety está em fase de elicitação de requisitos.",
+        "statusReport": "Projeto sincronizado com o Azure DevOps. Iteração: Em andamento.",
         "attentionPoints": "Execução fluindo dentro dos marcos acordados.",
         "hoursExecuted": 0,
-        "hoursPlanned": 0
+        "hoursPlanned": 0,
+        "priority": "P1",
+        "systems": [
+          "Portal Integrator"
+        ],
+        "teamLeader": "Vitor Neves"
       }
     ],
     "roadmapProjects": [

@@ -44,6 +44,12 @@ class SyncScheduler {
       }
 
       const merged = projectStore.mergeAzureProjects(summaries);
+      try {
+        const weeklyReportStore = require('./weeklyReportStore');
+        weeklyReportStore.syncAllReportsWithProjects();
+      } catch (wErr) {
+        console.error('[SyncScheduler] Erro ao sincronizar relatórios semanais:', wErr.message);
+      }
       console.log(`[SyncScheduler] Sincronização concluída com sucesso! Total de projetos no store: ${merged.length}`);
       return { success: true, count: merged.length, lastSync: projectStore.lastSync };
     } catch (err) {
