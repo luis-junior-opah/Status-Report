@@ -21,11 +21,11 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
       <!-- TOP EXECUTIVE CONTROL BAR                                -->
       <!-- ======================================================== -->
       <div
-        class="bg-white rounded-2xl border border-slate-200/90 shadow-2xs px-4 py-3 flex flex-col md:flex-row md:items-start md:justify-between gap-3 print:hidden">
+        class="bg-white rounded-2xl border border-slate-200/90 shadow-2xs px-4 py-3 flex flex-col md:flex-row md:items-center md:justify-between gap-3 print:hidden">
         
-        <!-- Left: Co-branding, Title & Edition Selector -->
-        <div class="flex items-start gap-3">
-          <div class="w-9 h-9 rounded-xl bg-slate-900 text-white flex items-center justify-center font-black text-base shadow-xs shrink-0 mt-0.5">
+        <!-- Left: Co-branding & Title -->
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-xl bg-slate-900 text-white flex items-center justify-center font-black text-base shadow-xs shrink-0">
             📊
           </div>
           <div class="flex flex-col">
@@ -41,51 +41,26 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
             <p class="text-[11px] text-slate-500 mt-0.5">
               Período {{ currentReport()?.period }}
             </p>
-            <!-- Dropdown da Edição abaixo de Período -->
-            <div class="mt-2">
-              <select
-                [ngModel]="service.selectedReportId()"
-                (ngModelChange)="onSelectReport($event)"
-                class="text-[11px] font-bold rounded-xl px-2.5 py-1.5 border border-slate-300 bg-slate-50 text-slate-800 focus:outline-none focus:ring-1 focus:ring-blue-500 shadow-2xs cursor-pointer">
-                <option *ngFor="let rep of service.weeklyReports()" [value]="rep.id">
-                  {{ service.formatEditionTitle(rep) }}
-                </option>
-              </select>
-            </div>
           </div>
         </div>
 
-        <!-- Center / Right: Quick Filters, Actions -->
+        <!-- Right: Actions & Edition Dropdown -->
         <div class="flex items-center flex-wrap gap-2">
           
-          <!-- Quick Client Filter Pills -->
-          <div class="flex items-center bg-slate-100 p-0.5 rounded-xl text-[11px] font-bold text-slate-600">
-            <button
-              (click)="onSelectQuickFilter('Todos')"
-              [ngClass]="selectedClientFilter() === 'Todos' && service.selectedClient() === 'Todos' ? 'bg-white shadow-xs text-blue-700' : 'hover:text-slate-900'"
-              class="px-2.5 py-1 rounded-lg transition">
-              Todos ({{ currentReport()?.activeProjects?.length || 0 }})
-            </button>
-            <button
-              *ngFor="let c of distinctClients()"
-              (click)="onSelectQuickFilter(c)"
-              [ngClass]="(selectedClientFilter() === c || service.selectedClient() === c) && selectedClientFilter() !== 'Alertas' ? 'bg-white shadow-xs text-blue-700' : 'hover:text-slate-900'"
-              class="px-2.5 py-1 rounded-lg transition whitespace-nowrap">
-              {{ c }} ({{ getClientCount(c) }})
-            </button>
-            <button
-              (click)="onSelectQuickFilter('Alertas')"
-              [ngClass]="selectedClientFilter() === 'Alertas' ? 'bg-rose-600 text-white shadow-xs' : 'text-rose-600 hover:text-rose-800'"
-              class="px-2.5 py-1 rounded-lg transition flex items-center gap-1 font-extrabold">
-              <span>🚨 Críticos</span>
-              <span>({{ getAlertCount() }})</span>
-            </button>
-          </div>
+          <!-- Dropdown da Edição -->
+          <select
+            [ngModel]="service.selectedReportId()"
+            (ngModelChange)="onSelectReport($event)"
+            class="text-[11px] font-bold rounded-xl px-2.5 py-1.5 border border-slate-300 bg-slate-50 text-slate-800 focus:outline-none focus:ring-1 focus:ring-blue-500 shadow-2xs cursor-pointer">
+            <option *ngFor="let rep of service.weeklyReports()" [value]="rep.id">
+              {{ service.formatEditionTitle(rep) }}
+            </option>
+          </select>
 
           <!-- Presentation Mode Button -->
           <button
             (click)="service.togglePresentationMode()"
-            class="px-3 py-1.5 rounded-xl text-[11px] font-extrabold transition flex items-center gap-1.5 shadow-2xs"
+            class="px-3 py-1.5 rounded-xl text-[11px] font-extrabold transition flex items-center gap-1.5 shadow-2xs cursor-pointer"
             [ngClass]="service.presentationMode() ? 'bg-blue-600 hover:bg-blue-700 text-white' : 'bg-slate-900 hover:bg-slate-800 text-white'">
             <span>{{ service.presentationMode() ? '✕ Fechar Apresentação' : '🖥️ Modo Apresentação' }}</span>
           </button>
@@ -93,7 +68,7 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
           <!-- Print / PDF Button -->
           <button
             (click)="printReport()"
-            class="px-2.5 py-1.5 rounded-xl text-[11px] font-bold transition flex items-center gap-1 border border-slate-300 bg-white text-slate-700 hover:bg-slate-50 shadow-2xs">
+            class="px-2.5 py-1.5 rounded-xl text-[11px] font-bold transition flex items-center gap-1 border border-slate-300 bg-white text-slate-700 hover:bg-slate-50 shadow-2xs cursor-pointer">
             <span>🖨️ PDF</span>
           </button>
         </div>
@@ -426,30 +401,12 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
 export class ExecutiveReportComponent {
   service = inject(ProjectService);
 
-  selectedClientFilter = signal<string>('Todos');
-
   currentReport = computed(() => this.service.currentWeeklyReport());
-
-  distinctClients = computed(() => {
-    const list = this.currentReport()?.activeProjects || [];
-    const set = new Set(list.map(p => p.client));
-    return Array.from(set).sort();
-  });
-
-  onSelectQuickFilter(val: string) {
-    this.selectedClientFilter.set(val);
-    if (val === 'Alertas') {
-      this.service.selectedClient.set('Todos');
-    } else {
-      this.service.selectedClient.set(val);
-    }
-  }
 
   displayedProjects = computed(() => {
     const report = this.currentReport();
     if (!report || !report.activeProjects) return [];
 
-    const topFilter = this.selectedClientFilter();
     const status = this.service.selectedStatus();
     const client = this.service.selectedClient();
     const priority = this.service.selectedPriority();
@@ -459,34 +416,27 @@ export class ExecutiveReportComponent {
 
     let list = report.activeProjects.slice();
 
-    // 1. Top bar Quick Pill Filter
-    if (topFilter === 'Alertas') {
-      list = list.filter(p => p.ragStatus === 'red' || p.ragStatus === 'amber');
-    } else if (topFilter !== 'Todos') {
-      list = list.filter(p => p.client.toLowerCase() === topFilter.toLowerCase());
-    }
-
-    // 2. Status Tab Filter (from FiltersComponent)
+    // 1. Status Tab Filter (from FiltersComponent)
     if (status !== 'Todos' && status !== 'Ativo') {
       return []; // In Status Report, all projects in the active report are active
     }
 
-    // 3. Client Dropdown Filter (from FiltersComponent)
+    // 2. Client Dropdown Filter (from FiltersComponent)
     if (client !== 'Todos') {
       list = list.filter(p => p.client.toLowerCase() === client.toLowerCase());
     }
 
-    // 4. Priority Dropdown Filter (from FiltersComponent)
+    // 3. Priority Dropdown Filter (from FiltersComponent)
     if (priority !== 'Todos') {
       list = list.filter(p => (p.priority || 'P2') === priority);
     }
 
-    // 5. System Dropdown Filter (from FiltersComponent)
+    // 4. System Dropdown Filter (from FiltersComponent)
     if (system !== 'Todos') {
       list = list.filter(p => (p.systems || []).includes(system));
     }
 
-    // 6. Search Input (from FiltersComponent)
+    // 5. Search Input (from FiltersComponent)
     if (query) {
       list = list.filter(p => {
         const nameMatch = (p.name || '').toLowerCase().includes(query);
@@ -500,7 +450,7 @@ export class ExecutiveReportComponent {
       });
     }
 
-    // 7. Sort Dropdown (from FiltersComponent)
+    // 6. Sort Dropdown (from FiltersComponent)
     if (sort === 'priority') {
       const priorityOrder: Record<string, number> = { P1: 1, P2: 2, P3: 3, P4: 4 };
       list.sort((a, b) => {
@@ -528,16 +478,6 @@ export class ExecutiveReportComponent {
     if (!report || !report.activeProjects) return [];
     return report.activeProjects.filter(p => p.ragStatus === 'red' || p.ragStatus === 'amber').slice(0, 3);
   });
-
-  getClientCount(client: string): number {
-    const list = this.currentReport()?.activeProjects || [];
-    return list.filter(p => p.client.toLowerCase() === client.toLowerCase()).length;
-  }
-
-  getAlertCount(): number {
-    const list = this.currentReport()?.activeProjects || [];
-    return list.filter(p => p.ragStatus === 'red' || p.ragStatus === 'amber').length;
-  }
 
   getPercent(count?: number, total?: number): number {
     if (!count || !total || total === 0) return 0;
