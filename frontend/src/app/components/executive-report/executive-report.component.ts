@@ -191,7 +191,7 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
           <div class="mt-4 pt-3.5 border-t border-slate-100 flex flex-col md:flex-row md:items-center justify-between gap-3">
             <div class="flex items-center gap-2">
               <span class="text-xs">🎯</span>
-              <span class="text-xs font-black text-slate-900 tracking-tight">Prioridade do Projeto:</span>
+              <span class="text-xs font-black text-slate-900 tracking-tight">Projetos por Prioridade:</span>
               <button
                 *ngIf="service.selectedPriority() !== 'Todos'"
                 type="button"
