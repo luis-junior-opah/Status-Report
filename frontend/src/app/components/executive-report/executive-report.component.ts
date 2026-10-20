@@ -11,7 +11,7 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
   template: `
     <div
       [ngClass]="{
-        'fixed inset-0 z-50 bg-slate-950 text-slate-100 overflow-y-auto p-4 sm:p-8': service.presentationMode(),
+        'fixed inset-0 z-50 bg-slate-100 text-slate-900 overflow-y-auto p-4 sm:p-8 space-y-5': service.presentationMode(),
         'space-y-5 mb-10': !service.presentationMode()
       }"
       class="print:p-0 print:bg-white print:text-slate-900 transition-all font-sans">
@@ -20,35 +20,31 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
       <!-- TOP EXECUTIVE CONTROL BAR                                -->
       <!-- ======================================================== -->
       <div
-        class="bg-white rounded-2xl border border-slate-200/90 shadow-2xs px-4 py-3 flex flex-col md:flex-row md:items-center md:justify-between gap-3 print:hidden"
-        [ngClass]="service.presentationMode() ? '!bg-slate-900/90 !border-slate-800 !text-white' : ''">
+        class="bg-white rounded-2xl border border-slate-200/90 shadow-2xs px-4 py-3 flex flex-col md:flex-row md:items-center md:justify-between gap-3 print:hidden">
         
         <!-- Left: Co-branding & Title -->
         <div class="flex items-center gap-3">
-          <div class="w-9 h-9 rounded-xl bg-slate-900 text-white flex items-center justify-center font-black text-base shadow-xs shrink-0"
-            [ngClass]="service.presentationMode() ? '!bg-blue-600' : ''">
+          <div class="w-9 h-9 rounded-xl bg-slate-900 text-white flex items-center justify-center font-black text-base shadow-xs shrink-0">
             📊
           </div>
           <div>
             <div class="flex items-center gap-2">
-              <h1 class="text-sm sm:text-base font-extrabold tracking-tight"
-                [ngClass]="service.presentationMode() ? 'text-white' : 'text-slate-900'">
+              <h1 class="text-sm sm:text-base font-extrabold tracking-tight text-slate-900">
                 Status Report
               </h1>
             </div>
-            <p class="text-[11px]" [ngClass]="service.presentationMode() ? 'text-slate-400' : 'text-slate-500'">
-              Edição: <strong [ngClass]="service.presentationMode() ? 'text-slate-200' : 'text-slate-800'">{{ service.formatEditionTitle(currentReport()) }}</strong>
+            <p class="text-[11px] text-slate-500">
+              Edição: <strong class="text-slate-800">{{ service.formatEditionTitle(currentReport()) }}</strong>
               • Período: {{ currentReport()?.period }}
             </p>
           </div>
         </div>
 
-        <!-- Center / Right: Quick Filters, Layout Toggle & Actions -->
+        <!-- Center / Right: Quick Filters, Actions -->
         <div class="flex items-center flex-wrap gap-2">
           
           <!-- Quick Client Filter Pills -->
-          <div class="flex items-center bg-slate-100 p-0.5 rounded-xl text-[11px] font-bold"
-            [ngClass]="service.presentationMode() ? '!bg-slate-800 text-slate-300' : 'text-slate-600'">
+          <div class="flex items-center bg-slate-100 p-0.5 rounded-xl text-[11px] font-bold text-slate-600">
             <button
               (click)="selectedClientFilter.set('Todos')"
               [ngClass]="selectedClientFilter() === 'Todos' ? 'bg-white shadow-xs text-blue-700' : 'hover:text-slate-900'"
@@ -75,8 +71,7 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
           <select
             [ngModel]="service.selectedReportId()"
             (ngModelChange)="onSelectReport($event)"
-            class="text-[11px] font-bold rounded-xl px-2.5 py-1.5 border focus:outline-none focus:ring-1 focus:ring-blue-500 shadow-2xs cursor-pointer"
-            [ngClass]="service.presentationMode() ? 'bg-slate-800 border-slate-700 text-white' : 'bg-slate-50 border-slate-300 text-slate-800'">
+            class="text-[11px] font-bold rounded-xl px-2.5 py-1.5 border border-slate-300 bg-slate-50 text-slate-800 focus:outline-none focus:ring-1 focus:ring-blue-500 shadow-2xs cursor-pointer">
             <option *ngFor="let rep of service.weeklyReports()" [value]="rep.id">
               {{ service.formatEditionTitle(rep) }}
             </option>
@@ -86,15 +81,14 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
           <button
             (click)="service.togglePresentationMode()"
             class="px-3 py-1.5 rounded-xl text-[11px] font-extrabold transition flex items-center gap-1.5 shadow-2xs"
-            [ngClass]="service.presentationMode() ? 'bg-blue-600 hover:bg-blue-500 text-white' : 'bg-slate-900 hover:bg-slate-800 text-white'">
+            [ngClass]="service.presentationMode() ? 'bg-blue-600 hover:bg-blue-700 text-white' : 'bg-slate-900 hover:bg-slate-800 text-white'">
             <span>{{ service.presentationMode() ? '✕ Fechar Apresentação' : '🖥️ Modo Apresentação' }}</span>
           </button>
 
           <!-- Print / PDF Button -->
           <button
             (click)="printReport()"
-            class="px-2.5 py-1.5 rounded-xl text-[11px] font-bold transition flex items-center gap-1 border shadow-2xs"
-            [ngClass]="service.presentationMode() ? 'bg-slate-800 border-slate-700 text-slate-300 hover:text-white' : 'bg-white border-slate-300 text-slate-700 hover:bg-slate-50'">
+            class="px-2.5 py-1.5 rounded-xl text-[11px] font-bold transition flex items-center gap-1 border border-slate-300 bg-white text-slate-700 hover:bg-slate-50 shadow-2xs">
             <span>🖨️ PDF</span>
           </button>
         </div>
@@ -111,9 +105,7 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
         <!-- ======================================================== -->
         <!-- 1. HERO BANNER: HEADLINE & EXECUTIVE PULSE KPIS          -->
         <!-- ======================================================== -->
-        <div
-          class="rounded-2xl border shadow-sm p-4 sm:p-5 transition-all"
-          [ngClass]="service.presentationMode() ? 'bg-slate-900 border-slate-800 text-white' : 'bg-slate-900 text-white border-slate-800'">
+        <div class="rounded-2xl border border-slate-800 bg-slate-900 text-white shadow-sm p-4 sm:p-5 transition-all">
           
           <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-5">
             <!-- Left: Headline Statement -->
@@ -177,20 +169,16 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
         <!-- 2. EXECUTIVE CALLOUT: FOCO IMEDIATO DA DIRETORIA         -->
         <!-- ======================================================== -->
         <div *ngIf="topCriticalProjects().length > 0"
-          class="rounded-2xl border p-4 transition-all"
-          [ngClass]="service.presentationMode() ? 'bg-slate-900/90 border-rose-950/60' : 'bg-rose-50/50 border-rose-200/90'">
+          class="rounded-2xl border border-rose-200/90 bg-rose-50/50 p-4 transition-all">
           
-          <div class="flex items-center justify-between pb-2.5 mb-3 border-b"
-            [ngClass]="service.presentationMode() ? 'border-slate-800' : 'border-rose-200/60'">
+          <div class="flex items-center justify-between pb-2.5 mb-3 border-b border-rose-200/60">
             <div class="flex items-center gap-2">
               <span class="text-xs">🚨</span>
-              <h3 class="text-xs font-black tracking-tight"
-                [ngClass]="service.presentationMode() ? 'text-rose-400' : 'text-rose-950'">
+              <h3 class="text-xs font-black tracking-tight text-rose-950">
                 Radar de Atenção Imediata da Diretoria ({{ topCriticalProjects().length }} Projetos com Desvio ou Atenção Crítica)
               </h3>
             </div>
-            <span class="text-[10px] font-bold"
-              [ngClass]="service.presentationMode() ? 'text-slate-400' : 'text-rose-700'">
+            <span class="text-[10px] font-bold text-rose-700">
               Itens prioritários para deliberação na reunião de hoje
             </span>
           </div>
@@ -198,8 +186,7 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
           <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
             <div
               *ngFor="let item of topCriticalProjects()"
-              class="p-3 rounded-xl border flex flex-col justify-between"
-              [ngClass]="service.presentationMode() ? 'bg-slate-950 border-rose-900/40 text-slate-200' : 'bg-white border-rose-200 text-slate-800 shadow-2xs'">
+              class="p-3 rounded-xl border border-rose-200 bg-white text-slate-800 shadow-2xs flex flex-col justify-between">
               <div>
                 <div class="flex items-center justify-between gap-1 mb-1">
                   <span class="text-[10px] font-bold text-slate-500">{{ item.client }}</span>
@@ -226,8 +213,7 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
         <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3.5">
           <div
             *ngFor="let p of displayedProjects()"
-            class="rounded-2xl border p-4 flex flex-col justify-between transition-all hover:shadow-xs"
-            [ngClass]="service.presentationMode() ? 'bg-slate-900 border-slate-800' : 'bg-white border-slate-200/90'">
+            class="rounded-2xl border border-slate-200/90 bg-white p-4 flex flex-col justify-between transition-all hover:shadow-xs">
             
             <div>
               <!-- Card Top -->
@@ -240,8 +226,7 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
                     [title]="'Prioridade ' + (p.priority || 'P2') + ' (' + service.getPriorityLabel(p.priority || 'P2') + ')'">
                     {{ p.priority || 'P2' }}
                   </span>
-                  <span class="text-[10px] font-bold px-1.5 py-0.2 rounded border"
-                    [ngClass]="service.presentationMode() ? 'bg-slate-800 border-slate-700 text-slate-300' : 'bg-slate-100 border-slate-200 text-slate-700'">
+                  <span class="text-[10px] font-bold px-1.5 py-0.2 rounded border bg-slate-100 border-slate-200 text-slate-700">
                     {{ p.client }}
                   </span>
                   <span [ngClass]="service.getMilestoneBadgeClass(p.currentMilestone)" class="px-2 py-0.2 rounded font-semibold text-[10px]">
@@ -256,8 +241,7 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
               </div>
 
               <!-- Project Name -->
-              <h4 class="text-xs sm:text-sm font-extrabold tracking-tight truncate leading-snug mb-1"
-                [ngClass]="service.presentationMode() ? 'text-white' : 'text-slate-900'"
+              <h4 class="text-xs sm:text-sm font-extrabold tracking-tight truncate leading-snug mb-1 text-slate-900"
                 [title]="p.name">
                 {{ p.name }}
               </h4>
@@ -274,13 +258,11 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
 
               <!-- Progress bar -->
               <div class="mb-3">
-                <div class="flex items-center justify-between text-[10px] font-bold mb-1"
-                  [ngClass]="service.presentationMode() ? 'text-slate-400' : 'text-slate-500'">
+                <div class="flex items-center justify-between text-[10px] font-bold mb-1 text-slate-500">
                   <span>Progresso</span>
-                  <span class="font-black text-slate-800" [ngClass]="service.presentationMode() ? '!text-white' : ''">{{ p.progress }}%</span>
+                  <span class="font-black text-slate-800">{{ p.progress }}%</span>
                 </div>
-                <div class="w-full bg-slate-100 rounded-full h-1.5 overflow-hidden"
-                  [ngClass]="service.presentationMode() ? '!bg-slate-800' : ''">
+                <div class="w-full bg-slate-100 rounded-full h-1.5 overflow-hidden">
                   <div
                     class="h-full rounded-full"
                     [ngClass]="p.ragStatus === 'red' ? 'bg-rose-500' : (p.ragStatus === 'amber' ? 'bg-amber-500' : 'bg-blue-600')"
@@ -290,22 +272,19 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
               </div>
 
               <!-- Highlights paragraph -->
-              <p class="text-[11px] leading-relaxed mb-2"
-                [ngClass]="service.presentationMode() ? 'text-slate-300' : 'text-slate-700'">
+              <p class="text-[11px] leading-relaxed mb-2 text-slate-700">
                 {{ p.statusReport }}
               </p>
 
               <!-- Attention Point callout if any -->
               <div *ngIf="p.ragStatus === 'red' || p.ragStatus === 'amber'"
-                class="p-2 rounded-lg text-[10px] leading-snug mb-2"
-                [ngClass]="p.ragStatus === 'red' ? 'bg-rose-50 text-rose-900 border border-rose-200' : 'bg-amber-50 text-amber-900 border border-amber-200'">
+                class="p-2 rounded-lg text-[10px] leading-snug mb-2 bg-rose-50 text-rose-900 border border-rose-200">
                 <strong>⚠️ Ponto de Atenção:</strong> {{ p.attentionPoints }}
               </div>
             </div>
 
             <!-- Card Bottom -->
-            <div class="pt-2 border-t flex items-center justify-between text-[10px] text-slate-400"
-              [ngClass]="service.presentationMode() ? 'border-slate-800' : 'border-slate-100'">
+            <div class="pt-2 border-t border-slate-100 flex items-center justify-between text-[10px] text-slate-400">
               <span>Meta: <strong class="text-slate-600">{{ formatDate(p.targetDelivery) }}</strong></span>
               <button
                 (click)="service.openEapForProject(p.projectId)"
@@ -324,16 +303,13 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
           
           <!-- Radar de Projetos no Roadmap (Pipeline) -->
           <div
-            class="rounded-2xl border shadow-2xs p-4 sm:p-5 flex flex-col justify-between"
-            [ngClass]="service.presentationMode() ? 'bg-slate-900 border-slate-800' : 'bg-white border-slate-200/90'">
+            class="rounded-2xl border border-slate-200/90 bg-white shadow-2xs p-4 sm:p-5 flex flex-col justify-between">
             
             <div>
-              <div class="flex items-center justify-between pb-2.5 mb-3 border-b"
-                [ngClass]="service.presentationMode() ? 'border-slate-800' : 'border-slate-100'">
+              <div class="flex items-center justify-between pb-2.5 mb-3 border-b border-slate-100">
                 <div class="flex items-center gap-2">
                   <span class="text-xs">🔭</span>
-                  <h3 class="text-xs sm:text-sm font-extrabold"
-                    [ngClass]="service.presentationMode() ? 'text-white' : 'text-slate-900'">
+                  <h3 class="text-xs sm:text-sm font-extrabold text-slate-900">
                     Projetos no Radar & Roadmap Estratégico ({{ currentReport()?.roadmapProjects?.length || 0 }})
                   </h3>
                 </div>
@@ -346,8 +322,7 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                 <div
                   *ngFor="let road of currentReport()?.roadmapProjects"
-                  class="p-3 rounded-xl border flex flex-col justify-between"
-                  [ngClass]="service.presentationMode() ? 'bg-slate-950 border-slate-800' : 'bg-slate-50/60 border-slate-200/80'">
+                  class="p-3 rounded-xl border border-slate-200/80 bg-slate-50/60 flex flex-col justify-between">
                   <div>
                     <div class="flex items-center justify-between gap-1 mb-1">
                       <span class="text-[9px] font-bold px-1.5 py-0.2 rounded bg-white border border-slate-200 text-slate-700">
@@ -358,8 +333,7 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
                         {{ road.stage }}
                       </span>
                     </div>
-                    <h4 class="text-xs font-black truncate leading-snug"
-                      [ngClass]="service.presentationMode() ? 'text-white' : 'text-slate-900'"
+                    <h4 class="text-xs font-black truncate leading-snug text-slate-900"
                       [title]="road.name">
                       {{ road.name }}
                     </h4>
@@ -379,16 +353,13 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
 
           <!-- Deliberações da Diretoria -->
           <div
-            class="rounded-2xl border shadow-2xs p-4 sm:p-5 flex flex-col justify-between"
-            [ngClass]="service.presentationMode() ? 'bg-slate-900 border-slate-800' : 'bg-white border-slate-200/90'">
+            class="rounded-2xl border border-slate-200/90 bg-white shadow-2xs p-4 sm:p-5 flex flex-col justify-between">
             
             <div>
-              <div class="flex items-center justify-between pb-2.5 mb-3 border-b"
-                [ngClass]="service.presentationMode() ? 'border-slate-800' : 'border-slate-100'">
+              <div class="flex items-center justify-between pb-2.5 mb-3 border-b border-slate-100">
                 <div class="flex items-center gap-2">
                   <span class="text-xs">⚖️</span>
-                  <h3 class="text-xs sm:text-sm font-extrabold"
-                    [ngClass]="service.presentationMode() ? 'text-white' : 'text-slate-900'">
+                  <h3 class="text-xs sm:text-sm font-extrabold text-slate-900">
                     Deliberações & Decisões Esperadas da Diretoria
                   </h3>
                 </div>
@@ -401,8 +372,7 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
               <div class="space-y-2">
                 <div
                   *ngFor="let dec of currentReport()?.boardDecisions"
-                  class="p-2.5 rounded-xl border flex items-start justify-between gap-3"
-                  [ngClass]="service.presentationMode() ? 'bg-slate-950 border-slate-800' : 'bg-slate-50/60 border-slate-200/80'">
+                  class="p-2.5 rounded-xl border border-slate-200/80 bg-slate-50/60 flex items-start justify-between gap-3">
                   <div class="flex-1 min-w-0">
                     <div class="flex items-center gap-1.5 mb-0.5">
                       <span class="text-[9px] font-bold text-slate-400 uppercase">{{ dec.client }}</span>
@@ -412,8 +382,7 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
                         {{ dec.status }}
                       </span>
                     </div>
-                    <h4 class="text-xs font-black truncate leading-snug"
-                      [ngClass]="service.presentationMode() ? 'text-white' : 'text-slate-900'">
+                    <h4 class="text-xs font-black truncate leading-snug text-slate-900">
                       {{ dec.title }}
                     </h4>
                     <p class="text-[10px] text-slate-500 leading-snug mt-0.5 line-clamp-1">
