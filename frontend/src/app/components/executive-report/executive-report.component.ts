@@ -1,13 +1,14 @@
 import { Component, inject, computed, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { FiltersComponent } from '../filters/filters.component';
 import { ProjectService } from '../../services/project.service';
 import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models/weekly-report.model';
 
 @Component({
   selector: 'app-executive-report',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, FiltersComponent],
   template: `
     <div
       [ngClass]="{
@@ -60,20 +61,20 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
           <!-- Quick Client Filter Pills -->
           <div class="flex items-center bg-slate-100 p-0.5 rounded-xl text-[11px] font-bold text-slate-600">
             <button
-              (click)="selectedClientFilter.set('Todos')"
-              [ngClass]="selectedClientFilter() === 'Todos' ? 'bg-white shadow-xs text-blue-700' : 'hover:text-slate-900'"
+              (click)="onSelectQuickFilter('Todos')"
+              [ngClass]="selectedClientFilter() === 'Todos' && service.selectedClient() === 'Todos' ? 'bg-white shadow-xs text-blue-700' : 'hover:text-slate-900'"
               class="px-2.5 py-1 rounded-lg transition">
               Todos ({{ currentReport()?.activeProjects?.length || 0 }})
             </button>
             <button
               *ngFor="let c of distinctClients()"
-              (click)="selectedClientFilter.set(c)"
-              [ngClass]="selectedClientFilter() === c ? 'bg-white shadow-xs text-blue-700' : 'hover:text-slate-900'"
+              (click)="onSelectQuickFilter(c)"
+              [ngClass]="(selectedClientFilter() === c || service.selectedClient() === c) && selectedClientFilter() !== 'Alertas' ? 'bg-white shadow-xs text-blue-700' : 'hover:text-slate-900'"
               class="px-2.5 py-1 rounded-lg transition whitespace-nowrap">
               {{ c }} ({{ getClientCount(c) }})
             </button>
             <button
-              (click)="selectedClientFilter.set('Alertas')"
+              (click)="onSelectQuickFilter('Alertas')"
               [ngClass]="selectedClientFilter() === 'Alertas' ? 'bg-rose-600 text-white shadow-xs' : 'text-rose-600 hover:text-rose-800'"
               class="px-2.5 py-1 rounded-lg transition flex items-center gap-1 font-extrabold">
               <span>🚨 Críticos</span>
@@ -317,9 +318,14 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
         </div>
 
         <!-- ======================================================== -->
-        <!-- 4. CARDS EXECUTIVOS DOS PROJETOS                         -->
+        <!-- 4. BARRA DE FILTROS & BUSCA DO PORTFÓLIO                 -->
         <!-- ======================================================== -->
-        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3.5">
+        <app-filters></app-filters>
+
+        <!-- ======================================================== -->
+        <!-- 5. CARDS EXECUTIVOS DOS PROJETOS                         -->
+        <!-- ======================================================== -->
+        <div *ngIf="displayedProjects().length > 0" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3.5">
           <div
             *ngFor="let p of displayedProjects()"
             class="rounded-2xl border border-slate-200/90 bg-white p-4 flex flex-col justify-between transition-all hover:shadow-xs">
@@ -405,6 +411,12 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
           </div>
         </div>
 
+        <!-- Empty state when search or filters return 0 -->
+        <div *ngIf="displayedProjects().length === 0"
+          class="py-12 bg-white rounded-2xl border border-slate-200/90 text-center text-slate-400 text-xs shadow-2xs">
+          Nenhum projeto encontrado para os filtros selecionados.
+        </div>
+
       </div>
     </div>
   `
@@ -422,15 +434,91 @@ export class ExecutiveReportComponent {
     return Array.from(set).sort();
   });
 
+  onSelectQuickFilter(val: string) {
+    this.selectedClientFilter.set(val);
+    if (val === 'Alertas') {
+      this.service.selectedClient.set('Todos');
+    } else {
+      this.service.selectedClient.set(val);
+    }
+  }
+
   displayedProjects = computed(() => {
     const report = this.currentReport();
     if (!report || !report.activeProjects) return [];
-    const filter = this.selectedClientFilter();
-    if (filter === 'Todos') return report.activeProjects;
-    if (filter === 'Alertas') {
-      return report.activeProjects.filter(p => p.ragStatus === 'red' || p.ragStatus === 'amber');
+
+    const topFilter = this.selectedClientFilter();
+    const status = this.service.selectedStatus();
+    const client = this.service.selectedClient();
+    const priority = this.service.selectedPriority();
+    const system = this.service.selectedSystem();
+    const query = (this.service.searchQuery() || '').toLowerCase().trim();
+    const sort = this.service.sortBy();
+
+    let list = report.activeProjects.slice();
+
+    // 1. Top bar Quick Pill Filter
+    if (topFilter === 'Alertas') {
+      list = list.filter(p => p.ragStatus === 'red' || p.ragStatus === 'amber');
+    } else if (topFilter !== 'Todos') {
+      list = list.filter(p => p.client.toLowerCase() === topFilter.toLowerCase());
     }
-    return report.activeProjects.filter(p => p.client.toLowerCase() === filter.toLowerCase());
+
+    // 2. Status Tab Filter (from FiltersComponent)
+    if (status !== 'Todos' && status !== 'Ativo') {
+      return []; // In Status Report, all projects in the active report are active
+    }
+
+    // 3. Client Dropdown Filter (from FiltersComponent)
+    if (client !== 'Todos') {
+      list = list.filter(p => p.client.toLowerCase() === client.toLowerCase());
+    }
+
+    // 4. Priority Dropdown Filter (from FiltersComponent)
+    if (priority !== 'Todos') {
+      list = list.filter(p => (p.priority || 'P2') === priority);
+    }
+
+    // 5. System Dropdown Filter (from FiltersComponent)
+    if (system !== 'Todos') {
+      list = list.filter(p => (p.systems || []).includes(system));
+    }
+
+    // 6. Search Input (from FiltersComponent)
+    if (query) {
+      list = list.filter(p => {
+        const nameMatch = (p.name || '').toLowerCase().includes(query);
+        const clientMatch = (p.client || '').toLowerCase().includes(query);
+        const leaderMatch = (p.teamLeader || '').toLowerCase().includes(query);
+        const systemMatch = (p.systems || []).some(s => s.toLowerCase().includes(query));
+        const milestoneMatch = (p.currentMilestone || '').toLowerCase().includes(query);
+        const statusReportMatch = (p.statusReport || '').toLowerCase().includes(query);
+        const attentionMatch = (p.attentionPoints || '').toLowerCase().includes(query);
+        return nameMatch || clientMatch || leaderMatch || systemMatch || milestoneMatch || statusReportMatch || attentionMatch;
+      });
+    }
+
+    // 7. Sort Dropdown (from FiltersComponent)
+    if (sort === 'priority') {
+      const priorityOrder: Record<string, number> = { P1: 1, P2: 2, P3: 3, P4: 4 };
+      list.sort((a, b) => {
+        const pA = priorityOrder[a.priority || 'P2'] || 99;
+        const pB = priorityOrder[b.priority || 'P2'] || 99;
+        if (pA !== pB) return pA - pB;
+        return (a.name || '').localeCompare(b.name || '', 'pt-BR');
+      });
+    } else if (sort === 'progress') {
+      list.sort((a, b) => (b.progress || 0) - (a.progress || 0));
+    } else {
+      // default: client (A-Z)
+      list.sort((a, b) => {
+        const cDiff = (a.client || '').localeCompare(b.client || '', 'pt-BR', { sensitivity: 'base' });
+        if (cDiff !== 0) return cDiff;
+        return (a.name || '').localeCompare(b.name || '', 'pt-BR', { sensitivity: 'base' });
+      });
+    }
+
+    return list;
   });
 
   topCriticalProjects = computed(() => {
