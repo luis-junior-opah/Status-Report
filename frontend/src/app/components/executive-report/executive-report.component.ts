@@ -192,7 +192,6 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
             <div class="flex items-center gap-2">
               <span class="text-xs">🎯</span>
               <span class="text-xs font-black text-slate-900 tracking-tight">Prioridade do Projeto:</span>
-              <span class="text-[11px] text-slate-500 font-medium hidden sm:inline">Volume de projetos ativos por nível de criticidade</span>
               <button
                 *ngIf="service.selectedPriority() !== 'Todos'"
                 type="button"
@@ -287,7 +286,6 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
             <div class="flex items-center gap-2">
               <span class="text-xs">🖥️</span>
               <span class="text-xs font-black text-slate-900 tracking-tight">Projetos por Sistema:</span>
-              <span class="text-[11px] text-slate-500 font-medium hidden sm:inline">Volume de projetos ativos por ecossistema tecnológico</span>
               <button
                 *ngIf="service.selectedSystem() !== 'Todos'"
                 type="button"
