@@ -1,5 +1,5 @@
 {
-  "lastSync": "2026-10-20T18:58:58.074Z",
+  "lastSync": "2026-10-20T21:30:29.759Z",
   "projects": [
     {
       "id": "a197458f-88c5-4fec-8ce7-a981ee3f6709",
@@ -25,7 +25,7 @@
       "progress": 46,
       "manualRagStatus": "amber",
       "executiveSummary": "Projeto integrado ao Azure DevOps. Iteração atual: Iteration 26.",
-      "azureLastUpdated": "2026-10-20T18:58:45.729Z",
+      "azureLastUpdated": "2026-10-20T21:30:18.204Z",
       "currentIterationName": "Iteration 26",
       "ragStatus": "amber",
       "varianceDays": 0,
@@ -4700,7 +4700,7 @@
       "progress": 0,
       "manualRagStatus": "auto",
       "executiveSummary": "Projeto Safety está em fase de elicitação de requisitos.",
-      "azureLastUpdated": "2026-10-20T18:58:46.307Z",
+      "azureLastUpdated": "2026-10-20T21:30:18.825Z",
       "currentIterationName": null,
       "ragStatus": "green",
       "varianceDays": 0,
@@ -4962,7 +4962,7 @@
       "progress": 92,
       "manualRagStatus": "auto",
       "executiveSummary": "Projeto integrado ao Azure DevOps. Iteração atual: Em andamento.",
-      "azureLastUpdated": "2026-10-20T18:58:47.060Z",
+      "azureLastUpdated": "2026-10-20T21:30:19.501Z",
       "currentIterationName": null,
       "ragStatus": "red",
       "varianceDays": 0,
@@ -5334,7 +5334,7 @@
       "progress": 0,
       "manualRagStatus": "auto",
       "executiveSummary": "Projeto integrado ao Azure DevOps. Iteração atual: Em andamento.",
-      "azureLastUpdated": "2026-10-20T18:58:47.576Z",
+      "azureLastUpdated": "2026-10-20T21:30:20.248Z",
       "currentIterationName": null,
       "ragStatus": "green",
       "varianceDays": 0,
@@ -5657,7 +5657,7 @@
       "progress": 0,
       "manualRagStatus": "auto",
       "executiveSummary": "Projeto integrado ao Azure DevOps. Iteração atual: Em andamento.",
-      "azureLastUpdated": "2026-10-20T18:58:48.184Z",
+      "azureLastUpdated": "2026-10-20T21:30:20.685Z",
       "currentIterationName": null,
       "ragStatus": "green",
       "varianceDays": 0,
@@ -5758,7 +5758,7 @@
       "progress": 41,
       "manualRagStatus": "auto",
       "executiveSummary": "Projeto integrado ao Azure DevOps. Iteração atual: Iteration 4.",
-      "azureLastUpdated": "2026-10-20T18:58:48.615Z",
+      "azureLastUpdated": "2026-10-20T21:30:21.152Z",
       "currentIterationName": "Iteration 4",
       "ragStatus": "red",
       "varianceDays": 0,
@@ -5994,7 +5994,7 @@
       "progress": 97,
       "manualRagStatus": "auto",
       "executiveSummary": "Projeto integrado ao Azure DevOps. Iteração atual: Em andamento.",
-      "azureLastUpdated": "2026-10-20T18:58:49.668Z",
+      "azureLastUpdated": "2026-10-20T21:30:22.145Z",
       "currentIterationName": null,
       "ragStatus": "red",
       "varianceDays": 0,
@@ -7323,7 +7323,7 @@
       "progress": 68,
       "manualRagStatus": "auto",
       "executiveSummary": "Desenvolvimento concluido, testes realizados. Homologado junto a John Deere, próximo passo treinar usuários.",
-      "azureLastUpdated": "2026-10-20T18:58:50.271Z",
+      "azureLastUpdated": "2026-10-20T21:30:22.628Z",
       "currentIterationName": "Iteration 01",
       "ragStatus": "red",
       "varianceDays": 0,
@@ -7644,7 +7644,7 @@
       "progress": 66,
       "manualRagStatus": "auto",
       "executiveSummary": "Desenvolvimento concluido, testes realizados. Homologado junto a John Deere, próximo passo treinar usuários.",
-      "azureLastUpdated": "2026-10-20T18:58:50.738Z",
+      "azureLastUpdated": "2026-10-20T21:30:23.163Z",
       "currentIterationName": "Iteration 1",
       "ragStatus": "red",
       "varianceDays": 0,
@@ -7965,7 +7965,7 @@
       "progress": 100,
       "manualRagStatus": "auto",
       "executiveSummary": "Projeto integrado ao Azure DevOps. Iteração atual: Em andamento.",
-      "azureLastUpdated": "2026-10-20T18:58:51.370Z",
+      "azureLastUpdated": "2026-10-20T21:30:23.638Z",
       "currentIterationName": null,
       "ragStatus": "green",
       "varianceDays": 0,
@@ -9174,7 +9174,7 @@
       "progress": 38,
       "manualRagStatus": "auto",
       "executiveSummary": "Projeto em fase de desenvolvimento backend volume total de horas acordado 157.",
-      "azureLastUpdated": "2026-10-20T18:58:52.006Z",
+      "azureLastUpdated": "2026-10-20T21:30:24.191Z",
       "currentIterationName": "Iteration 1",
       "ragStatus": "green",
       "varianceDays": 0,
@@ -10145,7 +10145,7 @@
       "progress": 47,
       "manualRagStatus": "auto",
       "executiveSummary": "Etapa de gerenciamento de parâmetros em fase final de desenvolvimento.",
-      "azureLastUpdated": "2026-10-20T18:58:52.735Z",
+      "azureLastUpdated": "2026-10-20T21:30:24.782Z",
       "currentIterationName": "Iteration 1",
       "ragStatus": "green",
       "varianceDays": 0,
@@ -10858,7 +10858,7 @@
       "progress": 62,
       "manualRagStatus": "auto",
       "executiveSummary": "Projeto integrado ao Azure DevOps. Iteração atual: SPRINT 7a.",
-      "azureLastUpdated": "2026-10-20T18:58:54.286Z",
+      "azureLastUpdated": "2026-10-20T21:30:26.390Z",
       "currentIterationName": "SPRINT 7a",
       "ragStatus": "red",
       "varianceDays": 0,
@@ -12632,7 +12632,7 @@
       "progress": 44,
       "manualRagStatus": "auto",
       "executiveSummary": "Projeto integrado ao Azure DevOps. Iteração atual: SPRINT JUL - 2022 - 1 QUINZENA.",
-      "azureLastUpdated": "2026-10-20T18:58:55.488Z",
+      "azureLastUpdated": "2026-10-20T21:30:27.819Z",
       "currentIterationName": "SPRINT JUL - 2022 - 1 QUINZENA",
       "ragStatus": "red",
       "varianceDays": 0,
@@ -13694,7 +13694,7 @@
       "progress": 100,
       "manualRagStatus": "auto",
       "executiveSummary": "Projeto integrado ao Azure DevOps. Iteração atual: Em andamento.",
-      "azureLastUpdated": "2026-10-20T18:58:56.131Z",
+      "azureLastUpdated": "2026-10-20T21:30:28.424Z",
       "currentIterationName": null,
       "ragStatus": "green",
       "varianceDays": 0,
@@ -14533,7 +14533,7 @@
       "progress": 94,
       "manualRagStatus": "auto",
       "executiveSummary": "Projeto integrado ao Azure DevOps. Iteração atual: Iteration 20.",
-      "azureLastUpdated": "2026-10-20T18:58:57.514Z",
+      "azureLastUpdated": "2026-10-20T21:30:29.316Z",
       "currentIterationName": "Iteration 20",
       "ragStatus": "red",
       "varianceDays": 0,
@@ -19372,7 +19372,7 @@
       "progress": 65,
       "manualRagStatus": "auto",
       "executiveSummary": "Projeto integrado ao Azure DevOps. Iteração atual: Sprint 5.",
-      "azureLastUpdated": "2026-10-20T18:58:58.074Z",
+      "azureLastUpdated": "2026-10-20T21:30:29.759Z",
       "currentIterationName": "Sprint 6",
       "ragStatus": "red",
       "varianceDays": 0,
@@ -19896,147 +19896,6 @@
       }
     },
     {
-      "id": "manual-1791407762401",
-      "azureId": null,
-      "isManual": true,
-      "name": "Projeto Piloto Boge - Automação Logística",
-      "description": "Projeto cadastrado manualmente no painel gerencial.",
-      "client": "Boge Ruber",
-      "status": "Finalizado",
-      "isVisible": false,
-      "currentMilestone": "Desenvolvimento",
-      "agreedDates": {
-        "start": "2026-09-01",
-        "end": "2027-02-28"
-      },
-      "plannedDates": {
-        "start": "2026-09-01",
-        "end": "2027-02-28"
-      },
-      "executedDates": {
-        "start": "2026-09-01",
-        "end": null
-      },
-      "progress": 0,
-      "manualRagStatus": "auto",
-      "executiveSummary": "Projeto em fase inicial de planejamento e validação.",
-      "activities": [
-        {
-          "id": "act-1",
-          "title": "Levantamento de Requisitos e Arquitetura",
-          "eapPhase": "Planejamento",
-          "month": "AGO / 26",
-          "dateStr": "Ago/26 - 40h",
-          "ilcHours": 40,
-          "ilcHoursTotal": 40,
-          "clientHours": 0,
-          "status": "completed"
-        },
-        {
-          "id": "act-2",
-          "title": "Desenvolvimento das Funcionalidades Principais",
-          "eapPhase": "Desenvolvimento",
-          "month": "SET / 26",
-          "dateStr": "Set-Out/26 - 160h",
-          "ilcHours": 120,
-          "ilcHoursTotal": 160,
-          "clientHours": 0,
-          "status": "in-progress"
-        },
-        {
-          "id": "act-3",
-          "title": "Validação e Testes Integrados",
-          "eapPhase": "Homologação",
-          "month": "OUT / 26",
-          "dateStr": "Out-Nov/26 - 45h",
-          "ilcHours": 15,
-          "ilcHoursTotal": 45,
-          "clientHours": 0,
-          "status": "in-progress"
-        },
-        {
-          "id": "act-4",
-          "title": "Capacitação e Treinamento de Usuários",
-          "eapPhase": "Treinamento",
-          "month": "NOV / 26",
-          "dateStr": "Nov/26 - 20h",
-          "ilcHours": 0,
-          "ilcHoursTotal": 20,
-          "clientHours": 0,
-          "status": "planned"
-        },
-        {
-          "id": "act-5",
-          "title": "Go-Live e Operação Assistida",
-          "eapPhase": "Operação Assistida",
-          "month": "DEZ / 26",
-          "dateStr": "Dez/26 - 30h",
-          "ilcHours": 0,
-          "ilcHoursTotal": 30,
-          "clientHours": 0,
-          "status": "planned"
-        }
-      ],
-      "hours": {
-        "clientPlanned": 40,
-        "clientExecuted": 10,
-        "ilcPlanned": 295,
-        "ilcExecuted": 175,
-        "totalPlanned": 335,
-        "totalExecuted": 185,
-        "distribution": [
-          {
-            "phase": "Planejamento",
-            "planned": 40,
-            "executed": 40,
-            "percentage": 100
-          },
-          {
-            "phase": "Desenvolvimento",
-            "planned": 160,
-            "executed": 120,
-            "percentage": 75
-          },
-          {
-            "phase": "Homologação",
-            "planned": 45,
-            "executed": 15,
-            "percentage": 33
-          },
-          {
-            "phase": "Treinamento",
-            "planned": 20,
-            "executed": 0,
-            "percentage": 0
-          },
-          {
-            "phase": "Operação Assistida",
-            "planned": 30,
-            "executed": 0,
-            "percentage": 0
-          }
-        ]
-      },
-      "ragStatus": "green",
-      "varianceDays": 0,
-      "lockedFields": {
-        "ilcHours": true,
-        "progress": true,
-        "dates": true
-      },
-      "hasManualProgress": true,
-      "hasManualIlcHours": true,
-      "inconsistencies": [
-        "NO_ACTIVITIES_WITH_DATES"
-      ],
-      "priority": "P2",
-      "systems": [],
-      "team": {
-        "leader": "",
-        "members": []
-      }
-    },
-    {
       "id": "manual-1791566380216",
       "azureId": null,
       "isManual": true,
@@ -20239,90 +20098,6 @@
       }
     },
     {
-      "id": "manual-1791568400934",
-      "azureId": null,
-      "isManual": true,
-      "name": "Fluxo de Recusa - Atualização de Documentos",
-      "description": "Projeto cadastrado manualmente.",
-      "client": "Mirassol",
-      "status": "Ativo",
-      "isVisible": false,
-      "currentMilestone": "Planejamento",
-      "agreedDates": {
-        "start": "2026-08-10",
-        "end": "2026-10-27"
-      },
-      "plannedDates": {
-        "start": "2026-08-10",
-        "end": "2026-10-27"
-      },
-      "executedDates": {
-        "start": "2026-08-10",
-        "end": null
-      },
-      "progress": 0,
-      "manualRagStatus": "auto",
-      "executiveSummary": "Projeto cadastrado manualmente.",
-      "activities": [],
-      "lockedFields": {
-        "ilcHours": false,
-        "progress": false,
-        "dates": false
-      },
-      "hours": {
-        "clientPlanned": 272,
-        "clientExecuted": 0,
-        "ilcPlanned": 0,
-        "ilcExecuted": 0,
-        "totalPlanned": 272,
-        "totalExecuted": 0,
-        "distribution": [
-          {
-            "phase": "Planejamento",
-            "planned": 0,
-            "executed": 0,
-            "percentage": 0
-          },
-          {
-            "phase": "Desenvolvimento",
-            "planned": 0,
-            "executed": 0,
-            "percentage": 0
-          },
-          {
-            "phase": "Homologação",
-            "planned": 0,
-            "executed": 0,
-            "percentage": 0
-          },
-          {
-            "phase": "Treinamento",
-            "planned": 0,
-            "executed": 0,
-            "percentage": 0
-          },
-          {
-            "phase": "Operação Assistida",
-            "planned": 0,
-            "executed": 0,
-            "percentage": 0
-          }
-        ]
-      },
-      "ragStatus": "green",
-      "varianceDays": 0,
-      "inconsistencies": [],
-      "hasManualProgress": true,
-      "hasManualAgreedDates": true,
-      "hasManualIlcHours": true,
-      "priority": "P2",
-      "systems": [],
-      "team": {
-        "leader": "",
-        "members": []
-      }
-    },
-    {
       "id": "8bcd36f6-678a-4d3c-a0a6-40a92b5ea91a",
       "azureId": "8bcd36f6-678a-4d3c-a0a6-40a92b5ea91a",
       "isManual": false,
@@ -20347,7 +20122,7 @@
       "progress": 0,
       "manualRagStatus": "auto",
       "executiveSummary": "Projeto sincronizado com o Azure DevOps. Iteração: Iteration 1.",
-      "azureLastUpdated": "2026-10-20T18:58:54.685Z",
+      "azureLastUpdated": "2026-10-20T21:30:26.945Z",
       "currentIterationName": "Iteration 1",
       "activities": [
         {
@@ -20736,7 +20511,7 @@
       "progress": 0,
       "manualRagStatus": "auto",
       "executiveSummary": "Projeto sincronizado com o Azure DevOps. Iteração: Em andamento.",
-      "azureLastUpdated": "2026-10-20T18:58:49.071Z",
+      "azureLastUpdated": "2026-10-20T21:30:21.428Z",
       "currentIterationName": null,
       "activities": [],
       "priority": "P1",
