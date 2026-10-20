@@ -35,9 +35,6 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
                 [ngClass]="service.presentationMode() ? 'text-white' : 'text-slate-900'">
                 Status Report
               </h1>
-              <span class="text-[9px] font-black uppercase px-2 py-0.5 rounded-full bg-blue-50 text-blue-700 border border-blue-200 tracking-wider">
-                Reunião de Diretoria
-              </span>
             </div>
             <p class="text-[11px]" [ngClass]="service.presentationMode() ? 'text-slate-400' : 'text-slate-500'">
               Edição: <strong [ngClass]="service.presentationMode() ? 'text-slate-200' : 'text-slate-800'">{{ currentReport()?.title }}</strong>
