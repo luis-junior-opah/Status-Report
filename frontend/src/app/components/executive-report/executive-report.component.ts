@@ -488,7 +488,16 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
                     [title]="'Prioridade ' + (p.priority || 'P2') + ' (' + service.getPriorityLabel(p.priority || 'P2') + ')'">
                     {{ p.priority || 'P2' }}
                   </span>
-                  <span class="text-[10px] font-bold px-1.5 py-0.2 rounded border bg-slate-100 border-slate-200 text-slate-700">
+                  <!-- Client Logo or Text Badge -->
+                  <img
+                    *ngIf="p.clientLogo || service.getClientLogo(p.client)"
+                    [src]="p.clientLogo || service.getClientLogo(p.client)"
+                    [alt]="p.client"
+                    class="h-4 max-w-[50px] object-contain rounded bg-white px-0.5 border border-slate-200 shadow-2xs"
+                  />
+                  <span
+                    *ngIf="!p.clientLogo && !service.getClientLogo(p.client)"
+                    class="text-[10px] font-bold px-1.5 py-0.2 rounded border bg-slate-100 border-slate-200 text-slate-700">
                     {{ p.client }}
                   </span>
                   <span [ngClass]="service.getMilestoneBadgeClass(p.currentMilestone)" class="px-2 py-0.2 rounded font-semibold text-[10px]">
