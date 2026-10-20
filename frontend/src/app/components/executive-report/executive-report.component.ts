@@ -151,7 +151,7 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
 
             <!-- 7. No radar (antes: Atenção) -->
             <div class="px-2.5 py-2 bg-orange-50/70 rounded-xl border border-orange-200/80 text-center shadow-2xs">
-              <span class="text-[9px] font-bold text-orange-800 uppercase tracking-wider block truncate">No radar</span>
+              <span class="text-[9px] font-bold text-orange-800 uppercase tracking-wider block truncate">🚨 No radar</span>
               <span class="text-xl font-black text-orange-700 block mt-0.5">
                 {{ topCriticalProjects().length }}
               </span>
@@ -160,7 +160,7 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
 
             <!-- 8. Deliberações -->
             <div class="px-2.5 py-2 bg-purple-50/70 rounded-xl border border-purple-200/80 text-center shadow-2xs">
-              <span class="text-[9px] font-bold text-purple-800 uppercase tracking-wider block truncate">Deliberações</span>
+              <span class="text-[9px] font-bold text-purple-800 uppercase tracking-wider block truncate">⚖️ Deliberações</span>
               <span class="text-xl font-black text-purple-800 block mt-0.5">
                 {{ currentReport()?.boardDecisions?.length || 0 }}
               </span>
@@ -169,7 +169,7 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
 
             <!-- 9. Roadmap -->
             <div class="px-2.5 py-2 bg-blue-50/70 rounded-xl border border-blue-200/80 text-center shadow-2xs">
-              <span class="text-[9px] font-bold text-blue-800 uppercase tracking-wider block truncate">Roadmap</span>
+              <span class="text-[9px] font-bold text-blue-800 uppercase tracking-wider block truncate">🔭 Roadmap</span>
               <span class="text-xl font-black text-blue-700 block mt-0.5">
                 {{ currentReport()?.roadmapProjects?.length || 0 }}
               </span>
