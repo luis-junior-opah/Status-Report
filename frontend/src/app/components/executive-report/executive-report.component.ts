@@ -33,7 +33,7 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
             <div class="flex items-center gap-2">
               <h1 class="text-sm sm:text-base font-extrabold tracking-tight"
                 [ngClass]="service.presentationMode() ? 'text-white' : 'text-slate-900'">
-                Status Report Executivo da Diretoria
+                Status Report
               </h1>
               <span class="text-[9px] font-black uppercase px-2 py-0.5 rounded-full bg-blue-50 text-blue-700 border border-blue-200 tracking-wider">
                 Reunião de Diretoria
