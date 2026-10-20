@@ -151,12 +151,12 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
             </div>
 
             <!-- 7. No radar (antes: Atenção) -->
-            <div class="px-2.5 py-2 bg-rose-50/70 rounded-xl border border-rose-200/80 text-center shadow-2xs">
-              <span class="text-[9px] font-bold text-rose-800 uppercase tracking-wider block truncate">No radar</span>
-              <span class="text-xl font-black text-rose-700 block mt-0.5">
+            <div class="px-2.5 py-2 bg-orange-50/70 rounded-xl border border-orange-200/80 text-center shadow-2xs">
+              <span class="text-[9px] font-bold text-orange-800 uppercase tracking-wider block truncate">No radar</span>
+              <span class="text-xl font-black text-orange-700 block mt-0.5">
                 {{ topCriticalProjects().length }}
               </span>
-              <span class="text-[9px] text-rose-700 font-medium block truncate">radar diretoria</span>
+              <span class="text-[9px] text-orange-700 font-medium block truncate">radar diretoria</span>
             </div>
 
             <!-- 8. Deliberações -->
@@ -319,16 +319,16 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
         <!-- 2. RADAR DE ATENÇÃO IMEDIATA DA DIRETORIA (CAUSA)        -->
         <!-- ======================================================== -->
         <div *ngIf="topCriticalProjects().length > 0"
-          class="rounded-2xl border border-rose-200/90 bg-rose-50/50 p-4 sm:p-5 transition-all">
+          class="rounded-2xl border border-orange-200/90 bg-orange-50/50 p-4 sm:p-5 transition-all">
           
-          <div class="flex items-center justify-between pb-2.5 mb-3 border-b border-rose-200/60">
+          <div class="flex items-center justify-between pb-2.5 mb-3 border-b border-orange-200/60">
             <div class="flex items-center gap-2">
               <span class="text-xs">🚨</span>
-              <h3 class="text-xs sm:text-sm font-black tracking-tight text-rose-950">
+              <h3 class="text-xs sm:text-sm font-black tracking-tight text-orange-950">
                 Radar de Atenção Imediata da Diretoria ({{ topCriticalProjects().length }} Projetos com Desvio ou Atenção Crítica)
               </h3>
             </div>
-            <span class="text-[10px] font-bold text-rose-700">
+            <span class="text-[10px] font-bold text-orange-700">
               Itens prioritários para deliberação na reunião de hoje
             </span>
           </div>
@@ -336,22 +336,23 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
           <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
             <div
               *ngFor="let item of topCriticalProjects()"
-              class="p-3.5 rounded-xl border border-rose-200 bg-white text-slate-800 shadow-2xs flex flex-col justify-between">
+              class="p-3.5 rounded-xl border border-orange-200 bg-white text-slate-800 shadow-2xs flex flex-col justify-between">
               <div>
                 <div class="flex items-center justify-between gap-1 mb-1.5">
                   <span class="text-[10px] font-bold text-slate-500">{{ item.client }}</span>
-                  <span class="text-[9px] font-black px-1.5 py-0.5 rounded-full bg-rose-100 text-rose-800 border border-rose-200">
+                  <span class="text-[9px] font-black px-1.5 py-0.5 rounded-full"
+                    [ngClass]="item.ragStatus === 'red' ? 'bg-rose-100 text-rose-800 border border-rose-200' : 'bg-amber-100 text-amber-800 border border-amber-200'">
                     {{ item.ragStatus === 'red' ? 'Com Desvio' : 'Atenção' }}
                   </span>
                 </div>
                 <h4 class="text-xs font-black leading-snug truncate" [title]="item.name">{{ item.name }}</h4>
-                <p class="text-[11px] text-rose-900 mt-1.5 leading-snug font-medium line-clamp-3">
+                <p class="text-[11px] text-orange-950/90 mt-1.5 leading-snug font-medium line-clamp-3">
                   {{ item.attentionPoints }}
                 </p>
               </div>
               <div class="mt-3 pt-2 border-t border-slate-100 flex items-center justify-between text-[10px] text-slate-500">
                 <span>Fase: <strong class="text-slate-700">{{ item.currentMilestone }}</strong></span>
-                <span class="font-bold text-rose-600">{{ item.progress }}% concluído</span>
+                <span class="font-bold text-orange-700">{{ item.progress }}% concluído</span>
               </div>
             </div>
           </div>
