@@ -41,6 +41,11 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
             <p class="text-[11px] text-slate-500 mt-0.5">
               Período {{ currentReport()?.period }}
             </p>
+            <!-- Linha 4 -->
+            <p class="text-[11px] font-medium text-slate-500 mt-0.5 flex items-center gap-1">
+              <span>🗓️</span>
+              <span>Emissão: {{ formatDate(currentReport()?.meetingDate) }}</span>
+            </p>
           </div>
         </div>
 
@@ -83,79 +88,66 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
       <div *ngIf="!service.isLoadingReport() && currentReport()" class="space-y-5">
 
         <!-- ======================================================== -->
-        <!-- 1. HERO BANNER: HEADLINE & EXECUTIVE PULSE KPIS (LIGHT)  -->
+        <!-- 1. HERO BANNER: EXECUTIVE PULSE KPIS (LIGHT)             -->
         <!-- ======================================================== -->
         <div class="rounded-2xl border border-slate-200/90 bg-white text-slate-900 shadow-2xs p-4 sm:p-5 transition-all">
           
-          <div class="flex flex-col xl:flex-row xl:items-center justify-between gap-4">
-            <!-- Left: Headline Statement / Emission Date -->
-            <div class="flex flex-col justify-center">
-              <div class="flex items-center gap-2 text-[11px] font-bold text-blue-700 tracking-wider uppercase">
-                <span>🗓️ Emissão: {{ formatDate(currentReport()?.meetingDate) }}</span>
-              </div>
-              <h2 *ngIf="currentReport()?.executiveSummary && !currentReport()?.executiveSummary?.includes('Visão executiva consolidada')"
-                class="text-sm font-extrabold text-slate-900 tracking-tight leading-snug mt-1 max-w-xl">
-                {{ currentReport()?.executiveSummary }}
-              </h2>
+          <!-- 6 Sleek Pulse Metrics (Light Theme) -->
+          <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2 w-full">
+            <!-- 1. Projetos Ativos -->
+            <div class="px-3 py-2 bg-slate-50 rounded-xl border border-slate-200/80 text-center min-w-[95px] shadow-2xs">
+              <span class="text-[9px] font-bold text-slate-500 uppercase tracking-wider block">Projetos Ativos</span>
+              <span class="text-xl font-black text-slate-900 block mt-0.5">
+                {{ currentReport()?.statusPulse?.totalActive || 0 }}
+              </span>
+              <span class="text-[9px] text-slate-500 font-medium">100% monitorados</span>
             </div>
 
-            <!-- Right: 6 Sleek Pulse Metrics (Light Theme) -->
-            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2 shrink-0">
-              <!-- 1. Projetos Ativos -->
-              <div class="px-3 py-2 bg-slate-50 rounded-xl border border-slate-200/80 text-center min-w-[95px] shadow-2xs">
-                <span class="text-[9px] font-bold text-slate-500 uppercase tracking-wider block">Projetos Ativos</span>
-                <span class="text-xl font-black text-slate-900 block mt-0.5">
-                  {{ currentReport()?.statusPulse?.totalActive || 0 }}
-                </span>
-                <span class="text-[9px] text-slate-500 font-medium">100% monitorados</span>
-              </div>
+            <!-- 2. No Prazo -->
+            <div class="px-3 py-2 bg-emerald-50/70 rounded-xl border border-emerald-200/80 text-center min-w-[95px] shadow-2xs">
+              <span class="text-[9px] font-bold text-emerald-800 uppercase tracking-wider block">No Prazo</span>
+              <span class="text-xl font-black text-emerald-700 block mt-0.5">
+                {{ currentReport()?.statusPulse?.onTrack || 0 }}
+              </span>
+              <span class="text-[9px] text-emerald-700 font-medium">
+                {{ getPercent(currentReport()?.statusPulse?.onTrack, currentReport()?.statusPulse?.totalActive) }}% portfólio
+              </span>
+            </div>
 
-              <!-- 2. No Prazo -->
-              <div class="px-3 py-2 bg-emerald-50/70 rounded-xl border border-emerald-200/80 text-center min-w-[95px] shadow-2xs">
-                <span class="text-[9px] font-bold text-emerald-800 uppercase tracking-wider block">No Prazo</span>
-                <span class="text-xl font-black text-emerald-700 block mt-0.5">
-                  {{ currentReport()?.statusPulse?.onTrack || 0 }}
-                </span>
-                <span class="text-[9px] text-emerald-700 font-medium">
-                  {{ getPercent(currentReport()?.statusPulse?.onTrack, currentReport()?.statusPulse?.totalActive) }}% portfólio
-                </span>
-              </div>
+            <!-- 3. Atenção (Radar de Atenção Imediata da Diretoria) -->
+            <div class="px-3 py-2 bg-rose-50/70 rounded-xl border border-rose-200/80 text-center min-w-[95px] shadow-2xs">
+              <span class="text-[9px] font-bold text-rose-800 uppercase tracking-wider block">Atenção</span>
+              <span class="text-xl font-black text-rose-700 block mt-0.5">
+                {{ topCriticalProjects().length }}
+              </span>
+              <span class="text-[9px] text-rose-700 font-medium">radar imediato</span>
+            </div>
 
-              <!-- 3. Atenção (Radar de Atenção Imediata da Diretoria) -->
-              <div class="px-3 py-2 bg-rose-50/70 rounded-xl border border-rose-200/80 text-center min-w-[95px] shadow-2xs">
-                <span class="text-[9px] font-bold text-rose-800 uppercase tracking-wider block">Atenção</span>
-                <span class="text-xl font-black text-rose-700 block mt-0.5">
-                  {{ topCriticalProjects().length }}
-                </span>
-                <span class="text-[9px] text-rose-700 font-medium">radar imediato</span>
-              </div>
+            <!-- 4. Deliberações (Deliberações & Decisões Esperadas da Diretoria) -->
+            <div class="px-3 py-2 bg-amber-50/70 rounded-xl border border-amber-200/80 text-center min-w-[95px] shadow-2xs">
+              <span class="text-[9px] font-bold text-amber-800 uppercase tracking-wider block">Deliberações</span>
+              <span class="text-xl font-black text-amber-800 block mt-0.5">
+                {{ currentReport()?.boardDecisions?.length || 0 }}
+              </span>
+              <span class="text-[9px] text-amber-800 font-medium">pautas diretoria</span>
+            </div>
 
-              <!-- 4. Deliberações (Deliberações & Decisões Esperadas da Diretoria) -->
-              <div class="px-3 py-2 bg-amber-50/70 rounded-xl border border-amber-200/80 text-center min-w-[95px] shadow-2xs">
-                <span class="text-[9px] font-bold text-amber-800 uppercase tracking-wider block">Deliberações</span>
-                <span class="text-xl font-black text-amber-800 block mt-0.5">
-                  {{ currentReport()?.boardDecisions?.length || 0 }}
-                </span>
-                <span class="text-[9px] text-amber-800 font-medium">pautas diretoria</span>
-              </div>
+            <!-- 5. Roadmap (Projetos no Radar & Roadmap Estratégico) -->
+            <div class="px-3 py-2 bg-blue-50/70 rounded-xl border border-blue-200/80 text-center min-w-[95px] shadow-2xs">
+              <span class="text-[9px] font-bold text-blue-800 uppercase tracking-wider block">Roadmap</span>
+              <span class="text-xl font-black text-blue-700 block mt-0.5">
+                {{ currentReport()?.roadmapProjects?.length || 0 }}
+              </span>
+              <span class="text-[9px] text-blue-700 font-medium">pipeline estratégico</span>
+            </div>
 
-              <!-- 5. Roadmap (Projetos no Radar & Roadmap Estratégico) -->
-              <div class="px-3 py-2 bg-blue-50/70 rounded-xl border border-blue-200/80 text-center min-w-[95px] shadow-2xs">
-                <span class="text-[9px] font-bold text-blue-800 uppercase tracking-wider block">Roadmap</span>
-                <span class="text-xl font-black text-blue-700 block mt-0.5">
-                  {{ currentReport()?.roadmapProjects?.length || 0 }}
-                </span>
-                <span class="text-[9px] text-blue-700 font-medium">pipeline estratégico</span>
-              </div>
-
-              <!-- 6. Avanço Médio -->
-              <div class="px-3 py-2 bg-slate-50 rounded-xl border border-slate-200/80 text-center min-w-[95px] shadow-2xs">
-                <span class="text-[9px] font-bold text-slate-600 uppercase tracking-wider block">Avanço Médio</span>
-                <span class="text-xl font-black text-blue-700 block mt-0.5">
-                  {{ currentReport()?.statusPulse?.averageProgress || 0 }}%
-                </span>
-                <span class="text-[9px] text-slate-500 font-medium">conclusão física</span>
-              </div>
+            <!-- 6. Avanço Médio -->
+            <div class="px-3 py-2 bg-slate-50 rounded-xl border border-slate-200/80 text-center min-w-[95px] shadow-2xs">
+              <span class="text-[9px] font-bold text-slate-600 uppercase tracking-wider block">Avanço Médio</span>
+              <span class="text-xl font-black text-blue-700 block mt-0.5">
+                {{ currentReport()?.statusPulse?.averageProgress || 0 }}%
+              </span>
+              <span class="text-[9px] text-slate-500 font-medium">conclusão física</span>
             </div>
           </div>
 
