@@ -160,12 +160,12 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
             </div>
 
             <!-- 8. Deliberações -->
-            <div class="px-2.5 py-2 bg-amber-50/70 rounded-xl border border-amber-200/80 text-center shadow-2xs">
-              <span class="text-[9px] font-bold text-amber-800 uppercase tracking-wider block truncate">Deliberações</span>
-              <span class="text-xl font-black text-amber-800 block mt-0.5">
+            <div class="px-2.5 py-2 bg-purple-50/70 rounded-xl border border-purple-200/80 text-center shadow-2xs">
+              <span class="text-[9px] font-bold text-purple-800 uppercase tracking-wider block truncate">Deliberações</span>
+              <span class="text-xl font-black text-purple-800 block mt-0.5">
                 {{ currentReport()?.boardDecisions?.length || 0 }}
               </span>
-              <span class="text-[9px] text-amber-800 font-medium block truncate">pautas diretoria</span>
+              <span class="text-[9px] text-purple-800 font-medium block truncate">pautas diretoria</span>
             </div>
 
             <!-- 9. Roadmap -->
@@ -362,16 +362,16 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
         <!-- 3. DELIBERAÇÕES & DECISÕES DA DIRETORIA (EFEITO / AÇÃO)  -->
         <!-- ======================================================== -->
         <div
-          class="rounded-2xl border border-amber-200/90 bg-amber-50/50 p-4 sm:p-5 transition-all">
+          class="rounded-2xl border border-purple-200/90 bg-purple-50/50 p-4 sm:p-5 transition-all">
           
-          <div class="flex items-center justify-between pb-2.5 mb-3 border-b border-amber-200/60">
+          <div class="flex items-center justify-between pb-2.5 mb-3 border-b border-purple-200/60">
             <div class="flex items-center gap-2">
               <span class="text-xs">⚖️</span>
-              <h3 class="text-xs sm:text-sm font-black tracking-tight text-amber-950">
+              <h3 class="text-xs sm:text-sm font-black tracking-tight text-purple-950">
                 Deliberações & Decisões Esperadas da Diretoria ({{ currentReport()?.boardDecisions?.length || 0 }})
               </h3>
             </div>
-            <span class="text-[10px] font-bold text-amber-800">
+            <span class="text-[10px] font-bold text-purple-800">
               Pauta prioritária para deliberação executiva
             </span>
           </div>
@@ -381,30 +381,30 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
             class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
             <div
               *ngFor="let dec of currentReport()?.boardDecisions"
-              class="p-3.5 rounded-xl border border-amber-200 bg-white text-slate-800 shadow-2xs flex flex-col justify-between">
+              class="p-3.5 rounded-xl border border-purple-200 bg-white text-slate-800 shadow-2xs flex flex-col justify-between">
               <div>
                 <div class="flex items-center justify-between gap-1 mb-1.5">
                   <span class="text-[10px] font-bold text-slate-500 uppercase">{{ dec.client }}</span>
                   <span class="text-[9px] font-bold px-1.5 py-0.5 rounded-full"
-                    [ngClass]="dec.status === 'Aprovado' ? 'bg-emerald-100 text-emerald-800 border border-emerald-200' : 'bg-amber-100 text-amber-800 border border-amber-200'">
+                    [ngClass]="dec.status === 'Aprovado' ? 'bg-emerald-100 text-emerald-800 border border-emerald-200' : 'bg-purple-100 text-purple-800 border border-purple-200'">
                     {{ dec.status }}
                   </span>
                 </div>
                 <h4 class="text-xs font-black leading-snug text-slate-900">
                   {{ dec.title }}
                 </h4>
-                <p class="text-[11px] text-amber-950/80 leading-snug mt-1.5 font-medium">
+                <p class="text-[11px] text-purple-950/80 leading-snug mt-1.5 font-medium">
                   {{ dec.impact }}
                 </p>
               </div>
               <div class="mt-3 pt-2 border-t border-slate-100 flex items-center justify-between text-[10px] text-slate-500">
                 <span>Prazo:</span>
-                <strong class="text-amber-800 font-bold">{{ dec.deadline }}</strong>
+                <strong class="text-purple-800 font-bold">{{ dec.deadline }}</strong>
               </div>
             </div>
           </div>
           <ng-template #emptyDecisions>
-            <p class="text-xs text-amber-800/70 italic py-2">Nenhuma deliberação registrada para esta semana.</p>
+            <p class="text-xs text-purple-800/70 italic py-2">Nenhuma deliberação registrada para esta semana.</p>
           </ng-template>
 
         </div>
