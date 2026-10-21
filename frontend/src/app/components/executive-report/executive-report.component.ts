@@ -1720,17 +1720,20 @@ export class ExecutiveReportComponent implements OnInit {
 
   getRoadmapStageClass(stage: string) {
     const s = (stage || '').toLowerCase();
-    if (s.includes('proposta') || s.includes('comercial')) return 'bg-indigo-100 text-indigo-900 border border-indigo-300 font-extrabold';
-    if (s.includes('discovery') || s.includes('desenho') || s.includes('arquitetura') || s.includes('escopo')) return 'bg-sky-100 text-sky-900 border border-sky-300 font-extrabold';
-    if (s.includes('kick-off') || s.includes('iminente') || s.includes('início')) return 'bg-emerald-100 text-emerald-900 border border-emerald-300 font-extrabold';
-    if (s.includes('contrato') || s.includes('formalização')) return 'bg-purple-100 text-purple-900 border border-purple-300 font-extrabold';
+    if (s.includes('proposta')) return 'bg-indigo-100 text-indigo-900 border border-indigo-300 font-extrabold';
+    if (s.includes('negociação') || s.includes('negociacao')) return 'bg-orange-100 text-orange-900 border border-orange-300 font-extrabold';
+    if (s.includes('discovery')) return 'bg-sky-100 text-sky-900 border border-sky-300 font-extrabold';
+    if (s.includes('arquitetura')) return 'bg-blue-100 text-blue-900 border border-blue-300 font-extrabold';
+    if (s.includes('escopo')) return 'bg-teal-100 text-teal-900 border border-teal-300 font-extrabold';
+    if (s.includes('kick-off') || s.includes('início')) return 'bg-emerald-200 text-emerald-950 border border-emerald-400 font-extrabold';
+    if (s.includes('contrato')) return 'bg-purple-100 text-purple-900 border border-purple-300 font-extrabold';
     if (s.includes('budget') || s.includes('orçamento')) return 'bg-amber-100 text-amber-900 border border-amber-300 font-extrabold';
     if (s.includes('viabilidade')) return 'bg-teal-100 text-teal-900 border border-teal-300 font-extrabold';
-    if (s.includes('ideação')) return 'bg-fuchsia-100 text-fuchsia-900 border border-fuchsia-300 font-extrabold';
-    if (s.includes('prospecção')) return 'bg-violet-100 text-violet-900 border border-violet-300 font-extrabold';
-    if (s.includes('priorização') || s.includes('portfólio')) return 'bg-cyan-100 text-cyan-900 border border-cyan-300 font-extrabold';
-    if (s.includes('espera') || s.includes('backlog')) return 'bg-slate-200 text-slate-800 border border-slate-400 font-extrabold';
-    if (s.includes('cancelado') || s.includes('declinado')) return 'bg-rose-100 text-rose-900 border border-rose-300 font-extrabold';
+    if (s.includes('ideação') || s.includes('ideacao')) return 'bg-fuchsia-100 text-fuchsia-900 border border-fuchsia-300 font-extrabold';
+    if (s.includes('prospecção') || s.includes('prospeccao')) return 'bg-violet-100 text-violet-900 border border-violet-300 font-extrabold';
+    if (s.includes('priorização') || s.includes('priorizacao')) return 'bg-lime-100 text-lime-900 border border-lime-300 font-extrabold';
+    if (s.includes('espera') || s.includes('pausado')) return 'bg-slate-200 text-slate-800 border border-slate-400 font-extrabold';
+    if (s.includes('cancelado')) return 'bg-rose-100 text-rose-900 border border-rose-300 font-extrabold';
     return 'bg-blue-100 text-blue-900 border border-blue-300 font-extrabold';
   }
 

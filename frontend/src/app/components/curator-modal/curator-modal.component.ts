@@ -1961,18 +1961,18 @@ export class CuratorModalComponent implements OnInit {
   roadmapStageOptions: string[] = [
     'Prospecção',
     'Ideação',
-    'Em Proposta Comercial',
-    'Alinhamento com Cliente',
-    'Discovery Técnico',
-    'Análise de Viabilidade',
-    'Desenho de Solução & Arquitetura',
-    'Elaboração de Escopo & EAP',
-    'Aguardando Aprovação de Budget',
-    'Aguardando Formalização de Contrato',
-    'Priorização no Portfólio',
-    'Kick-off Iminente',
-    'Em espera',
-    'Cancelado / Declinado'
+    'Proposta',
+    'Negociação',
+    'Discovery',
+    'Viabilidade',
+    'Arquitetura',
+    'Escopo',
+    'Budget',
+    'Contrato',
+    'Priorização',
+    'Kick-off',
+    'Espera',
+    'Cancelado'
   ];
 
   strategicValueOptions: string[] = [
@@ -2564,8 +2564,8 @@ export class CuratorModalComponent implements OnInit {
       id: 'road-' + Date.now(),
       name: 'Novo Projeto Estratégico',
       client: 'John Deere',
-      estimatedStart: 'Novembro/2026',
-      stage: 'Em Proposta Comercial',
+      estimatedStart: 'A definir',
+      stage: 'Discovery',
       strategicValue: 'Alto',
       description: 'Descrição preliminar da oportunidade no radar.',
       responsible: 'Comercial & PMO'

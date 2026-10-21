@@ -353,7 +353,7 @@
         "name": "ILC Pay (Rodobank)",
         "client": "Mirassol",
         "estimatedStart": "A definir",
-        "stage": "Em espera",
+        "stage": "Espera",
         "strategicValue": "Muito Alto",
         "description": "Aplicativo bancário destinado aos motoristas contratados pela Mirassol",
         "responsible": "ILC"
@@ -363,7 +363,7 @@
         "name": "Televida",
         "client": "Mirassol",
         "estimatedStart": "A definir",
-        "stage": "Discovery Técnico",
+        "stage": "Discovery",
         "strategicValue": "Médio",
         "description": "Funcionalidade de telemedicina no App Smart Tracking",
         "responsible": "ILC"
@@ -373,7 +373,7 @@
         "name": "Modernização do ROC",
         "client": "ILC",
         "estimatedStart": "A definir",
-        "stage": "Prospecção / Ideação",
+        "stage": "Ideação",
         "strategicValue": "Alto",
         "description": "Aprimorar o relatório de ocupação de carga de forma que ele fique mais acertivo e com redução de ação humana.",
         "responsible": "ILC"
@@ -383,7 +383,7 @@
         "name": "Forms Tipo Quiz",
         "client": "Mirassol",
         "estimatedStart": "A definir",
-        "stage": "Prospecção / Ideação",
+        "stage": "Prospecção",
         "strategicValue": "Baixo",
         "description": "Adicionar descrição",
         "responsible": "ILC"
@@ -393,7 +393,7 @@
         "name": "Auditoria de Comprovantes",
         "client": "Mirassol",
         "estimatedStart": "A definir",
-        "stage": "Prospecção / Ideação",
+        "stage": "Prospecção",
         "strategicValue": "Médio",
         "description": "Adicionar descrição",
         "responsible": "ILC"
