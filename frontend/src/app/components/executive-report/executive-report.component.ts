@@ -283,7 +283,7 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
             <span class="text-[10px] font-extrabold text-orange-900">Itens prioritários para deliberação na reunião de hoje</span>
           </div>
 
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-3">
             <div
               *ngFor="let item of topCriticalProjects()"
               class="p-3.5 rounded-xl border-2 border-orange-200 bg-white text-slate-900 shadow-xs flex flex-col justify-between">
@@ -297,7 +297,7 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
                 </div>
                 <h4 class="text-xs font-black leading-snug truncate text-slate-950" [title]="item.name">{{ item.name }}</h4>
                 <p class="text-[11px] text-slate-800 mt-1.5 leading-snug font-medium line-clamp-3">
-                  {{ item.attentionPoints }}
+                  {{ hasAttentionPoints(item) ? item.attentionPoints : (item.ragStatus === 'red' ? 'Projeto com desvio de prazo ou esforço em relação ao acordo firmado.' : 'Atenção gerencial recomendada.') }}
                 </p>
               </div>
               <div class="mt-2.5 pt-2 border-t border-slate-200 flex items-center justify-between text-[10px] text-slate-600">
@@ -883,23 +883,25 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
                       Desvios & Ações Mitigatórias
                     </span>
                   </div>
-                  <div *ngIf="topCriticalProjects().length > 0; else noCritical" class="space-y-1.5 overflow-hidden">
-                    <div *ngFor="let item of topCriticalProjects().slice(0, 2)"
-                      class="p-2 rounded-lg border shadow-2xs"
+                  <div *ngIf="topCriticalProjects().length > 0; else noCritical"
+                    class="grid gap-1.5 overflow-hidden"
+                    [ngClass]="topCriticalProjects().length > 2 ? 'grid-cols-2' : 'grid-cols-1'">
+                    <div *ngFor="let item of topCriticalProjects()"
+                      class="p-1.5 rounded-lg border shadow-2xs flex flex-col justify-between"
                       [ngClass]="presentationTheme() === 'dark' ? 'bg-slate-900 border-orange-500/40 text-slate-200' : 'bg-orange-50/70 border-2 border-orange-200 text-slate-900'">
                       <div class="flex items-center justify-between gap-1 mb-0.5">
-                        <span class="text-[10px] font-black truncate"
+                        <span class="text-[9px] font-black truncate"
                           [ngClass]="presentationTheme() === 'dark' ? 'text-white' : 'text-slate-950'">
                           {{ item.client }} • {{ item.name }}
                         </span>
                         <span class="text-[8px] font-black px-1.5 py-0.2 rounded-full shrink-0"
                           [ngClass]="item.ragStatus === 'red' ? 'bg-rose-100 text-rose-900 border border-rose-300' : 'bg-amber-100 text-amber-900 border border-amber-300'">
-                          {{ item.ragStatus === 'red' ? 'Com Desvio' : 'Atenção' }}
+                          {{ item.ragStatus === 'red' ? 'Desvio' : 'Atenção' }}
                         </span>
                       </div>
-                      <p class="text-[10px] leading-snug line-clamp-2"
+                      <p class="text-[8px] leading-tight line-clamp-2"
                         [ngClass]="presentationTheme() === 'dark' ? 'text-slate-300' : 'text-slate-800'">
-                        {{ item.attentionPoints }}
+                        {{ hasAttentionPoints(item) ? item.attentionPoints : (item.ragStatus === 'red' ? 'Projeto com desvio de prazo ou esforço.' : 'Atenção gerencial.') }}
                       </p>
                     </div>
                   </div>
@@ -1515,7 +1517,7 @@ export class ExecutiveReportComponent implements OnInit {
   topCriticalProjects = computed(() => {
     const report = this.currentReport();
     if (!report || !report.activeProjects) return [];
-    return report.activeProjects.filter(p => p.ragStatus === 'red' || p.ragStatus === 'amber').slice(0, 3);
+    return report.activeProjects.filter(p => p.ragStatus === 'red' || p.ragStatus === 'amber');
   });
 
   compareByTargetDelivery(a: WeeklyReportProject, b: WeeklyReportProject): number {
