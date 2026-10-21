@@ -46,19 +46,6 @@ import { Project, ProjectActivity, EapPhase, AzureAuditReport } from '../../mode
                 <h2 class="text-2xl font-black text-slate-900 tracking-tight">
                   {{ project.name }}
                 </h2>
-                <!-- Priority Badge -->
-                <span
-                  class="text-xs font-black px-2.5 py-1 rounded-xl border shadow-2xs flex items-center gap-1 shrink-0 cursor-default"
-                  [ngClass]="service.getPriorityBadgeClass(project.priority || 'P2')"
-                  [title]="'Prioridade: ' + service.getPriorityLabel(project.priority || 'P2')">
-                  <span>🎯</span>
-                  <span>{{ service.getPriorityLabel(project.priority || 'P2') }}</span>
-                </span>
-                <!-- RAG Status Badge with pulsating light -->
-                <div [ngClass]="getRagPillClass(project.ragStatus)" class="flex items-center gap-1.5 text-xs font-extrabold px-3 py-1 rounded-full border shrink-0">
-                  <span class="w-2 h-2 rounded-full animate-pulse" [ngClass]="getRagDotClass(project.ragStatus)"></span>
-                  <span>{{ project.ragStatus === 'green' ? 'No Prazo' : (project.ragStatus === 'amber' ? 'Atenção' : 'Atrasado') }}</span>
-                </div>
               </div>
             </div>
           </div>
@@ -97,14 +84,6 @@ import { Project, ProjectActivity, EapPhase, AzureAuditReport } from '../../mode
               </option>
             </select>
 
-            <!-- Extrato Azure DevOps Button -->
-            <button
-              (click)="openAzureAudit(project)"
-              class="px-3 py-2 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 border border-indigo-200 rounded-xl text-xs font-bold transition flex items-center gap-1.5 cursor-pointer shadow-2xs"
-              title="Abrir Extrato Completo de Itens Extraídos do Azure DevOps">
-              <span>📋 Extrato Azure</span>
-            </button>
-
             <!-- Fullscreen / Wide Toggle Button -->
             <button
               (click)="toggleFullscreen()"
@@ -128,11 +107,24 @@ import { Project, ProjectActivity, EapPhase, AzureAuditReport } from '../../mode
           </div>
         </div>
 
-        <!-- PROJECT GOVERNANCE BAR: PRIORIDADE, SISTEMAS ENVOLVIDOS & EQUIPE ALOCADA -->
+        <!-- PROJECT GOVERNANCE BAR: STATUS, PRIORIDADE, SISTEMAS ENVOLVIDOS & EQUIPE ALOCADA -->
         <div class="p-3.5 bg-slate-50/90 rounded-2xl border border-slate-200/90 flex flex-col md:flex-row md:items-center justify-between gap-3 text-xs shadow-2xs">
           
-          <!-- Left: Prioridade & Sistemas Envolvidos -->
+          <!-- Left: Status, Prioridade & Sistemas Envolvidos -->
           <div class="flex flex-wrap items-center gap-3">
+            <!-- Status do Projeto (ao lado esquerdo de Prioridade) -->
+            <div class="flex items-center gap-1.5">
+              <span class="text-[10px] font-black uppercase text-slate-400 tracking-wider">Status:</span>
+              <div
+                [ngClass]="getRagPillClass(project.ragStatus, project.status)"
+                class="flex items-center gap-1.5 text-xs font-extrabold px-2.5 py-0.5 rounded-lg border shadow-2xs shrink-0 cursor-default">
+                <span class="w-2 h-2 rounded-full animate-pulse" [ngClass]="getRagDotClass(project.ragStatus, project.status)"></span>
+                <span>{{ getRagText(project) }}</span>
+              </div>
+            </div>
+
+            <span class="text-slate-300 hidden sm:inline">|</span>
+
             <!-- Prioridade com badge explicativo -->
             <div class="flex items-center gap-1.5">
               <span class="text-[10px] font-black uppercase text-slate-400 tracking-wider">Prioridade:</span>
@@ -1285,13 +1277,25 @@ export class EapGanttComponent {
     return act.dateStr || act.month || 'A definir';
   }
 
-  getRagPillClass(rag: string): string {
+  getRagText(project: Project): string {
+    if (project.status === 'Congelado') return 'Congelado';
+    if (project.status === 'Finalizado') return 'Finalizado';
+    if (project.ragStatus === 'red') return 'Atrasado';
+    if (project.ragStatus === 'amber') return 'Atenção';
+    return 'No Prazo';
+  }
+
+  getRagPillClass(rag: string, status?: string): string {
+    if (status === 'Congelado') return 'bg-slate-200 text-slate-800 border-slate-300 font-extrabold';
+    if (status === 'Finalizado') return 'bg-blue-100 text-blue-900 border-blue-200 font-extrabold';
     if (rag === 'red') return 'bg-rose-100 text-rose-800 border-rose-200';
     if (rag === 'amber') return 'bg-amber-100 text-amber-800 border-amber-200';
     return 'bg-emerald-100 text-emerald-800 border-emerald-200';
   }
 
-  getRagDotClass(rag: string): string {
+  getRagDotClass(rag: string, status?: string): string {
+    if (status === 'Congelado') return 'bg-slate-500';
+    if (status === 'Finalizado') return 'bg-blue-500';
     if (rag === 'red') return 'bg-rose-500';
     if (rag === 'amber') return 'bg-amber-500';
     return 'bg-emerald-500';
