@@ -87,7 +87,7 @@ function resolveProjectWeeklyDetails(p) {
     return {
       previousStatusReport: 'Validação técnica preliminar e alinhamento de escopo operacional com os líderes de projeto.',
       statusReport: mainHighlights || summary,
-      attentionPoints: riskLine ? riskLine.replace('RISCOS:', '').trim() : (p.ragStatus === 'red' ? 'Revisão do caminho crítico necessária para conter desvio.' : 'Execução fluindo dentro dos marcos acordados.')
+      attentionPoints: riskLine ? riskLine.replace('RISCOS:', '').trim() : (p.ragStatus === 'red' ? 'Revisão do caminho crítico necessária para conter desvio.' : '')
     };
   }
 

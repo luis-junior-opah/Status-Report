@@ -503,10 +503,11 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
               <!-- Attention Point / Frozen banner -->
               <div *ngIf="p.status === 'Congelado'"
                 class="p-2.5 rounded-xl text-[10px] leading-snug mb-3 bg-slate-200 border-2 border-slate-300 text-slate-900 shadow-2xs font-medium">
-                <strong>⏸️ Projeto Congelado:</strong> Atividades temporariamente pausadas pela gestão.
+                <strong>⏸️ Projeto Congelado:</strong> {{ hasAttentionPoints(p) ? p.attentionPoints : 'Atividades temporariamente pausadas pela gestão.' }}
               </div>
-              <div *ngIf="p.status !== 'Congelado' && (p.ragStatus === 'red' || p.ragStatus === 'amber')"
-                class="p-2.5 rounded-xl text-[10px] leading-snug mb-3 bg-rose-100 border-2 border-rose-300 text-rose-950 shadow-2xs font-medium">
+              <div *ngIf="p.status !== 'Congelado' && hasAttentionPoints(p)"
+                class="p-2.5 rounded-xl text-[10px] leading-snug mb-3 shadow-2xs font-medium"
+                [ngClass]="getAttentionBoxClass(p, 'light')">
                 <strong>⚠️ Ponto de Atenção:</strong> {{ p.attentionPoints }}
               </div>
 
@@ -1102,11 +1103,11 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
                 <div *ngIf="p.status === 'Congelado'"
                   class="p-1.5 rounded-lg text-[9px] leading-snug mb-1.5 border font-semibold"
                   [ngClass]="presentationTheme() === 'dark' ? 'bg-slate-950 border-slate-700 text-slate-200' : 'bg-slate-200 border-2 border-slate-300 text-slate-900'">
-                  <strong>⏸️ Congelado:</strong> Pausado temporariamente pela gestão.
+                  <strong>⏸️ Congelado:</strong> {{ hasAttentionPoints(p) ? p.attentionPoints : 'Pausado temporariamente pela gestão.' }}
                 </div>
-                <div *ngIf="p.status !== 'Congelado' && (p.ragStatus === 'red' || p.ragStatus === 'amber')"
+                <div *ngIf="p.status !== 'Congelado' && hasAttentionPoints(p)"
                   class="p-1.5 rounded-lg text-[9px] leading-snug mb-1.5 border font-medium"
-                  [ngClass]="presentationTheme() === 'dark' ? 'bg-rose-950/80 border-rose-700 text-rose-200' : 'bg-rose-100 border-2 border-rose-300 text-rose-950'">
+                  [ngClass]="getAttentionBoxClass(p, presentationTheme())">
                   <strong>⚠️ Ponto de Atenção:</strong> {{ p.attentionPoints }}
                 </div>
 
@@ -1748,8 +1749,39 @@ export class ExecutiveReportComponent implements OnInit {
         : 'bg-amber-100 text-amber-900 border border-amber-300';
     }
     return theme === 'dark' 
-      ? 'bg-slate-800 text-slate-300 border border-slate-700' 
-      : 'bg-slate-100 text-slate-800 border border-slate-300';
+      ? 'bg-slate-800 text-slate-300 border border-slate-700 font-semibold' 
+      : 'bg-slate-100 text-slate-800 border border-slate-300 font-semibold';
+  }
+
+  hasAttentionPoints(p?: WeeklyReportProject | null): boolean {
+    if (!p || !p.attentionPoints) return false;
+    const text = p.attentionPoints.trim();
+    if (!text) return false;
+    const lower = text.toLowerCase();
+    if (lower === 'execução fluindo dentro dos marcos acordados.' ||
+        lower === 'execucao fluindo dentro dos marcos acordados.' ||
+        lower === 'sem registro.' ||
+        lower === 'sem pontos de atenção.' ||
+        lower === 'sem pontos de atencao.' ||
+        lower === 'nenhum' ||
+        lower === 'n/a' ||
+        lower === '-') {
+      return false;
+    }
+    return true;
+  }
+
+  getAttentionBoxClass(p: WeeklyReportProject, theme: 'dark' | 'light' = 'light'): string {
+    if (theme === 'dark') {
+      if (p.ragStatus === 'red') {
+        return 'bg-rose-950/80 border-rose-700 text-rose-200';
+      }
+      return 'bg-amber-950/80 border-amber-700 text-amber-200';
+    }
+    if (p.ragStatus === 'red') {
+      return 'bg-rose-100 border-2 border-rose-300 text-rose-950';
+    }
+    return 'bg-amber-100 border-2 border-amber-300 text-amber-950';
   }
 
   formatDate(dateStr?: string | null) {
