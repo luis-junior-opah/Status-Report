@@ -64,6 +64,8 @@ export interface BoardDecision {
   impact: string;
   status: string;
   deadline: string;
+  description?: string;
+  responsible?: string;
 }
 
 export interface WeeklyReport {

@@ -9,9 +9,9 @@
     "executiveSummary": "Mensagem sintese",
     "statusPulse": {
       "totalActive": 8,
-      "onTrack": 5,
+      "onTrack": 4,
       "attention": 0,
-      "critical": 3,
+      "critical": 4,
       "averageProgress": 40
     },
     "activeProjects": [
@@ -284,7 +284,7 @@
         "status": "Ativo",
         "currentMilestone": "Planejamento",
         "progress": 0,
-        "ragStatus": "green",
+        "ragStatus": "red",
         "agreedDelivery": "2027-01-17",
         "targetDelivery": "2027-01-17",
         "varianceDays": 0,
@@ -440,9 +440,9 @@
     "executiveSummary": "Mensagem sintese",
     "statusPulse": {
       "totalActive": 8,
-      "onTrack": 5,
+      "onTrack": 4,
       "attention": 0,
-      "critical": 3,
+      "critical": 4,
       "averageProgress": 40
     },
     "activeProjects": [
@@ -715,7 +715,7 @@
         "status": "Ativo",
         "currentMilestone": "Planejamento",
         "progress": 0,
-        "ragStatus": "green",
+        "ragStatus": "red",
         "agreedDelivery": "2027-01-17",
         "targetDelivery": "2027-01-17",
         "varianceDays": 0,
@@ -871,9 +871,9 @@
     "executiveSummary": "Fechamento do ciclo anterior: Início dos testes integrados John Deere e avanço na arquitetura de migração de nuvem.",
     "statusPulse": {
       "totalActive": 8,
-      "onTrack": 5,
+      "onTrack": 4,
       "attention": 0,
-      "critical": 3,
+      "critical": 4,
       "averageProgress": 40
     },
     "activeProjects": [
@@ -1146,7 +1146,7 @@
         "status": "Ativo",
         "currentMilestone": "Planejamento",
         "progress": 0,
-        "ragStatus": "green",
+        "ragStatus": "red",
         "agreedDelivery": "2027-01-17",
         "targetDelivery": "2027-01-17",
         "varianceDays": 0,
