@@ -1726,7 +1726,8 @@ export class ExecutiveReportComponent implements OnInit {
     if (s.includes('contrato') || s.includes('formalização')) return 'bg-purple-100 text-purple-900 border border-purple-300 font-extrabold';
     if (s.includes('budget') || s.includes('orçamento')) return 'bg-amber-100 text-amber-900 border border-amber-300 font-extrabold';
     if (s.includes('viabilidade')) return 'bg-teal-100 text-teal-900 border border-teal-300 font-extrabold';
-    if (s.includes('prospecção') || s.includes('ideação')) return 'bg-violet-100 text-violet-900 border border-violet-300 font-extrabold';
+    if (s.includes('ideação')) return 'bg-fuchsia-100 text-fuchsia-900 border border-fuchsia-300 font-extrabold';
+    if (s.includes('prospecção')) return 'bg-violet-100 text-violet-900 border border-violet-300 font-extrabold';
     if (s.includes('priorização') || s.includes('portfólio')) return 'bg-cyan-100 text-cyan-900 border border-cyan-300 font-extrabold';
     if (s.includes('espera') || s.includes('backlog')) return 'bg-slate-200 text-slate-800 border border-slate-400 font-extrabold';
     if (s.includes('cancelado') || s.includes('declinado')) return 'bg-rose-100 text-rose-900 border border-rose-300 font-extrabold';

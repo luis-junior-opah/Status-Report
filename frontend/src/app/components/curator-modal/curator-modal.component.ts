@@ -1959,7 +1959,8 @@ export class CuratorModalComponent implements OnInit {
   ];
 
   roadmapStageOptions: string[] = [
-    'Prospecção / Ideação',
+    'Prospecção',
+    'Ideação',
     'Em Proposta Comercial',
     'Alinhamento com Cliente',
     'Discovery Técnico',
