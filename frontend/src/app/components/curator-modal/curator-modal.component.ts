@@ -1174,57 +1174,69 @@ import { WeeklyReport, WeeklyReportProject, RoadmapProject, BoardDecision } from
                     </button>
                   </div>
 
-                  <div class="grid grid-cols-1 sm:grid-cols-4 gap-2">
-                    <div>
+                  <!-- Linha 1: Dados Principais da Iniciativa -->
+                  <div class="grid grid-cols-1 sm:grid-cols-12 gap-2">
+                    <div class="sm:col-span-4">
                       <label class="block text-[10px] font-bold text-slate-500">Nome da Iniciativa</label>
                       <input
                         type="text"
                         [(ngModel)]="item.name"
-                        class="w-full bg-white border border-slate-300 rounded-lg px-2.5 py-1 text-xs font-bold text-slate-800 outline-none">
+                        placeholder="Ex: Novo App Corporativo"
+                        class="w-full bg-white border border-slate-300 rounded-lg px-2.5 py-1 text-xs font-bold text-slate-800 outline-none focus:border-blue-500">
                     </div>
-                    <div>
+                    <div class="sm:col-span-3">
                       <label class="block text-[10px] font-bold text-slate-500">Cliente / Parceiro</label>
                       <input
                         type="text"
                         [(ngModel)]="item.client"
-                        class="w-full bg-white border border-slate-300 rounded-lg px-2.5 py-1 text-xs font-semibold text-slate-800 outline-none">
+                        placeholder="Ex: ILC, Mirassol, John Deere"
+                        class="w-full bg-white border border-slate-300 rounded-lg px-2.5 py-1 text-xs font-semibold text-slate-800 outline-none focus:border-blue-500">
                     </div>
-                    <div>
-                      <label class="block text-[10px] font-bold text-slate-500">Estágio</label>
+                    <div class="sm:col-span-3">
+                      <label class="block text-[10px] font-bold text-slate-500">Estágio do Radar</label>
                       <select
                         [(ngModel)]="item.stage"
-                        class="w-full bg-white border border-slate-300 rounded-lg px-2.5 py-1 text-xs font-semibold text-slate-800 outline-none">
-                        <option value="Em Proposta Comercial">Em Proposta Comercial</option>
-                        <option value="Discovery Técnico">Discovery Técnico</option>
-                        <option value="Análise de Viabilidade">Análise de Viabilidade</option>
-                        <option value="Kick-off Iminente">Kick-off Iminente</option>
-                        <option value="Aguardando Contrato">Aguardando Contrato</option>
+                        class="w-full bg-white border border-slate-300 rounded-lg px-2 py-1 text-xs font-semibold text-slate-800 outline-none focus:border-blue-500">
+                        <option *ngFor="let s of roadmapStageOptions" [value]="s">{{ s }}</option>
+                        <option *ngIf="item.stage && !roadmapStageOptions.includes(item.stage)" [value]="item.stage">{{ item.stage }}</option>
                       </select>
                     </div>
-                    <div>
+                    <div class="sm:col-span-2">
+                      <label class="block text-[10px] font-bold text-slate-500">Valor Estratégico</label>
+                      <select
+                        [(ngModel)]="item.strategicValue"
+                        class="w-full bg-white border border-slate-300 rounded-lg px-2 py-1 text-xs font-bold text-blue-700 outline-none focus:border-blue-500">
+                        <option *ngFor="let val of strategicValueOptions" [value]="val">{{ val }}</option>
+                        <option *ngIf="item.strategicValue && !strategicValueOptions.includes(item.strategicValue)" [value]="item.strategicValue">{{ item.strategicValue }}</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <!-- Linha 2: Previsão, Responsável e Descrição -->
+                  <div class="grid grid-cols-1 sm:grid-cols-12 gap-2">
+                    <div class="sm:col-span-3">
                       <label class="block text-[10px] font-bold text-slate-500">Previsão de Início</label>
                       <input
                         type="text"
                         [(ngModel)]="item.estimatedStart"
-                        placeholder="Ex: Novembro/2026"
-                        class="w-full bg-white border border-slate-300 rounded-lg px-2.5 py-1 text-xs font-semibold text-slate-800 outline-none">
+                        placeholder="Ex: Novembro/2026 ou A definir"
+                        class="w-full bg-white border border-slate-300 rounded-lg px-2.5 py-1 text-xs font-semibold text-slate-800 outline-none focus:border-blue-500">
                     </div>
-                  </div>
-
-                  <div class="grid grid-cols-1 sm:grid-cols-4 gap-2">
                     <div class="sm:col-span-3">
-                      <label class="block text-[10px] font-bold text-slate-500">Descrição / Escopo</label>
-                      <input
-                        type="text"
-                        [(ngModel)]="item.description"
-                        class="w-full bg-white border border-slate-300 rounded-lg px-2.5 py-1 text-xs text-slate-700 outline-none">
-                    </div>
-                    <div>
                       <label class="block text-[10px] font-bold text-slate-500">Responsável</label>
                       <input
                         type="text"
                         [(ngModel)]="item.responsible"
-                        class="w-full bg-white border border-slate-300 rounded-lg px-2.5 py-1 text-xs text-slate-700 outline-none">
+                        placeholder="Ex: ILC, Comercial & PMO"
+                        class="w-full bg-white border border-slate-300 rounded-lg px-2.5 py-1 text-xs text-slate-700 outline-none focus:border-blue-500">
+                    </div>
+                    <div class="sm:col-span-6">
+                      <label class="block text-[10px] font-bold text-slate-500">Descrição / Escopo da Oportunidade</label>
+                      <input
+                        type="text"
+                        [(ngModel)]="item.description"
+                        placeholder="Breve descrição da proposta ou solução..."
+                        class="w-full bg-white border border-slate-300 rounded-lg px-2.5 py-1 text-xs text-slate-700 outline-none focus:border-blue-500">
                     </div>
                   </div>
                 </div>
@@ -1944,6 +1956,31 @@ export class CuratorModalComponent implements OnInit {
       badge: 'bg-slate-100 text-slate-700 border-slate-200',
       desc: 'Ajustes cosméticos, melhorias secundárias, débitos técnicos de baixo impacto ou tarefas sob demanda.'
     }
+  ];
+
+  roadmapStageOptions: string[] = [
+    'Prospecção / Ideação',
+    'Em Proposta Comercial',
+    'Alinhamento com Cliente',
+    'Discovery Técnico',
+    'Análise de Viabilidade',
+    'Desenho de Solução & Arquitetura',
+    'Elaboração de Escopo & EAP',
+    'Aguardando Aprovação de Budget',
+    'Aguardando Formalização de Contrato',
+    'Priorização no Portfólio',
+    'Kick-off Iminente',
+    'Em Espera / Backlog Estratégico',
+    'Cancelado / Declinado'
+  ];
+
+  strategicValueOptions: string[] = [
+    'Muito Alto',
+    'Alto',
+    'Médio',
+    'Baixo',
+    'Estratégico',
+    'Crítico'
   ];
 
   newProjData = {

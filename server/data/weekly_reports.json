@@ -27,9 +27,9 @@
         "agreedDelivery": "2026-11-28",
         "targetDelivery": "2026-11-28",
         "varianceDays": 0,
-        "statusReport": "Projeto sincronizado com o Azure DevOps. Iteração: Iteration 1.",
+        "statusReport": "Protótipo desenvolvido e iniciado desenvolvimento frontend",
         "statusReportDate": "2026-10-06",
-        "previousStatusReport": "Alinhamento inicial de escopo e arquitetura técnica com stakeholders internos.",
+        "previousStatusReport": "Desenvolvimento do protótipo em andamento.",
         "previousStatusReportDate": "2026-09-29",
         "attentionPoints": "Execução fluindo dentro dos marcos acordados.",
         "hoursExecuted": 0,
@@ -65,11 +65,11 @@
         "agreedDelivery": "2026-11-30",
         "targetDelivery": "2026-11-30",
         "varianceDays": 0,
-        "statusReport": "Desenvolvimento concluido, testes realizados. Homologado junto a John Deere, próximo passo treinar usuários.",
+        "statusReport": "Aguardando retorno do cliente quanto agendamento do treinamento.\nMaterial da capacitação em elaboração.",
         "statusReportDate": "2026-10-06",
-        "previousStatusReport": "Desenvolvimento das regras de inclusão de novos itens e testes unitários concluídos.",
+        "previousStatusReport": "Sem registro.",
         "previousStatusReportDate": "2026-09-29",
-        "attentionPoints": "Execução fluindo dentro dos marcos acordados.",
+        "attentionPoints": "Necessária revisão de datas, para atualização das etapas.",
         "hoursExecuted": 82,
         "hoursPlanned": 120,
         "priority": "P2",
@@ -103,7 +103,7 @@
         "varianceDays": 0,
         "statusReport": "Etapa de gerenciamento de parâmetros em fase final de desenvolvimento.",
         "statusReportDate": "2026-10-06",
-        "previousStatusReport": "Levantamento das tabelas tarifárias de frete e desenho técnico dos serviços de parametrização.",
+        "previousStatusReport": "Sem registro.",
         "previousStatusReportDate": "2026-09-29",
         "attentionPoints": "Execução fluindo dentro dos marcos acordados.",
         "hoursExecuted": 349,
@@ -140,7 +140,7 @@
         "varianceDays": 0,
         "statusReport": "Desenvolvimento concluido, testes realizados. Homologado junto a John Deere, próximo passo treinar usuários.",
         "statusReportDate": "2026-10-06",
-        "previousStatusReport": "Mapeamento das condições de duplicidade e validação da lógica de eliminação com a operação.",
+        "previousStatusReport": "Sem registro.",
         "previousStatusReportDate": "2026-09-29",
         "attentionPoints": "Execução fluindo dentro dos marcos acordados.",
         "hoursExecuted": 76,
@@ -176,7 +176,7 @@
         "varianceDays": 0,
         "statusReport": "Projeto sincronizado com o Azure DevOps. Iteração: Iteration 1.",
         "statusReportDate": "2026-10-06",
-        "previousStatusReport": "Validação técnica preliminar e alinhamento de escopo operacional com os líderes de projeto.",
+        "previousStatusReport": "Sem registro.",
         "previousStatusReportDate": "2026-10-06",
         "attentionPoints": "Revisão do caminho crítico necessária para conter desvio.",
         "hoursExecuted": 0,
@@ -208,7 +208,7 @@
         "varianceDays": 0,
         "statusReport": "Planejamento da arquitetura de certificados digitais e conformidade jurídica ICP-Brasil (86%).",
         "statusReportDate": "2026-10-06",
-        "previousStatusReport": "Definição do modelo de custódia e requisitos jurídicos ICP-Brasil para canhotos digitais.",
+        "previousStatusReport": "Sem registro.",
         "previousStatusReportDate": "2026-09-29",
         "attentionPoints": "Avaliação de custos de APIs de certificadora parceira junto à diretoria financeira.",
         "hoursExecuted": 71,
@@ -249,7 +249,7 @@
         "varianceDays": 0,
         "statusReport": "Fluxo central de abertura e aprovação de demandas estruturado (94%). Validação de usabilidade com gestores.",
         "statusReportDate": "2026-10-06",
-        "previousStatusReport": "Prototipação de telas de solicitação de demandas e aprovação gerencial.",
+        "previousStatusReport": "Sem registro.",
         "previousStatusReportDate": "2026-09-29",
         "attentionPoints": "Alinhamento dos critérios finais de aceite antes do encerramento da fase de planejamento.",
         "hoursExecuted": 619,
@@ -286,7 +286,7 @@
         "varianceDays": 0,
         "statusReport": "Projeto Safety está em fase de elicitação de requisitos.",
         "statusReportDate": "2026-10-06",
-        "previousStatusReport": "Iniciação do projeto, mapeamento preliminar das rotinas de segurança e entrevistas com motoristas.",
+        "previousStatusReport": "Sem registro.",
         "previousStatusReportDate": "2026-09-29",
         "attentionPoints": "Execução fluindo dentro dos marcos acordados.",
         "hoursExecuted": 0,
@@ -324,7 +324,7 @@
         "varianceDays": 0,
         "statusReport": "Projeto sincronizado com o Azure DevOps. Iteração: Em andamento.",
         "statusReportDate": "2026-10-06",
-        "previousStatusReport": "Desenvolvimento dos conectores de telemetria e testes de integração com rastreadores veiculares.",
+        "previousStatusReport": "Sem registro.",
         "previousStatusReportDate": "2026-09-29",
         "attentionPoints": "Execução fluindo dentro dos marcos acordados.",
         "hoursExecuted": 0,
@@ -350,70 +350,55 @@
     "roadmapProjects": [
       {
         "id": "road-1",
-        "name": "Portal de Autoatendimento B2B",
-        "client": "John Deere",
-        "estimatedStart": "Novembro/2026",
-        "stage": "Em Proposta Comercial",
+        "name": "ILC Pay (Rodobank)",
+        "client": "Mirassol",
+        "estimatedStart": "A definir",
+        "stage": "Discovery Técnico",
         "strategicValue": "Alto",
-        "description": "Portal self-service para consulta de pedidos, pedidos duplicados e telemetria logística em tempo real.",
-        "responsible": "Comercial & PMO"
+        "description": "Aplicativo bancário destinado aos motoristas contratados pela Mirassol",
+        "responsible": "ILC"
       },
       {
         "id": "road-2",
-        "name": "Integração TMS & Torre de Controle Dedicada",
+        "name": "Televida",
         "client": "Mirassol",
-        "estimatedStart": "Dezembro/2026",
+        "estimatedStart": "A definir",
         "stage": "Discovery Técnico",
         "strategicValue": "Alto",
-        "description": "Camada de mensageria para telemetria e tracking ativo das frotas de transporte rodoviário.",
-        "responsible": "Arquitetura & Operações"
+        "description": "Funcionalidade de telemedicina no App Smart Tracking",
+        "responsible": "ILC"
       },
       {
         "id": "road-3",
-        "name": "IA Preditiva de Otimização de Roteirização",
-        "client": "ILC (Interno)",
-        "estimatedStart": "Q1 / 2027",
-        "stage": "Análise de Viabilidade",
+        "name": "Modernização do ROC",
+        "client": "ILC",
+        "estimatedStart": "A definir",
+        "stage": "Discovery Técnico",
         "strategicValue": "Muito Alto",
-        "description": "Estudo piloto de algoritmos preditivos para diminuição do custo operacional por km rodado.",
-        "responsible": "Inovação & Tech"
+        "description": "Aprimorar o relatório de ocupação de carga de forma que ele fique mais acertivo e com redução de ação humana.",
+        "responsible": "ILC"
       },
       {
         "id": "road-4",
-        "name": "Hub de Conexão EDI & Supply Chain Integrado",
-        "client": "Petrobras",
-        "estimatedStart": "Janeiro/2027",
-        "stage": "Prospecção Estratégica",
+        "name": "Forms Tipo Quiz",
+        "client": "Mirassol",
+        "estimatedStart": "A definir",
+        "stage": "Discovery Técnico",
         "strategicValue": "Alto",
-        "description": "Expansão da plataforma ILC para novos fluxos logísticos e conformidade de suprimentos.",
-        "responsible": "Diretoria de Negócios"
+        "description": "Adicionar descrição",
+        "responsible": "ILC"
+      },
+      {
+        "id": "road-1792612651664",
+        "name": "Auditoria de Comprovantes",
+        "client": "Mirassol",
+        "estimatedStart": "A definir",
+        "stage": "Discovery Técnico",
+        "strategicValue": "Alto",
+        "description": "Adicionar descrição",
+        "responsible": "ILC"
       }
     ],
-    "boardDecisions": [
-      {
-        "id": "dec-1",
-        "title": "Aprovação da Data de Go-Live - Duplicação de Pedidos",
-        "client": "John Deere",
-        "impact": "Homologação final e implantação assistida agendada para final de Outubro.",
-        "status": "Aguardando Aval",
-        "deadline": "16/10/2026"
-      },
-      {
-        "id": "dec-2",
-        "title": "Priorização de Squad: Fluxo de Recusa vs Assinatura Digital",
-        "client": "Mirassol",
-        "impact": "Alocação dedicada de 2 engenheiros de software para aceleração da entrega.",
-        "status": "Em Deliberação",
-        "deadline": "Reunião de Hoje"
-      },
-      {
-        "id": "dec-3",
-        "title": "Janela de Manutenção: Conclusão Migração Data Center Matrix",
-        "client": "ILC (Interno)",
-        "impact": "Virada final do tráfego de produção sem indisponibilidade para parceiros externos.",
-        "status": "Alinhado",
-        "deadline": "19/10/2026"
-      }
-    ]
+    "boardDecisions": []
   }
 ]

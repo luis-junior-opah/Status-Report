@@ -375,7 +375,10 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
               </div>
               <div class="mt-2.5 pt-1.5 border-t border-slate-200 flex items-center justify-between text-[9px] text-slate-600">
                 <span>Início: <strong class="text-slate-800">{{ road.estimatedStart }}</strong></span>
-                <span class="font-extrabold text-blue-700">{{ road.strategicValue }}</span>
+                <span class="text-[9px] px-2 py-0.5 rounded-full font-black border shadow-2xs"
+                  [ngClass]="getStrategicValueBadgeClass(road.strategicValue)">
+                  Valor: {{ road.strategicValue }}
+                </span>
               </div>
             </div>
           </div>
@@ -1223,8 +1226,9 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
                   <div class="mt-2 pt-1 border-t flex items-center justify-between text-[8px]"
                     [ngClass]="presentationTheme() === 'dark' ? 'border-slate-800 text-slate-400' : 'border-slate-200 text-slate-600'">
                     <span>Início: <strong [ngClass]="presentationTheme() === 'dark' ? 'text-slate-200' : 'text-slate-800'">{{ road.estimatedStart }}</strong></span>
-                    <span class="font-extrabold" [ngClass]="presentationTheme() === 'dark' ? 'text-blue-400' : 'text-blue-700'">
-                      {{ road.strategicValue }}
+                    <span class="text-[8px] px-1.5 py-0.2 rounded-full font-black border"
+                      [ngClass]="getStrategicValueBadgeClass(road.strategicValue, presentationTheme())">
+                      Valor: {{ road.strategicValue }}
                     </span>
                   </div>
                 </div>
@@ -1713,10 +1717,39 @@ export class ExecutiveReportComponent implements OnInit {
 
   getRoadmapStageClass(stage: string) {
     const s = (stage || '').toLowerCase();
-    if (s.includes('proposta')) return 'bg-indigo-100 text-indigo-900 border border-indigo-300 font-extrabold';
-    if (s.includes('discovery')) return 'bg-sky-100 text-sky-900 border border-sky-300 font-extrabold';
-    if (s.includes('kick-off') || s.includes('iminente')) return 'bg-emerald-100 text-emerald-900 border border-emerald-300 font-extrabold';
-    return 'bg-amber-100 text-amber-900 border border-amber-300 font-extrabold';
+    if (s.includes('proposta') || s.includes('comercial')) return 'bg-indigo-100 text-indigo-900 border border-indigo-300 font-extrabold';
+    if (s.includes('discovery') || s.includes('desenho') || s.includes('arquitetura') || s.includes('escopo')) return 'bg-sky-100 text-sky-900 border border-sky-300 font-extrabold';
+    if (s.includes('kick-off') || s.includes('iminente') || s.includes('início')) return 'bg-emerald-100 text-emerald-900 border border-emerald-300 font-extrabold';
+    if (s.includes('contrato') || s.includes('formalização')) return 'bg-purple-100 text-purple-900 border border-purple-300 font-extrabold';
+    if (s.includes('budget') || s.includes('orçamento')) return 'bg-amber-100 text-amber-900 border border-amber-300 font-extrabold';
+    if (s.includes('viabilidade')) return 'bg-teal-100 text-teal-900 border border-teal-300 font-extrabold';
+    if (s.includes('prospecção') || s.includes('ideação')) return 'bg-violet-100 text-violet-900 border border-violet-300 font-extrabold';
+    if (s.includes('priorização') || s.includes('portfólio')) return 'bg-cyan-100 text-cyan-900 border border-cyan-300 font-extrabold';
+    if (s.includes('espera') || s.includes('backlog')) return 'bg-slate-200 text-slate-800 border border-slate-400 font-extrabold';
+    if (s.includes('cancelado') || s.includes('declinado')) return 'bg-rose-100 text-rose-900 border border-rose-300 font-extrabold';
+    return 'bg-blue-100 text-blue-900 border border-blue-300 font-extrabold';
+  }
+
+  getStrategicValueBadgeClass(val: string, theme: 'dark' | 'light' = 'light'): string {
+    const v = (val || '').toLowerCase();
+    if (v.includes('muito alto') || v.includes('crítico')) {
+      return theme === 'dark' 
+        ? 'bg-purple-950/80 text-purple-200 border border-purple-700' 
+        : 'bg-purple-100 text-purple-900 border border-purple-300';
+    }
+    if (v.includes('alto') || v.includes('estratégico')) {
+      return theme === 'dark' 
+        ? 'bg-blue-950/80 text-blue-200 border border-blue-700' 
+        : 'bg-blue-100 text-blue-900 border border-blue-300';
+    }
+    if (v.includes('médio')) {
+      return theme === 'dark' 
+        ? 'bg-amber-950/80 text-amber-200 border border-amber-700' 
+        : 'bg-amber-100 text-amber-900 border border-amber-300';
+    }
+    return theme === 'dark' 
+      ? 'bg-slate-800 text-slate-300 border border-slate-700' 
+      : 'bg-slate-100 text-slate-800 border border-slate-300';
   }
 
   formatDate(dateStr?: string | null) {
