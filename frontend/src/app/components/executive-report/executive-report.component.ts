@@ -16,7 +16,7 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
       <!-- TOP EXECUTIVE CONTROL BAR (SCREEN ONLY)                  -->
       <!-- ======================================================== -->
       <div
-        class="bg-white rounded-2xl border border-slate-200/90 shadow-2xs px-4 py-3 flex flex-col md:flex-row md:items-center md:justify-between gap-3 mb-5 print:hidden">
+        class="bg-white rounded-2xl border border-slate-300 shadow-xs px-4 py-3 flex flex-col md:flex-row md:items-center md:justify-between gap-3 mb-5 print:hidden">
         
         <!-- Left: Co-branding & Title -->
         <div class="flex items-center gap-3">
@@ -24,13 +24,13 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
             📊
           </div>
           <div class="flex flex-col">
-            <h1 class="text-sm sm:text-base font-extrabold tracking-tight text-slate-900 leading-tight">
+            <h1 class="text-sm sm:text-base font-extrabold tracking-tight text-slate-950 leading-tight">
               Status Report
             </h1>
-            <p class="text-[11px] font-semibold text-slate-700 mt-0.5">
+            <p class="text-[11px] font-bold text-slate-700 mt-0.5">
               Edição {{ service.formatEditionTitle(currentReport()) }}
             </p>
-            <p class="text-[11px] text-slate-500 mt-0.5">
+            <p class="text-[11px] text-slate-600 mt-0.5 font-medium">
               Período {{ currentReport()?.period }} • Emissão: {{ formatDate(currentReport()?.meetingDate) }}
             </p>
           </div>
@@ -48,6 +48,15 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
               {{ service.formatEditionTitle(rep) }}
             </option>
           </select>
+
+          <!-- Theme Switcher Button -->
+          <button
+            (click)="togglePresentationTheme()"
+            class="px-2.5 py-1.5 rounded-xl text-[11px] font-bold transition flex items-center gap-1.5 shadow-2xs cursor-pointer border"
+            [ngClass]="presentationTheme() === 'dark' ? 'bg-slate-900 text-amber-300 border-slate-700 hover:bg-slate-800' : 'bg-slate-100 text-slate-800 border-slate-300 hover:bg-slate-200'"
+            [title]="'Alternar tema da apresentação (atualmente ' + (presentationTheme() === 'dark' ? 'Escuro' : 'Claro') + ')'">
+            <span>{{ presentationTheme() === 'dark' ? '🌙 Tema: Escuro' : '☀️ Tema: Claro' }}</span>
+          </button>
 
           <!-- Presentation Mode Button (Opens interactive PPT 16:9 Landscape viewer) -->
           <button
@@ -70,7 +79,7 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
       <!-- Loading State -->
       <div *ngIf="service.isLoadingReport()" class="py-16 text-center print:hidden">
         <div class="inline-block animate-spin rounded-full h-8 w-8 border-4 border-blue-600 border-t-transparent"></div>
-        <p class="mt-2 text-xs font-semibold text-slate-400">Carregando edição executiva...</p>
+        <p class="mt-2 text-xs font-semibold text-slate-500">Carregando edição executiva...</p>
       </div>
 
       <!-- ======================================================== -->
@@ -78,85 +87,85 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
       <!-- ======================================================== -->
       <div *ngIf="!service.isLoadingReport() && currentReport()" class="standard-report-view space-y-5 print:hidden">
 
-        <!-- 1. HERO BANNER: EXECUTIVE PULSE KPIS (LIGHT) -->
-        <div class="rounded-2xl border border-slate-200/90 bg-white text-slate-900 shadow-2xs p-4 sm:p-5 transition-all">
+        <!-- 1. HERO BANNER: EXECUTIVE PULSE KPIS (HIGH CONTRAST) -->
+        <div class="rounded-2xl border border-slate-300 bg-white text-slate-900 shadow-xs p-4 sm:p-5 transition-all">
           <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 2xl:grid-cols-10 gap-2 w-full">
             <!-- 1. Ativos -->
-            <div class="px-1.5 py-2 bg-slate-50 rounded-xl border border-slate-200/80 text-center shadow-2xs">
-              <span class="text-[8px] font-bold text-slate-500 uppercase tracking-tight block truncate">Ativos</span>
-              <span class="text-xl font-black text-slate-900 block mt-0.5">{{ getActiveCount() }}</span>
-              <span class="text-[9px] text-slate-500 font-medium block truncate">em andamento</span>
+            <div class="px-1.5 py-2 bg-slate-100 rounded-xl border border-slate-300 text-center shadow-2xs">
+              <span class="text-[8px] font-bold text-slate-600 uppercase tracking-tight block truncate">Ativos</span>
+              <span class="text-xl font-black text-slate-950 block mt-0.5">{{ getActiveCount() }}</span>
+              <span class="text-[9px] text-slate-600 font-medium block truncate">em andamento</span>
             </div>
 
             <!-- 2. No Prazo -->
-            <div class="px-1.5 py-2 bg-emerald-50/70 rounded-xl border border-emerald-200/80 text-center shadow-2xs">
-              <span class="text-[8px] font-bold text-emerald-800 uppercase tracking-tight block truncate">No Prazo</span>
+            <div class="px-1.5 py-2 bg-emerald-50 rounded-xl border border-emerald-300 text-center shadow-2xs">
+              <span class="text-[8px] font-bold text-emerald-900 uppercase tracking-tight block truncate">No Prazo</span>
               <span class="text-xl font-black text-emerald-700 block mt-0.5">{{ getOnTrackCount() }}</span>
-              <span class="text-[9px] text-emerald-700 font-medium block truncate">{{ getPercent(getOnTrackCount(), getActiveCount()) }}% ativos</span>
+              <span class="text-[9px] text-emerald-800 font-semibold block truncate">{{ getPercent(getOnTrackCount(), getActiveCount()) }}% ativos</span>
             </div>
 
             <!-- 3. Em Atenção -->
-            <div class="px-1.5 py-2 bg-amber-50/70 rounded-xl border border-amber-200/80 text-center shadow-2xs">
-              <span class="text-[8px] font-bold text-amber-800 uppercase tracking-tight block truncate">Em Atenção</span>
-              <span class="text-xl font-black text-amber-800 block mt-0.5">{{ getAttentionCount() }}</span>
-              <span class="text-[9px] text-amber-800 font-medium block truncate">risco moderado</span>
+            <div class="px-1.5 py-2 bg-amber-50 rounded-xl border border-amber-300 text-center shadow-2xs">
+              <span class="text-[8px] font-bold text-amber-900 uppercase tracking-tight block truncate">Em Atenção</span>
+              <span class="text-xl font-black text-amber-700 block mt-0.5">{{ getAttentionCount() }}</span>
+              <span class="text-[9px] text-amber-800 font-semibold block truncate">risco moderado</span>
             </div>
 
             <!-- 4. Com Desvio -->
-            <div class="px-1.5 py-2 bg-rose-50/70 rounded-xl border border-rose-200/80 text-center shadow-2xs">
-              <span class="text-[8px] font-bold text-rose-800 uppercase tracking-tight block truncate">Com Desvio</span>
+            <div class="px-1.5 py-2 bg-rose-50 rounded-xl border border-rose-300 text-center shadow-2xs">
+              <span class="text-[8px] font-bold text-rose-900 uppercase tracking-tight block truncate">Com Desvio</span>
               <span class="text-xl font-black text-rose-700 block mt-0.5">{{ getCriticalCount() }}</span>
-              <span class="text-[9px] text-rose-700 font-medium block truncate">desvio crítico</span>
+              <span class="text-[9px] text-rose-800 font-semibold block truncate">desvio crítico</span>
             </div>
 
             <!-- 5. Concluídos -->
-            <div class="px-1.5 py-2 bg-teal-50/70 rounded-xl border border-teal-200/80 text-center shadow-2xs">
-              <span class="text-[8px] font-bold text-teal-800 uppercase tracking-tight block truncate">Concluídos</span>
+            <div class="px-1.5 py-2 bg-teal-50 rounded-xl border border-teal-300 text-center shadow-2xs">
+              <span class="text-[8px] font-bold text-teal-900 uppercase tracking-tight block truncate">Concluídos</span>
               <span class="text-xl font-black text-teal-700 block mt-0.5">{{ getCompletedCount() }}</span>
-              <span class="text-[9px] text-teal-700 font-medium block truncate">entregas feitas</span>
+              <span class="text-[9px] text-teal-800 font-semibold block truncate">entregas feitas</span>
             </div>
 
             <!-- 6. Congelados -->
-            <div class="px-1.5 py-2 bg-slate-50 rounded-xl border border-slate-200/80 text-center shadow-2xs">
-              <span class="text-[8px] font-bold text-slate-500 uppercase tracking-tight block truncate">Congelados</span>
-              <span class="text-xl font-black text-slate-600 block mt-0.5">{{ getFrozenCount() }}</span>
-              <span class="text-[9px] text-slate-500 font-medium block truncate">pausados</span>
+            <div class="px-1.5 py-2 bg-slate-200/80 rounded-xl border border-slate-300 text-center shadow-2xs">
+              <span class="text-[8px] font-bold text-slate-700 uppercase tracking-tight block truncate">Congelados</span>
+              <span class="text-xl font-black text-slate-700 block mt-0.5">{{ getFrozenCount() }}</span>
+              <span class="text-[9px] text-slate-600 font-medium block truncate">pausados</span>
             </div>
 
             <!-- 7. No radar -->
-            <div class="px-1.5 py-2 bg-orange-50/70 rounded-xl border border-orange-200/80 text-center shadow-2xs">
-              <span class="text-[8px] font-bold text-orange-800 uppercase tracking-tight block truncate">🚨 No radar</span>
+            <div class="px-1.5 py-2 bg-orange-50 rounded-xl border border-orange-300 text-center shadow-2xs">
+              <span class="text-[8px] font-bold text-orange-900 uppercase tracking-tight block truncate">🚨 No radar</span>
               <span class="text-xl font-black text-orange-700 block mt-0.5">{{ topCriticalProjects().length }}</span>
-              <span class="text-[9px] text-orange-700 font-medium block truncate">radar diretoria</span>
+              <span class="text-[9px] text-orange-800 font-semibold block truncate">radar diretoria</span>
             </div>
 
             <!-- 8. Deliberações -->
-            <div class="px-1.5 py-2 bg-purple-50/70 rounded-xl border border-purple-200/80 text-center shadow-2xs">
-              <span class="text-[8px] font-bold text-purple-800 uppercase tracking-tight block truncate">⚖️ Deliberações</span>
+            <div class="px-1.5 py-2 bg-purple-50 rounded-xl border border-purple-300 text-center shadow-2xs">
+              <span class="text-[8px] font-bold text-purple-900 uppercase tracking-tight block truncate">⚖️ Deliberações</span>
               <span class="text-xl font-black text-purple-800 block mt-0.5">{{ currentReport()?.boardDecisions?.length || 0 }}</span>
-              <span class="text-[9px] text-purple-800 font-medium block truncate">pautas diretoria</span>
+              <span class="text-[9px] text-purple-800 font-semibold block truncate">pautas diretoria</span>
             </div>
 
             <!-- 9. Roadmap -->
-            <div class="px-1.5 py-2 bg-blue-50/70 rounded-xl border border-blue-200/80 text-center shadow-2xs">
-              <span class="text-[8px] font-bold text-blue-800 uppercase tracking-tight block truncate">🔭 Roadmap</span>
+            <div class="px-1.5 py-2 bg-blue-50 rounded-xl border border-blue-300 text-center shadow-2xs">
+              <span class="text-[8px] font-bold text-blue-900 uppercase tracking-tight block truncate">🔭 Roadmap</span>
               <span class="text-xl font-black text-blue-700 block mt-0.5">{{ currentReport()?.roadmapProjects?.length || 0 }}</span>
-              <span class="text-[9px] text-blue-700 font-medium block truncate">pipeline futuro</span>
+              <span class="text-[9px] text-blue-800 font-semibold block truncate">pipeline futuro</span>
             </div>
 
             <!-- 10. Avanço Médio -->
-            <div class="px-1.5 py-2 bg-slate-50 rounded-xl border border-slate-200/80 text-center shadow-2xs">
-              <span class="text-[8px] font-bold text-slate-600 uppercase tracking-tight block truncate">Avanço Médio</span>
+            <div class="px-1.5 py-2 bg-slate-100 rounded-xl border border-slate-300 text-center shadow-2xs">
+              <span class="text-[8px] font-bold text-slate-700 uppercase tracking-tight block truncate">Avanço Médio</span>
               <span class="text-xl font-black text-blue-700 block mt-0.5">{{ getAverageProgress() }}%</span>
-              <span class="text-[9px] text-slate-500 font-medium block truncate">conclusão física</span>
+              <span class="text-[9px] text-slate-600 font-medium block truncate">conclusão física</span>
             </div>
           </div>
 
           <!-- Priority Distribution Bar -->
-          <div class="mt-4 pt-3.5 border-t border-slate-100 flex flex-col md:flex-row md:items-center justify-between gap-3">
+          <div class="mt-4 pt-3.5 border-t border-slate-200 flex flex-col md:flex-row md:items-center justify-between gap-3">
             <div class="flex items-center gap-2">
               <span class="text-xs">🎯</span>
-              <span class="text-xs font-black text-slate-900 tracking-tight">Projetos por Prioridade:</span>
+              <span class="text-xs font-black text-slate-950 tracking-tight">Projetos por Prioridade:</span>
               <button
                 *ngIf="service.selectedPriority() !== 'Todos'"
                 type="button"
@@ -170,13 +179,13 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
               <button
                 type="button"
                 (click)="togglePriorityFilter('P1')"
-                [ngClass]="service.selectedPriority() === 'P1' ? 'ring-2 ring-rose-500 bg-rose-100/90 border-rose-300' : 'bg-rose-50/70 hover:bg-rose-100/60 border-rose-200/80'"
+                [ngClass]="service.selectedPriority() === 'P1' ? 'ring-2 ring-rose-500 bg-rose-100 border-rose-400' : 'bg-rose-50 hover:bg-rose-100 border-rose-300'"
                 class="px-3 py-2 rounded-xl border text-left flex items-center justify-between gap-3 transition-all cursor-pointer shadow-2xs">
                 <div class="flex items-center gap-1.5">
-                  <span class="w-2 h-2 rounded-full bg-rose-500 shrink-0"></span>
+                  <span class="w-2.5 h-2.5 rounded-full bg-rose-600 shrink-0"></span>
                   <div class="flex flex-col">
-                    <span class="text-[9px] font-black text-rose-800 uppercase tracking-wider leading-none">P1 • Crítica</span>
-                    <span class="text-[9px] text-rose-600/80 font-medium mt-0.5 leading-none">Urgência máxima</span>
+                    <span class="text-[9px] font-black text-rose-900 uppercase tracking-wider leading-none">P1 • Crítica</span>
+                    <span class="text-[9px] text-rose-700 font-semibold mt-0.5 leading-none">Urgência máxima</span>
                   </div>
                 </div>
                 <span class="text-base font-black text-rose-700 leading-none">{{ getPriorityCount('P1') }}</span>
@@ -185,13 +194,13 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
               <button
                 type="button"
                 (click)="togglePriorityFilter('P2')"
-                [ngClass]="service.selectedPriority() === 'P2' ? 'ring-2 ring-amber-500 bg-amber-100/90 border-amber-300' : 'bg-amber-50/70 hover:bg-amber-100/60 border-amber-200/80'"
+                [ngClass]="service.selectedPriority() === 'P2' ? 'ring-2 ring-amber-500 bg-amber-100 border-amber-400' : 'bg-amber-50 hover:bg-amber-100 border-amber-300'"
                 class="px-3 py-2 rounded-xl border text-left flex items-center justify-between gap-3 transition-all cursor-pointer shadow-2xs">
                 <div class="flex items-center gap-1.5">
-                  <span class="w-2 h-2 rounded-full bg-amber-500 shrink-0"></span>
+                  <span class="w-2.5 h-2.5 rounded-full bg-amber-500 shrink-0"></span>
                   <div class="flex flex-col">
-                    <span class="text-[9px] font-black text-amber-800 uppercase tracking-wider leading-none">P2 • Alta</span>
-                    <span class="text-[9px] text-amber-600/80 font-medium mt-0.5 leading-none">Impacto direto</span>
+                    <span class="text-[9px] font-black text-amber-900 uppercase tracking-wider leading-none">P2 • Alta</span>
+                    <span class="text-[9px] text-amber-700 font-semibold mt-0.5 leading-none">Impacto direto</span>
                   </div>
                 </div>
                 <span class="text-base font-black text-amber-800 leading-none">{{ getPriorityCount('P2') }}</span>
@@ -200,13 +209,13 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
               <button
                 type="button"
                 (click)="togglePriorityFilter('P3')"
-                [ngClass]="service.selectedPriority() === 'P3' ? 'ring-2 ring-blue-500 bg-blue-100/90 border-blue-300' : 'bg-blue-50/70 hover:bg-blue-100/60 border-blue-200/80'"
+                [ngClass]="service.selectedPriority() === 'P3' ? 'ring-2 ring-blue-500 bg-blue-100 border-blue-400' : 'bg-blue-50 hover:bg-blue-100 border-blue-300'"
                 class="px-3 py-2 rounded-xl border text-left flex items-center justify-between gap-3 transition-all cursor-pointer shadow-2xs">
                 <div class="flex items-center gap-1.5">
-                  <span class="w-2 h-2 rounded-full bg-blue-500 shrink-0"></span>
+                  <span class="w-2.5 h-2.5 rounded-full bg-blue-500 shrink-0"></span>
                   <div class="flex flex-col">
-                    <span class="text-[9px] font-black text-blue-800 uppercase tracking-wider leading-none">P3 • Média</span>
-                    <span class="text-[9px] text-blue-600/80 font-medium mt-0.5 leading-none">Evolução regular</span>
+                    <span class="text-[9px] font-black text-blue-900 uppercase tracking-wider leading-none">P3 • Média</span>
+                    <span class="text-[9px] text-blue-700 font-semibold mt-0.5 leading-none">Evolução regular</span>
                   </div>
                 </div>
                 <span class="text-base font-black text-blue-700 leading-none">{{ getPriorityCount('P3') }}</span>
@@ -215,13 +224,13 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
               <button
                 type="button"
                 (click)="togglePriorityFilter('P4')"
-                [ngClass]="service.selectedPriority() === 'P4' ? 'ring-2 ring-slate-500 bg-slate-200/90 border-slate-300' : 'bg-slate-50 hover:bg-slate-100/80 border-slate-200/80'"
+                [ngClass]="service.selectedPriority() === 'P4' ? 'ring-2 ring-slate-500 bg-slate-200 border-slate-400' : 'bg-slate-100 hover:bg-slate-200 border-slate-300'"
                 class="px-3 py-2 rounded-xl border text-left flex items-center justify-between gap-3 transition-all cursor-pointer shadow-2xs">
                 <div class="flex items-center gap-1.5">
-                  <span class="w-2 h-2 rounded-full bg-slate-400 shrink-0"></span>
+                  <span class="w-2.5 h-2.5 rounded-full bg-slate-400 shrink-0"></span>
                   <div class="flex flex-col">
-                    <span class="text-[9px] font-black text-slate-700 uppercase tracking-wider leading-none">P4 • Baixa</span>
-                    <span class="text-[9px] text-slate-500 font-medium mt-0.5 leading-none">Demanda rotina</span>
+                    <span class="text-[9px] font-black text-slate-800 uppercase tracking-wider leading-none">P4 • Baixa</span>
+                    <span class="text-[9px] text-slate-600 font-semibold mt-0.5 leading-none">Demanda rotina</span>
                   </div>
                 </div>
                 <span class="text-base font-black text-slate-700 leading-none">{{ getPriorityCount('P4') }}</span>
@@ -231,10 +240,10 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
 
           <!-- Systems Distribution Bar -->
           <div *ngIf="systemMetrics().length > 0"
-            class="mt-3.5 pt-3.5 border-t border-slate-100 flex flex-col md:flex-row md:items-center justify-between gap-3">
+            class="mt-3.5 pt-3.5 border-t border-slate-200 flex flex-col md:flex-row md:items-center justify-between gap-3">
             <div class="flex items-center gap-2">
               <span class="text-xs">🖥️</span>
-              <span class="text-xs font-black text-slate-900 tracking-tight">Projetos por Sistema:</span>
+              <span class="text-xs font-black text-slate-950 tracking-tight">Projetos por Sistema:</span>
               <button
                 *ngIf="service.selectedSystem() !== 'Todos'"
                 type="button"
@@ -263,115 +272,115 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
 
         <!-- 2. RADAR DE ATENÇÃO IMEDIATA DA DIRETORIA -->
         <div *ngIf="topCriticalProjects().length > 0"
-          class="rounded-2xl border border-orange-200/90 bg-orange-50/50 p-4 sm:p-5 transition-all">
-          <div class="flex items-center justify-between pb-2.5 mb-3 border-b border-orange-200/60">
+          class="rounded-2xl border-2 border-orange-300 bg-orange-50/70 p-4 sm:p-5 transition-all">
+          <div class="flex items-center justify-between pb-2.5 mb-3 border-b border-orange-300">
             <div class="flex items-center gap-2">
               <span class="text-xs">🚨</span>
               <h3 class="text-xs sm:text-sm font-black tracking-tight text-orange-950">
                 Radar de Atenção Imediata da Diretoria ({{ topCriticalProjects().length }} Projetos com Desvio ou Atenção Crítica)
               </h3>
             </div>
-            <span class="text-[10px] font-bold text-orange-700">Itens prioritários para deliberação na reunião de hoje</span>
+            <span class="text-[10px] font-extrabold text-orange-900">Itens prioritários para deliberação na reunião de hoje</span>
           </div>
 
           <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
             <div
               *ngFor="let item of topCriticalProjects()"
-              class="p-3.5 rounded-xl border border-orange-200 bg-white text-slate-800 shadow-2xs flex flex-col justify-between">
+              class="p-3.5 rounded-xl border-2 border-orange-200 bg-white text-slate-900 shadow-xs flex flex-col justify-between">
               <div>
                 <div class="flex items-center justify-between gap-1 mb-1.5">
-                  <span class="text-[10px] font-bold text-slate-500">{{ item.client }}</span>
+                  <span class="text-[10px] font-black text-slate-700">{{ item.client }}</span>
                   <span class="text-[9px] font-black px-1.5 py-0.5 rounded-full"
-                    [ngClass]="item.ragStatus === 'red' ? 'bg-rose-100 text-rose-800 border border-rose-200' : 'bg-amber-100 text-amber-800 border border-amber-200'">
+                    [ngClass]="item.ragStatus === 'red' ? 'bg-rose-100 text-rose-900 border border-rose-300 font-extrabold' : 'bg-amber-100 text-amber-900 border border-amber-300 font-extrabold'">
                     {{ item.ragStatus === 'red' ? 'Com Desvio' : 'Atenção' }}
                   </span>
                 </div>
-                <h4 class="text-xs font-black leading-snug truncate" [title]="item.name">{{ item.name }}</h4>
-                <p class="text-[11px] text-orange-950/90 mt-1.5 leading-snug font-medium line-clamp-3">
+                <h4 class="text-xs font-black leading-snug truncate text-slate-950" [title]="item.name">{{ item.name }}</h4>
+                <p class="text-[11px] text-slate-800 mt-1.5 leading-snug font-medium line-clamp-3">
                   {{ item.attentionPoints }}
                 </p>
               </div>
-              <div class="mt-2.5 pt-2 border-t border-slate-100 flex items-center justify-between text-[10px] text-slate-500">
-                <span>Meta: <strong class="text-slate-700 font-bold">{{ formatDate(item.targetDelivery) }}</strong></span>
-                <span class="font-extrabold text-slate-700">{{ item.progress }}% concluído</span>
+              <div class="mt-2.5 pt-2 border-t border-slate-200 flex items-center justify-between text-[10px] text-slate-600">
+                <span>Meta: <strong class="text-slate-900 font-bold">{{ formatDate(item.targetDelivery) }}</strong></span>
+                <span class="font-black text-slate-900">{{ item.progress }}% concluído</span>
               </div>
             </div>
           </div>
         </div>
 
         <!-- 3. DELIBERAÇÕES & DECISÕES DA DIRETORIA -->
-        <div class="rounded-2xl border border-purple-200/90 bg-purple-50/50 p-4 sm:p-5 transition-all">
-          <div class="flex items-center justify-between pb-2.5 mb-3 border-b border-purple-200/60">
+        <div class="rounded-2xl border-2 border-purple-300 bg-purple-50/70 p-4 sm:p-5 transition-all">
+          <div class="flex items-center justify-between pb-2.5 mb-3 border-b border-purple-300">
             <div class="flex items-center gap-2">
               <span class="text-xs">⚖️</span>
               <h3 class="text-xs sm:text-sm font-black tracking-tight text-purple-950">
                 Deliberações & Decisões Estratégicas ({{ currentReport()?.boardDecisions?.length || 0 }})
               </h3>
             </div>
-            <span class="text-[10px] font-bold text-purple-700">Decisões tomadas na reunião de diretoria</span>
+            <span class="text-[10px] font-extrabold text-purple-900">Decisões tomadas na reunião de diretoria</span>
           </div>
 
           <div *ngIf="currentReport()?.boardDecisions?.length; else emptyDecisions" class="grid grid-cols-1 md:grid-cols-3 gap-3">
             <div
               *ngFor="let dec of currentReport()?.boardDecisions"
-              class="p-3.5 rounded-xl border border-purple-200 bg-white text-slate-800 shadow-2xs flex flex-col justify-between">
+              class="p-3.5 rounded-xl border-2 border-purple-200 bg-white text-slate-900 shadow-xs flex flex-col justify-between">
               <div>
                 <div class="flex items-center justify-between gap-1 mb-1">
-                  <span class="text-[9px] font-bold px-1.5 py-0.5 rounded bg-purple-100 border border-purple-200 text-purple-800">
+                  <span class="text-[9px] font-black px-1.5 py-0.5 rounded bg-purple-100 border border-purple-300 text-purple-900">
                     {{ dec.client }}
                   </span>
                   <span class="text-[9px] font-bold px-1.5 py-0.5 rounded-full"
-                    [ngClass]="dec.status === 'approved' || dec.status === 'Alinhado' ? 'bg-emerald-100 text-emerald-800 border border-emerald-200' : 'bg-amber-100 text-amber-800 border border-amber-200'">
+                    [ngClass]="dec.status === 'approved' || dec.status === 'Alinhado' ? 'bg-emerald-100 text-emerald-900 border border-emerald-300 font-bold' : 'bg-amber-100 text-amber-900 border border-amber-300 font-bold'">
                     {{ dec.status }}
                   </span>
                 </div>
-                <h4 class="text-xs font-black truncate leading-snug text-slate-900" [title]="dec.title">{{ dec.title }}</h4>
-                <p class="text-[10px] leading-snug line-clamp-3 mt-1 text-slate-600 font-medium">{{ dec.impact || dec.description }}</p>
+                <h4 class="text-xs font-black truncate leading-snug text-slate-950" [title]="dec.title">{{ dec.title }}</h4>
+                <p class="text-[10px] leading-snug line-clamp-3 mt-1 text-slate-700 font-medium">{{ dec.impact || dec.description }}</p>
               </div>
-              <div class="mt-2.5 pt-1.5 border-t border-slate-100 flex items-center justify-between text-[9px] text-slate-500">
+              <div class="mt-2.5 pt-1.5 border-t border-slate-200 flex items-center justify-between text-[9px] text-slate-600">
                 <span>Prazo:</span>
-                <strong class="text-purple-800 font-bold">{{ dec.deadline }}</strong>
+                <strong class="text-purple-900 font-bold">{{ dec.deadline }}</strong>
               </div>
             </div>
           </div>
           <ng-template #emptyDecisions>
-            <p class="text-xs text-purple-800/70 italic py-2">Nenhuma deliberação registrada para esta semana.</p>
+            <p class="text-xs text-purple-900 italic py-2">Nenhuma deliberação registrada para esta semana.</p>
           </ng-template>
         </div>
 
         <!-- 4. PROJETOS NO RADAR & ROADMAP ESTRATÉGICO -->
-        <div class="rounded-2xl border border-blue-200/90 bg-blue-50/50 p-4 sm:p-5 transition-all">
-          <div class="flex items-center justify-between pb-2.5 mb-3 border-b border-blue-200/60">
+        <div class="rounded-2xl border-2 border-blue-300 bg-blue-50/70 p-4 sm:p-5 transition-all">
+          <div class="flex items-center justify-between pb-2.5 mb-3 border-b border-blue-300">
             <div class="flex items-center gap-2">
               <span class="text-xs">🔭</span>
               <h3 class="text-xs sm:text-sm font-black tracking-tight text-blue-950">
                 Projetos no Radar & Roadmap Estratégico ({{ currentReport()?.roadmapProjects?.length || 0 }})
               </h3>
             </div>
-            <span class="text-[10px] font-bold text-blue-700">Pipeline de novas demandas e expansões</span>
+            <span class="text-[10px] font-extrabold text-blue-900">Pipeline de novas demandas e expansões</span>
           </div>
 
           <div *ngIf="currentReport()?.roadmapProjects?.length; else emptyRoadmap"
             class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-3">
             <div
               *ngFor="let road of currentReport()?.roadmapProjects"
-              class="p-3.5 rounded-xl border border-blue-200 bg-white text-slate-800 shadow-2xs flex flex-col justify-between">
+              class="p-3.5 rounded-xl border-2 border-blue-200 bg-white text-slate-900 shadow-xs flex flex-col justify-between">
               <div>
                 <div class="flex items-center justify-between gap-1 mb-1">
-                  <span class="text-[9px] font-bold px-1.5 py-0.5 rounded bg-blue-50 border border-blue-200 text-blue-800">{{ road.client }}</span>
+                  <span class="text-[9px] font-black px-1.5 py-0.5 rounded bg-blue-100 border border-blue-300 text-blue-900">{{ road.client }}</span>
                   <span class="text-[9px] font-bold px-1.5 py-0.5 rounded-full" [ngClass]="getRoadmapStageClass(road.stage)">{{ road.stage }}</span>
                 </div>
-                <h4 class="text-xs font-black truncate leading-snug text-slate-900" [title]="road.name">{{ road.name }}</h4>
-                <p class="text-[10px] leading-snug line-clamp-2 mt-1 text-slate-600 font-medium">{{ road.description }}</p>
+                <h4 class="text-xs font-black truncate leading-snug text-slate-950" [title]="road.name">{{ road.name }}</h4>
+                <p class="text-[10px] leading-snug line-clamp-2 mt-1 text-slate-700 font-medium">{{ road.description }}</p>
               </div>
-              <div class="mt-2.5 pt-1.5 border-t border-slate-100 flex items-center justify-between text-[9px] text-slate-500">
-                <span>Início: <strong class="text-slate-700">{{ road.estimatedStart }}</strong></span>
+              <div class="mt-2.5 pt-1.5 border-t border-slate-200 flex items-center justify-between text-[9px] text-slate-600">
+                <span>Início: <strong class="text-slate-800">{{ road.estimatedStart }}</strong></span>
                 <span class="font-extrabold text-blue-700">{{ road.strategicValue }}</span>
               </div>
             </div>
           </div>
           <ng-template #emptyRoadmap>
-            <p class="text-xs text-blue-800/70 italic py-2">Nenhum projeto em roadmap nesta edição.</p>
+            <p class="text-xs text-blue-900 italic py-2">Nenhum projeto em roadmap nesta edição.</p>
           </ng-template>
         </div>
 
@@ -380,11 +389,11 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
           <app-filters></app-filters>
         </div>
 
-        <!-- 6. CARDS EXECUTIVOS DOS PROJETOS -->
+        <!-- 6. CARDS EXECUTIVOS DOS PROJETOS (HIGH CONTRAST) -->
         <div *ngIf="displayedProjects().length > 0" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3.5">
           <div
             *ngFor="let p of displayedProjects()"
-            class="rounded-2xl border border-slate-200/90 bg-white p-4 flex flex-col justify-between transition-all hover:shadow-xs">
+            class="rounded-2xl border-2 border-slate-300 bg-white p-4 flex flex-col justify-between transition-all hover:shadow-md">
             <div>
               <div class="flex items-center justify-between gap-2 mb-2">
                 <div class="flex items-center gap-1.5 flex-wrap">
@@ -397,14 +406,14 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
                     *ngIf="p.clientLogo || service.getClientLogo(p.client)"
                     [src]="p.clientLogo || service.getClientLogo(p.client)"
                     [alt]="p.client"
-                    class="h-4 max-w-[50px] object-contain rounded bg-white px-0.5 border border-slate-200 shadow-2xs"
+                    class="h-4 max-w-[50px] object-contain rounded bg-white px-0.5 border border-slate-300 shadow-2xs"
                   />
                   <span
                     *ngIf="!p.clientLogo && !service.getClientLogo(p.client)"
-                    class="text-[10px] font-bold px-1.5 py-0.2 rounded border bg-slate-100 border-slate-200 text-slate-700">
+                    class="text-[10px] font-black px-1.5 py-0.2 rounded border bg-slate-100 border-slate-300 text-slate-800">
                     {{ p.client }}
                   </span>
-                  <span [ngClass]="service.getMilestoneBadgeClass(p.currentMilestone)" class="px-2 py-0.2 rounded font-semibold text-[10px]">
+                  <span [ngClass]="service.getMilestoneBadgeClass(p.currentMilestone)" class="px-2 py-0.2 rounded font-bold text-[10px]">
                     {{ p.currentMilestone }}
                   </span>
                 </div>
@@ -412,7 +421,7 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
                   <span
                     *ngIf="p.status && p.status !== 'Ativo'"
                     class="px-2 py-0.2 rounded-full text-[10px] font-extrabold"
-                    [ngClass]="p.status === 'Finalizado' ? 'bg-blue-100 text-blue-800 border border-blue-200' : 'bg-slate-200 text-slate-700 border border-slate-300'">
+                    [ngClass]="p.status === 'Finalizado' ? 'bg-blue-100 text-blue-900 border border-blue-300' : 'bg-slate-200 text-slate-800 border border-slate-400'">
                     {{ p.status }}
                   </span>
                   <span
@@ -423,7 +432,7 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
                 </div>
               </div>
 
-              <h4 class="text-xs sm:text-sm font-extrabold tracking-tight truncate leading-snug mb-1 text-slate-900" [title]="p.name">
+              <h4 class="text-xs sm:text-sm font-black tracking-tight truncate leading-snug mb-1 text-slate-950" [title]="p.name">
                 {{ p.name }}
               </h4>
 
@@ -438,11 +447,11 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
 
               <!-- Progress bar -->
               <div class="mb-3">
-                <div class="flex items-center justify-between text-[10px] font-bold mb-1 text-slate-500">
+                <div class="flex items-center justify-between text-[10px] font-bold mb-1 text-slate-600">
                   <span>Progresso</span>
-                  <span class="font-black text-slate-800">{{ p.progress }}%</span>
+                  <span class="font-black text-slate-950">{{ p.progress }}%</span>
                 </div>
-                <div class="w-full bg-slate-100 rounded-full h-1.5 overflow-hidden">
+                <div class="w-full bg-slate-200 rounded-full h-1.5 overflow-hidden">
                   <div
                     class="h-full rounded-full"
                     [ngClass]="p.status === 'Congelado' ? 'bg-slate-400' : (p.status === 'Finalizado' ? 'bg-emerald-600' : (p.ragStatus === 'red' ? 'bg-rose-500' : (p.ragStatus === 'amber' ? 'bg-amber-500' : 'bg-blue-600')))"
@@ -453,65 +462,65 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
 
               <!-- Attention Point / Frozen banner -->
               <div *ngIf="p.status === 'Congelado'"
-                class="p-2.5 rounded-xl text-[10px] leading-snug mb-3 bg-slate-100 text-slate-800 border border-slate-300 shadow-2xs">
+                class="p-2.5 rounded-xl text-[10px] leading-snug mb-3 bg-slate-200 border-2 border-slate-300 text-slate-900 shadow-2xs font-medium">
                 <strong>⏸️ Projeto Congelado:</strong> Atividades temporariamente pausadas pela gestão.
               </div>
               <div *ngIf="p.status !== 'Congelado' && (p.ragStatus === 'red' || p.ragStatus === 'amber')"
-                class="p-2.5 rounded-xl text-[10px] leading-snug mb-3 bg-rose-50 text-rose-900 border border-rose-200 shadow-2xs">
+                class="p-2.5 rounded-xl text-[10px] leading-snug mb-3 bg-rose-100 border-2 border-rose-300 text-rose-950 shadow-2xs font-medium">
                 <strong>⚠️ Ponto de Atenção:</strong> {{ p.attentionPoints }}
               </div>
 
-              <!-- Status Reports: Anterior & Atual -->
+              <!-- Status Reports: Anterior & Atual (High Contrast) -->
               <div class="space-y-2 mb-2.5">
-                <div class="p-2.5 rounded-xl bg-slate-50 border border-slate-200/80">
+                <div class="p-2.5 rounded-xl bg-slate-100 border border-slate-300">
                   <div class="flex items-center justify-between gap-1.5 mb-1">
-                    <span class="text-[9px] font-bold text-slate-500 uppercase tracking-wider">Status report anterior</span>
-                    <span class="text-[9px] font-semibold text-slate-500 bg-slate-200/70 px-1.5 py-0.2 rounded">
+                    <span class="text-[9px] font-extrabold text-slate-700 uppercase tracking-wider">Status report anterior</span>
+                    <span class="text-[9px] font-bold text-slate-700 bg-slate-200 px-1.5 py-0.2 rounded border border-slate-300">
                       {{ getPreviousReportDate(p) }}
                     </span>
                   </div>
-                  <p class="text-[11px] leading-relaxed text-slate-600">
+                  <p class="text-[11px] leading-relaxed text-slate-800 font-medium">
                     {{ p.previousStatusReport || 'Sem reporte anterior registrado.' }}
                   </p>
                 </div>
 
-                <div class="p-2.5 rounded-xl bg-blue-50/40 border border-blue-200/70">
+                <div class="p-2.5 rounded-xl bg-blue-100/70 border-2 border-blue-300">
                   <div class="flex items-center justify-between gap-1.5 mb-1">
-                    <span class="text-[9px] font-bold text-blue-800 uppercase tracking-wider">Status report atual</span>
-                    <span class="text-[9px] font-bold text-blue-700 bg-blue-100/80 px-1.5 py-0.2 rounded">
+                    <span class="text-[9px] font-black text-blue-950 uppercase tracking-wider">Status report atual</span>
+                    <span class="text-[9px] font-black text-blue-800 bg-blue-200 px-1.5 py-0.2 rounded border border-blue-300">
                       {{ getCurrentReportDate(p) }}
                     </span>
                   </div>
-                  <p class="text-[11px] leading-relaxed text-slate-800 font-medium">
+                  <p class="text-[11px] leading-relaxed text-blue-950 font-semibold">
                     {{ p.statusReport || 'Nenhum reporte registrado para este ciclo.' }}
                   </p>
                 </div>
               </div>
 
               <!-- Equipe Alocada -->
-              <div *ngIf="getAllTeamMembers(p).length > 0" class="mt-2.5 pt-2 border-t border-slate-100">
+              <div *ngIf="getAllTeamMembers(p).length > 0" class="mt-2.5 pt-2 border-t border-slate-200">
                 <div class="flex items-center gap-1 mb-1.5">
-                  <span class="text-[10px] font-bold text-slate-500 uppercase tracking-wider flex items-center gap-1">
+                  <span class="text-[10px] font-bold text-slate-600 uppercase tracking-wider flex items-center gap-1">
                     <span>👥</span> Equipe Alocada
                   </span>
                 </div>
                 <div class="flex flex-wrap items-center gap-1.5">
                   <span
                     *ngIf="p.teamLeader || p.team?.leader"
-                    class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-blue-100 text-blue-800 border border-blue-200 shadow-2xs">
+                    class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-black bg-blue-100 text-blue-900 border border-blue-300 shadow-2xs">
                     <span>⭐</span> {{ p.teamLeader || p.team?.leader }}
                   </span>
                   <span
                     *ngFor="let member of getNonLeaderMembers(p)"
-                    class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-medium bg-slate-100 text-slate-700 border border-slate-200">
+                    class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-slate-100 text-slate-800 border border-slate-300">
                     {{ member }}
                   </span>
                 </div>
               </div>
             </div>
 
-            <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500 mt-3">
-              <span>Meta: <strong class="text-slate-800 font-bold">{{ formatDate(p.targetDelivery) }}</strong></span>
+            <div class="pt-3 border-t border-slate-200 flex items-center justify-between text-[11px] text-slate-600 mt-3">
+              <span>Meta: <strong class="text-slate-900 font-bold">{{ formatDate(p.targetDelivery) }}</strong></span>
               <button
                 (click)="service.openEapForProject(p.projectId)"
                 class="text-blue-600 font-bold hover:underline cursor-pointer">
@@ -523,7 +532,7 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
 
         <!-- Empty state -->
         <div *ngIf="displayedProjects().length === 0"
-          class="py-12 bg-white rounded-2xl border border-slate-200/90 text-center text-slate-400 text-xs shadow-2xs">
+          class="py-12 bg-white rounded-2xl border-2 border-slate-300 text-center text-slate-500 text-xs shadow-2xs">
           Nenhum projeto encontrado para os filtros selecionados.
         </div>
       </div>
@@ -541,7 +550,7 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
               <h2 class="text-xs sm:text-sm font-black tracking-tight text-white leading-none">
                 Apresentação Executiva • Status Report
               </h2>
-              <p class="text-[10px] text-slate-400 mt-0.5">
+              <p class="text-[10px] text-slate-400 mt-0.5 font-medium">
                 Edição {{ service.formatEditionTitle(currentReport()) }} • Modo Paisagem (16:9)
               </p>
             </div>
@@ -580,8 +589,16 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
             </div>
           </div>
 
-          <!-- Actions: Download Landscape PDF & Exit -->
+          <!-- Actions: Theme Toggle, Download Landscape PDF & Exit -->
           <div class="flex items-center gap-2">
+            <!-- Theme toggle inside presenter -->
+            <button
+              (click)="togglePresentationTheme()"
+              class="px-2.5 py-1.5 rounded-xl text-xs font-bold bg-slate-800 hover:bg-slate-700 text-amber-300 border border-slate-700 transition flex items-center gap-1 cursor-pointer"
+              title="Alternar tema da apresentação">
+              <span>{{ presentationTheme() === 'dark' ? '🌙 Escuro' : '☀️ Claro' }}</span>
+            </button>
+
             <button
               (click)="printReport()"
               class="px-3 py-1.5 rounded-xl text-xs font-bold bg-blue-600 hover:bg-blue-500 text-white transition flex items-center gap-1.5 cursor-pointer shadow-xs"
@@ -600,7 +617,9 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
 
         <!-- Center Stage: 16:9 Landscape Canvas -->
         <div class="flex-1 flex items-center justify-center p-2 sm:p-4 overflow-hidden">
-          <div class="aspect-[16/9] w-full max-w-[1260px] max-h-[82vh] bg-white text-slate-900 rounded-2xl shadow-2xl p-5 sm:p-6 flex flex-col justify-between overflow-hidden border border-slate-700/60 transition-all">
+          <div
+            class="aspect-[16/9] w-full max-w-[1260px] max-h-[82vh] rounded-2xl shadow-2xl p-5 sm:p-6 flex flex-col justify-between overflow-hidden transition-all"
+            [ngClass]="presentationTheme() === 'dark' ? 'bg-[#090d16] text-white border border-slate-800' : 'bg-slate-200/90 text-slate-900 border-2 border-slate-400'">
             
             <!-- Slide 0: Cover / Macro Executive Dashboard -->
             <ng-container *ngIf="currentSlideIndex() === 0">
@@ -636,12 +655,12 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
       <div class="ppt-slides-print-container">
         
         <!-- Slide 1: Visão Consolidada & Indicadores Executivos -->
-        <div class="ppt-slide">
+        <div class="ppt-slide" [ngClass]="presentationTheme() === 'dark' ? 'theme-dark' : 'theme-light'">
           <ng-container [ngTemplateOutlet]="slide1Tpl"></ng-container>
         </div>
 
         <!-- Slides 2..N: Projetos em Execução (3 por página paisagem) -->
-        <div class="ppt-slide" *ngFor="let chunk of projectChunks(); let chunkIdx = index">
+        <div class="ppt-slide" [ngClass]="presentationTheme() === 'dark' ? 'theme-dark' : 'theme-light'" *ngFor="let chunk of projectChunks(); let chunkIdx = index">
           <ng-container
             [ngTemplateOutlet]="projectSlideTpl"
             [ngTemplateOutletContext]="{ chunk: chunk, chunkIdx: chunkIdx }">
@@ -649,7 +668,7 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
         </div>
 
         <!-- Slide Final: Roadmap Estratégico & Pipeline Futuro -->
-        <div class="ppt-slide" *ngIf="hasRoadmap()">
+        <div class="ppt-slide" [ngClass]="presentationTheme() === 'dark' ? 'theme-dark' : 'theme-light'" *ngIf="hasRoadmap()">
           <ng-container [ngTemplateOutlet]="roadmapSlideTpl"></ng-container>
         </div>
 
@@ -662,27 +681,27 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
       <!-- TEMPLATE 1: CAPA & VISÃO CONSOLIDADA -->
       <ng-template #slide1Tpl>
         <div class="h-full flex flex-col justify-between">
-          <!-- Slide Header -->
-          <div class="flex items-center justify-between pb-2 mb-2 border-b border-slate-200">
+          <!-- Slide Header (Executive High-Contrast Header Bar) -->
+          <div class="flex items-center justify-between px-3.5 py-2 rounded-xl border mb-2 bg-slate-900 border-slate-800 text-white shadow-xs">
             <div class="flex items-center gap-3">
-              <img src="/assets/logos/ilc.png" alt="ILC Logística" class="h-7 w-auto object-contain bg-white rounded p-0.5 border border-slate-200 shadow-2xs" onerror="this.style.display='none'" />
+              <img src="/assets/logos/ilc.png" alt="ILC Logística" class="h-7 w-auto object-contain bg-white rounded p-0.5 border border-slate-300 shadow-2xs" onerror="this.style.display='none'" />
               <div *ngIf="service.selectedClient() !== 'Todos' && service.getClientLogo(service.selectedClient())" class="flex items-center gap-2">
-                <span class="text-slate-300 font-light">|</span>
-                <img [src]="service.getClientLogo(service.selectedClient())" [alt]="service.selectedClient()" class="h-7 max-w-[80px] object-contain rounded bg-white p-0.5 border border-slate-200 shadow-2xs" />
+                <span class="text-slate-600 font-light">|</span>
+                <img [src]="service.getClientLogo(service.selectedClient())" [alt]="service.selectedClient()" class="h-7 max-w-[80px] object-contain rounded bg-white p-0.5 border border-slate-300 shadow-2xs" />
               </div>
               <div class="flex flex-col">
-                <span class="text-xs font-black tracking-wider uppercase text-slate-900 leading-none">STATUS REPORT EXECUTIVO</span>
-                <span class="text-[9px] text-slate-500 font-bold mt-0.5 leading-none">Portfólio de Projetos Estratégicos & Operações</span>
+                <span class="text-xs font-black tracking-wider uppercase text-white leading-none">STATUS REPORT EXECUTIVO</span>
+                <span class="text-[9px] text-slate-400 font-semibold mt-0.5 leading-none">Portfólio de Projetos Estratégicos & Operações</span>
               </div>
             </div>
             <div class="flex items-center gap-2">
-              <span class="text-[9px] font-bold px-2 py-0.5 rounded-md bg-slate-100 text-slate-700 border border-slate-200">
+              <span class="text-[9px] font-bold px-2.5 py-1 rounded-md bg-slate-800 text-slate-300 border border-slate-700">
                 📅 {{ currentReport()?.period }}
               </span>
-              <span class="text-[9px] font-black px-2 py-0.5 rounded-md bg-blue-100 text-blue-900 border border-blue-200">
+              <span class="text-[9px] font-black px-2.5 py-1 rounded-md bg-blue-900/90 text-blue-200 border border-blue-700">
                 Edição {{ service.formatEditionTitle(currentReport()) }}
               </span>
-              <span class="text-[9px] font-bold px-2 py-0.5 rounded-md bg-emerald-100 text-emerald-900 border border-emerald-200">
+              <span class="text-[9px] font-bold px-2.5 py-1 rounded-md bg-emerald-900/90 text-emerald-200 border border-emerald-700">
                 Reunião: {{ formatDate(currentReport()?.meetingDate) }}
               </span>
             </div>
@@ -692,73 +711,115 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
           <div class="flex-1 flex flex-col justify-between gap-2.5 overflow-hidden my-1">
             <!-- Top Row: Resumo Executivo (col-span-5) + Pulse KPIs (col-span-7) -->
             <div class="grid grid-cols-12 gap-3 h-[46%]">
-              <div class="col-span-5 bg-blue-50/60 border border-blue-200/80 rounded-xl p-3 flex flex-col justify-between shadow-2xs">
+              
+              <!-- Resumo Executivo -->
+              <div
+                class="col-span-5 p-3 rounded-xl flex flex-col justify-between shadow-xs border"
+                [ngClass]="presentationTheme() === 'dark' ? 'bg-slate-900/95 border-blue-500/40 text-slate-200' : 'bg-white border-2 border-blue-300 text-slate-900'">
                 <div>
                   <div class="flex items-center gap-1.5 mb-1.5">
                     <span class="text-xs">📌</span>
-                    <h3 class="text-xs font-black text-blue-950 uppercase tracking-tight">Síntese Executiva do Ciclo</h3>
+                    <h3 class="text-xs font-black uppercase tracking-tight"
+                      [ngClass]="presentationTheme() === 'dark' ? 'text-blue-400' : 'text-blue-950'">
+                      Síntese Executiva do Ciclo
+                    </h3>
                   </div>
-                  <p class="text-[11px] leading-relaxed text-slate-700 font-medium">
+                  <p class="text-[11px] leading-relaxed font-medium"
+                    [ngClass]="presentationTheme() === 'dark' ? 'text-slate-200' : 'text-slate-800'">
                     {{ currentReport()?.executiveSummary || 'Acompanhamento semanal de entregas e alinhamento dos marcos operacionais com a diretoria.' }}
                   </p>
                 </div>
-                <div class="pt-1.5 border-t border-blue-200/70 flex items-center justify-between text-[10px] text-blue-900 font-bold">
+                <div class="pt-1.5 border-t flex items-center justify-between text-[10px] font-bold"
+                  [ngClass]="presentationTheme() === 'dark' ? 'border-slate-800 text-blue-300' : 'border-blue-200 text-blue-950'">
                   <span>Avanço Físico Médio dos Ativos:</span>
-                  <span class="text-xs font-black text-blue-700">{{ getAverageProgress() }}% concluído</span>
+                  <span class="text-xs font-black" [ngClass]="presentationTheme() === 'dark' ? 'text-blue-400' : 'text-blue-700'">
+                    {{ getAverageProgress() }}% concluído
+                  </span>
                 </div>
               </div>
 
               <!-- Pulse Metrics & Priorização -->
-              <div class="col-span-7 bg-white border border-slate-200/90 rounded-xl p-3 flex flex-col justify-between shadow-2xs">
+              <div
+                class="col-span-7 p-3 rounded-xl flex flex-col justify-between shadow-xs border"
+                [ngClass]="presentationTheme() === 'dark' ? 'bg-slate-900/95 border-slate-800 text-white' : 'bg-white border-2 border-slate-300 text-slate-900'">
                 <div>
                   <div class="flex items-center justify-between mb-2">
-                    <h3 class="text-xs font-black text-slate-900 uppercase tracking-tight flex items-center gap-1.5">
+                    <h3 class="text-xs font-black uppercase tracking-tight flex items-center gap-1.5"
+                      [ngClass]="presentationTheme() === 'dark' ? 'text-white' : 'text-slate-950'">
                       <span>📊</span> Indicadores de Saúde dos Projetos Ativos
                     </h3>
-                    <span class="text-[9px] font-bold text-slate-500">Monitoramento Contínuo</span>
+                    <span class="text-[9px] font-bold"
+                      [ngClass]="presentationTheme() === 'dark' ? 'text-slate-400' : 'text-slate-600'">
+                      Monitoramento Contínuo
+                    </span>
                   </div>
                   <div class="grid grid-cols-6 gap-2">
-                    <div class="p-1.5 bg-slate-50 rounded-lg border border-slate-200 text-center">
-                      <span class="text-[8px] font-bold text-slate-500 uppercase block truncate">Ativos</span>
-                      <span class="text-base font-black text-slate-900 block leading-tight">{{ getActiveCount() }}</span>
-                      <span class="text-[8px] text-slate-500 block truncate">em curso</span>
+                    <!-- Ativos -->
+                    <div class="p-1.5 rounded-lg border text-center"
+                      [ngClass]="presentationTheme() === 'dark' ? 'bg-slate-950 border-slate-800 text-white' : 'bg-slate-100 border-2 border-slate-300 text-slate-950'">
+                      <span class="text-[8px] font-bold uppercase block truncate text-slate-400">Ativos</span>
+                      <span class="text-base font-black block leading-tight">{{ getActiveCount() }}</span>
+                      <span class="text-[8px] block truncate text-slate-400">em curso</span>
                     </div>
-                    <div class="p-1.5 bg-emerald-50 rounded-lg border border-emerald-200 text-center">
-                      <span class="text-[8px] font-bold text-emerald-800 uppercase block truncate">No Prazo</span>
-                      <span class="text-base font-black text-emerald-700 block leading-tight">{{ getOnTrackCount() }}</span>
-                      <span class="text-[8px] text-emerald-700 block truncate">{{ getPercent(getOnTrackCount(), getActiveCount()) }}%</span>
+                    <!-- No Prazo -->
+                    <div class="p-1.5 rounded-lg border text-center"
+                      [ngClass]="presentationTheme() === 'dark' ? 'bg-emerald-950/70 border-emerald-600/70 text-emerald-300' : 'bg-emerald-50 border-2 border-emerald-300 text-emerald-950'">
+                      <span class="text-[8px] font-bold uppercase block truncate">No Prazo</span>
+                      <span class="text-base font-black block leading-tight">{{ getOnTrackCount() }}</span>
+                      <span class="text-[8px] block truncate font-semibold">{{ getPercent(getOnTrackCount(), getActiveCount()) }}%</span>
                     </div>
-                    <div class="p-1.5 bg-amber-50 rounded-lg border border-amber-200 text-center">
-                      <span class="text-[8px] font-bold text-amber-800 uppercase block truncate">Atenção</span>
-                      <span class="text-base font-black text-amber-800 block leading-tight">{{ getAttentionCount() }}</span>
-                      <span class="text-[8px] text-amber-800 block truncate">moderado</span>
+                    <!-- Atenção -->
+                    <div class="p-1.5 rounded-lg border text-center"
+                      [ngClass]="presentationTheme() === 'dark' ? 'bg-amber-950/70 border-amber-600/70 text-amber-300' : 'bg-amber-50 border-2 border-amber-300 text-amber-950'">
+                      <span class="text-[8px] font-bold uppercase block truncate">Atenção</span>
+                      <span class="text-base font-black block leading-tight">{{ getAttentionCount() }}</span>
+                      <span class="text-[8px] block truncate font-semibold">moderado</span>
                     </div>
-                    <div class="p-1.5 bg-rose-50 rounded-lg border border-rose-200 text-center">
-                      <span class="text-[8px] font-bold text-rose-800 uppercase block truncate">Desvio</span>
-                      <span class="text-base font-black text-rose-700 block leading-tight">{{ getCriticalCount() }}</span>
-                      <span class="text-[8px] text-rose-700 block truncate">crítico</span>
+                    <!-- Desvio -->
+                    <div class="p-1.5 rounded-lg border text-center"
+                      [ngClass]="presentationTheme() === 'dark' ? 'bg-rose-950/70 border-rose-600/70 text-rose-300' : 'bg-rose-50 border-2 border-rose-300 text-rose-950'">
+                      <span class="text-[8px] font-bold uppercase block truncate">Desvio</span>
+                      <span class="text-base font-black block leading-tight">{{ getCriticalCount() }}</span>
+                      <span class="text-[8px] block truncate font-semibold">crítico</span>
                     </div>
-                    <div class="p-1.5 bg-slate-100 rounded-lg border border-slate-300 text-center">
-                      <span class="text-[8px] font-bold text-slate-600 uppercase block truncate">Congelados</span>
-                      <span class="text-base font-black text-slate-700 block leading-tight">{{ getFrozenCount() }}</span>
-                      <span class="text-[8px] text-slate-500 block truncate">pausados</span>
+                    <!-- Congelados -->
+                    <div class="p-1.5 rounded-lg border text-center"
+                      [ngClass]="presentationTheme() === 'dark' ? 'bg-slate-950 border-slate-800 text-slate-300' : 'bg-slate-200 border-2 border-slate-300 text-slate-800'">
+                      <span class="text-[8px] font-bold uppercase block truncate">Congelados</span>
+                      <span class="text-base font-black block leading-tight">{{ getFrozenCount() }}</span>
+                      <span class="text-[8px] block truncate">pausados</span>
                     </div>
-                    <div class="p-1.5 bg-blue-50 rounded-lg border border-blue-200 text-center">
-                      <span class="text-[8px] font-bold text-blue-800 uppercase block truncate">Avanço</span>
-                      <span class="text-base font-black text-blue-700 block leading-tight">{{ getAverageProgress() }}%</span>
-                      <span class="text-[8px] text-blue-600 block truncate">físico</span>
+                    <!-- Avanço -->
+                    <div class="p-1.5 rounded-lg border text-center"
+                      [ngClass]="presentationTheme() === 'dark' ? 'bg-blue-950/70 border-blue-600/70 text-blue-300' : 'bg-blue-50 border-2 border-blue-300 text-blue-950'">
+                      <span class="text-[8px] font-bold uppercase block truncate">Avanço</span>
+                      <span class="text-base font-black block leading-tight">{{ getAverageProgress() }}%</span>
+                      <span class="text-[8px] block truncate font-semibold">físico</span>
                     </div>
                   </div>
                 </div>
 
                 <!-- Priority Row -->
-                <div class="pt-2 border-t border-slate-100 flex items-center justify-between text-[10px]">
-                  <span class="font-bold text-slate-500">Distribuição por Prioridade:</span>
+                <div class="pt-2 border-t flex items-center justify-between text-[10px]"
+                  [ngClass]="presentationTheme() === 'dark' ? 'border-slate-800' : 'border-slate-200'">
+                  <span class="font-bold" [ngClass]="presentationTheme() === 'dark' ? 'text-slate-400' : 'text-slate-600'">Distribuição por Prioridade:</span>
                   <div class="flex items-center gap-1.5">
-                    <span class="px-2 py-0.5 rounded font-black text-[9px] bg-rose-100 text-rose-800 border border-rose-200">P1 Crítica: {{ getPriorityCount('P1') }}</span>
-                    <span class="px-2 py-0.5 rounded font-black text-[9px] bg-amber-100 text-amber-800 border border-amber-200">P2 Alta: {{ getPriorityCount('P2') }}</span>
-                    <span class="px-2 py-0.5 rounded font-black text-[9px] bg-blue-100 text-blue-800 border border-blue-200">P3 Média: {{ getPriorityCount('P3') }}</span>
-                    <span class="px-2 py-0.5 rounded font-black text-[9px] bg-slate-100 text-slate-700 border border-slate-200">P4 Baixa: {{ getPriorityCount('P4') }}</span>
+                    <span class="px-2 py-0.5 rounded font-black text-[9px]"
+                      [ngClass]="presentationTheme() === 'dark' ? 'bg-rose-950/80 text-rose-200 border border-rose-700' : 'bg-rose-100 text-rose-900 border border-rose-300'">
+                      P1 Crítica: {{ getPriorityCount('P1') }}
+                    </span>
+                    <span class="px-2 py-0.5 rounded font-black text-[9px]"
+                      [ngClass]="presentationTheme() === 'dark' ? 'bg-amber-950/80 text-amber-200 border border-amber-700' : 'bg-amber-100 text-amber-900 border border-amber-300'">
+                      P2 Alta: {{ getPriorityCount('P2') }}
+                    </span>
+                    <span class="px-2 py-0.5 rounded font-black text-[9px]"
+                      [ngClass]="presentationTheme() === 'dark' ? 'bg-blue-950/80 text-blue-200 border border-blue-700' : 'bg-blue-100 text-blue-900 border border-blue-300'">
+                      P3 Média: {{ getPriorityCount('P3') }}
+                    </span>
+                    <span class="px-2 py-0.5 rounded font-black text-[9px]"
+                      [ngClass]="presentationTheme() === 'dark' ? 'bg-slate-800 text-slate-300 border border-slate-700' : 'bg-slate-100 text-slate-800 border border-slate-300'">
+                      P4 Baixa: {{ getPriorityCount('P4') }}
+                    </span>
                   </div>
                 </div>
               </div>
@@ -766,65 +827,91 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
 
             <!-- Bottom Row: Radar de Atenção (50%) + Deliberações da Diretoria (50%) -->
             <div class="grid grid-cols-2 gap-3 h-[50%]">
+              
               <!-- Radar de Atenção -->
-              <div class="bg-orange-50/40 border border-orange-200/90 rounded-xl p-3 flex flex-col justify-between shadow-2xs overflow-hidden">
+              <div
+                class="p-3 rounded-xl flex flex-col justify-between shadow-xs overflow-hidden border"
+                [ngClass]="presentationTheme() === 'dark' ? 'bg-orange-950/30 border-orange-500/40 text-slate-200' : 'bg-white border-2 border-orange-300 text-slate-900'">
                 <div>
                   <div class="flex items-center justify-between mb-2">
-                    <h3 class="text-xs font-black text-orange-950 uppercase tracking-tight flex items-center gap-1.5">
+                    <h3 class="text-xs font-black uppercase tracking-tight flex items-center gap-1.5"
+                      [ngClass]="presentationTheme() === 'dark' ? 'text-orange-400' : 'text-orange-950'">
                       <span>🚨</span> Radar de Atenção da Diretoria ({{ topCriticalProjects().length }})
                     </h3>
-                    <span class="text-[9px] font-bold text-orange-700">Desvios & Ações Mitigatórias</span>
+                    <span class="text-[9px] font-bold" [ngClass]="presentationTheme() === 'dark' ? 'text-orange-300' : 'text-orange-900'">
+                      Desvios & Ações Mitigatórias
+                    </span>
                   </div>
                   <div *ngIf="topCriticalProjects().length > 0; else noCritical" class="space-y-1.5 overflow-hidden">
-                    <div *ngFor="let item of topCriticalProjects().slice(0, 2)" class="p-2 bg-white rounded-lg border border-orange-200 text-slate-800 shadow-2xs">
+                    <div *ngFor="let item of topCriticalProjects().slice(0, 2)"
+                      class="p-2 rounded-lg border shadow-2xs"
+                      [ngClass]="presentationTheme() === 'dark' ? 'bg-slate-900 border-orange-500/40 text-slate-200' : 'bg-orange-50/70 border-2 border-orange-200 text-slate-900'">
                       <div class="flex items-center justify-between gap-1 mb-0.5">
-                        <span class="text-[10px] font-extrabold text-slate-900 truncate">{{ item.client }} • {{ item.name }}</span>
+                        <span class="text-[10px] font-black truncate"
+                          [ngClass]="presentationTheme() === 'dark' ? 'text-white' : 'text-slate-950'">
+                          {{ item.client }} • {{ item.name }}
+                        </span>
                         <span class="text-[8px] font-black px-1.5 py-0.2 rounded-full shrink-0"
-                          [ngClass]="item.ragStatus === 'red' ? 'bg-rose-100 text-rose-800 border border-rose-200' : 'bg-amber-100 text-amber-800 border border-amber-200'">
+                          [ngClass]="item.ragStatus === 'red' ? 'bg-rose-100 text-rose-900 border border-rose-300' : 'bg-amber-100 text-amber-900 border border-amber-300'">
                           {{ item.ragStatus === 'red' ? 'Com Desvio' : 'Atenção' }}
                         </span>
                       </div>
-                      <p class="text-[10px] text-slate-700 leading-snug line-clamp-2">
+                      <p class="text-[10px] leading-snug line-clamp-2"
+                        [ngClass]="presentationTheme() === 'dark' ? 'text-slate-300' : 'text-slate-800'">
                         {{ item.attentionPoints }}
                       </p>
                     </div>
                   </div>
                   <ng-template #noCritical>
-                    <p class="text-xs text-orange-800/70 italic py-4 text-center">Nenhum projeto em desvio crítico nesta edição.</p>
+                    <p class="text-xs italic py-4 text-center text-slate-400">Nenhum projeto em desvio crítico nesta edição.</p>
                   </ng-template>
                 </div>
-                <span class="text-[9px] text-orange-900/80 font-bold block pt-1 border-t border-orange-200/60">
+                <span class="text-[9px] font-bold block pt-1 border-t"
+                  [ngClass]="presentationTheme() === 'dark' ? 'border-orange-500/30 text-orange-400' : 'border-orange-200 text-orange-900'">
                   Acompanhamento prioritário pelo comitê executivo
                 </span>
               </div>
 
               <!-- Deliberações da Diretoria -->
-              <div class="bg-purple-50/40 border border-purple-200/90 rounded-xl p-3 flex flex-col justify-between shadow-2xs overflow-hidden">
+              <div
+                class="p-3 rounded-xl flex flex-col justify-between shadow-xs overflow-hidden border"
+                [ngClass]="presentationTheme() === 'dark' ? 'bg-purple-950/30 border-purple-500/40 text-slate-200' : 'bg-white border-2 border-purple-300 text-slate-900'">
                 <div>
                   <div class="flex items-center justify-between mb-2">
-                    <h3 class="text-xs font-black text-purple-950 uppercase tracking-tight flex items-center gap-1.5">
+                    <h3 class="text-xs font-black uppercase tracking-tight flex items-center gap-1.5"
+                      [ngClass]="presentationTheme() === 'dark' ? 'text-purple-400' : 'text-purple-950'">
                       <span>⚖️</span> Deliberações & Decisões Estratégicas ({{ currentReport()?.boardDecisions?.length || 0 }})
                     </h3>
-                    <span class="text-[9px] font-bold text-purple-700">Pautas da Reunião</span>
+                    <span class="text-[9px] font-bold" [ngClass]="presentationTheme() === 'dark' ? 'text-purple-300' : 'text-purple-900'">
+                      Pautas da Reunião
+                    </span>
                   </div>
                   <div *ngIf="currentReport()?.boardDecisions?.length; else noDecisions" class="space-y-1.5 overflow-hidden">
-                    <div *ngFor="let dec of currentReport()?.boardDecisions?.slice(0, 2)" class="p-2 bg-white rounded-lg border border-purple-200 text-slate-800 shadow-2xs">
+                    <div *ngFor="let dec of currentReport()?.boardDecisions?.slice(0, 2)"
+                      class="p-2 rounded-lg border shadow-2xs"
+                      [ngClass]="presentationTheme() === 'dark' ? 'bg-slate-900 border-purple-500/40 text-slate-200' : 'bg-purple-50/70 border-2 border-purple-200 text-slate-900'">
                       <div class="flex items-center justify-between gap-1 mb-0.5">
-                        <span class="text-[10px] font-extrabold text-purple-950 truncate">{{ dec.title }}</span>
-                        <span class="text-[8px] font-bold px-1.5 py-0.2 rounded bg-purple-100 text-purple-800 border border-purple-200 shrink-0">
+                        <span class="text-[10px] font-black truncate"
+                          [ngClass]="presentationTheme() === 'dark' ? 'text-white' : 'text-slate-950'">
+                          {{ dec.title }}
+                        </span>
+                        <span class="text-[8px] font-bold px-1.5 py-0.2 rounded shrink-0"
+                          [ngClass]="presentationTheme() === 'dark' ? 'bg-purple-950 text-purple-300 border border-purple-700' : 'bg-purple-100 text-purple-900 border border-purple-300'">
                           Prazo: {{ dec.deadline }}
                         </span>
                       </div>
-                      <p class="text-[10px] text-slate-700 leading-snug line-clamp-2">
+                      <p class="text-[10px] leading-snug line-clamp-2"
+                        [ngClass]="presentationTheme() === 'dark' ? 'text-slate-300' : 'text-slate-800'">
                         {{ dec.impact || dec.description }}
                       </p>
                     </div>
                   </div>
                   <ng-template #noDecisions>
-                    <p class="text-xs text-purple-800/70 italic py-4 text-center">Nenhuma deliberação registrada nesta edição.</p>
+                    <p class="text-xs italic py-4 text-center text-slate-400">Nenhuma deliberação registrada nesta edição.</p>
                   </ng-template>
                 </div>
-                <span class="text-[9px] text-purple-900/80 font-bold block pt-1 border-t border-purple-200/60">
+                <span class="text-[9px] font-bold block pt-1 border-t"
+                  [ngClass]="presentationTheme() === 'dark' ? 'border-purple-500/30 text-purple-400' : 'border-purple-200 text-purple-900'">
                   Alinhamento de responsabilidades e datas de entrega
                 </span>
               </div>
@@ -832,10 +919,13 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
           </div>
 
           <!-- Slide Footer -->
-          <div class="flex items-center justify-between pt-1.5 mt-1 border-t border-slate-200 text-[9px] text-slate-500 font-semibold">
+          <div class="flex items-center justify-between pt-1.5 mt-1 border-t text-[9px] font-semibold"
+            [ngClass]="presentationTheme() === 'dark' ? 'border-slate-800 text-slate-400' : 'border-slate-300 text-slate-600'">
             <span>ILC - Integrator Logistics Company • Governança & Gestão de Projetos</span>
-            <span class="text-slate-400">Relatório Executivo de Diretoria</span>
-            <span class="font-extrabold text-slate-700">Slide 1 de {{ totalSlides() }}</span>
+            <span class="text-slate-500">Relatório Executivo de Diretoria</span>
+            <span class="font-extrabold" [ngClass]="presentationTheme() === 'dark' ? 'text-slate-200' : 'text-slate-900'">
+              Slide 1 de {{ totalSlides() }}
+            </span>
           </div>
         </div>
       </ng-template>
@@ -843,22 +933,22 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
       <!-- TEMPLATE 2: PROJETOS EM EXECUÇÃO (3 CARDS EM PAISAGEM) -->
       <ng-template #projectSlideTpl let-chunk="chunk" let-chunkIdx="chunkIdx">
         <div class="h-full flex flex-col justify-between">
-          <!-- Slide Header -->
-          <div class="flex items-center justify-between pb-2 mb-2 border-b border-slate-200">
+          <!-- Slide Header (Executive High-Contrast Header Bar) -->
+          <div class="flex items-center justify-between px-3.5 py-2 rounded-xl border mb-2 bg-slate-900 border-slate-800 text-white shadow-xs">
             <div class="flex items-center gap-3">
-              <img src="/assets/logos/ilc.png" alt="ILC Logística" class="h-7 w-auto object-contain bg-white rounded p-0.5 border border-slate-200 shadow-2xs" onerror="this.style.display='none'" />
+              <img src="/assets/logos/ilc.png" alt="ILC Logística" class="h-7 w-auto object-contain bg-white rounded p-0.5 border border-slate-300 shadow-2xs" onerror="this.style.display='none'" />
               <div class="flex flex-col">
-                <span class="text-xs font-black tracking-wider uppercase text-slate-900 leading-none">STATUS REPORT EXECUTIVO • PROJETOS EM EXECUÇÃO</span>
-                <span class="text-[9px] text-slate-500 font-bold mt-0.5 leading-none">
+                <span class="text-xs font-black tracking-wider uppercase text-white leading-none">STATUS REPORT EXECUTIVO • PROJETOS EM EXECUÇÃO</span>
+                <span class="text-[9px] text-slate-400 font-semibold mt-0.5 leading-none">
                   Projetos {{ chunkIdx * 3 + 1 }} a {{ getChunkEnd(chunkIdx) }} de {{ displayedProjects().length }}
                 </span>
               </div>
             </div>
             <div class="flex items-center gap-2">
-              <span class="text-[9px] font-black px-2 py-0.5 rounded-md bg-blue-100 text-blue-900 border border-blue-200">
+              <span class="text-[9px] font-black px-2.5 py-1 rounded-md bg-blue-900/90 text-blue-200 border border-blue-700">
                 Edição {{ service.formatEditionTitle(currentReport()) }}
               </span>
-              <span class="text-[9px] font-bold px-2 py-0.5 rounded-md bg-slate-100 text-slate-700 border border-slate-200">
+              <span class="text-[9px] font-bold px-2.5 py-1 rounded-md bg-slate-800 text-slate-300 border border-slate-700">
                 Período: {{ currentReport()?.period }}
               </span>
             </div>
@@ -866,7 +956,9 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
 
           <!-- 3 Project Cards Grid (Landscape 3 columns) -->
           <div class="grid grid-cols-3 gap-3 flex-1 overflow-hidden my-1">
-            <div *ngFor="let p of chunk" class="bg-white rounded-xl border border-slate-200/90 p-3 flex flex-col justify-between shadow-2xs overflow-hidden">
+            <div *ngFor="let p of chunk"
+              class="p-3 rounded-xl flex flex-col justify-between shadow-xs overflow-hidden border"
+              [ngClass]="presentationTheme() === 'dark' ? 'bg-slate-900/95 border-slate-800 text-slate-100' : 'bg-white border-2 border-slate-300 text-slate-900'">
               <div>
                 <!-- Card Top Bar: Priority + Client Logo + Milestone + Status -->
                 <div class="flex items-center justify-between gap-1.5 mb-1.5">
@@ -878,9 +970,10 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
                     <img *ngIf="p.clientLogo || service.getClientLogo(p.client)"
                       [src]="p.clientLogo || service.getClientLogo(p.client)"
                       [alt]="p.client"
-                      class="h-4 max-w-[50px] object-contain rounded bg-white px-0.5 border border-slate-200 shadow-2xs" />
+                      class="h-4 max-w-[50px] object-contain rounded bg-white px-0.5 border border-slate-300 shadow-2xs" />
                     <span *ngIf="!p.clientLogo && !service.getClientLogo(p.client)"
-                      class="text-[9px] font-bold px-1.5 py-0.2 rounded border bg-slate-100 text-slate-700">
+                      class="text-[9px] font-black px-1.5 py-0.2 rounded border"
+                      [ngClass]="presentationTheme() === 'dark' ? 'bg-slate-950 border-slate-700 text-slate-200' : 'bg-slate-100 border-slate-300 text-slate-900'">
                       {{ p.client }}
                     </span>
                     <span [ngClass]="service.getMilestoneBadgeClass(p.currentMilestone)" class="px-1.5 py-0.2 rounded font-bold text-[9px]">
@@ -894,7 +987,9 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
                 </div>
 
                 <!-- Project Name -->
-                <h4 class="text-xs font-black tracking-tight text-slate-900 leading-snug truncate mb-1" [title]="p.name">
+                <h4 class="text-xs font-black tracking-tight leading-snug truncate mb-1"
+                  [ngClass]="presentationTheme() === 'dark' ? 'text-white' : 'text-slate-950'"
+                  [title]="p.name">
                   {{ p.name }}
                 </h4>
 
@@ -907,11 +1002,13 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
 
                 <!-- Progress Bar -->
                 <div class="mb-2">
-                  <div class="flex items-center justify-between text-[9px] font-bold mb-0.5 text-slate-500">
-                    <span>Progresso: <strong class="text-slate-800">{{ p.progress }}%</strong></span>
-                    <span>Meta: <strong class="text-slate-700">{{ formatDate(p.targetDelivery) }}</strong></span>
+                  <div class="flex items-center justify-between text-[9px] font-bold mb-0.5"
+                    [ngClass]="presentationTheme() === 'dark' ? 'text-slate-400' : 'text-slate-600'">
+                    <span>Progresso: <strong [ngClass]="presentationTheme() === 'dark' ? 'text-white' : 'text-slate-950'">{{ p.progress }}%</strong></span>
+                    <span>Meta: <strong [ngClass]="presentationTheme() === 'dark' ? 'text-slate-200' : 'text-slate-900'">{{ formatDate(p.targetDelivery) }}</strong></span>
                   </div>
-                  <div class="w-full bg-slate-100 rounded-full h-1.5 overflow-hidden">
+                  <div class="w-full rounded-full h-1.5 overflow-hidden"
+                    [ngClass]="presentationTheme() === 'dark' ? 'bg-slate-950 border border-slate-800' : 'bg-slate-200 border border-slate-300'">
                     <div class="h-full rounded-full"
                       [ngClass]="p.status === 'Congelado' ? 'bg-slate-400' : (p.status === 'Finalizado' ? 'bg-emerald-600' : (p.ragStatus === 'red' ? 'bg-rose-500' : (p.ragStatus === 'amber' ? 'bg-amber-500' : 'bg-blue-600')))"
                       [style.width.%]="p.progress">
@@ -920,32 +1017,40 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
                 </div>
 
                 <!-- Callout Banner if Frozen or Attention -->
-                <div *ngIf="p.status === 'Congelado'" class="p-1.5 rounded-lg text-[9px] leading-snug mb-1.5 bg-slate-100 text-slate-800 border border-slate-300">
-                  <strong>⏸️ Congelado:</strong> Pausado pela gestão.
+                <div *ngIf="p.status === 'Congelado'"
+                  class="p-1.5 rounded-lg text-[9px] leading-snug mb-1.5 border font-semibold"
+                  [ngClass]="presentationTheme() === 'dark' ? 'bg-slate-950 border-slate-700 text-slate-200' : 'bg-slate-200 border-2 border-slate-300 text-slate-900'">
+                  <strong>⏸️ Congelado:</strong> Pausado temporariamente pela gestão.
                 </div>
-                <div *ngIf="p.status !== 'Congelado' && (p.ragStatus === 'red' || p.ragStatus === 'amber')" class="p-1.5 rounded-lg text-[9px] leading-snug mb-1.5 bg-rose-50 text-rose-900 border border-rose-200">
+                <div *ngIf="p.status !== 'Congelado' && (p.ragStatus === 'red' || p.ragStatus === 'amber')"
+                  class="p-1.5 rounded-lg text-[9px] leading-snug mb-1.5 border font-medium"
+                  [ngClass]="presentationTheme() === 'dark' ? 'bg-rose-950/80 border-rose-700 text-rose-200' : 'bg-rose-100 border-2 border-rose-300 text-rose-950'">
                   <strong>⚠️ Ponto de Atenção:</strong> {{ p.attentionPoints }}
                 </div>
 
-                <!-- Status Reports Boxes -->
+                <!-- Status Reports Boxes (High Contrast) -->
                 <div class="space-y-1.5">
                   <!-- Anterior -->
-                  <div class="p-1.5 rounded-lg bg-slate-50 border border-slate-200/80">
-                    <div class="flex items-center justify-between text-[8px] font-bold text-slate-500 mb-0.5 uppercase tracking-wider">
+                  <div class="p-1.5 rounded-lg border"
+                    [ngClass]="presentationTheme() === 'dark' ? 'bg-slate-950/90 border-slate-800 text-slate-300' : 'bg-slate-100 border border-slate-300 text-slate-800'">
+                    <div class="flex items-center justify-between text-[8px] font-black mb-0.5 uppercase tracking-wider"
+                      [ngClass]="presentationTheme() === 'dark' ? 'text-slate-400' : 'text-slate-600'">
                       <span>Reporte Anterior</span>
-                      <span class="text-slate-400">{{ getPreviousReportDate(p) }}</span>
+                      <span [ngClass]="presentationTheme() === 'dark' ? 'text-slate-400' : 'text-slate-500'">{{ getPreviousReportDate(p) }}</span>
                     </div>
-                    <p class="text-[9px] leading-snug text-slate-600 line-clamp-3">
+                    <p class="text-[9px] leading-snug line-clamp-3">
                       {{ p.previousStatusReport || 'Sem reporte anterior registrado.' }}
                     </p>
                   </div>
                   <!-- Atual -->
-                  <div class="p-1.5 rounded-lg bg-blue-50/50 border border-blue-200/80">
-                    <div class="flex items-center justify-between text-[8px] font-bold text-blue-800 mb-0.5 uppercase tracking-wider">
+                  <div class="p-1.5 rounded-lg border"
+                    [ngClass]="presentationTheme() === 'dark' ? 'bg-blue-950/60 border-blue-600/70 text-blue-100' : 'bg-blue-100/70 border-2 border-blue-300 text-blue-950'">
+                    <div class="flex items-center justify-between text-[8px] font-black mb-0.5 uppercase tracking-wider"
+                      [ngClass]="presentationTheme() === 'dark' ? 'text-blue-300' : 'text-blue-900'">
                       <span>Reporte Atual</span>
-                      <span class="text-blue-600">{{ getCurrentReportDate(p) }}</span>
+                      <span [ngClass]="presentationTheme() === 'dark' ? 'text-blue-300' : 'text-blue-700'">{{ getCurrentReportDate(p) }}</span>
                     </div>
-                    <p class="text-[9px] leading-snug text-slate-800 font-medium line-clamp-3">
+                    <p class="text-[9px] leading-snug font-semibold line-clamp-3">
                       {{ p.statusReport || 'Nenhum reporte registrado para este ciclo.' }}
                     </p>
                   </div>
@@ -953,11 +1058,13 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
               </div>
 
               <!-- Card Footer: Equipe -->
-              <div class="pt-1.5 mt-1.5 border-t border-slate-100 text-[8px] text-slate-500 flex items-center justify-between">
+              <div class="pt-1.5 mt-1.5 border-t text-[8px] flex items-center justify-between"
+                [ngClass]="presentationTheme() === 'dark' ? 'border-slate-800 text-slate-400' : 'border-slate-200 text-slate-600'">
                 <span class="truncate">
-                  <strong>👥 Líder:</strong> {{ p.teamLeader || p.team?.leader || 'Não informado' }}
+                  <strong [ngClass]="presentationTheme() === 'dark' ? 'text-slate-300' : 'text-slate-800'">👥 Líder:</strong> {{ p.teamLeader || p.team?.leader || 'Não informado' }}
                 </span>
-                <span *ngIf="getNonLeaderMembers(p).length > 0" class="truncate text-slate-400 ml-1">
+                <span *ngIf="getNonLeaderMembers(p).length > 0" class="truncate ml-1 font-semibold"
+                  [ngClass]="presentationTheme() === 'dark' ? 'text-slate-400' : 'text-slate-500'">
                   +{{ getNonLeaderMembers(p).length }} equipe
                 </span>
               </div>
@@ -965,10 +1072,13 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
           </div>
 
           <!-- Slide Footer -->
-          <div class="flex items-center justify-between pt-1.5 mt-1 border-t border-slate-200 text-[9px] text-slate-500 font-semibold">
+          <div class="flex items-center justify-between pt-1.5 mt-1 border-t text-[9px] font-semibold"
+            [ngClass]="presentationTheme() === 'dark' ? 'border-slate-800 text-slate-400' : 'border-slate-300 text-slate-600'">
             <span>ILC • Status Report Executivo de Projetos</span>
-            <span class="text-slate-400">Acompanhamento Semanal</span>
-            <span class="font-extrabold text-slate-700">Slide {{ chunkIdx + 2 }} de {{ totalSlides() }}</span>
+            <span class="text-slate-500">Acompanhamento Semanal</span>
+            <span class="font-extrabold" [ngClass]="presentationTheme() === 'dark' ? 'text-slate-200' : 'text-slate-900'">
+              Slide {{ chunkIdx + 2 }} de {{ totalSlides() }}
+            </span>
           </div>
         </div>
       </ng-template>
@@ -976,20 +1086,20 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
       <!-- TEMPLATE 3: ROADMAP ESTRATÉGICO -->
       <ng-template #roadmapSlideTpl>
         <div class="h-full flex flex-col justify-between">
-          <!-- Slide Header -->
-          <div class="flex items-center justify-between pb-2 mb-2 border-b border-slate-200">
+          <!-- Slide Header (Executive High-Contrast Header Bar) -->
+          <div class="flex items-center justify-between px-3.5 py-2 rounded-xl border mb-2 bg-slate-900 border-slate-800 text-white shadow-xs">
             <div class="flex items-center gap-3">
-              <img src="/assets/logos/ilc.png" alt="ILC Logística" class="h-7 w-auto object-contain bg-white rounded p-0.5 border border-slate-200 shadow-2xs" onerror="this.style.display='none'" />
+              <img src="/assets/logos/ilc.png" alt="ILC Logística" class="h-7 w-auto object-contain bg-white rounded p-0.5 border border-slate-300 shadow-2xs" onerror="this.style.display='none'" />
               <div class="flex flex-col">
-                <span class="text-xs font-black tracking-wider uppercase text-slate-900 leading-none">ROADMAP ESTRATÉGICO & PIPELINE DE OPORTUNIDADES</span>
-                <span class="text-[9px] text-slate-500 font-bold mt-0.5 leading-none">Visão de Médio e Longo Prazo do Portfólio</span>
+                <span class="text-xs font-black tracking-wider uppercase text-white leading-none">ROADMAP ESTRATÉGICO & PIPELINE DE OPORTUNIDADES</span>
+                <span class="text-[9px] text-slate-400 font-semibold mt-0.5 leading-none">Visão de Médio e Longo Prazo do Portfólio</span>
               </div>
             </div>
             <div class="flex items-center gap-2">
-              <span class="text-[9px] font-black px-2 py-0.5 rounded-md bg-blue-100 text-blue-900 border border-blue-200">
+              <span class="text-[9px] font-black px-2.5 py-1 rounded-md bg-blue-900/90 text-blue-200 border border-blue-700">
                 Edição {{ service.formatEditionTitle(currentReport()) }}
               </span>
-              <span class="text-[9px] font-bold px-2 py-0.5 rounded-md bg-slate-100 text-slate-700 border border-slate-200">
+              <span class="text-[9px] font-bold px-2.5 py-1 rounded-md bg-slate-800 text-slate-300 border border-slate-700">
                 Planejamento Futuro
               </span>
             </div>
@@ -999,52 +1109,68 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
           <div class="flex-1 flex flex-col justify-between gap-3 overflow-hidden my-1">
             <div>
               <div class="flex items-center justify-between mb-2">
-                <h3 class="text-xs font-black text-slate-900 uppercase tracking-tight flex items-center gap-1.5">
+                <h3 class="text-xs font-black uppercase tracking-tight flex items-center gap-1.5"
+                  [ngClass]="presentationTheme() === 'dark' ? 'text-white' : 'text-slate-950'">
                   <span>🔭</span> Projetos no Radar & Expansões Planejadas ({{ currentReport()?.roadmapProjects?.length || 0 }})
                 </h3>
-                <span class="text-[9px] font-bold text-blue-700">Novas Demandas e Extensões</span>
+                <span class="text-[9px] font-extrabold" [ngClass]="presentationTheme() === 'dark' ? 'text-blue-400' : 'text-blue-800'">
+                  Novas Demandas e Extensões
+                </span>
               </div>
               <div class="grid grid-cols-5 gap-2.5">
-                <div *ngFor="let road of currentReport()?.roadmapProjects" class="p-2.5 rounded-xl border border-blue-200 bg-white text-slate-800 shadow-2xs flex flex-col justify-between">
+                <div *ngFor="let road of currentReport()?.roadmapProjects"
+                  class="p-2.5 rounded-xl border shadow-xs flex flex-col justify-between"
+                  [ngClass]="presentationTheme() === 'dark' ? 'bg-slate-900 border-blue-800/60 text-slate-200' : 'bg-white border-2 border-blue-200 text-slate-900'">
                   <div>
                     <div class="flex items-center justify-between gap-1 mb-1">
-                      <span class="text-[8px] font-bold px-1.5 py-0.2 rounded bg-blue-50 border border-blue-200 text-blue-800">
+                      <span class="text-[8px] font-black px-1.5 py-0.2 rounded border"
+                        [ngClass]="presentationTheme() === 'dark' ? 'bg-blue-950 text-blue-300 border-blue-700' : 'bg-blue-100 text-blue-900 border-blue-300'">
                         {{ road.client }}
                       </span>
                       <span class="text-[8px] font-bold px-1.5 py-0.2 rounded-full" [ngClass]="getRoadmapStageClass(road.stage)">
                         {{ road.stage }}
                       </span>
                     </div>
-                    <h4 class="text-[11px] font-black truncate leading-snug text-slate-900" [title]="road.name">
+                    <h4 class="text-[11px] font-black truncate leading-snug"
+                      [ngClass]="presentationTheme() === 'dark' ? 'text-white' : 'text-slate-950'"
+                      [title]="road.name">
                       {{ road.name }}
                     </h4>
-                    <p class="text-[9px] leading-snug line-clamp-3 mt-1 text-slate-600 font-medium">
+                    <p class="text-[9px] leading-snug line-clamp-3 mt-1 font-medium"
+                      [ngClass]="presentationTheme() === 'dark' ? 'text-slate-300' : 'text-slate-700'">
                       {{ road.description }}
                     </p>
                   </div>
-                  <div class="mt-2 pt-1 border-t border-slate-100 flex items-center justify-between text-[8px] text-slate-500">
-                    <span>Início: <strong class="text-slate-700">{{ road.estimatedStart }}</strong></span>
-                    <span class="font-extrabold text-blue-700">{{ road.strategicValue }}</span>
+                  <div class="mt-2 pt-1 border-t flex items-center justify-between text-[8px]"
+                    [ngClass]="presentationTheme() === 'dark' ? 'border-slate-800 text-slate-400' : 'border-slate-200 text-slate-600'">
+                    <span>Início: <strong [ngClass]="presentationTheme() === 'dark' ? 'text-slate-200' : 'text-slate-800'">{{ road.estimatedStart }}</strong></span>
+                    <span class="font-extrabold" [ngClass]="presentationTheme() === 'dark' ? 'text-blue-400' : 'text-blue-700'">
+                      {{ road.strategicValue }}
+                    </span>
                   </div>
                 </div>
               </div>
             </div>
 
             <!-- Governança & Próximos Passos -->
-            <div class="p-3 bg-slate-50 border border-slate-200 rounded-xl flex items-center justify-between gap-4">
+            <div class="p-3 rounded-xl border flex items-center justify-between gap-4 shadow-xs"
+              [ngClass]="presentationTheme() === 'dark' ? 'bg-slate-900 border-slate-800 text-slate-300' : 'bg-white border-2 border-slate-300 text-slate-800'">
               <div class="flex items-center gap-3">
                 <div class="w-8 h-8 rounded-lg bg-blue-600 text-white flex items-center justify-center font-black text-sm shrink-0">
                   🗓️
                 </div>
                 <div>
-                  <h4 class="text-xs font-black text-slate-900">Calendário de Governança & Próximos Passos</h4>
-                  <p class="text-[10px] text-slate-600 mt-0.5">
+                  <h4 class="text-xs font-black" [ngClass]="presentationTheme() === 'dark' ? 'text-white' : 'text-slate-950'">
+                    Calendário de Governança & Próximos Passos
+                  </h4>
+                  <p class="text-[10px] mt-0.5" [ngClass]="presentationTheme() === 'dark' ? 'text-slate-400' : 'text-slate-600'">
                     Acompanhamento semanal às sextas-feiras com a diretoria executiva de tecnologia e operações.
                   </p>
                 </div>
               </div>
               <div class="flex items-center gap-2 shrink-0">
-                <span class="text-[9px] font-bold px-2.5 py-1 rounded-lg bg-white border border-slate-300 text-slate-700 shadow-2xs">
+                <span class="text-[9px] font-bold px-2.5 py-1 rounded-lg border shadow-2xs"
+                  [ngClass]="presentationTheme() === 'dark' ? 'bg-slate-800 border-slate-700 text-slate-200' : 'bg-slate-100 border-slate-300 text-slate-800'">
                   PMO ILC • Governança Ágil
                 </span>
               </div>
@@ -1052,10 +1178,13 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
           </div>
 
           <!-- Slide Footer -->
-          <div class="flex items-center justify-between pt-1.5 mt-1 border-t border-slate-200 text-[9px] text-slate-500 font-semibold">
+          <div class="flex items-center justify-between pt-1.5 mt-1 border-t text-[9px] font-semibold"
+            [ngClass]="presentationTheme() === 'dark' ? 'border-slate-800 text-slate-400' : 'border-slate-300 text-slate-600'">
             <span>ILC • Planejamento Estratégico & Pipeline Futuro</span>
-            <span class="text-slate-400">Roadmap Corporativo</span>
-            <span class="font-extrabold text-slate-700">Slide {{ totalSlides() }} de {{ totalSlides() }}</span>
+            <span class="text-slate-500">Roadmap Corporativo</span>
+            <span class="font-extrabold" [ngClass]="presentationTheme() === 'dark' ? 'text-slate-200' : 'text-slate-900'">
+              Slide {{ totalSlides() }} de {{ totalSlides() }}
+            </span>
           </div>
         </div>
       </ng-template>
@@ -1067,12 +1196,19 @@ export class ExecutiveReportComponent implements OnInit {
   service = inject(ProjectService);
   Math = Math;
 
+  // Theme signal: default to 'dark' for supreme executive contrast
+  presentationTheme = signal<'dark' | 'light'>('dark');
+
   // Interactive Presenter signals
   isPresenterOpen = signal<boolean>(false);
   currentSlideIndex = signal<number>(0);
 
   ngOnInit() {
     this.service.sortBy.set('targetDelivery');
+  }
+
+  togglePresentationTheme(): void {
+    this.presentationTheme.update(t => t === 'dark' ? 'light' : 'dark');
   }
 
   currentReport = computed(() => this.service.currentWeeklyReport());
@@ -1305,38 +1441,38 @@ export class ExecutiveReportComponent implements OnInit {
     const systemMeta: Record<string, { icon: string; activeClass: string; idleClass: string; textClass: string; countClass: string }> = {
       'Portal Integrator': {
         icon: '🌐',
-        activeClass: 'ring-2 ring-indigo-500 bg-indigo-100/90 border-indigo-300',
-        idleClass: 'bg-indigo-50/70 hover:bg-indigo-100/60 border-indigo-200/80',
-        textClass: 'text-indigo-800',
-        countClass: 'text-indigo-700'
+        activeClass: 'ring-2 ring-indigo-500 bg-indigo-100 border-indigo-400',
+        idleClass: 'bg-indigo-50 hover:bg-indigo-100 border-indigo-300',
+        textClass: 'text-indigo-950 font-black',
+        countClass: 'text-indigo-800 font-black'
       },
       'App ILC': {
         icon: '🚚',
-        activeClass: 'ring-2 ring-cyan-500 bg-cyan-100/90 border-cyan-300',
-        idleClass: 'bg-cyan-50/70 hover:bg-cyan-100/60 border-cyan-200/80',
-        textClass: 'text-cyan-800',
-        countClass: 'text-cyan-700'
+        activeClass: 'ring-2 ring-cyan-500 bg-cyan-100 border-cyan-400',
+        idleClass: 'bg-cyan-50 hover:bg-cyan-100 border-cyan-300',
+        textClass: 'text-cyan-950 font-black',
+        countClass: 'text-cyan-800 font-black'
       },
       'App Smart Tracking': {
         icon: '📱',
-        activeClass: 'ring-2 ring-emerald-500 bg-emerald-100/90 border-emerald-300',
-        idleClass: 'bg-emerald-50/70 hover:bg-emerald-100/60 border-emerald-200/80',
-        textClass: 'text-emerald-800',
-        countClass: 'text-emerald-700'
+        activeClass: 'ring-2 ring-emerald-500 bg-emerald-100 border-emerald-400',
+        idleClass: 'bg-emerald-50 hover:bg-emerald-100 border-emerald-300',
+        textClass: 'text-emerald-950 font-black',
+        countClass: 'text-emerald-800 font-black'
       },
       'Smart X': {
         icon: '📋',
-        activeClass: 'ring-2 ring-purple-500 bg-purple-100/90 border-purple-300',
-        idleClass: 'bg-purple-50/70 hover:bg-purple-100/60 border-purple-200/80',
-        textClass: 'text-purple-800',
-        countClass: 'text-purple-700'
+        activeClass: 'ring-2 ring-purple-500 bg-purple-100 border-purple-400',
+        idleClass: 'bg-purple-50 hover:bg-purple-100 border-purple-300',
+        textClass: 'text-purple-950 font-black',
+        countClass: 'text-purple-800 font-black'
       },
       'Infraestrutura': {
         icon: '🏗️',
-        activeClass: 'ring-2 ring-sky-500 bg-sky-100/90 border-sky-300',
-        idleClass: 'bg-sky-50/70 hover:bg-sky-100/60 border-sky-200/80',
-        textClass: 'text-sky-800',
-        countClass: 'text-sky-700'
+        activeClass: 'ring-2 ring-sky-500 bg-sky-100 border-sky-400',
+        idleClass: 'bg-sky-50 hover:bg-sky-100 border-sky-300',
+        textClass: 'text-sky-950 font-black',
+        countClass: 'text-sky-800 font-black'
       }
     };
 
@@ -1353,10 +1489,10 @@ export class ExecutiveReportComponent implements OnInit {
     return systems.map(sys => {
       const meta = systemMeta[sys] || {
         icon: '⚙️',
-        activeClass: 'ring-2 ring-slate-500 bg-slate-100/90 border-slate-300',
-        idleClass: 'bg-slate-50/70 hover:bg-slate-100/60 border-slate-200/80',
-        textClass: 'text-slate-800',
-        countClass: 'text-slate-700'
+        activeClass: 'ring-2 ring-slate-500 bg-slate-200 border-slate-400',
+        idleClass: 'bg-slate-100 hover:bg-slate-200 border-slate-300',
+        textClass: 'text-slate-900 font-black',
+        countClass: 'text-slate-800 font-black'
       };
       return {
         name: sys,
@@ -1417,19 +1553,19 @@ export class ExecutiveReportComponent implements OnInit {
   }
 
   getRagPillClass(rag: string, status?: string) {
-    if (status === 'Congelado') return 'bg-slate-100 text-slate-700 border border-slate-300';
-    if (status === 'Finalizado') return 'bg-blue-100 text-blue-800 border border-blue-200';
-    if (rag === 'red') return 'bg-rose-100 text-rose-800 border border-rose-200';
-    if (rag === 'amber') return 'bg-amber-100 text-amber-800 border border-amber-200';
-    return 'bg-emerald-100 text-emerald-800 border border-emerald-200';
+    if (status === 'Congelado') return 'bg-slate-200 text-slate-800 border border-slate-400 font-extrabold';
+    if (status === 'Finalizado') return 'bg-blue-100 text-blue-900 border border-blue-300 font-extrabold';
+    if (rag === 'red') return 'bg-rose-100 text-rose-900 border border-rose-300 font-extrabold';
+    if (rag === 'amber') return 'bg-amber-100 text-amber-900 border border-amber-300 font-extrabold';
+    return 'bg-emerald-100 text-emerald-900 border border-emerald-300 font-extrabold';
   }
 
   getRoadmapStageClass(stage: string) {
     const s = (stage || '').toLowerCase();
-    if (s.includes('proposta')) return 'bg-indigo-100 text-indigo-800 border border-indigo-200';
-    if (s.includes('discovery')) return 'bg-sky-100 text-sky-800 border border-sky-200';
-    if (s.includes('kick-off') || s.includes('iminente')) return 'bg-emerald-100 text-emerald-800 border border-emerald-200';
-    return 'bg-amber-100 text-amber-800 border border-amber-200';
+    if (s.includes('proposta')) return 'bg-indigo-100 text-indigo-900 border border-indigo-300 font-extrabold';
+    if (s.includes('discovery')) return 'bg-sky-100 text-sky-900 border border-sky-300 font-extrabold';
+    if (s.includes('kick-off') || s.includes('iminente')) return 'bg-emerald-100 text-emerald-900 border border-emerald-300 font-extrabold';
+    return 'bg-amber-100 text-amber-900 border border-amber-300 font-extrabold';
   }
 
   formatDate(dateStr?: string | null) {
@@ -1464,7 +1600,8 @@ export class ExecutiveReportComponent implements OnInit {
   printReport() {
     const prevTitle = document.title;
     const edition = this.currentReport()?.id || 'Semana';
-    document.title = `Status_Report_Executivo_${edition}_ILC_Paisagem`;
+    const themeName = this.presentationTheme() === 'dark' ? 'Escuro' : 'Claro';
+    document.title = `Status_Report_Executivo_${edition}_ILC_Paisagem_${themeName}`;
     window.print();
     setTimeout(() => {
       document.title = prevTitle;
