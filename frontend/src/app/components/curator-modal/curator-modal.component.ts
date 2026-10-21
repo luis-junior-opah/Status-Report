@@ -1970,7 +1970,7 @@ export class CuratorModalComponent implements OnInit {
     'Aguardando Formalização de Contrato',
     'Priorização no Portfólio',
     'Kick-off Iminente',
-    'Em Espera / Backlog Estratégico',
+    'Em espera',
     'Cancelado / Declinado'
   ];
 

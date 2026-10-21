@@ -353,7 +353,7 @@
         "name": "ILC Pay (Rodobank)",
         "client": "Mirassol",
         "estimatedStart": "A definir",
-        "stage": "Em Espera / Backlog Estratégico",
+        "stage": "Em espera",
         "strategicValue": "Muito Alto",
         "description": "Aplicativo bancário destinado aos motoristas contratados pela Mirassol",
         "responsible": "ILC"
