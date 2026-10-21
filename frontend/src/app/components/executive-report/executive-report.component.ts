@@ -445,17 +445,54 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
                 </span>
               </div>
 
-              <!-- Progress bar -->
-              <div class="mb-3">
-                <div class="flex items-center justify-between text-[10px] font-bold mb-1 text-slate-600">
-                  <span>Progresso</span>
-                  <span class="font-black text-slate-950">{{ p.progress }}%</span>
+              <!-- Progresso Físico & Stepper Segmentado da EAP -->
+              <div class="mb-3 p-2.5 rounded-xl bg-slate-50 border border-slate-200">
+                <!-- Progresso Físico -->
+                <div class="mb-2">
+                  <div class="flex items-center justify-between text-[10px] font-bold mb-1 text-slate-600">
+                    <span class="flex items-center gap-1">
+                      <span>Progresso:</span>
+                      <strong class="text-slate-950 font-black">{{ p.progress }}%</strong>
+                    </span>
+                    <span *ngIf="p.targetDelivery" class="text-slate-500 font-medium text-[9px]">
+                      Meta: <strong class="text-slate-900 font-bold">{{ formatDate(p.targetDelivery) }}</strong>
+                    </span>
+                  </div>
+                  <div class="w-full bg-slate-200 rounded-full h-1.5 overflow-hidden">
+                    <div
+                      class="h-full rounded-full transition-all"
+                      [ngClass]="p.status === 'Congelado' ? 'bg-slate-400' : (p.status === 'Finalizado' ? 'bg-emerald-600' : (p.ragStatus === 'red' ? 'bg-rose-500' : (p.ragStatus === 'amber' ? 'bg-amber-500' : 'bg-blue-600')))"
+                      [style.width.%]="p.progress">
+                    </div>
+                  </div>
                 </div>
-                <div class="w-full bg-slate-200 rounded-full h-1.5 overflow-hidden">
-                  <div
-                    class="h-full rounded-full"
-                    [ngClass]="p.status === 'Congelado' ? 'bg-slate-400' : (p.status === 'Finalizado' ? 'bg-emerald-600' : (p.ragStatus === 'red' ? 'bg-rose-500' : (p.ragStatus === 'amber' ? 'bg-amber-500' : 'bg-blue-600')))"
-                    [style.width.%]="p.progress">
+
+                <!-- Stepper Segmentado EAP (5 Fases) -->
+                <div class="pt-2 border-t border-slate-200/80">
+                  <div class="flex items-center justify-between text-[9px] font-bold mb-1.5">
+                    <div class="flex items-center gap-1.5">
+                      <span class="text-[9px] font-black uppercase tracking-wider text-slate-400">Etapa da EAP:</span>
+                      <span class="font-black text-blue-700">{{ p.currentMilestone }}</span>
+                    </div>
+                    <span class="text-[9px] font-extrabold text-slate-500">
+                      {{ getMilestoneStepLabel(p) }}
+                    </span>
+                  </div>
+                  <div class="grid grid-cols-5 gap-1.5 text-center">
+                    <div *ngFor="let m of milestones; let idx = index"
+                      class="flex flex-col items-center group cursor-default"
+                      [title]="(idx + 1) + '. ' + m">
+                      <div
+                        [ngClass]="getMilestoneStepClass(m, p.currentMilestone, p.status, 'light')"
+                        class="w-full h-1.5 rounded-full transition-all">
+                      </div>
+                      <span
+                        [ngClass]="getMilestoneLabelClass(m, p.currentMilestone, p.status, 'light')"
+                        class="text-[8px] truncate w-full font-bold mt-0.5"
+                        [title]="m">
+                        {{ milestoneShortLabels[m] || m }}
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -626,7 +663,7 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
               <ng-container [ngTemplateOutlet]="slide1Tpl"></ng-container>
             </ng-container>
 
-            <!-- Slides 1..N: Project Chunks (3 cards per slide) -->
+            <!-- Slides 1..N: Project Chunks (2 cards per slide) -->
             <ng-container *ngIf="currentSlideIndex() >= 1 && currentSlideIndex() <= projectChunks().length">
               <ng-container
                 [ngTemplateOutlet]="projectSlideTpl"
@@ -659,7 +696,7 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
           <ng-container [ngTemplateOutlet]="slide1Tpl"></ng-container>
         </div>
 
-        <!-- Slides 2..N: Projetos em Execução (3 por página paisagem) -->
+        <!-- Slides 2..N: Projetos em Execução (2 por página paisagem) -->
         <div class="ppt-slide" [ngClass]="presentationTheme() === 'dark' ? 'theme-dark' : 'theme-light'" *ngFor="let chunk of projectChunks(); let chunkIdx = index">
           <ng-container
             [ngTemplateOutlet]="projectSlideTpl"
@@ -930,7 +967,7 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
         </div>
       </ng-template>
 
-      <!-- TEMPLATE 2: PROJETOS EM EXECUÇÃO (3 CARDS EM PAISAGEM) -->
+      <!-- TEMPLATE 2: PROJETOS EM EXECUÇÃO (2 CARDS EM PAISAGEM) -->
       <ng-template #projectSlideTpl let-chunk="chunk" let-chunkIdx="chunkIdx">
         <div class="h-full flex flex-col justify-between">
           <!-- Slide Header (Executive High-Contrast Header Bar) -->
@@ -940,7 +977,7 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
               <div class="flex flex-col">
                 <span class="text-xs font-black tracking-wider uppercase text-white leading-none">STATUS REPORT EXECUTIVO • PROJETOS EM EXECUÇÃO</span>
                 <span class="text-[9px] text-slate-400 font-semibold mt-0.5 leading-none">
-                  Projetos {{ chunkIdx * 3 + 1 }} a {{ getChunkEnd(chunkIdx) }} de {{ displayedProjects().length }}
+                  Projetos {{ chunkIdx * 2 + 1 }} a {{ getChunkEnd(chunkIdx) }} de {{ displayedProjects().length }}
                 </span>
               </div>
             </div>
@@ -954,10 +991,10 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
             </div>
           </div>
 
-          <!-- 3 Project Cards Grid (Landscape 3 columns) -->
-          <div class="grid grid-cols-3 gap-3 flex-1 overflow-hidden my-1">
+          <!-- 2 Project Cards Grid (Landscape 2 columns) -->
+          <div class="grid grid-cols-2 gap-4 flex-1 overflow-hidden my-1">
             <div *ngFor="let p of chunk"
-              class="p-3 rounded-xl flex flex-col justify-between shadow-xs overflow-hidden border"
+              class="p-3.5 rounded-xl flex flex-col justify-between shadow-xs overflow-hidden border"
               [ngClass]="presentationTheme() === 'dark' ? 'bg-slate-900/95 border-slate-800 text-slate-100' : 'bg-white border-2 border-slate-300 text-slate-900'">
               <div>
                 <!-- Card Top Bar: Priority + Client Logo + Milestone + Status -->
@@ -1000,18 +1037,60 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
                   </span>
                 </div>
 
-                <!-- Progress Bar -->
-                <div class="mb-2">
-                  <div class="flex items-center justify-between text-[9px] font-bold mb-0.5"
-                    [ngClass]="presentationTheme() === 'dark' ? 'text-slate-400' : 'text-slate-600'">
-                    <span>Progresso: <strong [ngClass]="presentationTheme() === 'dark' ? 'text-white' : 'text-slate-950'">{{ p.progress }}%</strong></span>
-                    <span>Meta: <strong [ngClass]="presentationTheme() === 'dark' ? 'text-slate-200' : 'text-slate-900'">{{ formatDate(p.targetDelivery) }}</strong></span>
+                <!-- Progress & EAP Stepper Box (High Contrast) -->
+                <div class="mb-2 p-2 rounded-lg border"
+                  [ngClass]="presentationTheme() === 'dark' ? 'bg-slate-950/70 border-slate-800' : 'bg-slate-50 border border-slate-200'">
+                  <!-- Progress Bar -->
+                  <div class="mb-1.5">
+                    <div class="flex items-center justify-between text-[9px] font-bold mb-0.5"
+                      [ngClass]="presentationTheme() === 'dark' ? 'text-slate-400' : 'text-slate-600'">
+                      <span>Progresso: <strong [ngClass]="presentationTheme() === 'dark' ? 'text-white' : 'text-slate-950'">{{ p.progress }}%</strong></span>
+                      <span *ngIf="p.targetDelivery">Meta: <strong [ngClass]="presentationTheme() === 'dark' ? 'text-slate-200' : 'text-slate-900'">{{ formatDate(p.targetDelivery) }}</strong></span>
+                    </div>
+                    <div class="w-full rounded-full h-1.5 overflow-hidden"
+                      [ngClass]="presentationTheme() === 'dark' ? 'bg-slate-900 border border-slate-800' : 'bg-slate-200 border border-slate-300'">
+                      <div class="h-full rounded-full"
+                        [ngClass]="p.status === 'Congelado' ? 'bg-slate-400' : (p.status === 'Finalizado' ? 'bg-emerald-600' : (p.ragStatus === 'red' ? 'bg-rose-500' : (p.ragStatus === 'amber' ? 'bg-amber-500' : 'bg-blue-600')))"
+                        [style.width.%]="p.progress">
+                      </div>
+                    </div>
                   </div>
-                  <div class="w-full rounded-full h-1.5 overflow-hidden"
-                    [ngClass]="presentationTheme() === 'dark' ? 'bg-slate-950 border border-slate-800' : 'bg-slate-200 border border-slate-300'">
-                    <div class="h-full rounded-full"
-                      [ngClass]="p.status === 'Congelado' ? 'bg-slate-400' : (p.status === 'Finalizado' ? 'bg-emerald-600' : (p.ragStatus === 'red' ? 'bg-rose-500' : (p.ragStatus === 'amber' ? 'bg-amber-500' : 'bg-blue-600')))"
-                      [style.width.%]="p.progress">
+
+                  <!-- Stepper EAP (5 Fases) -->
+                  <div class="pt-1.5 border-t"
+                    [ngClass]="presentationTheme() === 'dark' ? 'border-slate-800/80' : 'border-slate-200/80'">
+                    <div class="flex items-center justify-between text-[8px] font-bold mb-1"
+                      [ngClass]="presentationTheme() === 'dark' ? 'text-slate-400' : 'text-slate-600'">
+                      <div class="flex items-center gap-1.5">
+                        <span class="uppercase tracking-wider text-[8px] font-black"
+                          [ngClass]="presentationTheme() === 'dark' ? 'text-slate-500' : 'text-slate-400'">
+                          Etapa da EAP:
+                        </span>
+                        <span class="font-black"
+                          [ngClass]="presentationTheme() === 'dark' ? 'text-blue-300' : 'text-blue-700'">
+                          {{ p.currentMilestone }}
+                        </span>
+                      </div>
+                      <span class="font-extrabold"
+                        [ngClass]="presentationTheme() === 'dark' ? 'text-slate-400' : 'text-slate-500'">
+                        {{ getMilestoneStepLabel(p) }}
+                      </span>
+                    </div>
+                    <div class="grid grid-cols-5 gap-1.5 text-center">
+                      <div *ngFor="let m of milestones; let idx = index"
+                        class="flex flex-col items-center group cursor-default"
+                        [title]="(idx + 1) + '. ' + m">
+                        <div
+                          [ngClass]="getMilestoneStepClass(m, p.currentMilestone, p.status, presentationTheme())"
+                          class="w-full h-1.5 rounded-full transition-all">
+                        </div>
+                        <span
+                          [ngClass]="getMilestoneLabelClass(m, p.currentMilestone, p.status, presentationTheme())"
+                          class="text-[8px] truncate w-full font-bold mt-0.5"
+                          [title]="m">
+                          {{ milestoneShortLabels[m] || m }}
+                        </span>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -1290,10 +1369,82 @@ export class ExecutiveReportComponent implements OnInit {
     return list;
   });
 
-  // Project chunks: 3 projects per slide in landscape orientation
+  // Milestones da EAP para os Steppers dos Cards
+  milestones: string[] = [
+    'Planejamento',
+    'Desenvolvimento',
+    'Homologação',
+    'Treinamento',
+    'Operação Assistida'
+  ];
+
+  milestoneShortLabels: Record<string, string> = {
+    'Planejamento': 'Plan',
+    'Desenvolvimento': 'Dev',
+    'Homologação': 'Homolog',
+    'Treinamento': 'Trein',
+    'Operação Assistida': 'Op. Assist'
+  };
+
+  getMilestoneIndex(mName?: string): number {
+    if (!mName) return 0;
+    const clean = mName.trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+    const idx = this.milestones.findIndex(m => 
+      m.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '') === clean
+    );
+    return idx >= 0 ? idx : 0;
+  }
+
+  getMilestoneStepLabel(p: WeeklyReportProject): string {
+    if (p.status === 'Finalizado') {
+      return 'Concluído (5/5)';
+    }
+    const idx = this.getMilestoneIndex(p.currentMilestone);
+    return `Etapa ${idx + 1} de 5`;
+  }
+
+  getMilestoneStepClass(m: string, currentMilestone?: string, status?: string, theme: 'dark' | 'light' = 'light'): string {
+    if (status === 'Finalizado') {
+      return 'bg-emerald-500 shadow-2xs';
+    }
+    const currentIdx = this.getMilestoneIndex(currentMilestone);
+    const mIdx = this.milestones.indexOf(m);
+
+    if (mIdx < currentIdx) {
+      return 'bg-emerald-500 shadow-2xs';
+    }
+    if (mIdx === currentIdx) {
+      if (status === 'Congelado') {
+        return theme === 'dark' ? 'bg-slate-500 ring-2 ring-slate-400' : 'bg-slate-400 ring-2 ring-slate-300';
+      }
+      return theme === 'dark' ? 'bg-blue-500 ring-2 ring-blue-400/70 shadow-xs' : 'bg-blue-600 ring-2 ring-blue-300 shadow-xs';
+    }
+    return theme === 'dark' ? 'bg-slate-800' : 'bg-slate-200';
+  }
+
+  getMilestoneLabelClass(m: string, currentMilestone?: string, status?: string, theme: 'dark' | 'light' = 'light'): string {
+    if (status === 'Finalizado') {
+      return theme === 'dark' ? 'text-emerald-400 font-bold' : 'text-emerald-700 font-bold';
+    }
+    const currentIdx = this.getMilestoneIndex(currentMilestone);
+    const mIdx = this.milestones.indexOf(m);
+
+    if (mIdx < currentIdx) {
+      return theme === 'dark' ? 'text-emerald-400 font-bold' : 'text-emerald-700 font-bold';
+    }
+    if (mIdx === currentIdx) {
+      if (status === 'Congelado') {
+        return theme === 'dark' ? 'text-slate-300 font-black' : 'text-slate-700 font-black';
+      }
+      return theme === 'dark' ? 'text-blue-300 font-black' : 'text-blue-700 font-black';
+    }
+    return theme === 'dark' ? 'text-slate-500 font-medium' : 'text-slate-400 font-medium';
+  }
+
+  // Project chunks: 2 projects per slide in landscape orientation
   projectChunks = computed<WeeklyReportProject[][]>(() => {
     const list = this.displayedProjects();
-    const chunkSize = 3;
+    const chunkSize = 2;
     const chunks: WeeklyReportProject[][] = [];
     for (let i = 0; i < list.length; i += chunkSize) {
       chunks.push(list.slice(i, i + chunkSize));
@@ -1311,7 +1462,7 @@ export class ExecutiveReportComponent implements OnInit {
   });
 
   getChunkEnd(chunkIdx: number): number {
-    return Math.min((chunkIdx + 1) * 3, this.displayedProjects().length);
+    return Math.min((chunkIdx + 1) * 2, this.displayedProjects().length);
   }
 
   openPresenter(): void {
