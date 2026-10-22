@@ -442,9 +442,8 @@ import { WeeklyReport, WeeklyReportProject, RoadmapProject, BoardDecision } from
                   </div>
 
                   <div>
-                    <label class="block font-bold text-emerald-700 mb-1 flex items-center justify-between">
-                      <span>Horas Firmadas (Cliente):</span>
-                      <span class="text-[10px] text-emerald-600 font-normal">Contrato</span>
+                    <label class="block font-bold text-emerald-700 mb-1">
+                      Horas Firmadas (Cliente):
                     </label>
                     <input
                       type="number"
