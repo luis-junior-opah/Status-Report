@@ -8,11 +8,11 @@
     "meetingDate": "2026-10-22",
     "executiveSummary": "Concluímos com sucesso a migração dos servidores e retomamos o desenvolvimento do aplicativo ILC, priorizando as funcionalidades de Frete Expresso, Tracking e Gestão de Demandas. Paralelamente, iniciamos o backend do projeto de Assinatura de Contratos via ZapSign e avançamos na Torre de Controle 4.0 (Gestão de Demandas). Também estamos conduzindo o desenvolvimento e a homologação simultânea do Frete Expresso 2.0, abrangendo os fluxos de solicitação, cotação e o painel do transportador para resposta de propostas.",
     "statusPulse": {
-      "totalActive": 10,
+      "totalActive": 9,
       "onTrack": 5,
       "attention": 0,
-      "critical": 5,
-      "averageProgress": 54
+      "critical": 4,
+      "averageProgress": 49
     },
     "activeProjects": [
       {
@@ -58,20 +58,20 @@
         "name": "ILC - Migração Data Center ADDIT → CCM Matrix OCI",
         "client": "ILC (Interno)",
         "clientLogo": "/assets/logos/ilc.png?t=1791579200206",
-        "status": "Ativo",
-        "currentMilestone": "Homologação",
-        "progress": 96,
-        "ragStatus": "red",
+        "status": "Finalizado",
+        "currentMilestone": "Operação Assistida",
+        "progress": 100,
+        "ragStatus": "green",
         "agreedDelivery": "2026-10-26",
         "targetDelivery": "2026-10-26",
         "varianceDays": 0,
         "statusReport": "Pendente atualização do projeto no Azure",
-        "statusReportDate": "2026-10-06",
+        "statusReportDate": "2026-10-22",
         "previousStatusReport": "Conclusão da migração e inicio da operação assistida.",
         "previousStatusReportDate": "2026-10-06",
         "attentionPoints": "Pendente atualização do projeto no Azure.",
-        "hoursExecuted": 403,
-        "hoursPlanned": 421,
+        "hoursExecuted": 414,
+        "hoursPlanned": 416,
         "priority": "P2",
         "systems": [
           "Infraestrutura"
@@ -451,11 +451,11 @@
     "meetingDate": "2026-10-16",
     "executiveSummary": "Concluímos com sucesso a migração dos servidores e retomamos o desenvolvimento do aplicativo ILC, priorizando as funcionalidades de Frete Expresso, Tracking e Gestão de Demandas. Paralelamente, iniciamos o backend do projeto de Assinatura de Contratos via ZapSign e avançamos na Torre de Controle 4.0 (Gestão de Demandas). Também estamos conduzindo o desenvolvimento e a homologação simultânea do Frete Expresso 2.0, abrangendo os fluxos de solicitação, cotação e o painel do transportador para resposta de propostas.",
     "statusPulse": {
-      "totalActive": 10,
+      "totalActive": 9,
       "onTrack": 5,
       "attention": 0,
-      "critical": 5,
-      "averageProgress": 54
+      "critical": 4,
+      "averageProgress": 49
     },
     "activeProjects": [
       {
@@ -501,10 +501,10 @@
         "name": "ILC - Migração Data Center ADDIT → CCM Matrix OCI",
         "client": "ILC (Interno)",
         "clientLogo": "/assets/logos/ilc.png?t=1791579200206",
-        "status": "Ativo",
-        "currentMilestone": "Homologação",
-        "progress": 96,
-        "ragStatus": "red",
+        "status": "Finalizado",
+        "currentMilestone": "Operação Assistida",
+        "progress": 100,
+        "ragStatus": "green",
         "agreedDelivery": "2026-10-26",
         "targetDelivery": "2026-10-26",
         "varianceDays": 0,
@@ -513,8 +513,8 @@
         "previousStatusReport": "Migração em andamento.",
         "previousStatusReportDate": "2026-10-06",
         "attentionPoints": "Pendente atualização do projeto no Azure.",
-        "hoursExecuted": 403,
-        "hoursPlanned": 421,
+        "hoursExecuted": 414,
+        "hoursPlanned": 416,
         "priority": "P2",
         "systems": [
           "Infraestrutura"

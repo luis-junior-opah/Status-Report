@@ -1,5 +1,5 @@
 {
-  "lastSync": "2026-10-22T16:30:49.371Z",
+  "lastSync": "2026-10-22T17:00:51.698Z",
   "projects": [
     {
       "id": "a197458f-88c5-4fec-8ce7-a981ee3f6709",
@@ -25,7 +25,7 @@
       "progress": 46,
       "manualRagStatus": "amber",
       "executiveSummary": "Projeto integrado ao Azure DevOps. Iteração atual: Iteration 26.",
-      "azureLastUpdated": "2026-10-22T16:30:36.169Z",
+      "azureLastUpdated": "2026-10-22T17:00:36.854Z",
       "currentIterationName": "Iteration 26",
       "ragStatus": "amber",
       "varianceDays": 0,
@@ -4705,7 +4705,7 @@
       "progress": 0,
       "manualRagStatus": "auto",
       "executiveSummary": "Projeto Safety está em fase de elicitação de requisitos.",
-      "azureLastUpdated": "2026-10-22T16:30:36.976Z",
+      "azureLastUpdated": "2026-10-22T17:00:37.698Z",
       "currentIterationName": null,
       "ragStatus": "red",
       "varianceDays": 0,
@@ -4973,7 +4973,7 @@
       "progress": 92,
       "manualRagStatus": "auto",
       "executiveSummary": "Projeto integrado ao Azure DevOps. Iteração atual: Em andamento.",
-      "azureLastUpdated": "2026-10-22T16:30:37.898Z",
+      "azureLastUpdated": "2026-10-22T17:00:38.515Z",
       "currentIterationName": null,
       "ragStatus": "red",
       "varianceDays": 0,
@@ -5350,7 +5350,7 @@
       "progress": 0,
       "manualRagStatus": "auto",
       "executiveSummary": "Projeto integrado ao Azure DevOps. Iteração atual: Em andamento.",
-      "azureLastUpdated": "2026-10-22T16:30:38.376Z",
+      "azureLastUpdated": "2026-10-22T17:00:39.548Z",
       "currentIterationName": null,
       "ragStatus": "green",
       "varianceDays": 0,
@@ -5678,7 +5678,7 @@
       "progress": 0,
       "manualRagStatus": "auto",
       "executiveSummary": "Projeto integrado ao Azure DevOps. Iteração atual: Em andamento.",
-      "azureLastUpdated": "2026-10-22T16:30:39.303Z",
+      "azureLastUpdated": "2026-10-22T17:00:40.262Z",
       "currentIterationName": null,
       "ragStatus": "green",
       "varianceDays": 0,
@@ -5784,7 +5784,7 @@
       "progress": 41,
       "manualRagStatus": "auto",
       "executiveSummary": "Projeto integrado ao Azure DevOps. Iteração atual: Iteration 4.",
-      "azureLastUpdated": "2026-10-22T16:30:39.744Z",
+      "azureLastUpdated": "2026-10-22T17:00:40.781Z",
       "currentIterationName": "Iteration 4",
       "ragStatus": "red",
       "varianceDays": 0,
@@ -6025,7 +6025,7 @@
       "progress": 97,
       "manualRagStatus": "auto",
       "executiveSummary": "Pendente a homologção do processo Komatsu.",
-      "azureLastUpdated": "2026-10-22T16:30:41.214Z",
+      "azureLastUpdated": "2026-10-22T17:00:41.942Z",
       "currentIterationName": null,
       "ragStatus": "red",
       "varianceDays": 0,
@@ -7359,7 +7359,7 @@
       "progress": 68,
       "manualRagStatus": "auto",
       "executiveSummary": "Desenvolvimento concluido, testes realizados. Homologado junto a John Deere, próximo passo treinar usuários.",
-      "azureLastUpdated": "2026-10-22T16:30:41.752Z",
+      "azureLastUpdated": "2026-10-22T17:00:42.567Z",
       "currentIterationName": "Iteration 01",
       "ragStatus": "green",
       "varianceDays": 0,
@@ -7683,7 +7683,7 @@
       "progress": 66,
       "manualRagStatus": "auto",
       "executiveSummary": "Desenvolvimento concluido, testes realizados. Homologado junto a John Deere, próximo passo treinar usuários.",
-      "azureLastUpdated": "2026-10-22T16:30:42.194Z",
+      "azureLastUpdated": "2026-10-22T17:00:43.186Z",
       "currentIterationName": "Iteration 1",
       "ragStatus": "green",
       "varianceDays": 0,
@@ -8007,7 +8007,7 @@
       "progress": 100,
       "manualRagStatus": "auto",
       "executiveSummary": "Projeto integrado ao Azure DevOps. Iteração atual: Em andamento.",
-      "azureLastUpdated": "2026-10-22T16:30:42.778Z",
+      "azureLastUpdated": "2026-10-22T17:00:44.012Z",
       "currentIterationName": null,
       "ragStatus": "green",
       "varianceDays": 0,
@@ -9221,7 +9221,7 @@
       "progress": 40,
       "manualRagStatus": "auto",
       "executiveSummary": "Projeto em fase de desenvolvimento backend volume total de horas acordado 157.",
-      "azureLastUpdated": "2026-10-22T16:30:43.231Z",
+      "azureLastUpdated": "2026-10-22T17:00:44.968Z",
       "currentIterationName": "Iteration 1",
       "ragStatus": "green",
       "varianceDays": 0,
@@ -10197,7 +10197,7 @@
       "progress": 47,
       "manualRagStatus": "auto",
       "executiveSummary": "Etapa de gerenciamento de parâmetros em fase final de desenvolvimento.",
-      "azureLastUpdated": "2026-10-22T16:30:44.677Z",
+      "azureLastUpdated": "2026-10-22T17:00:46.164Z",
       "currentIterationName": "Iteration 1",
       "ragStatus": "green",
       "varianceDays": 0,
@@ -10915,7 +10915,7 @@
       "progress": 62,
       "manualRagStatus": "auto",
       "executiveSummary": "Projeto integrado ao Azure DevOps. Iteração atual: SPRINT 7a.",
-      "azureLastUpdated": "2026-10-22T16:30:45.943Z",
+      "azureLastUpdated": "2026-10-22T17:00:47.509Z",
       "currentIterationName": "SPRINT 7a",
       "ragStatus": "red",
       "varianceDays": 0,
@@ -12694,7 +12694,7 @@
       "progress": 44,
       "manualRagStatus": "auto",
       "executiveSummary": "Projeto integrado ao Azure DevOps. Iteração atual: SPRINT JUL - 2022 - 1 QUINZENA.",
-      "azureLastUpdated": "2026-10-22T16:30:47.187Z",
+      "azureLastUpdated": "2026-10-22T17:00:48.709Z",
       "currentIterationName": "SPRINT JUL - 2022 - 1 QUINZENA",
       "ragStatus": "red",
       "varianceDays": 0,
@@ -13761,7 +13761,7 @@
       "progress": 100,
       "manualRagStatus": "auto",
       "executiveSummary": "Projeto integrado ao Azure DevOps. Iteração atual: Em andamento.",
-      "azureLastUpdated": "2026-10-22T16:30:47.791Z",
+      "azureLastUpdated": "2026-10-22T17:00:49.259Z",
       "currentIterationName": null,
       "ragStatus": "green",
       "varianceDays": 0,
@@ -14605,7 +14605,7 @@
       "progress": 94,
       "manualRagStatus": "auto",
       "executiveSummary": "Projeto integrado ao Azure DevOps. Iteração atual: Iteration 20.",
-      "azureLastUpdated": "2026-10-22T16:30:48.804Z",
+      "azureLastUpdated": "2026-10-22T17:00:51.209Z",
       "currentIterationName": "Iteration 20",
       "ragStatus": "red",
       "varianceDays": 0,
@@ -19449,7 +19449,7 @@
       "progress": 65,
       "manualRagStatus": "auto",
       "executiveSummary": "Projeto integrado ao Azure DevOps. Iteração atual: Sprint 5.",
-      "azureLastUpdated": "2026-10-22T16:30:49.371Z",
+      "azureLastUpdated": "2026-10-22T17:00:51.698Z",
       "currentIterationName": "Sprint 6",
       "ragStatus": "red",
       "varianceDays": 0,
@@ -20002,7 +20002,7 @@
       "progress": 23,
       "manualRagStatus": "auto",
       "executiveSummary": "Desenvolvimento das telas operacionais e serviços offline (41% concluído). Ajuste no fluxo de autenticação e validação técnica.",
-      "azureLastUpdated": "2026-10-22T16:30:46.425Z",
+      "azureLastUpdated": "2026-10-22T17:00:47.967Z",
       "currentIterationName": "Iteration 1",
       "activities": [
         {
@@ -20398,7 +20398,7 @@
       "progress": 100,
       "manualRagStatus": "auto",
       "executiveSummary": "Projeto sincronizado com o Azure DevOps. Iteração: Em andamento.",
-      "azureLastUpdated": "2026-10-22T16:30:40.338Z",
+      "azureLastUpdated": "2026-10-22T17:00:41.247Z",
       "currentIterationName": "Iteration 1",
       "activities": [
         {
@@ -20581,9 +20581,9 @@
       "name": "ILC - Migração Data Center ADDIT → CCM Matrix OCI",
       "description": "Migração servidor",
       "client": "ILC (Interno)",
-      "status": "Ativo",
+      "status": "Finalizado",
       "isVisible": true,
-      "currentMilestone": "Homologação",
+      "currentMilestone": "Operação Assistida",
       "agreedDates": {
         "start": "2026-09-01",
         "end": "2026-10-26"
@@ -20596,12 +20596,80 @@
         "start": "2026-09-27",
         "end": null
       },
-      "progress": 96,
+      "progress": 100,
       "manualRagStatus": "auto",
       "executiveSummary": "Pendente atualização do projeto no Azure",
-      "azureLastUpdated": "2026-10-22T16:30:43.995Z",
+      "azureLastUpdated": "2026-10-22T17:00:45.455Z",
       "currentIterationName": "Iteration 1",
       "activities": [
+        {
+          "id": "7374",
+          "azureId": 7374,
+          "title": "Aceite previsto",
+          "fullTitle": "#7374 Aceite previsto",
+          "rawTitle": "Aceite previsto",
+          "type": "User Story",
+          "state": "Closed",
+          "assignedTo": "Francisco Molaia Santos",
+          "eapPhase": "Homologação",
+          "month": "OUT / 26",
+          "startDate": "2026-10-22",
+          "targetDate": "2026-10-23",
+          "dateStr": "23/10/2026",
+          "ilcHours": 1,
+          "ilcHoursTotal": 1,
+          "clientHours": 0,
+          "status": "completed",
+          "isDelayed": false,
+          "isTightMargin": false,
+          "linkedTasks": [
+            {
+              "id": 7396,
+              "title": "Aceite técnico previsto e encerramento das atividades da migração CCM / OCI",
+              "type": "Task",
+              "state": "Closed",
+              "assignedTo": "Francisco Molaia Santos",
+              "originalEstimate": 1,
+              "completedWork": 1,
+              "startDate": "2026-10-22",
+              "targetDate": "2026-10-22"
+            }
+          ]
+        },
+        {
+          "id": "7373",
+          "azureId": 7373,
+          "title": "Checklist / evidências",
+          "fullTitle": "#7373 Checklist / evidências",
+          "rawTitle": "Checklist / evidências",
+          "type": "User Story",
+          "state": "Closed",
+          "assignedTo": "Francisco Molaia Santos",
+          "eapPhase": "Homologação",
+          "month": "OUT / 26",
+          "startDate": "2026-10-20",
+          "targetDate": "2026-10-21",
+          "dateStr": "21/10/2026",
+          "ilcHours": 10,
+          "ilcHoursTotal": 10,
+          "clientHours": 0,
+          "status": "completed",
+          "isDelayed": false,
+          "isTightMargin": false,
+          "linkedTasks": [
+            {
+              "id": 7395,
+              "title": "Consolidação do checklist e das evidências de validação do ambiente CCM / OCI",
+              "type": "Task",
+              "state": "Closed",
+              "assignedTo": "Francisco Molaia Santos",
+              "originalEstimate": 10,
+              "completedWork": 10,
+              "startDate": "2026-10-20",
+              "targetDate": "2026-10-20"
+            }
+          ]
+        },
         {
           "id": "7372",
           "azureId": 7372,
@@ -20975,74 +21043,6 @@
               "targetDate": "2026-09-11"
             }
           ]
-        },
-        {
-          "id": "7373",
-          "azureId": 7373,
-          "title": "Checklist / evidências",
-          "fullTitle": "#7373 Checklist / evidências",
-          "rawTitle": "Checklist / evidências",
-          "type": "User Story",
-          "state": "New",
-          "assignedTo": "Francisco Molaia Santos",
-          "eapPhase": "Homologação",
-          "month": "OUT / 26",
-          "startDate": "2026-10-16",
-          "targetDate": "2026-10-17",
-          "dateStr": "17/10/2026",
-          "ilcHours": 0,
-          "ilcHoursTotal": 8,
-          "clientHours": 0,
-          "status": "planned",
-          "isDelayed": true,
-          "isTightMargin": false,
-          "linkedTasks": [
-            {
-              "id": 7387,
-              "title": "Checklist / Evidências",
-              "type": "Task",
-              "state": "New",
-              "assignedTo": "Francisco Molaia Santos",
-              "originalEstimate": 8,
-              "completedWork": 0,
-              "startDate": "2026-09-27",
-              "targetDate": "2026-10-17"
-            }
-          ]
-        },
-        {
-          "id": "7374",
-          "azureId": 7374,
-          "title": "Aceite previsto",
-          "fullTitle": "#7374 Aceite previsto",
-          "rawTitle": "Aceite previsto",
-          "type": "User Story",
-          "state": "New",
-          "assignedTo": "Francisco Molaia Santos",
-          "eapPhase": "Homologação",
-          "month": "OUT / 26",
-          "startDate": "2026-10-16",
-          "targetDate": "2026-10-17",
-          "dateStr": "17/10/2026",
-          "ilcHours": 0,
-          "ilcHoursTotal": 8,
-          "clientHours": 0,
-          "status": "planned",
-          "isDelayed": true,
-          "isTightMargin": false,
-          "linkedTasks": [
-            {
-              "id": 7388,
-              "title": "Aceite previsto",
-              "type": "Task",
-              "state": "New",
-              "assignedTo": "Francisco Molaia Santos",
-              "originalEstimate": 8,
-              "completedWork": 0,
-              "startDate": "2026-09-27",
-              "targetDate": "2026-10-17"
-            }
-          ]
         }
       ],
       "priority": "P2",
@@ -21062,9 +21062,9 @@
         "dates": true
       },
       "azureOriginal": {
-        "ilcPlanned": 421,
-        "ilcExecuted": 403,
-        "progress": 96,
+        "ilcPlanned": 416,
+        "ilcExecuted": 414,
+        "progress": 100,
         "agreedDates": {
           "start": "2026-09-01",
           "end": "2026-10-26"
@@ -21075,16 +21075,16 @@
         }
       },
       "hours": {
-        "agreed": 421,
-        "agreedHours": 421,
-        "planned": 421,
-        "executed": 403,
+        "agreed": 416,
+        "agreedHours": 416,
+        "planned": 416,
+        "executed": 414,
         "clientPlanned": 0,
         "clientExecuted": 0,
-        "ilcPlanned": 421,
-        "ilcExecuted": 403,
-        "totalPlanned": 421,
-        "totalExecuted": 403,
+        "ilcPlanned": 416,
+        "ilcExecuted": 414,
+        "totalPlanned": 416,
+        "totalExecuted": 414,
         "distribution": [
           {
             "phase": "Planejamento",
@@ -21100,9 +21100,9 @@
           },
           {
             "phase": "Homologação",
-            "planned": 112,
-            "executed": 96,
-            "percentage": 86
+            "planned": 107,
+            "executed": 107,
+            "percentage": 100
           },
           {
             "phase": "Treinamento",
@@ -21118,15 +21118,13 @@
           }
         ]
       },
-      "ragStatus": "red",
+      "ragStatus": "green",
       "varianceDays": 0,
-      "inconsistencies": [
-        "DELAYED_ITEMS"
-      ],
-      "hasManualIlcHours": false,
+      "inconsistencies": [],
+      "hasManualIlcHours": true,
       "hasManualProgress": false,
       "hasManualAgreedDates": false,
-      "agreedHours": 421
+      "agreedHours": 416
     },
     {
       "id": "53f7da8a-e2d4-4a4a-bdcf-5a8d4a8bfad6",
@@ -21153,7 +21151,7 @@
       "progress": 0,
       "manualRagStatus": "auto",
       "executiveSummary": "Projeto sincronizado com o Azure DevOps. Iteração: Em andamento.",
-      "azureLastUpdated": "2026-10-22T16:30:38.778Z",
+      "azureLastUpdated": "2026-10-22T17:00:39.877Z",
       "currentIterationName": null,
       "activities": [],
       "priority": "P2",

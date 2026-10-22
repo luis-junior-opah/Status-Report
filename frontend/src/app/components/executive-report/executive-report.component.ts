@@ -88,86 +88,309 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
       <div *ngIf="!service.isLoadingReport() && currentReport()" class="standard-report-view space-y-5 print:hidden">
 
         <!-- 1. HERO BANNER: EXECUTIVE PULSE KPIS (HIGH CONTRAST) -->
-        <div class="rounded-2xl border border-slate-300 bg-white text-slate-900 shadow-xs p-4 sm:p-5 transition-all">
-          <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 2xl:grid-cols-10 gap-2 w-full">
-            <!-- 1. Roadmap -->
-            <div class="px-1.5 py-2 bg-blue-50 rounded-xl border border-blue-300 text-center shadow-2xs">
-              <span class="text-[8px] font-bold text-blue-900 uppercase tracking-tight block truncate">🔭 Roadmap</span>
-              <span class="text-xl font-black text-blue-700 block mt-0.5">{{ currentReport()?.roadmapProjects?.length || 0 }}</span>
-              <span class="text-[9px] text-blue-800 font-semibold block truncate">pipeline futuro</span>
-            </div>
-
-            <!-- 2. Congelados -->
-            <div class="px-1.5 py-2 bg-slate-200/80 rounded-xl border border-slate-300 text-center shadow-2xs">
-              <span class="text-[8px] font-bold text-slate-700 uppercase tracking-tight block truncate">Congelados</span>
-              <span class="text-xl font-black text-slate-700 block mt-0.5">{{ getFrozenCount() }}</span>
-              <span class="text-[9px] text-slate-600 font-medium block truncate">pausados</span>
-            </div>
-
-            <!-- 3. Ativos -->
-            <div class="px-1.5 py-2 bg-slate-100 rounded-xl border border-slate-300 text-center shadow-2xs">
-              <span class="text-[8px] font-bold text-slate-600 uppercase tracking-tight block truncate">Ativos</span>
+        <div class="rounded-2xl border border-slate-300 bg-white text-slate-900 shadow-xs p-3.5 sm:p-4 transition-all overflow-visible">
+          <div class="w-full gap-2" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));">
+            <!-- 1. Ativos -->
+            <div class="group relative px-1 py-2 bg-slate-100 hover:bg-slate-200/70 rounded-xl border border-slate-300 text-center shadow-2xs transition cursor-help"
+              title="Projetos Ativos: Quantidade de projetos em andamento na esteira (exclui pausados e concluídos).">
+              <div class="flex items-center justify-center gap-0.5">
+                <span class="text-[8px] font-bold text-slate-700 uppercase tracking-tight block truncate">⚡ Ativos</span>
+                <span class="text-[8px] text-slate-400">ⓘ</span>
+              </div>
               <span class="text-xl font-black text-slate-950 block mt-0.5">{{ getActiveCount() }}</span>
-              <span class="text-[9px] text-slate-600 font-medium block truncate">em andamento</span>
+              <span class="text-[8px] text-slate-600 font-medium block truncate">em andamento</span>
+
+              <!-- Floating Tooltip -->
+              <div class="pointer-events-none absolute bottom-full left-0 mb-2 hidden group-hover:flex flex-col items-start w-56 p-2.5 bg-slate-955 bg-slate-950/95 text-white text-[10px] leading-snug rounded-xl shadow-2xl z-50 text-left border border-slate-700 backdrop-blur-xs">
+                <span class="font-extrabold text-blue-300 mb-0.5 block">⚡ Projetos Ativos</span>
+                <span class="text-slate-300 font-normal block">Volume de iniciativas operacionais em execução na esteira corporativa.</span>
+                <span class="text-[9px] text-emerald-300 mt-1.5 pt-1 border-t border-slate-800 font-medium block">
+                  <strong>Cálculo:</strong> Total de projetos com status 'Ativo' (exclui Congelados e Finalizados).
+                </span>
+                <div class="absolute top-full left-4 border-4 border-transparent border-t-slate-950/95"></div>
+              </div>
             </div>
 
-            <!-- 4. No Prazo -->
-            <div class="px-1.5 py-2 bg-emerald-50 rounded-xl border border-emerald-300 text-center shadow-2xs">
-              <span class="text-[8px] font-bold text-emerald-900 uppercase tracking-tight block truncate">No Prazo</span>
-              <span class="text-xl font-black text-emerald-700 block mt-0.5">{{ getOnTrackCount() }}</span>
-              <span class="text-[9px] text-emerald-800 font-semibold block truncate">{{ getPercent(getOnTrackCount(), getActiveCount()) }}% ativos</span>
-            </div>
-
-            <!-- 5. Em Atenção -->
-            <div class="px-1.5 py-2 bg-amber-50 rounded-xl border border-amber-300 text-center shadow-2xs">
-              <span class="text-[8px] font-bold text-amber-900 uppercase tracking-tight block truncate">Em Atenção</span>
-              <span class="text-xl font-black text-amber-700 block mt-0.5">{{ getAttentionCount() }}</span>
-              <span class="text-[9px] text-amber-800 font-semibold block truncate">risco moderado</span>
-            </div>
-
-            <!-- 6. Com Desvio -->
-            <div class="px-1.5 py-2 bg-rose-50 rounded-xl border border-rose-300 text-center shadow-2xs">
-              <span class="text-[8px] font-bold text-rose-900 uppercase tracking-tight block truncate">Com Desvio</span>
-              <span class="text-xl font-black text-rose-700 block mt-0.5">{{ getCriticalCount() }}</span>
-              <span class="text-[9px] text-rose-800 font-semibold block truncate">desvio crítico</span>
-            </div>
-
-            <!-- 7. Saúde (Novo indicador de Saúde do Portfólio) -->
-            <div class="px-1.5 py-2 rounded-xl border text-center shadow-2xs"
-              [ngClass]="getPortfolioHealth() >= 70 ? 'bg-emerald-50 border-emerald-300' : (getPortfolioHealth() >= 50 ? 'bg-amber-50 border-amber-300' : 'bg-rose-50 border-rose-300')">
-              <span class="text-[8px] font-bold uppercase tracking-tight block truncate"
-                [ngClass]="getPortfolioHealth() >= 70 ? 'text-emerald-900' : (getPortfolioHealth() >= 50 ? 'text-amber-900' : 'text-rose-900')">
-                💚 Saúde
-              </span>
+            <!-- 2. Saúde -->
+            <div class="group relative px-1 py-2 rounded-xl border text-center shadow-2xs transition cursor-help"
+              [ngClass]="getPortfolioHealth() >= 70 ? 'bg-emerald-50 border-emerald-300 hover:bg-emerald-100/70' : (getPortfolioHealth() >= 50 ? 'bg-amber-50 border-amber-300 hover:bg-amber-100/70' : 'bg-rose-50 border-rose-300 hover:bg-rose-100/70')"
+              title="Saúde do Portfólio: Índice ponderado (Verde 100%, Amarelo 50%, Vermelho 0%) dividido pelo total de ativos.">
+              <div class="flex items-center justify-center gap-0.5">
+                <span class="text-[8px] font-bold uppercase tracking-tight block truncate"
+                  [ngClass]="getPortfolioHealth() >= 70 ? 'text-emerald-900' : (getPortfolioHealth() >= 50 ? 'text-amber-900' : 'text-rose-900')">
+                  💚 Saúde
+                </span>
+                <span class="text-[8px] opacity-70">ⓘ</span>
+              </div>
               <span class="text-xl font-black block mt-0.5"
                 [ngClass]="getPortfolioHealth() >= 70 ? 'text-emerald-700' : (getPortfolioHealth() >= 50 ? 'text-amber-700' : 'text-rose-700')">
                 {{ getPortfolioHealth() }}%
               </span>
-              <span class="text-[9px] font-semibold block truncate"
+              <span class="text-[8px] font-semibold block truncate"
                 [ngClass]="getPortfolioHealth() >= 70 ? 'text-emerald-800' : (getPortfolioHealth() >= 50 ? 'text-amber-800' : 'text-rose-800')">
                 do portfólio
               </span>
+
+              <!-- Floating Tooltip -->
+              <div class="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:flex flex-col items-start w-60 p-2.5 bg-slate-950/95 text-white text-[10px] leading-snug rounded-xl shadow-2xl z-50 text-left border border-slate-700 backdrop-blur-xs">
+                <span class="font-extrabold text-emerald-300 mb-0.5 block">💚 Saúde do Portfólio</span>
+                <span class="text-slate-300 font-normal block">Índice sintético de estabilidade operacional e previsibilidade de entrega.</span>
+                <span class="text-[9px] text-emerald-300 mt-1.5 pt-1 border-t border-slate-800 font-medium block">
+                  <strong>Cálculo:</strong> (No Prazo × 100 + Atenção × 50 + Desvio × 0) ÷ Total de Projetos Ativos.
+                </span>
+                <div class="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-slate-950/95"></div>
+              </div>
             </div>
 
-            <!-- 8. Avanço Médio -->
-            <div class="px-1.5 py-2 bg-slate-100 rounded-xl border border-slate-300 text-center shadow-2xs">
-              <span class="text-[8px] font-bold text-slate-700 uppercase tracking-tight block truncate">Avanço Médio</span>
+            <!-- 3. Avanço Médio -->
+            <div class="group relative px-1 py-2 bg-slate-100 hover:bg-slate-200/70 rounded-xl border border-slate-300 text-center shadow-2xs transition cursor-help"
+              title="Avanço Médio: Média do percentual de conclusão física dos projetos ativos.">
+              <div class="flex items-center justify-center gap-0.5">
+                <span class="text-[8px] font-bold text-slate-700 uppercase tracking-tight block truncate">📈 Avanço</span>
+                <span class="text-[8px] text-slate-400">ⓘ</span>
+              </div>
               <span class="text-xl font-black text-blue-700 block mt-0.5">{{ getAverageProgress() }}%</span>
-              <span class="text-[9px] text-slate-600 font-medium block truncate">conclusão física</span>
+              <span class="text-[8px] text-slate-600 font-medium block truncate">conclusão física</span>
+
+              <!-- Floating Tooltip -->
+              <div class="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:flex flex-col items-start w-56 p-2.5 bg-slate-950/95 text-white text-[10px] leading-snug rounded-xl shadow-2xl z-50 text-left border border-slate-700 backdrop-blur-xs">
+                <span class="font-extrabold text-blue-300 mb-0.5 block">📈 Avanço Físico Médio</span>
+                <span class="text-slate-300 font-normal block">Média real do progresso das entregas dos projetos ativos.</span>
+                <span class="text-[9px] text-emerald-300 mt-1.5 pt-1 border-t border-slate-800 font-medium block">
+                  <strong>Cálculo:</strong> Soma do % de progresso físico de cada projeto ativo ÷ Total de Ativos.
+                </span>
+                <div class="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-slate-950/95"></div>
+              </div>
             </div>
 
-            <!-- 9. Deliberações -->
-            <div class="px-1.5 py-2 bg-purple-50 rounded-xl border border-purple-300 text-center shadow-2xs">
-              <span class="text-[8px] font-bold text-purple-900 uppercase tracking-tight block truncate">⚖️ Deliberações</span>
-              <span class="text-xl font-black text-purple-800 block mt-0.5">{{ currentReport()?.boardDecisions?.length || 0 }}</span>
-              <span class="text-[9px] text-purple-800 font-semibold block truncate">pautas diretoria</span>
+            <!-- 4. Consumo Horas -->
+            <div class="group relative px-1 py-2 rounded-xl border text-center shadow-2xs transition cursor-help"
+              [ngClass]="getHoursConsumption().percent <= 85 ? 'bg-sky-50 border-sky-300 hover:bg-sky-100/70' : (getHoursConsumption().percent <= 100 ? 'bg-amber-50 border-amber-300 hover:bg-amber-100/70' : 'bg-rose-50 border-rose-300 hover:bg-rose-100/70')"
+              title="Consumo de Horas: Horas executadas (Azure) divididas pelas horas firmadas com o cliente.">
+              <div class="flex items-center justify-center gap-0.5">
+                <span class="text-[8px] font-bold uppercase tracking-tight block truncate"
+                  [ngClass]="getHoursConsumption().percent <= 85 ? 'text-sky-900' : (getHoursConsumption().percent <= 100 ? 'text-amber-900' : 'text-rose-900')">
+                  ⏱️ Horas
+                </span>
+                <span class="text-[8px] opacity-70">ⓘ</span>
+              </div>
+              <span class="text-xl font-black block mt-0.5"
+                [ngClass]="getHoursConsumption().percent <= 85 ? 'text-sky-700' : (getHoursConsumption().percent <= 100 ? 'text-amber-700' : 'text-rose-700')">
+                {{ getHoursConsumption().percent }}%
+              </span>
+              <span class="text-[8px] font-semibold block truncate"
+                [ngClass]="getHoursConsumption().percent <= 85 ? 'text-sky-800' : (getHoursConsumption().percent <= 100 ? 'text-amber-800' : 'text-rose-800')">
+                {{ getHoursConsumption().executed }}h / {{ getHoursConsumption().agreed }}h
+              </span>
+
+              <!-- Floating Tooltip -->
+              <div class="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:flex flex-col items-start w-60 p-2.5 bg-slate-950/95 text-white text-[10px] leading-snug rounded-xl shadow-2xl z-50 text-left border border-slate-700 backdrop-blur-xs">
+                <span class="font-extrabold text-sky-300 mb-0.5 block">⏱️ Consumo de Horas (Esforço)</span>
+                <span class="text-slate-300 font-normal block">Mede o volume de horas executadas no Azure em relação às horas firmadas comercialmente.</span>
+                <span class="text-[9px] text-emerald-300 mt-1.5 pt-1 border-t border-slate-800 font-medium block">
+                  <strong>Cálculo:</strong> (Total Horas Executadas ÷ Total Horas Firmadas Cliente) × 100%.
+                </span>
+                <div class="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-slate-950/95"></div>
+              </div>
+            </div>
+
+            <!-- 5. No Prazo -->
+            <div class="group relative px-1 py-2 bg-emerald-50 hover:bg-emerald-100/70 rounded-xl border border-emerald-300 text-center shadow-2xs transition cursor-help"
+              title="No Prazo: Projetos ativos fluindo rigorosamente dentro das datas pactuadas.">
+              <div class="flex items-center justify-center gap-0.5">
+                <span class="text-[8px] font-bold text-emerald-900 uppercase tracking-tight block truncate">🟢 No Prazo</span>
+                <span class="text-[8px] text-emerald-600">ⓘ</span>
+              </div>
+              <span class="text-xl font-black text-emerald-700 block mt-0.5">{{ getOnTrackCount() }}</span>
+              <span class="text-[8px] text-emerald-800 font-semibold block truncate">{{ getPercent(getOnTrackCount(), getActiveCount()) }}% ativos</span>
+
+              <!-- Floating Tooltip -->
+              <div class="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:flex flex-col items-start w-56 p-2.5 bg-slate-950/95 text-white text-[10px] leading-snug rounded-xl shadow-2xl z-50 text-left border border-slate-700 backdrop-blur-xs">
+                <span class="font-extrabold text-emerald-300 mb-0.5 block">🟢 Projetos no Prazo</span>
+                <span class="text-slate-300 font-normal block">Iniciativas cujo cronograma e entregas estão ocorrendo sem atrasos.</span>
+                <span class="text-[9px] text-emerald-300 mt-1.5 pt-1 border-t border-slate-800 font-medium block">
+                  <strong>Cálculo:</strong> Projetos com status 'Ativo' e farol de saúde Verde (ragStatus = 'green').
+                </span>
+                <div class="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-slate-950/95"></div>
+              </div>
+            </div>
+
+            <!-- 6. Em Atenção -->
+            <div class="group relative px-1 py-2 bg-amber-50 hover:bg-amber-100/70 rounded-xl border border-amber-300 text-center shadow-2xs transition cursor-help"
+              title="Em Atenção: Projetos com risco moderado ou pontos de atenção gerencial.">
+              <div class="flex items-center justify-center gap-0.5">
+                <span class="text-[8px] font-bold text-amber-900 uppercase tracking-tight block truncate">🟡 Atenção</span>
+                <span class="text-[8px] text-amber-600">ⓘ</span>
+              </div>
+              <span class="text-xl font-black text-amber-700 block mt-0.5">{{ getAttentionCount() }}</span>
+              <span class="text-[8px] text-amber-800 font-semibold block truncate">risco moderado</span>
+
+              <!-- Floating Tooltip -->
+              <div class="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:flex flex-col items-start w-56 p-2.5 bg-slate-950/95 text-white text-[10px] leading-snug rounded-xl shadow-2xl z-50 text-left border border-slate-700 backdrop-blur-xs">
+                <span class="font-extrabold text-amber-300 mb-0.5 block">🟡 Projetos em Atenção</span>
+                <span class="text-slate-300 font-normal block">Projetos com riscos moderados ou dependências que exigem ação preventiva.</span>
+                <span class="text-[9px] text-emerald-300 mt-1.5 pt-1 border-t border-slate-800 font-medium block">
+                  <strong>Cálculo:</strong> Projetos ativos com farol Amarelo ou alertas operacionais.
+                </span>
+                <div class="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-slate-950/95"></div>
+              </div>
+            </div>
+
+            <!-- 7. Com Desvio -->
+            <div class="group relative px-1 py-2 bg-rose-50 hover:bg-rose-100/70 rounded-xl border border-rose-300 text-center shadow-2xs transition cursor-help"
+              title="Com Desvio: Projetos com desvio crítico de prazo, atividades vencidas ou impedimentos.">
+              <div class="flex items-center justify-center gap-0.5">
+                <span class="text-[8px] font-bold text-rose-900 uppercase tracking-tight block truncate">🔴 Desvio</span>
+                <span class="text-[8px] text-rose-600">ⓘ</span>
+              </div>
+              <span class="text-xl font-black text-rose-700 block mt-0.5">{{ getCriticalCount() }}</span>
+              <span class="text-[8px] text-rose-800 font-semibold block truncate">desvio crítico</span>
+
+              <!-- Floating Tooltip -->
+              <div class="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:flex flex-col items-start w-56 p-2.5 bg-slate-950/95 text-white text-[10px] leading-snug rounded-xl shadow-2xl z-50 text-left border border-slate-700 backdrop-blur-xs">
+                <span class="font-extrabold text-rose-300 mb-0.5 block">🔴 Projetos com Desvio</span>
+                <span class="text-slate-300 font-normal block">Projetos com estouro de datas acordadas ou impedimentos críticos em aberto.</span>
+                <span class="text-[9px] text-emerald-300 mt-1.5 pt-1 border-t border-slate-800 font-medium block">
+                  <strong>Cálculo:</strong> Projetos com status 'Ativo' e farol de saúde Vermelho (ragStatus = 'red').
+                </span>
+                <div class="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-slate-950/95"></div>
+              </div>
+            </div>
+
+            <!-- 8. Desvio Médio em Dias -->
+            <div class="group relative px-1 py-2 rounded-xl border text-center shadow-2xs transition cursor-help"
+              [ngClass]="getAverageVarianceDays().delayedCount > 0 ? 'bg-rose-50 border-rose-300 hover:bg-rose-100/70' : 'bg-slate-100 border-slate-300 hover:bg-slate-200/70'"
+              title="Desvio Médio: Média de dias de atraso entre a data acordada e a previsão nos projetos em desvio.">
+              <div class="flex items-center justify-center gap-0.5">
+                <span class="text-[8px] font-bold uppercase tracking-tight block truncate"
+                  [ngClass]="getAverageVarianceDays().delayedCount > 0 ? 'text-rose-900' : 'text-slate-700'">
+                  ⏳ Desvio Médio
+                </span>
+                <span class="text-[8px] opacity-70">ⓘ</span>
+              </div>
+              <span class="text-xl font-black block mt-0.5"
+                [ngClass]="getAverageVarianceDays().delayedCount > 0 ? 'text-rose-700' : 'text-slate-700'">
+                +{{ getAverageVarianceDays().avgDays }}d
+              </span>
+              <span class="text-[8px] font-semibold block truncate"
+                [ngClass]="getAverageVarianceDays().delayedCount > 0 ? 'text-rose-800' : 'text-slate-600'">
+                {{ getAverageVarianceDays().delayedCount > 0 ? (getAverageVarianceDays().delayedCount + ' projeto(s)') : 'sem atrasos' }}
+              </span>
+
+              <!-- Floating Tooltip -->
+              <div class="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:flex flex-col items-start w-60 p-2.5 bg-slate-950/95 text-white text-[10px] leading-snug rounded-xl shadow-2xl z-50 text-left border border-slate-700 backdrop-blur-xs">
+                <span class="font-extrabold text-amber-300 mb-0.5 block">⏳ Desvio Médio de Prazo</span>
+                <span class="text-slate-300 font-normal block">Média de dias de atraso das entregas entre os projetos que estão com prazo estourado.</span>
+                <span class="text-[9px] text-emerald-300 mt-1.5 pt-1 border-t border-slate-800 font-medium block">
+                  <strong>Cálculo:</strong> Soma de (Data Prevista - Data Acordada em dias) ÷ Quantidade de Projetos com Desvio.
+                </span>
+                <div class="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-slate-950/95"></div>
+              </div>
+            </div>
+
+            <!-- 9. Entregas no Mês -->
+            <div class="group relative px-1 py-2 bg-emerald-50 hover:bg-emerald-100/70 rounded-xl border border-emerald-300 text-center shadow-2xs transition cursor-help"
+              title="Entregas no Mês: Projetos ativos com data prevista de término ou go-live no mês corrente.">
+              <div class="flex items-center justify-center gap-0.5">
+                <span class="text-[8px] font-bold text-emerald-900 uppercase tracking-tight block truncate">🎯 Entregas</span>
+                <span class="text-[8px] text-emerald-600">ⓘ</span>
+              </div>
+              <span class="text-xl font-black text-emerald-700 block mt-0.5">{{ getDeliveriesThisMonthCount() }}</span>
+              <span class="text-[8px] text-emerald-800 font-semibold block truncate">em {{ currentMonthName }}</span>
+
+              <!-- Floating Tooltip -->
+              <div class="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:flex flex-col items-start w-60 p-2.5 bg-slate-950/95 text-white text-[10px] leading-snug rounded-xl shadow-2xl z-50 text-left border border-slate-700 backdrop-blur-xs">
+                <span class="font-extrabold text-emerald-300 mb-0.5 block">🎯 Entregas no Ciclo Vigente</span>
+                <span class="text-slate-300 font-normal block">Quantidade de projetos com marco final de entrega ou go-live previsto para o mês corrente.</span>
+                <span class="text-[9px] text-emerald-300 mt-1.5 pt-1 border-t border-slate-800 font-medium block">
+                  <strong>Cálculo:</strong> Projetos ativos com término/previsão dentro do mês de {{ currentMonthName }}.
+                </span>
+                <div class="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-slate-950/95"></div>
+              </div>
             </div>
 
             <!-- 10. No radar -->
-            <div class="px-1.5 py-2 bg-orange-50 rounded-xl border border-orange-300 text-center shadow-2xs">
-              <span class="text-[8px] font-bold text-orange-900 uppercase tracking-tight block truncate">🚨 No radar</span>
+            <div class="group relative px-1 py-2 bg-orange-50 hover:bg-orange-100/70 rounded-xl border border-orange-300 text-center shadow-2xs transition cursor-help"
+              title="No Radar: Projetos com desvio crítico ou com pontos de atenção abertos pela liderança.">
+              <div class="flex items-center justify-center gap-0.5">
+                <span class="text-[8px] font-bold text-orange-900 uppercase tracking-tight block truncate">🚨 No radar</span>
+                <span class="text-[8px] text-orange-600">ⓘ</span>
+              </div>
               <span class="text-xl font-black text-orange-700 block mt-0.5">{{ topCriticalProjects().length }}</span>
-              <span class="text-[9px] text-orange-800 font-semibold block truncate">radar diretoria</span>
+              <span class="text-[8px] text-orange-800 font-semibold block truncate">radar diretoria</span>
+
+              <!-- Floating Tooltip -->
+              <div class="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:flex flex-col items-start w-60 p-2.5 bg-slate-950/95 text-white text-[10px] leading-snug rounded-xl shadow-2xl z-50 text-left border border-slate-700 backdrop-blur-xs">
+                <span class="font-extrabold text-orange-300 mb-0.5 block">🚨 Radar da Diretoria</span>
+                <span class="text-slate-300 font-normal block">Iniciativas prioritárias com alertas ou desvios que demandam atenção na pauta de hoje.</span>
+                <span class="text-[9px] text-emerald-300 mt-1.5 pt-1 border-t border-slate-800 font-medium block">
+                  <strong>Cálculo:</strong> Projetos com farol vermelho ou com pontos de atenção cadastrados pela gestão.
+                </span>
+                <div class="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-slate-950/95"></div>
+              </div>
+            </div>
+
+            <!-- 11. Deliberações -->
+            <div class="group relative px-1 py-2 bg-purple-50 hover:bg-purple-100/70 rounded-xl border border-purple-300 text-center shadow-2xs transition cursor-help"
+              title="Deliberações: Pautas, aprovações e decisões estratégicas da reunião de diretoria.">
+              <div class="flex items-center justify-center gap-0.5">
+                <span class="text-[8px] font-bold text-purple-900 uppercase tracking-tight block truncate">⚖️ Pautas</span>
+                <span class="text-[8px] text-purple-600">ⓘ</span>
+              </div>
+              <span class="text-xl font-black text-purple-800 block mt-0.5">{{ currentReport()?.boardDecisions?.length || 0 }}</span>
+              <span class="text-[8px] text-purple-800 font-semibold block truncate">deliberações</span>
+
+              <!-- Floating Tooltip -->
+              <div class="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:flex flex-col items-start w-56 p-2.5 bg-slate-950/95 text-white text-[10px] leading-snug rounded-xl shadow-2xl z-50 text-left border border-slate-700 backdrop-blur-xs">
+                <span class="font-extrabold text-purple-300 mb-0.5 block">⚖️ Deliberações Estratégicas</span>
+                <span class="text-slate-300 font-normal block">Total de decisões colegiadas e acordos registrados na ata de governança.</span>
+                <span class="text-[9px] text-emerald-300 mt-1.5 pt-1 border-t border-slate-800 font-medium block">
+                  <strong>Cálculo:</strong> Quantidade de itens cadastrados no bloco 'Deliberações & Decisões'.
+                </span>
+                <div class="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-slate-950/95"></div>
+              </div>
+            </div>
+
+            <!-- 12. Congelados -->
+            <div class="group relative px-1 py-2 bg-slate-200/80 hover:bg-slate-300/80 rounded-xl border border-slate-300 text-center shadow-2xs transition cursor-help"
+              title="Congelados: Projetos temporariamente pausados por decisão estratégica ou do cliente.">
+              <div class="flex items-center justify-center gap-0.5">
+                <span class="text-[8px] font-bold text-slate-700 uppercase tracking-tight block truncate">❄️ Pausa</span>
+                <span class="text-[8px] text-slate-500">ⓘ</span>
+              </div>
+              <span class="text-xl font-black text-slate-700 block mt-0.5">{{ getFrozenCount() }}</span>
+              <span class="text-[8px] text-slate-600 font-medium block truncate">congelados</span>
+
+              <!-- Floating Tooltip -->
+              <div class="pointer-events-none absolute bottom-full right-0 mb-2 hidden group-hover:flex flex-col items-start w-56 p-2.5 bg-slate-950/95 text-white text-[10px] leading-snug rounded-xl shadow-2xl z-50 text-left border border-slate-700 backdrop-blur-xs">
+                <span class="font-extrabold text-slate-300 mb-0.5 block">❄️ Projetos Congelados</span>
+                <span class="text-slate-300 font-normal block">Iniciativas com atividades paralisadas temporariamente pela liderança.</span>
+                <span class="text-[9px] text-emerald-300 mt-1.5 pt-1 border-t border-slate-800 font-medium block">
+                  <strong>Cálculo:</strong> Projetos com status 'Congelado' cadastrados na curadoria.
+                </span>
+                <div class="absolute top-full right-4 border-4 border-transparent border-t-slate-950/95"></div>
+              </div>
+            </div>
+
+            <!-- 13. Roadmap -->
+            <div class="group relative px-1 py-2 bg-blue-50 hover:bg-blue-100/70 rounded-xl border border-blue-300 text-center shadow-2xs transition cursor-help"
+              title="Roadmap: Iniciativas planejadas no pipeline futuro de produtos e negócios.">
+              <div class="flex items-center justify-center gap-0.5">
+                <span class="text-[8px] font-bold text-blue-900 uppercase tracking-tight block truncate">🔭 Roadmap</span>
+                <span class="text-[8px] text-blue-600">ⓘ</span>
+              </div>
+              <span class="text-xl font-black text-blue-700 block mt-0.5">{{ currentReport()?.roadmapProjects?.length || 0 }}</span>
+              <span class="text-[8px] text-blue-800 font-semibold block truncate">pipeline futuro</span>
+
+              <!-- Floating Tooltip -->
+              <div class="pointer-events-none absolute bottom-full right-0 mb-2 hidden group-hover:flex flex-col items-start w-56 p-2.5 bg-slate-950/95 text-white text-[10px] leading-snug rounded-xl shadow-2xl z-50 text-left border border-slate-700 backdrop-blur-xs">
+                <span class="font-extrabold text-blue-300 mb-0.5 block">🔭 Roadmap Estratégico</span>
+                <span class="text-slate-300 font-normal block">Portfólio de demandas futuras estruturadas no radar corporativo.</span>
+                <span class="text-[9px] text-emerald-300 mt-1.5 pt-1 border-t border-slate-800 font-medium block">
+                  <strong>Cálculo:</strong> Quantidade de iniciativas listadas na seção 'Roadmap Estratégico'.
+                </span>
+                <div class="absolute top-full right-4 border-4 border-transparent border-t-slate-950/95"></div>
+              </div>
             </div>
           </div>
 
@@ -1298,6 +1521,7 @@ export class ExecutiveReportComponent implements OnInit {
   // Interactive Presenter signals
   isPresenterOpen = signal<boolean>(false);
   currentSlideIndex = signal<number>(0);
+  currentMonthName = new Date().toLocaleDateString('pt-BR', { month: 'short', year: '2-digit' }).replace('.', '');
 
   ngOnInit() {
     this.service.sortBy.set('targetDelivery');
@@ -1609,6 +1833,68 @@ export class ExecutiveReportComponent implements OnInit {
   getPercent(count?: number, total?: number): number {
     if (!count || !total || total === 0) return 0;
     return Math.round((count / total) * 100);
+  }
+
+  getHoursConsumption(): { percent: number; executed: number; agreed: number } {
+    const list = this.currentReport()?.activeProjects || [];
+    const activeList = list.filter(p => (p.status || 'Ativo') === 'Ativo');
+    const allProjects = this.service.projects() || [];
+    let totalExec = 0;
+    let totalAgreed = 0;
+
+    for (const p of activeList) {
+      const origProj = allProjects.find(x => x.id === p.projectId);
+      const agreedH = origProj?.agreedHours ?? (origProj as any)?.hours?.agreed ?? p.hoursPlanned ?? 0;
+      const execH = p.hoursExecuted || 0;
+      totalExec += execH;
+      totalAgreed += agreedH;
+    }
+
+    const percent = totalAgreed > 0 ? Math.round((totalExec / totalAgreed) * 100) : 0;
+    return { percent, executed: Math.round(totalExec), agreed: Math.round(totalAgreed) };
+  }
+
+  getAverageVarianceDays(): { avgDays: number; delayedCount: number } {
+    const list = this.currentReport()?.activeProjects || [];
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    let totalVariance = 0;
+    let delayedCount = 0;
+
+    for (const p of list) {
+      if ((p.status || 'Ativo') !== 'Ativo') continue;
+      let days = p.varianceDays || 0;
+      if (days === 0 && p.agreedDelivery) {
+        const agreed = new Date(p.agreedDelivery + 'T00:00:00');
+        if (!isNaN(agreed.getTime()) && agreed < today) {
+          days = Math.max(0, Math.ceil((today.getTime() - agreed.getTime()) / (1000 * 3600 * 24)));
+        }
+      }
+      if (days > 0) {
+        totalVariance += days;
+        delayedCount++;
+      }
+    }
+
+    const avgDays = delayedCount > 0 ? Math.round(totalVariance / delayedCount) : 0;
+    return { avgDays, delayedCount };
+  }
+
+  getDeliveriesThisMonthCount(): number {
+    const list = this.currentReport()?.activeProjects || [];
+    const today = new Date();
+    const curMonth = today.getMonth();
+    const curYear = today.getFullYear();
+
+    return list.filter(p => {
+      if ((p.status || 'Ativo') !== 'Ativo') return false;
+      const target = p.targetDelivery || p.agreedDelivery;
+      if (!target) return false;
+      const d = new Date(target + 'T00:00:00');
+      if (isNaN(d.getTime())) return false;
+      return d.getMonth() === curMonth && d.getFullYear() === curYear;
+    }).length;
   }
 
   getPriorityCount(priority: string): number {
