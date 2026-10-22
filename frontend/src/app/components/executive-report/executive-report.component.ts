@@ -655,12 +655,6 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
                 </div>
                 <div class="flex items-center gap-1.5 shrink-0">
                   <span
-                    *ngIf="p.status && p.status !== 'Ativo'"
-                    class="px-2 py-0.2 rounded-full text-[10px] font-extrabold"
-                    [ngClass]="p.status === 'Finalizado' ? 'bg-blue-100 text-blue-900 border border-blue-300' : 'bg-slate-200 text-slate-800 border border-slate-400'">
-                    {{ p.status }}
-                  </span>
-                  <span
                     class="px-2 py-0.2 rounded-full text-[10px] font-extrabold shrink-0"
                     [ngClass]="getRagPillClass(p.ragStatus, p.status)">
                     {{ getRagLabel(p) }}
