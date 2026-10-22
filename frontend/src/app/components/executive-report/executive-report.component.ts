@@ -90,74 +90,84 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
         <!-- 1. HERO BANNER: EXECUTIVE PULSE KPIS (HIGH CONTRAST) -->
         <div class="rounded-2xl border border-slate-300 bg-white text-slate-900 shadow-xs p-4 sm:p-5 transition-all">
           <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 2xl:grid-cols-10 gap-2 w-full">
-            <!-- 1. Ativos -->
-            <div class="px-1.5 py-2 bg-slate-100 rounded-xl border border-slate-300 text-center shadow-2xs">
-              <span class="text-[8px] font-bold text-slate-600 uppercase tracking-tight block truncate">Ativos</span>
-              <span class="text-xl font-black text-slate-950 block mt-0.5">{{ getActiveCount() }}</span>
-              <span class="text-[9px] text-slate-600 font-medium block truncate">em andamento</span>
-            </div>
-
-            <!-- 2. No Prazo -->
-            <div class="px-1.5 py-2 bg-emerald-50 rounded-xl border border-emerald-300 text-center shadow-2xs">
-              <span class="text-[8px] font-bold text-emerald-900 uppercase tracking-tight block truncate">No Prazo</span>
-              <span class="text-xl font-black text-emerald-700 block mt-0.5">{{ getOnTrackCount() }}</span>
-              <span class="text-[9px] text-emerald-800 font-semibold block truncate">{{ getPercent(getOnTrackCount(), getActiveCount()) }}% ativos</span>
-            </div>
-
-            <!-- 3. Em Atenção -->
-            <div class="px-1.5 py-2 bg-amber-50 rounded-xl border border-amber-300 text-center shadow-2xs">
-              <span class="text-[8px] font-bold text-amber-900 uppercase tracking-tight block truncate">Em Atenção</span>
-              <span class="text-xl font-black text-amber-700 block mt-0.5">{{ getAttentionCount() }}</span>
-              <span class="text-[9px] text-amber-800 font-semibold block truncate">risco moderado</span>
-            </div>
-
-            <!-- 4. Com Desvio -->
-            <div class="px-1.5 py-2 bg-rose-50 rounded-xl border border-rose-300 text-center shadow-2xs">
-              <span class="text-[8px] font-bold text-rose-900 uppercase tracking-tight block truncate">Com Desvio</span>
-              <span class="text-xl font-black text-rose-700 block mt-0.5">{{ getCriticalCount() }}</span>
-              <span class="text-[9px] text-rose-800 font-semibold block truncate">desvio crítico</span>
-            </div>
-
-            <!-- 5. Concluídos -->
-            <div class="px-1.5 py-2 bg-teal-50 rounded-xl border border-teal-300 text-center shadow-2xs">
-              <span class="text-[8px] font-bold text-teal-900 uppercase tracking-tight block truncate">Concluídos</span>
-              <span class="text-xl font-black text-teal-700 block mt-0.5">{{ getCompletedCount() }}</span>
-              <span class="text-[9px] text-teal-800 font-semibold block truncate">entregas feitas</span>
-            </div>
-
-            <!-- 6. Congelados -->
-            <div class="px-1.5 py-2 bg-slate-200/80 rounded-xl border border-slate-300 text-center shadow-2xs">
-              <span class="text-[8px] font-bold text-slate-700 uppercase tracking-tight block truncate">Congelados</span>
-              <span class="text-xl font-black text-slate-700 block mt-0.5">{{ getFrozenCount() }}</span>
-              <span class="text-[9px] text-slate-600 font-medium block truncate">pausados</span>
-            </div>
-
-            <!-- 7. No radar -->
-            <div class="px-1.5 py-2 bg-orange-50 rounded-xl border border-orange-300 text-center shadow-2xs">
-              <span class="text-[8px] font-bold text-orange-900 uppercase tracking-tight block truncate">🚨 No radar</span>
-              <span class="text-xl font-black text-orange-700 block mt-0.5">{{ topCriticalProjects().length }}</span>
-              <span class="text-[9px] text-orange-800 font-semibold block truncate">radar diretoria</span>
-            </div>
-
-            <!-- 8. Deliberações -->
-            <div class="px-1.5 py-2 bg-purple-50 rounded-xl border border-purple-300 text-center shadow-2xs">
-              <span class="text-[8px] font-bold text-purple-900 uppercase tracking-tight block truncate">⚖️ Deliberações</span>
-              <span class="text-xl font-black text-purple-800 block mt-0.5">{{ currentReport()?.boardDecisions?.length || 0 }}</span>
-              <span class="text-[9px] text-purple-800 font-semibold block truncate">pautas diretoria</span>
-            </div>
-
-            <!-- 9. Roadmap -->
+            <!-- 1. Roadmap -->
             <div class="px-1.5 py-2 bg-blue-50 rounded-xl border border-blue-300 text-center shadow-2xs">
               <span class="text-[8px] font-bold text-blue-900 uppercase tracking-tight block truncate">🔭 Roadmap</span>
               <span class="text-xl font-black text-blue-700 block mt-0.5">{{ currentReport()?.roadmapProjects?.length || 0 }}</span>
               <span class="text-[9px] text-blue-800 font-semibold block truncate">pipeline futuro</span>
             </div>
 
-            <!-- 10. Avanço Médio -->
+            <!-- 2. Congelados -->
+            <div class="px-1.5 py-2 bg-slate-200/80 rounded-xl border border-slate-300 text-center shadow-2xs">
+              <span class="text-[8px] font-bold text-slate-700 uppercase tracking-tight block truncate">Congelados</span>
+              <span class="text-xl font-black text-slate-700 block mt-0.5">{{ getFrozenCount() }}</span>
+              <span class="text-[9px] text-slate-600 font-medium block truncate">pausados</span>
+            </div>
+
+            <!-- 3. Ativos -->
+            <div class="px-1.5 py-2 bg-slate-100 rounded-xl border border-slate-300 text-center shadow-2xs">
+              <span class="text-[8px] font-bold text-slate-600 uppercase tracking-tight block truncate">Ativos</span>
+              <span class="text-xl font-black text-slate-950 block mt-0.5">{{ getActiveCount() }}</span>
+              <span class="text-[9px] text-slate-600 font-medium block truncate">em andamento</span>
+            </div>
+
+            <!-- 4. No Prazo -->
+            <div class="px-1.5 py-2 bg-emerald-50 rounded-xl border border-emerald-300 text-center shadow-2xs">
+              <span class="text-[8px] font-bold text-emerald-900 uppercase tracking-tight block truncate">No Prazo</span>
+              <span class="text-xl font-black text-emerald-700 block mt-0.5">{{ getOnTrackCount() }}</span>
+              <span class="text-[9px] text-emerald-800 font-semibold block truncate">{{ getPercent(getOnTrackCount(), getActiveCount()) }}% ativos</span>
+            </div>
+
+            <!-- 5. Em Atenção -->
+            <div class="px-1.5 py-2 bg-amber-50 rounded-xl border border-amber-300 text-center shadow-2xs">
+              <span class="text-[8px] font-bold text-amber-900 uppercase tracking-tight block truncate">Em Atenção</span>
+              <span class="text-xl font-black text-amber-700 block mt-0.5">{{ getAttentionCount() }}</span>
+              <span class="text-[9px] text-amber-800 font-semibold block truncate">risco moderado</span>
+            </div>
+
+            <!-- 6. Com Desvio -->
+            <div class="px-1.5 py-2 bg-rose-50 rounded-xl border border-rose-300 text-center shadow-2xs">
+              <span class="text-[8px] font-bold text-rose-900 uppercase tracking-tight block truncate">Com Desvio</span>
+              <span class="text-xl font-black text-rose-700 block mt-0.5">{{ getCriticalCount() }}</span>
+              <span class="text-[9px] text-rose-800 font-semibold block truncate">desvio crítico</span>
+            </div>
+
+            <!-- 7. Saúde (Novo indicador de Saúde do Portfólio) -->
+            <div class="px-1.5 py-2 rounded-xl border text-center shadow-2xs"
+              [ngClass]="getPortfolioHealth() >= 70 ? 'bg-emerald-50 border-emerald-300' : (getPortfolioHealth() >= 50 ? 'bg-amber-50 border-amber-300' : 'bg-rose-50 border-rose-300')">
+              <span class="text-[8px] font-bold uppercase tracking-tight block truncate"
+                [ngClass]="getPortfolioHealth() >= 70 ? 'text-emerald-900' : (getPortfolioHealth() >= 50 ? 'text-amber-900' : 'text-rose-900')">
+                💚 Saúde
+              </span>
+              <span class="text-xl font-black block mt-0.5"
+                [ngClass]="getPortfolioHealth() >= 70 ? 'text-emerald-700' : (getPortfolioHealth() >= 50 ? 'text-amber-700' : 'text-rose-700')">
+                {{ getPortfolioHealth() }}%
+              </span>
+              <span class="text-[9px] font-semibold block truncate"
+                [ngClass]="getPortfolioHealth() >= 70 ? 'text-emerald-800' : (getPortfolioHealth() >= 50 ? 'text-amber-800' : 'text-rose-800')">
+                do portfólio
+              </span>
+            </div>
+
+            <!-- 8. Avanço Médio -->
             <div class="px-1.5 py-2 bg-slate-100 rounded-xl border border-slate-300 text-center shadow-2xs">
               <span class="text-[8px] font-bold text-slate-700 uppercase tracking-tight block truncate">Avanço Médio</span>
               <span class="text-xl font-black text-blue-700 block mt-0.5">{{ getAverageProgress() }}%</span>
               <span class="text-[9px] text-slate-600 font-medium block truncate">conclusão física</span>
+            </div>
+
+            <!-- 9. Deliberações -->
+            <div class="px-1.5 py-2 bg-purple-50 rounded-xl border border-purple-300 text-center shadow-2xs">
+              <span class="text-[8px] font-bold text-purple-900 uppercase tracking-tight block truncate">⚖️ Deliberações</span>
+              <span class="text-xl font-black text-purple-800 block mt-0.5">{{ currentReport()?.boardDecisions?.length || 0 }}</span>
+              <span class="text-[9px] text-purple-800 font-semibold block truncate">pautas diretoria</span>
+            </div>
+
+            <!-- 10. No radar -->
+            <div class="px-1.5 py-2 bg-orange-50 rounded-xl border border-orange-300 text-center shadow-2xs">
+              <span class="text-[8px] font-bold text-orange-900 uppercase tracking-tight block truncate">🚨 No radar</span>
+              <span class="text-xl font-black text-orange-700 block mt-0.5">{{ topCriticalProjects().length }}</span>
+              <span class="text-[9px] text-orange-800 font-semibold block truncate">radar diretoria</span>
             </div>
           </div>
 
@@ -823,12 +833,12 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
                       <span class="text-base font-black block leading-tight">{{ getCriticalCount() }}</span>
                       <span class="text-[8px] block truncate font-semibold">crítico</span>
                     </div>
-                    <!-- Congelados -->
+                    <!-- Saúde -->
                     <div class="p-1.5 rounded-lg border text-center"
-                      [ngClass]="presentationTheme() === 'dark' ? 'bg-slate-950 border-slate-800 text-slate-300' : 'bg-slate-200 border-2 border-slate-300 text-slate-800'">
-                      <span class="text-[8px] font-bold uppercase block truncate">Congelados</span>
-                      <span class="text-base font-black block leading-tight">{{ getFrozenCount() }}</span>
-                      <span class="text-[8px] block truncate">pausados</span>
+                      [ngClass]="presentationTheme() === 'dark' ? 'bg-teal-950/70 border-teal-600/70 text-teal-300' : 'bg-teal-50 border-2 border-teal-300 text-teal-950'">
+                      <span class="text-[8px] font-bold uppercase block truncate">Saúde</span>
+                      <span class="text-base font-black block leading-tight">{{ getPortfolioHealth() }}%</span>
+                      <span class="text-[8px] block truncate font-semibold">portfólio</span>
                     </div>
                     <!-- Avanço -->
                     <div class="p-1.5 rounded-lg border text-center"
@@ -1568,6 +1578,24 @@ export class ExecutiveReportComponent implements OnInit {
   getFrozenCount(): number {
     const list = this.currentReport()?.activeProjects || [];
     return list.filter(p => p.status === 'Congelado').length;
+  }
+
+  getPortfolioHealth(): number {
+    const list = this.currentReport()?.activeProjects || [];
+    const activeList = list.filter(p => (p.status || 'Ativo') === 'Ativo');
+    if (activeList.length === 0) return 100;
+
+    let totalScore = 0;
+    for (const p of activeList) {
+      if (p.ragStatus === 'red') {
+        totalScore += 0;
+      } else if (p.ragStatus === 'amber' || this.hasAttentionPoints(p)) {
+        totalScore += 50;
+      } else {
+        totalScore += 100;
+      }
+    }
+    return Math.round(totalScore / activeList.length);
   }
 
   getAverageProgress(): number {
