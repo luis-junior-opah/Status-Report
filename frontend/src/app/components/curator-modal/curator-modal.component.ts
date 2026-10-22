@@ -113,104 +113,304 @@ import { WeeklyReport, WeeklyReportProject, RoadmapProject, BoardDecision } from
             <div class="w-80 sm:w-96 border-r border-slate-200 bg-slate-50/50 flex flex-col h-full overflow-hidden">
               
               <!-- Search and Filter Header -->
-              <div class="p-3 border-b border-slate-200 bg-white space-y-2">
+              <div class="p-3 border-b border-slate-200 bg-white space-y-2 relative">
+                <!-- Search input with clear button -->
                 <div class="relative">
                   <input
                     type="text"
                     [ngModel]="projectSearch()"
-                    (ngModelChange)="projectSearch.set($event)"
-                    placeholder="Buscar projeto por nome..."
-                    class="w-full pl-7 pr-3 py-1.5 bg-slate-50 border border-slate-300 rounded-xl text-xs outline-none focus:ring-2 focus:ring-blue-500">
+                    (ngModelChange)="projectSearch.set($event); selectFirstIfCurrentNotVisible()"
+                    placeholder="Buscar por nome ou cliente..."
+                    class="w-full pl-7 pr-7 py-1.5 bg-slate-50 border border-slate-300 rounded-xl text-xs outline-none focus:ring-2 focus:ring-blue-500">
                   <span class="absolute left-2.5 top-2 text-slate-400 text-xs">🔍</span>
-                </div>
-
-                <!-- Filters Row -->
-                <div class="flex items-center gap-2">
-                  <select
-                    [ngModel]="clientFilter()"
-                    (ngModelChange)="clientFilter.set($event)"
-                    class="flex-1 bg-slate-50 border border-slate-300 rounded-lg px-2 py-1 text-[11px] font-semibold text-slate-700 outline-none">
-                    <option value="Todos">Todos os Clientes</option>
-                    <option value="ILC (Interno)">ILC (Interno)</option>
-                    <option value="Mirassol">Mirassol</option>
-                    <option value="John Deere">John Deere</option>
-                    <option value="Petrobras">Petrobras</option>
-                    <option value="Boge Ruber">Boge Ruber</option>
-                  </select>
-
                   <button
-                    (click)="onlyInconsistent.set(!onlyInconsistent())"
-                    [ngClass]="onlyInconsistent() ? 'bg-amber-100 text-amber-800 border-amber-300 font-extrabold' : 'bg-slate-100 text-slate-600 border-slate-200'"
-                    class="px-2 py-1 rounded-lg border text-[11px] font-semibold transition shrink-0 cursor-pointer"
-                    title="Filtrar projetos que necessitam de atenção ou dados">
-                    ⚠️ Alertas
+                    *ngIf="projectSearch()"
+                    (click)="projectSearch.set(''); selectFirstIfCurrentNotVisible()"
+                    class="absolute right-2.5 top-1.5 text-slate-400 hover:text-slate-600 text-xs cursor-pointer"
+                    title="Limpar busca">
+                    ✕
                   </button>
                 </div>
 
-                <!-- Visibility Filter (Todos / Visíveis / Ocultos) -->
-                <div>
-                  <div class="flex items-center justify-between text-[10px] font-extrabold text-slate-500 uppercase tracking-wider mb-1 px-0.5">
-                    <span>Visibilidade</span>
-                    <span class="text-[9px] text-slate-400 font-normal">Exibição pública</span>
+                <!-- Filters Dropdown Trigger Row -->
+                <div class="flex items-center gap-1.5">
+                  <!-- Dropdown Trigger Button -->
+                  <div class="relative flex-1">
+                    <button
+                      type="button"
+                      (click)="isFilterDropdownOpen.set(!isFilterDropdownOpen())"
+                      [ngClass]="activeFiltersCount() > 0 ? 'bg-blue-50 text-blue-800 border-blue-400 font-bold' : 'bg-slate-50 text-slate-700 border-slate-300 font-semibold'"
+                      class="w-full flex items-center justify-between px-2.5 py-1.5 rounded-xl border text-xs hover:bg-slate-100 transition cursor-pointer shadow-2xs">
+                      <div class="flex items-center gap-1.5 truncate">
+                        <svg class="w-3.5 h-3.5 text-blue-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"></path>
+                        </svg>
+                        <span class="truncate">Filtros de Exibição</span>
+                        <span
+                          *ngIf="activeFiltersCount() > 0"
+                          class="px-1.5 py-0.2 bg-blue-600 text-white rounded-full text-[10px] font-black shrink-0">
+                          {{ activeFiltersCount() }}
+                        </span>
+                      </div>
+                      <svg class="w-3.5 h-3.5 text-slate-400 shrink-0 transition-transform duration-200" [ngClass]="{'rotate-180': isFilterDropdownOpen()}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                      </svg>
+                    </button>
+
+                    <!-- Invisible backdrop to close popover when clicking outside -->
+                    <div
+                      *ngIf="isFilterDropdownOpen()"
+                      (click)="isFilterDropdownOpen.set(false)"
+                      class="fixed inset-0 z-40">
+                    </div>
+
+                    <!-- Dropdown Popover Panel -->
+                    <div
+                      *ngIf="isFilterDropdownOpen()"
+                      class="absolute left-0 top-full mt-1.5 w-full min-w-[280px] max-w-[340px] bg-white rounded-2xl shadow-2xl border border-slate-200 z-50 p-3.5 max-h-[70vh] overflow-y-auto space-y-3.5 animate-in fade-in zoom-in-95 duration-150">
+                      
+                      <!-- Header in Popover -->
+                      <div class="flex items-center justify-between pb-2 border-b border-slate-100">
+                        <span class="text-xs font-black text-slate-800 uppercase tracking-wider flex items-center gap-1.5">
+                          <span>🌪️ Filtrar Projetos</span>
+                        </span>
+                        <button
+                          *ngIf="activeFiltersCount() > 0"
+                          type="button"
+                          (click)="clearAllFilters()"
+                          class="text-[10px] font-bold text-rose-600 hover:text-rose-800 transition cursor-pointer">
+                          Limpar tudo
+                        </button>
+                      </div>
+
+                      <!-- Group 1: Visibilidade -->
+                      <div class="space-y-1.5">
+                        <div class="text-[10px] font-black text-slate-400 uppercase tracking-wider flex items-center justify-between">
+                          <span>Visibilidade</span>
+                          <span class="text-[9px] text-slate-400 font-normal">Exibição pública</span>
+                        </div>
+                        <div class="space-y-1">
+                          <label class="flex items-center justify-between p-1.5 rounded-lg hover:bg-slate-50 cursor-pointer text-xs text-slate-700 select-none">
+                            <span class="flex items-center gap-2">
+                              <input
+                                type="checkbox"
+                                [checked]="filterVisibilities().includes('visivel')"
+                                (change)="toggleFilter(filterVisibilities, 'visivel')"
+                                class="w-3.5 h-3.5 text-blue-600 rounded border-slate-300 focus:ring-blue-500 cursor-pointer">
+                              <span>👁️ Visíveis</span>
+                            </span>
+                            <span class="text-[10px] font-bold bg-emerald-50 text-emerald-700 px-1.5 py-0.2 rounded border border-emerald-200">
+                              {{ getVisibilityCount('Visiveis') }}
+                            </span>
+                          </label>
+
+                          <label class="flex items-center justify-between p-1.5 rounded-lg hover:bg-slate-50 cursor-pointer text-xs text-slate-700 select-none">
+                            <span class="flex items-center gap-2">
+                              <input
+                                type="checkbox"
+                                [checked]="filterVisibilities().includes('oculto')"
+                                (change)="toggleFilter(filterVisibilities, 'oculto')"
+                                class="w-3.5 h-3.5 text-blue-600 rounded border-slate-300 focus:ring-blue-500 cursor-pointer">
+                              <span>🚫 Ocultos</span>
+                            </span>
+                            <span class="text-[10px] font-bold bg-slate-100 text-slate-600 px-1.5 py-0.2 rounded border border-slate-200">
+                              {{ getVisibilityCount('Ocultos') }}
+                            </span>
+                          </label>
+                        </div>
+                      </div>
+
+                      <!-- Group 2: Origem -->
+                      <div class="space-y-1.5 pt-2 border-t border-slate-100">
+                        <div class="text-[10px] font-black text-slate-400 uppercase tracking-wider flex items-center justify-between">
+                          <span>Origem</span>
+                          <span class="text-[9px] text-slate-400 font-normal">Fonte de dados</span>
+                        </div>
+                        <div class="space-y-1">
+                          <label class="flex items-center justify-between p-1.5 rounded-lg hover:bg-slate-50 cursor-pointer text-xs text-slate-700 select-none">
+                            <span class="flex items-center gap-2">
+                              <input
+                                type="checkbox"
+                                [checked]="filterOrigins().includes('azure')"
+                                (change)="toggleFilter(filterOrigins, 'azure')"
+                                class="w-3.5 h-3.5 text-blue-600 rounded border-slate-300 focus:ring-blue-500 cursor-pointer">
+                              <span>☁️ Azure DevOps</span>
+                            </span>
+                            <span class="text-[10px] font-bold bg-sky-50 text-sky-700 px-1.5 py-0.2 rounded border border-sky-200">
+                              {{ getOriginCount('Azure') }}
+                            </span>
+                          </label>
+
+                          <label class="flex items-center justify-between p-1.5 rounded-lg hover:bg-slate-50 cursor-pointer text-xs text-slate-700 select-none">
+                            <span class="flex items-center gap-2">
+                              <input
+                                type="checkbox"
+                                [checked]="filterOrigins().includes('manual')"
+                                (change)="toggleFilter(filterOrigins, 'manual')"
+                                class="w-3.5 h-3.5 text-blue-600 rounded border-slate-300 focus:ring-blue-500 cursor-pointer">
+                              <span>✍️ Manual</span>
+                            </span>
+                            <span class="text-[10px] font-bold bg-amber-50 text-amber-700 px-1.5 py-0.2 rounded border border-amber-200">
+                              {{ getOriginCount('Manual') }}
+                            </span>
+                          </label>
+                        </div>
+                      </div>
+
+                      <!-- Group 3: Clientes -->
+                      <div class="space-y-1.5 pt-2 border-t border-slate-100">
+                        <div class="text-[10px] font-black text-slate-400 uppercase tracking-wider flex items-center justify-between">
+                          <span>Clientes</span>
+                          <span class="text-[9px] text-slate-400 font-normal">Portfólio</span>
+                        </div>
+                        <div class="space-y-1 max-h-36 overflow-y-auto pr-1">
+                          <label
+                            *ngFor="let item of availableClientsWithCount()"
+                            class="flex items-center justify-between p-1.5 rounded-lg hover:bg-slate-50 cursor-pointer text-xs text-slate-700 select-none">
+                            <span class="flex items-center gap-2 truncate">
+                              <input
+                                type="checkbox"
+                                [checked]="filterClients().includes(item.name)"
+                                (change)="toggleFilter(filterClients, item.name)"
+                                class="w-3.5 h-3.5 text-blue-600 rounded border-slate-300 focus:ring-blue-500 cursor-pointer shrink-0">
+                              <span class="truncate">{{ item.name }}</span>
+                            </span>
+                            <span class="text-[10px] font-bold bg-slate-100 text-slate-600 px-1.5 py-0.2 rounded shrink-0 ml-1">
+                              {{ item.count }}
+                            </span>
+                          </label>
+                        </div>
+                      </div>
+
+                      <!-- Group 4: Status do Projeto -->
+                      <div class="space-y-1.5 pt-2 border-t border-slate-100">
+                        <div class="text-[10px] font-black text-slate-400 uppercase tracking-wider flex items-center justify-between">
+                          <span>Status</span>
+                          <span class="text-[9px] text-slate-400 font-normal">Situação</span>
+                        </div>
+                        <div class="space-y-1">
+                          <label
+                            *ngFor="let s of ['Ativo', 'Finalizado', 'Congelado']"
+                            class="flex items-center justify-between p-1.5 rounded-lg hover:bg-slate-50 cursor-pointer text-xs text-slate-700 select-none">
+                            <span class="flex items-center gap-2">
+                              <input
+                                type="checkbox"
+                                [checked]="filterStatuses().includes(s)"
+                                (change)="toggleFilter(filterStatuses, s)"
+                                class="w-3.5 h-3.5 text-blue-600 rounded border-slate-300 focus:ring-blue-500 cursor-pointer">
+                              <span>{{ s }}</span>
+                            </span>
+                            <span
+                              class="text-[10px] font-bold px-1.5 py-0.2 rounded"
+                              [ngClass]="s === 'Ativo' ? 'bg-emerald-50 text-emerald-700' : (s === 'Finalizado' ? 'bg-blue-50 text-blue-700' : 'bg-amber-50 text-amber-700')">
+                              {{ getStatusCount(s) }}
+                            </span>
+                          </label>
+                        </div>
+                      </div>
+
+                      <!-- Group 5: Alertas & Inconsistências -->
+                      <div class="space-y-1.5 pt-2 border-t border-slate-100">
+                        <div class="text-[10px] font-black text-slate-400 uppercase tracking-wider flex items-center justify-between">
+                          <span>Atenção</span>
+                        </div>
+                        <label class="flex items-center justify-between p-1.5 rounded-lg hover:bg-slate-50 cursor-pointer text-xs text-slate-700 select-none">
+                          <span class="flex items-center gap-2">
+                            <input
+                              type="checkbox"
+                              [checked]="filterOnlyAlerts()"
+                              (change)="filterOnlyAlerts.set(!filterOnlyAlerts()); selectFirstIfCurrentNotVisible()"
+                              class="w-3.5 h-3.5 text-amber-600 rounded border-slate-300 focus:ring-amber-500 cursor-pointer">
+                            <span>⚠️ Apenas com Inconsistências</span>
+                          </span>
+                          <span class="text-[10px] font-bold bg-amber-50 text-amber-800 px-1.5 py-0.2 rounded border border-amber-200">
+                            {{ getAlertsCount() }}
+                          </span>
+                        </label>
+                      </div>
+
+                      <!-- Action Button to close popover -->
+                      <div class="pt-2 border-t border-slate-100 flex items-center justify-end">
+                        <button
+                          type="button"
+                          (click)="isFilterDropdownOpen.set(false)"
+                          class="w-full py-1.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-xs font-bold transition shadow-xs cursor-pointer text-center">
+                          Fechar
+                        </button>
+                      </div>
+
+                    </div>
                   </div>
-                  <div class="flex items-center gap-1 bg-slate-100 p-0.5 rounded-xl border border-slate-200 text-[10px] font-bold">
-                    <button
-                      type="button"
-                      (click)="setVisibilityFilter('Todos')"
-                      [ngClass]="visibilityFilter() === 'Todos' ? 'bg-white text-slate-900 shadow-2xs font-black' : 'text-slate-500 hover:text-slate-800 font-semibold'"
-                      class="flex-1 py-1 px-1.5 rounded-lg transition text-center cursor-pointer">
-                      Todos ({{ getVisibilityCount('Todos') }})
-                    </button>
-                    <button
-                      type="button"
-                      (click)="setVisibilityFilter('Visiveis')"
-                      [ngClass]="visibilityFilter() === 'Visiveis' ? 'bg-emerald-600 text-white shadow-2xs font-black' : 'text-slate-500 hover:text-slate-800 font-semibold'"
-                      class="flex-1 py-1 px-1.5 rounded-lg transition text-center cursor-pointer flex items-center justify-center gap-1">
-                      <span>👁️ Visíveis</span>
-                      <span class="text-[9px] opacity-90">({{ getVisibilityCount('Visiveis') }})</span>
-                    </button>
-                    <button
-                      type="button"
-                      (click)="setVisibilityFilter('Ocultos')"
-                      [ngClass]="visibilityFilter() === 'Ocultos' ? 'bg-slate-800 text-white shadow-2xs font-black' : 'text-slate-500 hover:text-slate-800 font-semibold'"
-                      class="flex-1 py-1 px-1.5 rounded-lg transition text-center cursor-pointer flex items-center justify-center gap-1">
-                      <span>🚫 Ocultos</span>
-                      <span class="text-[9px] opacity-90">({{ getVisibilityCount('Ocultos') }})</span>
-                    </button>
-                  </div>
+
+                  <!-- Quick Reset Button if filters active -->
+                  <button
+                    *ngIf="activeFiltersCount() > 0"
+                    type="button"
+                    (click)="clearAllFilters()"
+                    class="px-2.5 py-1.5 rounded-xl border border-rose-200 bg-rose-50 hover:bg-rose-100 text-rose-700 text-[11px] font-bold transition shrink-0 cursor-pointer"
+                    title="Limpar todos os filtros">
+                    Limpar
+                  </button>
                 </div>
 
-                <!-- Origin Filter (Todos / Azure / Manual) -->
-                <div>
-                  <div class="flex items-center justify-between text-[10px] font-extrabold text-slate-500 uppercase tracking-wider mb-1 px-0.5">
-                    <span>Origem</span>
-                    <span class="text-[9px] text-slate-400 font-normal">Fonte de dados</span>
-                  </div>
-                  <div class="flex items-center gap-1 bg-slate-100 p-0.5 rounded-xl border border-slate-200 text-[10px] font-bold">
-                    <button
-                      type="button"
-                      (click)="setOriginFilter('Todos')"
-                      [ngClass]="originFilter() === 'Todos' ? 'bg-white text-slate-900 shadow-2xs font-black' : 'text-slate-500 hover:text-slate-800 font-semibold'"
-                      class="flex-1 py-1 px-1.5 rounded-lg transition text-center cursor-pointer">
-                      Todos ({{ getOriginCount('Todos') }})
-                    </button>
-                    <button
-                      type="button"
-                      (click)="setOriginFilter('Azure')"
-                      [ngClass]="originFilter() === 'Azure' ? 'bg-blue-600 text-white shadow-2xs font-black' : 'text-slate-500 hover:text-slate-800 font-semibold'"
-                      class="flex-1 py-1 px-1.5 rounded-lg transition text-center cursor-pointer flex items-center justify-center gap-1">
-                      <span>☁️ Azure</span>
-                      <span class="text-[9px] opacity-80">({{ getOriginCount('Azure') }})</span>
-                    </button>
-                    <button
-                      type="button"
-                      (click)="setOriginFilter('Manual')"
-                      [ngClass]="originFilter() === 'Manual' ? 'bg-amber-500 text-white shadow-2xs font-black' : 'text-slate-500 hover:text-slate-800 font-semibold'"
-                      class="flex-1 py-1 px-1.5 rounded-lg transition text-center cursor-pointer flex items-center justify-center gap-1">
-                      <span>✍️ Manual</span>
-                      <span class="text-[9px] opacity-80">({{ getOriginCount('Manual') }})</span>
-                    </button>
-                  </div>
+                <!-- Active Filter Tags / Chips -->
+                <div *ngIf="activeFiltersCount() > 0" class="flex flex-wrap items-center gap-1 pt-1">
+                  <!-- Visibility Tags -->
+                  <span
+                    *ngIf="filterVisibilities().includes('visivel')"
+                    class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-200">
+                    👁️ Visíveis
+                    <button type="button" (click)="toggleFilter(filterVisibilities, 'visivel')" class="hover:text-emerald-950 font-black cursor-pointer">×</button>
+                  </span>
+                  <span
+                    *ngIf="filterVisibilities().includes('oculto')"
+                    class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-slate-200 text-slate-800 border border-slate-300">
+                    🚫 Ocultos
+                    <button type="button" (click)="toggleFilter(filterVisibilities, 'oculto')" class="hover:text-slate-950 font-black cursor-pointer">×</button>
+                  </span>
+
+                  <!-- Origin Tags -->
+                  <span
+                    *ngIf="filterOrigins().includes('azure')"
+                    class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-sky-100 text-sky-800 border border-sky-200">
+                    ☁️ Azure
+                    <button type="button" (click)="toggleFilter(filterOrigins, 'azure')" class="hover:text-sky-950 font-black cursor-pointer">×</button>
+                  </span>
+                  <span
+                    *ngIf="filterOrigins().includes('manual')"
+                    class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-100 text-amber-800 border border-amber-200">
+                    ✍️ Manual
+                    <button type="button" (click)="toggleFilter(filterOrigins, 'manual')" class="hover:text-amber-950 font-black cursor-pointer">×</button>
+                  </span>
+
+                  <!-- Client Tags -->
+                  <span
+                    *ngFor="let c of filterClients()"
+                    class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-blue-100 text-blue-800 border border-blue-200">
+                    🏢 {{ c }}
+                    <button type="button" (click)="toggleFilter(filterClients, c)" class="hover:text-blue-950 font-black cursor-pointer">×</button>
+                  </span>
+
+                  <!-- Status Tags -->
+                  <span
+                    *ngFor="let s of filterStatuses()"
+                    class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-indigo-100 text-indigo-800 border border-indigo-200">
+                    {{ s }}
+                    <button type="button" (click)="toggleFilter(filterStatuses, s)" class="hover:text-indigo-950 font-black cursor-pointer">×</button>
+                  </span>
+
+                  <!-- Alerts Tag -->
+                  <span
+                    *ngIf="filterOnlyAlerts()"
+                    class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-100 text-amber-800 border border-amber-200">
+                    ⚠️ Alertas
+                    <button type="button" (click)="filterOnlyAlerts.set(false); selectFirstIfCurrentNotVisible()" class="hover:text-amber-950 font-black cursor-pointer">×</button>
+                  </span>
+                </div>
+
+                <!-- Results Counter -->
+                <div class="flex items-center justify-between text-[10px] text-slate-500 font-bold px-0.5 pt-0.5">
+                  <span>Exibindo {{ filteredAdminProjects().length }} de {{ service.adminProjects().length }} projetos</span>
                 </div>
               </div>
 
@@ -1956,11 +2156,17 @@ export class CuratorModalComponent implements OnInit {
   // Master-Detail selection & filters
   selectedProjectId = signal<string | null>(null);
   projectSearch = signal<string>('');
-  clientFilter = signal<string>('Todos');
-  originFilter = signal<'Todos' | 'Manual' | 'Azure'>('Todos');
+
+  // Dropdown checkbox filters for Projects & EAP tab
+  isFilterDropdownOpen = signal<boolean>(false);
+  filterVisibilities = signal<string[]>([]); // 'visivel', 'oculto'
+  filterOrigins = signal<string[]>([]); // 'azure', 'manual'
+  filterClients = signal<string[]>([]); // client names
+  filterStatuses = signal<string[]>([]); // 'Ativo', 'Finalizado', 'Congelado'
+  filterOnlyAlerts = signal<boolean>(false);
+
+  // Weekly report tab filters
   weeklyOriginFilter = signal<'Todos' | 'Manual' | 'Azure'>('Todos');
-  visibilityFilter = signal<'Todos' | 'Visiveis' | 'Ocultos'>('Todos');
-  onlyInconsistent = signal<boolean>(false);
 
   // Custom links state
   customLinkSearch = signal<string>('');
@@ -2087,22 +2293,6 @@ export class CuratorModalComponent implements OnInit {
     return list.filter(p => !p.isVisible).length;
   }
 
-  setVisibilityFilter(type: 'Todos' | 'Visiveis' | 'Ocultos') {
-    this.visibilityFilter.set(type);
-    const filtered = this.filteredAdminProjects();
-    if (filtered.length > 0 && !filtered.some(p => p.id === this.selectedProjectId())) {
-      this.selectedProjectId.set(filtered[0].id);
-    }
-  }
-
-  setOriginFilter(type: 'Todos' | 'Manual' | 'Azure') {
-    this.originFilter.set(type);
-    const filtered = this.filteredAdminProjects();
-    if (filtered.length > 0 && !filtered.some(p => p.id === this.selectedProjectId())) {
-      this.selectedProjectId.set(filtered[0].id);
-    }
-  }
-
   getOriginCount(type: 'Todos' | 'Manual' | 'Azure'): number {
     const list = this.service.adminProjects();
     if (type === 'Todos') return list.length;
@@ -2117,40 +2307,121 @@ export class CuratorModalComponent implements OnInit {
     return list.filter(p => this.isAzureProject(p)).length;
   }
 
+  getStatusCount(status: string): number {
+    return this.service.adminProjects().filter(p => p.status === status).length;
+  }
+
+  getAlertsCount(): number {
+    return this.service.adminProjects().filter(p => p.inconsistencies && p.inconsistencies.length > 0).length;
+  }
+
+  activeFiltersCount = computed(() => {
+    let count = 0;
+    count += this.filterVisibilities().length;
+    count += this.filterOrigins().length;
+    count += this.filterClients().length;
+    count += this.filterStatuses().length;
+    if (this.filterOnlyAlerts()) count += 1;
+    return count;
+  });
+
+  availableClientsWithCount = computed(() => {
+    const list = this.service.adminProjects();
+    const map = new Map<string, number>();
+    for (const p of list) {
+      const c = p.client || 'Sem cliente';
+      map.set(c, (map.get(c) || 0) + 1);
+    }
+    return Array.from(map.entries())
+      .map(([name, count]) => ({ name, count }))
+      .sort((a, b) => a.name.localeCompare(b.name, 'pt-BR'));
+  });
+
+  toggleFilter(listSignal: any, value: string) {
+    const current = listSignal();
+    if (current.includes(value)) {
+      listSignal.set(current.filter((x: string) => x !== value));
+    } else {
+      listSignal.set([...current, value]);
+    }
+    this.selectFirstIfCurrentNotVisible();
+  }
+
+  clearAllFilters() {
+    this.filterVisibilities.set([]);
+    this.filterOrigins.set([]);
+    this.filterClients.set([]);
+    this.filterStatuses.set([]);
+    this.filterOnlyAlerts.set(false);
+    this.projectSearch.set('');
+    this.selectFirstIfCurrentNotVisible();
+  }
+
+  selectFirstIfCurrentNotVisible() {
+    setTimeout(() => {
+      const filtered = this.filteredAdminProjects();
+      if (filtered.length > 0 && !filtered.some(p => p.id === this.selectedProjectId())) {
+        this.selectedProjectId.set(filtered[0].id);
+      }
+    }, 0);
+  }
+
   // Filtered project list for the left column
   filteredAdminProjects = computed(() => {
     let list = this.service.adminProjects();
     const query = this.projectSearch().toLowerCase().trim();
-    const client = this.clientFilter();
-    const origin = this.originFilter();
-    const visibility = this.visibilityFilter();
-    const alertOnly = this.onlyInconsistent();
+    const visibilities = this.filterVisibilities();
+    const origins = this.filterOrigins();
+    const clients = this.filterClients();
+    const statuses = this.filterStatuses();
+    const alertOnly = this.filterOnlyAlerts();
 
     return list
       .filter(p => {
-        if (origin === 'Manual' && !this.isManualProject(p)) {
-          return false;
+        // 1. Visibilidade (se selecionado 'visivel' e/ou 'oculto')
+        if (visibilities.length > 0) {
+          const isVis = !!p.isVisible;
+          const matchVis = visibilities.includes('visivel') && isVis;
+          const matchHidden = visibilities.includes('oculto') && !isVis;
+          if (!matchVis && !matchHidden) return false;
         }
-        if (origin === 'Azure' && !this.isAzureProject(p)) {
-          return false;
+
+        // 2. Origem (se selecionado 'azure' e/ou 'manual')
+        if (origins.length > 0) {
+          const isManual = this.isManualProject(p);
+          const isAzure = this.isAzureProject(p);
+          const matchManual = origins.includes('manual') && isManual;
+          const matchAzure = origins.includes('azure') && isAzure;
+          if (!matchManual && !matchAzure) return false;
         }
-        if (visibility === 'Visiveis' && !p.isVisible) {
-          return false;
+
+        // 3. Clientes
+        if (clients.length > 0) {
+          if (!clients.some(c => c.toLowerCase() === (p.client || '').toLowerCase())) {
+            return false;
+          }
         }
-        if (visibility === 'Ocultos' && p.isVisible) {
-          return false;
+
+        // 4. Status
+        if (statuses.length > 0) {
+          if (!statuses.includes(p.status)) {
+            return false;
+          }
         }
-        if (client !== 'Todos' && p.client.toLowerCase() !== client.toLowerCase()) {
-          return false;
-        }
+
+        // 5. Inconsistências / Alertas
         if (alertOnly && (!p.inconsistencies || p.inconsistencies.length === 0)) {
           return false;
         }
+
+        // 6. Busca textual por nome, cliente ou resumo
         if (query) {
-          const inName = p.name.toLowerCase().includes(query);
-          const inClient = p.client.toLowerCase().includes(query);
-          if (!inName && !inClient) return false;
+          const inName = (p.name || '').toLowerCase().includes(query);
+          const inClient = (p.client || '').toLowerCase().includes(query);
+          const inSummary = (p.executiveSummary || '').toLowerCase().includes(query);
+          if (!inName && !inClient && !inSummary) return false;
         }
+
         return true;
       })
       .sort((a, b) => {
