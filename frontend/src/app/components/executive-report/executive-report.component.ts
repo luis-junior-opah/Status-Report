@@ -277,7 +277,7 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
             <div class="flex items-center gap-2">
               <span class="text-xs">🚨</span>
               <h3 class="text-xs sm:text-sm font-black tracking-tight text-orange-950">
-                Radar de Atenção Imediata da Diretoria ({{ topCriticalProjects().length }} Projetos com Desvio ou Atenção Crítica)
+                Radar de Atenção Imediata da Diretoria ({{ topCriticalProjects().length }} Projetos com Desvio ou Ponto de Atenção)
               </h3>
             </div>
             <span class="text-[10px] font-extrabold text-orange-900">Itens prioritários para deliberação na reunião de hoje</span>
@@ -1517,7 +1517,19 @@ export class ExecutiveReportComponent implements OnInit {
   topCriticalProjects = computed(() => {
     const report = this.currentReport();
     if (!report || !report.activeProjects) return [];
-    return report.activeProjects.filter(p => p.ragStatus === 'red' || p.ragStatus === 'amber');
+    return report.activeProjects
+      .filter(p => p.ragStatus === 'red' || p.ragStatus === 'amber' || this.hasAttentionPoints(p))
+      .sort((a, b) => {
+        // Red first, then Amber, then Green with attention points
+        const score = (proj: WeeklyReportProject) => {
+          if (proj.ragStatus === 'red') return 0;
+          if (proj.ragStatus === 'amber') return 1;
+          return 2;
+        };
+        const diff = score(a) - score(b);
+        if (diff !== 0) return diff;
+        return (a.name || '').localeCompare(b.name || '', 'pt-BR');
+      });
   });
 
   compareByTargetDelivery(a: WeeklyReportProject, b: WeeklyReportProject): number {
