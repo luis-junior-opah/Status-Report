@@ -632,25 +632,13 @@ import { WeeklyReport, WeeklyReportProject, RoadmapProject, BoardDecision } from
                       class="w-full border border-slate-300 rounded-lg px-2.5 py-1.5 bg-white outline-none">
                   </div>
 
-                  <div>
+                  <div class="sm:col-span-2 md:col-span-2">
                     <label class="block font-bold text-slate-600 mb-1">Previsão Real Término:</label>
                     <input
                       type="date"
                       [(ngModel)]="p.plannedDates.end"
                       [disabled]="!p.isManual && isFieldLocked(p, 'dates')"
                       class="w-full border border-slate-300 rounded-lg px-2.5 py-1.5 bg-white disabled:bg-slate-100 disabled:text-slate-500 font-bold outline-none">
-                  </div>
-
-                  <div>
-                    <label class="block font-bold text-emerald-700 mb-1">
-                      Horas Firmadas (Cliente):
-                    </label>
-                    <input
-                      type="number"
-                      min="0"
-                      [(ngModel)]="p.hours.agreed"
-                      placeholder="Ex: 250"
-                      class="w-full border border-emerald-300 rounded-lg px-2.5 py-1.5 bg-white font-bold text-emerald-800 outline-none focus:ring-2 focus:ring-emerald-500 shadow-2xs">
                   </div>
 
                   <!-- Status Report da Semana (Executive Summary) -->
@@ -908,7 +896,7 @@ import { WeeklyReport, WeeklyReportProject, RoadmapProject, BoardDecision } from
                         min="0"
                         [(ngModel)]="p.hours.agreed"
                         placeholder="Ex: 250"
-                        class="w-full border border-emerald-300 rounded-lg px-2.5 py-1.5 bg-white font-bold text-emerald-800">
+                        class="w-full border border-emerald-300 rounded-lg px-2.5 py-1.5 bg-white font-bold text-emerald-800 outline-none focus:ring-2 focus:ring-emerald-500 shadow-2xs">
                     </div>
 
                     <div>
