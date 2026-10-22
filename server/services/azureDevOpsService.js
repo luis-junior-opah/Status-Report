@@ -114,6 +114,24 @@ class AzureDevOpsService {
     return 'OUT / 26';
   }
 
+  // Helper to count business days (Monday-Friday) between two dates
+  getBusinessDaysDiff(startDate, endDate) {
+    const start = new Date(startDate);
+    start.setHours(0, 0, 0, 0);
+    const end = new Date(endDate);
+    end.setHours(0, 0, 0, 0);
+    if (end < start) return Math.round((end.getTime() - start.getTime()) / (1000 * 3600 * 24));
+    let count = 0;
+    const cur = new Date(start);
+    cur.setDate(cur.getDate() + 1);
+    while (cur <= end) {
+      const day = cur.getDay();
+      if (day !== 0 && day !== 6) count++;
+      cur.setDate(cur.getDate() + 1);
+    }
+    return count;
+  }
+
   // Extract dates from all standard and custom Azure DevOps fields
   extractWorkItemDates(fields = {}, iterMap = {}, iterName = '') {
     const rawStart = fields['Custom.PlannedStartDate']
@@ -435,8 +453,12 @@ class AzureDevOpsService {
           const diffDays = Math.round((tDate.getTime() - today.getTime()) / (1000 * 3600 * 24));
           if (diffDays < 0) {
             isDelayed = true;
-          } else if (diffDays <= 7) {
-            isTightMargin = true;
+          } else {
+            // Definição de margem curta: até 2 dias (dias úteis ou corridos)
+            const bDays = this.getBusinessDaysDiff(today, tDate);
+            if (diffDays <= 2 || bDays <= 2) {
+              isTightMargin = true;
+            }
           }
         }
 

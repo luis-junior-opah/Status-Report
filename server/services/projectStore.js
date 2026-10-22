@@ -79,6 +79,7 @@ class ProjectStore {
               members: uniqueAssigned
             };
           }
+          p.ragStatus = this.calculateRagStatus(p);
           return p;
         });
         this.lastSync = data.lastSync || null;
@@ -122,6 +123,48 @@ class ProjectStore {
     return 'Mirassol';
   }
 
+  // Helper to count business days (Monday-Friday) between two dates
+  getBusinessDaysDiff(startDate, endDate) {
+    const start = new Date(startDate);
+    start.setHours(0, 0, 0, 0);
+    const end = new Date(endDate);
+    end.setHours(0, 0, 0, 0);
+    if (end < start) return Math.round((end.getTime() - start.getTime()) / (1000 * 3600 * 24));
+    let count = 0;
+    const cur = new Date(start);
+    cur.setDate(cur.getDate() + 1);
+    while (cur <= end) {
+      const day = cur.getDay();
+      if (day !== 0 && day !== 6) count++;
+      cur.setDate(cur.getDate() + 1);
+    }
+    return count;
+  }
+
+  // Recalculates activity flags using the updated rule: tight margin is up to 2 days (business or calendar)
+  recalculateActivityFlags(activity, today = new Date()) {
+    if (!activity.targetDate || activity.status === 'completed') {
+      activity.isDelayed = false;
+      activity.isTightMargin = false;
+      return activity;
+    }
+    const t = new Date(activity.targetDate + 'T12:00:00');
+    t.setHours(0, 0, 0, 0);
+    const startOfToday = new Date(today);
+    startOfToday.setHours(0, 0, 0, 0);
+    const diff = Math.round((t.getTime() - startOfToday.getTime()) / (1000 * 3600 * 24));
+    if (diff < 0) {
+      activity.isDelayed = true;
+      activity.isTightMargin = false;
+    } else {
+      activity.isDelayed = false;
+      const bDays = this.getBusinessDaysDiff(startOfToday, t);
+      // Margem curta: até 2 dias (dias úteis ou dias corridos)
+      activity.isTightMargin = (diff <= 2 || bDays <= 2);
+    }
+    return activity;
+  }
+
   calculateVariance(agreedEnd, executedEnd, plannedEnd) {
     const targetEnd = executedEnd || plannedEnd || agreedEnd;
     if (!agreedEnd || !targetEnd) return 0;
@@ -139,7 +182,14 @@ class ProjectStore {
     if (project.status === 'Finalizado') return 'green';
 
     const activities = project.activities || [];
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    // Atualiza flags de atraso e margem curta nas atividades com a regra de 2 dias
+    activities.forEach(a => this.recalculateActivityFlags(a, today));
+
     const hasDelayedActivity = activities.some(a => a.isDelayed && a.status !== 'completed');
+    const hasTightMarginActivity = activities.some(a => a.isTightMargin && a.status !== 'completed');
 
     const variance = this.calculateVariance(
       project.agreedDates?.end,
@@ -148,7 +198,7 @@ class ProjectStore {
     );
 
     if (variance > 7 || hasDelayedActivity) return 'red';
-    if (variance > 0) return 'amber';
+    if (variance > 0 || hasTightMarginActivity) return 'amber';
     return 'green';
   }
 

@@ -341,7 +341,7 @@ import { Project, ProjectActivity, EapPhase, AzureAuditReport } from '../../mode
           </div>
           <div class="flex items-center gap-1.5">
             <span class="w-3.5 h-3.5 rounded-md bg-amber-300 border border-amber-500 inline-block shadow-xs"></span>
-            <span class="text-slate-800 font-bold">Margem Curta (≤ 7d)</span>
+            <span class="text-slate-800 font-bold">Margem Curta (≤ 2d)</span>
           </div>
           <div class="flex items-center gap-1.5">
             <span class="w-3.5 h-3.5 rounded-md bg-rose-200 border border-rose-400 inline-block shadow-xs"></span>
@@ -1398,7 +1398,7 @@ export class EapGanttComponent {
     if (act.isDelayed) {
       return 'bg-rose-200 text-rose-950 border-rose-400 shadow-rose-300/10 font-medium';
     }
-    // 3. Laranja / Âmbar: Margem Curta (≤ 7 dias)
+    // 3. Laranja / Âmbar: Margem Curta (≤ 2 dias)
     if (act.isTightMargin) {
       return 'bg-amber-300 text-amber-950 border-amber-500 shadow-amber-400/10 font-medium';
     }
