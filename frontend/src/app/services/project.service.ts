@@ -241,6 +241,7 @@ export class ProjectService {
 
     let totalPlanned = 0;
     let totalExecuted = 0;
+    let agreedHours = 0;
     let clientPlanned = 0;
     let clientExecuted = 0;
     let ilcPlanned = 0;
@@ -250,6 +251,7 @@ export class ProjectService {
       if (p.hours) {
         totalPlanned += p.hours.totalPlanned || 0;
         totalExecuted += p.hours.totalExecuted || 0;
+        agreedHours += (p.hours.agreed || p.agreedHours || p.hours.totalPlanned || 0);
         clientPlanned += p.hours.clientPlanned || 0;
         clientExecuted += p.hours.clientExecuted || 0;
         ilcPlanned += p.hours.ilcPlanned || 0;
@@ -276,6 +278,7 @@ export class ProjectService {
       hoursSummary: {
         totalPlanned,
         totalExecuted,
+        agreedHours,
         clientPlanned,
         clientExecuted,
         ilcPlanned,

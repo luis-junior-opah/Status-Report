@@ -226,27 +226,32 @@ import { Project, ProjectActivity, EapPhase, AzureAuditReport } from '../../mode
             <span class="text-[10px] text-slate-500 block mt-1">Marco: {{ project.currentMilestone }}</span>
           </div>
 
-          <!-- KPI 3: Esforço em Horas -->
+          <!-- KPI 3: Esforço no Azure DevOps -->
           <div class="bg-slate-50/80 rounded-2xl p-3 border border-slate-200/80">
-            <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">Esforço Total</span>
+            <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">Esforço Azure DevOps</span>
             <span class="text-xs font-black text-slate-900 block mt-0.5">
               {{ project.hours.totalExecuted }}h <span class="text-slate-400 font-normal">/</span> {{ project.hours.totalPlanned }}h
             </span>
-            <span class="text-[10px] text-emerald-700 font-bold block mt-0.5">
-              {{ getPercent(project.hours.totalExecuted, project.hours.totalPlanned) }}% realizado
+            <span class="text-[10px] text-blue-700 font-bold block mt-0.5">
+              {{ getPercent(project.hours.totalExecuted, project.hours.totalPlanned) }}% da estimativa apontada
             </span>
           </div>
 
-          <!-- KPI 4: ILC vs Cliente -->
+          <!-- KPI 4: Acordo Comercial com Cliente -->
           <div class="bg-slate-50/80 rounded-2xl p-3 border border-slate-200/80">
-            <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">Divisão de Esforço</span>
-            <div class="flex items-center justify-between text-[11px] font-bold mt-0.5">
-              <span class="text-blue-700">ILC: {{ project.hours.ilcExecuted }}h</span>
-              <span class="text-slate-300">|</span>
-              <span class="text-emerald-700">Cliente: {{ project.hours.clientExecuted }}h</span>
+            <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">Acordo com Cliente</span>
+            <div class="flex items-center justify-between text-[11px] font-black mt-0.5">
+              <span class="text-emerald-700">{{ getAgreedHours(project) }}h firmadas</span>
+              <span
+                [ngClass]="getAgreedBalance(project) >= 0 ? 'text-emerald-600' : 'text-rose-600'"
+                class="text-[10px] font-extrabold">
+                {{ getAgreedBalance(project) >= 0 ? '+' + getAgreedBalance(project) + 'h saldo' : getAgreedBalance(project) + 'h saldo' }}
+              </span>
             </div>
-            <span class="text-[10px] text-slate-400 block mt-0.5">
-              Plan: ILC {{ project.hours.ilcPlanned }}h • Cliente {{ project.hours.clientPlanned }}h
+            <span
+              [ngClass]="getAgreedPercent(project.hours.totalExecuted, getAgreedHours(project)) > 100 ? 'text-rose-600' : 'text-emerald-700'"
+              class="text-[10px] font-bold block mt-0.5">
+              {{ getAgreedPercent(project.hours.totalExecuted, getAgreedHours(project)) }}% do acordo consumido
             </span>
           </div>
 
@@ -493,62 +498,122 @@ import { Project, ProjectActivity, EapPhase, AzureAuditReport } from '../../mode
           </div>
         </div>
 
-        <!-- Right: Client vs ILC Effort Breakdown (Option B) -->
+        <!-- Right: Controle de Esforço: Acordo Comercial vs Execução Azure -->
         <div class="bg-white p-5 rounded-3xl border border-slate-200/90 shadow-sm flex flex-col justify-between">
           <div>
             <div class="flex items-center justify-between mb-3">
-              <h3 class="text-xs font-black text-slate-800 uppercase tracking-wider">
-                Repartição de Esforço: Cliente vs ILC
-              </h3>
-              <span class="text-xs font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
-                {{ getPercent(project.hours.totalExecuted, project.hours.totalPlanned) }}% Concluído
+              <div class="flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-blue-600"></span>
+                <h3 class="text-xs font-black text-slate-800 uppercase tracking-wider">
+                  Controle de Esforço: Acordo Comercial vs Execução Azure
+                </h3>
+              </div>
+              <span
+                [ngClass]="{
+                  'text-emerald-700 bg-emerald-50 border-emerald-200': getAgreedPercent(project.hours.totalExecuted, getAgreedHours(project)) <= 85,
+                  'text-amber-700 bg-amber-50 border-amber-200': getAgreedPercent(project.hours.totalExecuted, getAgreedHours(project)) > 85 && getAgreedPercent(project.hours.totalExecuted, getAgreedHours(project)) <= 100,
+                  'text-rose-700 bg-rose-50 border-rose-200': getAgreedPercent(project.hours.totalExecuted, getAgreedHours(project)) > 100
+                }"
+                class="text-xs font-extrabold px-2.5 py-0.5 rounded-full border">
+                {{ getAgreedPercent(project.hours.totalExecuted, getAgreedHours(project)) }}% do Acordo Consumido
               </span>
             </div>
 
-            <!-- Big number: Executed / Total Planned Hours -->
-            <div class="mb-4">
-              <div class="text-3xl font-black text-slate-900 tracking-tight leading-none mb-1">
-                {{ project.hours.totalExecuted }} <span class="text-xl text-slate-400 font-normal">/</span> {{ project.hours.totalPlanned }}h
-              </div>
-              <p class="text-xs text-slate-500">
-                Volume acumulado de horas das tarefas (Original Estimate e Completed Work)
-              </p>
-            </div>
-
-            <!-- Dual Boxes: Client vs ILC -->
-            <div class="grid grid-cols-2 gap-3 mb-3">
-              <!-- Client Box (Logo if available, otherwise 'Cliente') -->
-              <div class="bg-emerald-50/80 border border-emerald-200 rounded-2xl p-3 text-center flex flex-col items-center justify-between">
-                <div class="h-6 flex items-center justify-center">
-                  <img
-                    *ngIf="service.getClientLogo(project.client)"
-                    [src]="service.getClientLogo(project.client)"
-                    [alt]="project.client"
-                    class="h-6 max-w-[100px] object-contain"
-                  />
-                  <span *ngIf="!service.getClientLogo(project.client)" class="text-xs font-black text-emerald-950">
-                    Cliente
+            <!-- Big numbers / Dual comparison: Firmado Cliente | Planejado Azure | Executado Azure -->
+            <div class="grid grid-cols-3 gap-2.5 mb-3.5">
+              <!-- Box 1: Firmado Cliente -->
+              <div class="bg-emerald-50/80 border border-emerald-200/90 rounded-2xl p-3 text-center flex flex-col justify-between">
+                <div class="flex items-center justify-center gap-1 text-[10px] font-bold text-emerald-800 uppercase tracking-wider">
+                  <span>💼 Firmado</span>
+                </div>
+                <div class="my-1">
+                  <span class="text-2xl font-black text-emerald-700 tracking-tight leading-none">
+                    {{ getAgreedHours(project) }}<span class="text-xs font-normal text-emerald-600">h</span>
                   </span>
                 </div>
-                <span class="text-base font-black text-emerald-700 block mt-1">
-                  {{ project.hours.clientExecuted }}h <span class="text-xs font-normal text-emerald-600">/</span> {{ project.hours.clientPlanned }}h
-                </span>
-                <span class="text-[9px] text-emerald-700 uppercase font-extrabold mt-0.5 block">
-                  Executado / Planejado
+                <span class="text-[9px] text-emerald-700 font-semibold block">
+                  Acordo Comercial
                 </span>
               </div>
 
-              <!-- ILC Box -->
-              <div class="bg-blue-50/80 border border-blue-200 rounded-2xl p-3.5 text-center">
-                <span class="text-xs font-black text-blue-950 block">
-                  ILC
+              <!-- Box 2: Planejado Azure -->
+              <div class="bg-blue-50/80 border border-blue-200/90 rounded-2xl p-3 text-center flex flex-col justify-between">
+                <div class="flex items-center justify-center gap-1 text-[10px] font-bold text-blue-800 uppercase tracking-wider">
+                  <span>📋 Planejado</span>
+                </div>
+                <div class="my-1">
+                  <span class="text-2xl font-black text-blue-700 tracking-tight leading-none">
+                    {{ project.hours.totalPlanned }}<span class="text-xs font-normal text-blue-600">h</span>
+                  </span>
+                </div>
+                <span class="text-[9px] text-blue-700 font-semibold block">
+                  Estimativa Azure
                 </span>
-                <span class="text-base font-black text-blue-700 block mt-1">
-                  {{ project.hours.ilcExecuted }}h <span class="text-xs font-normal text-blue-600">/</span> {{ project.hours.ilcPlanned }}h
+              </div>
+
+              <!-- Box 3: Executado Azure -->
+              <div class="bg-slate-50 border border-slate-200 rounded-2xl p-3 text-center flex flex-col justify-between">
+                <div class="flex items-center justify-center gap-1 text-[10px] font-bold text-slate-700 uppercase tracking-wider">
+                  <span>⏱️ Executado</span>
+                </div>
+                <div class="my-1">
+                  <span class="text-2xl font-black text-slate-900 tracking-tight leading-none">
+                    {{ project.hours.totalExecuted }}<span class="text-xs font-normal text-slate-500">h</span>
+                  </span>
+                </div>
+                <span class="text-[9px] text-slate-600 font-semibold block">
+                  Apontado no Azure
                 </span>
-                <span class="text-[9px] text-blue-700 uppercase font-extrabold mt-0.5 block">
-                  Executado / Planejado
+              </div>
+            </div>
+
+            <!-- Painel Comparativo de Consumo vs Acordo -->
+            <div class="bg-slate-50/90 rounded-2xl p-3 border border-slate-200/80 space-y-2 mb-3">
+              <div class="flex items-center justify-between text-xs">
+                <span class="font-bold text-slate-700">Consumo do Volume Contratual</span>
+                <span class="font-black text-slate-900">
+                  {{ project.hours.totalExecuted }}h de {{ getAgreedHours(project) }}h
                 </span>
+              </div>
+
+              <!-- Termômetro de consumo -->
+              <div class="w-full bg-slate-200 rounded-full h-2.5 overflow-hidden">
+                <div
+                  [ngClass]="{
+                    'bg-emerald-500': getAgreedPercent(project.hours.totalExecuted, getAgreedHours(project)) <= 85,
+                    'bg-amber-500': getAgreedPercent(project.hours.totalExecuted, getAgreedHours(project)) > 85 && getAgreedPercent(project.hours.totalExecuted, getAgreedHours(project)) <= 100,
+                    'bg-rose-500': getAgreedPercent(project.hours.totalExecuted, getAgreedHours(project)) > 100
+                  }"
+                  class="h-full rounded-full transition-all duration-500"
+                  [style.width.%]="Math.min(100, getAgreedPercent(project.hours.totalExecuted, getAgreedHours(project)))">
+                </div>
+              </div>
+
+              <!-- Linha com saldo e comparação -->
+              <div class="flex items-center justify-between text-[11px] pt-1 border-t border-slate-200/60 font-medium">
+                <div class="flex items-center gap-1">
+                  <span class="text-slate-500">Saldo Contratual:</span>
+                  <span
+                    [ngClass]="getAgreedBalance(project) >= 0 ? 'text-emerald-700 bg-emerald-50 border-emerald-200' : 'text-rose-700 bg-rose-50 border-rose-200'"
+                    class="font-extrabold px-1.5 py-0.2 rounded-md border text-[10px]">
+                    {{ getAgreedBalance(project) >= 0 ? '+' + getAgreedBalance(project) + 'h disponíveis' : getAgreedBalance(project) + 'h excedidas' }}
+                  </span>
+                </div>
+                
+                <div class="flex items-center gap-1 text-[10px]">
+                  <span class="text-slate-500">Aderência Azure:</span>
+                  <span class="font-bold text-blue-700">
+                    {{ getPercent(project.hours.totalExecuted, project.hours.totalPlanned) }}% apontado
+                  </span>
+                </div>
+              </div>
+
+              <!-- Alerta sutil se Planejado Azure superar Acordo -->
+              <div
+                *ngIf="project.hours.totalPlanned > getAgreedHours(project)"
+                class="flex items-center gap-1.5 text-[10px] text-amber-800 bg-amber-50/90 border border-amber-200 rounded-lg px-2.5 py-1">
+                <span>⚠️</span>
+                <span>A estimativa técnica no Azure ({{ project.hours.totalPlanned }}h) excede o acordo firmado em +{{ project.hours.totalPlanned - getAgreedHours(project) }}h.</span>
               </div>
             </div>
           </div>
@@ -1345,6 +1410,23 @@ export class EapGanttComponent {
 
   encodeProjectName(name: string): string {
     return encodeURIComponent(name);
+  }
+
+  Math = Math;
+
+  getAgreedHours(project?: Project | null): number {
+    if (!project) return 0;
+    return project.hours?.agreed || project.agreedHours || project.hours?.totalPlanned || 0;
+  }
+
+  getAgreedBalance(project?: Project | null): number {
+    if (!project) return 0;
+    return this.getAgreedHours(project) - (project.hours?.totalExecuted || 0);
+  }
+
+  getAgreedPercent(executed: number, agreed: number): number {
+    if (!agreed || agreed <= 0) return 0;
+    return Math.round((executed / agreed) * 100);
   }
 
   getPercent(num: number, den: number): number {

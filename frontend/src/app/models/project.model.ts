@@ -60,10 +60,14 @@ export interface PhaseDistribution {
 }
 
 export interface ProjectHours {
-  clientPlanned: number;
-  clientExecuted: number;
-  ilcPlanned: number;
-  ilcExecuted: number;
+  agreed?: number;
+  agreedHours?: number;
+  planned?: number;
+  executed?: number;
+  clientPlanned?: number;
+  clientExecuted?: number;
+  ilcPlanned?: number;
+  ilcExecuted?: number;
   totalPlanned: number;
   totalExecuted: number;
   distribution: PhaseDistribution[];
@@ -146,6 +150,7 @@ export interface Project {
   executiveSummary: string;
   azureLastUpdated?: string;
   currentIterationName?: string;
+  agreedHours?: number;
   hours: ProjectHours;
   priority?: ProjectPriority;
   systems?: string[];
@@ -173,9 +178,10 @@ export interface ProjectStats {
   hoursSummary?: {
     totalPlanned: number;
     totalExecuted: number;
-    clientPlanned: number;
-    clientExecuted: number;
-    ilcPlanned: number;
-    ilcExecuted: number;
+    agreedHours?: number;
+    clientPlanned?: number;
+    clientExecuted?: number;
+    ilcPlanned?: number;
+    ilcExecuted?: number;
   };
 }

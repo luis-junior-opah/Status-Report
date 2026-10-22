@@ -8,11 +8,11 @@
     "meetingDate": "2026-10-22",
     "executiveSummary": "Concluímos com sucesso a migração dos servidores e retomamos o desenvolvimento do aplicativo ILC, priorizando as funcionalidades de Frete Expresso, Tracking e Gestão de Demandas. Paralelamente, iniciamos o backend do projeto de Assinatura de Contratos via ZapSign e avançamos na Torre de Controle 4.0 (Gestão de Demandas). Também estamos conduzindo o desenvolvimento e a homologação simultânea do Frete Expresso 2.0, abrangendo os fluxos de solicitação, cotação e o painel do transportador para resposta de propostas.",
     "statusPulse": {
-      "totalActive": 9,
-      "onTrack": 4,
+      "totalActive": 10,
+      "onTrack": 5,
       "attention": 0,
       "critical": 5,
-      "averageProgress": 35
+      "averageProgress": 54
     },
     "activeProjects": [
       {
@@ -22,8 +22,8 @@
         "clientLogo": "/assets/logos/ilc.png?t=1791579200206",
         "status": "Ativo",
         "currentMilestone": "Planejamento",
-        "progress": 0,
-        "ragStatus": "green",
+        "progress": 23,
+        "ragStatus": "red",
         "agreedDelivery": "2026-11-28",
         "targetDelivery": "2026-11-28",
         "varianceDays": 0,
@@ -32,7 +32,7 @@
         "previousStatusReport": "Desenvolvimento do protótipo em andamento.",
         "previousStatusReportDate": "2026-09-29",
         "attentionPoints": "Execução fluindo dentro dos marcos acordados.",
-        "hoursExecuted": 0,
+        "hoursExecuted": 32,
         "hoursPlanned": 138,
         "priority": "P2",
         "systems": [
@@ -54,6 +54,42 @@
         }
       },
       {
+        "projectId": "75c1273d-4e9b-4b34-a534-15b868dccf3c",
+        "name": "ILC - Migração Data Center ADDIT → CCM Matrix OCI",
+        "client": "ILC (Interno)",
+        "clientLogo": "/assets/logos/ilc.png?t=1791579200206",
+        "status": "Ativo",
+        "currentMilestone": "Homologação",
+        "progress": 96,
+        "ragStatus": "red",
+        "agreedDelivery": "2026-10-26",
+        "targetDelivery": "2026-10-26",
+        "varianceDays": 0,
+        "statusReport": "Conclusão da migração e inicio da operação assistida.",
+        "statusReportDate": "2026-10-06",
+        "previousStatusReport": "Migração em andamento.",
+        "previousStatusReportDate": "2026-10-06",
+        "attentionPoints": "Pendente atualização do projeto no Azure.",
+        "hoursExecuted": 403,
+        "hoursPlanned": 421,
+        "priority": "P2",
+        "systems": [
+          "Infraestrutura"
+        ],
+        "teamLeader": "Francisco Molaia Santos",
+        "teamMembers": [
+          "Francisco Molaia Santos",
+          "Silvio Torres"
+        ],
+        "team": {
+          "leader": "Francisco Molaia Santos",
+          "members": [
+            "Francisco Molaia Santos",
+            "Silvio Torres"
+          ]
+        }
+      },
+      {
         "projectId": "4d1d445e-584d-4bdb-a176-afce663b0300",
         "name": "John Deere - Adição de Item na Promessa",
         "client": "John Deere",
@@ -61,15 +97,15 @@
         "status": "Ativo",
         "currentMilestone": "Treinamento",
         "progress": 68,
-        "ragStatus": "red",
+        "ragStatus": "green",
         "agreedDelivery": "2026-11-30",
         "targetDelivery": "2026-11-30",
         "varianceDays": 0,
-        "statusReport": "Aguardando retorno do cliente quanto agendamento do treinamento.\nMaterial da capacitação em elaboração.",
+        "statusReport": "Treinamento junto aos stakeholders será realizado no dia 23/10.",
         "statusReportDate": "2026-10-06",
         "previousStatusReport": "Fase de homologação realizada e validada junto ao cliente.",
         "previousStatusReportDate": "2026-09-29",
-        "attentionPoints": "Necessária revisão de datas, para atualização das etapas.",
+        "attentionPoints": "Execução fluindo dentro dos marcos acordados.",
         "hoursExecuted": 82,
         "hoursPlanned": 120,
         "priority": "P2",
@@ -134,15 +170,15 @@
         "status": "Ativo",
         "currentMilestone": "Treinamento",
         "progress": 66,
-        "ragStatus": "red",
+        "ragStatus": "green",
         "agreedDelivery": "2026-11-17",
         "targetDelivery": "2026-11-17",
         "varianceDays": 0,
-        "statusReport": "Aguardando retorno do cliente quanto agendamento do treinamento.\nMaterial da capacitação em elaboração.",
+        "statusReport": "Treinamento junto aos stakeholders será realizado no dia 23/10.",
         "statusReportDate": "2026-10-06",
         "previousStatusReport": "Fase de homologação realizada e validada junto ao cliente.",
         "previousStatusReportDate": "2026-09-29",
-        "attentionPoints": "Necessária revisão de datas, para atualização das etapas.",
+        "attentionPoints": "Execução fluindo dentro dos marcos acordados.",
         "hoursExecuted": 76,
         "hoursPlanned": 116,
         "priority": "P2",
@@ -163,45 +199,13 @@
         }
       },
       {
-        "projectId": "75c1273d-4e9b-4b34-a534-15b868dccf3c",
-        "name": "Migração Data Center ADDIT → CCM Matrix OCI",
-        "client": "Mirassol",
-        "clientLogo": "/assets/logos/mirassol.png?t=1791579205262",
-        "status": "Ativo",
-        "currentMilestone": "Desenvolvimento",
-        "progress": 0,
-        "ragStatus": "red",
-        "agreedDelivery": "2026-10-17",
-        "targetDelivery": "2026-10-17",
-        "varianceDays": 0,
-        "statusReport": "Conclusão da migração e inicio da operação assistida.",
-        "statusReportDate": "2026-10-06",
-        "previousStatusReport": "Migração em andamento.",
-        "previousStatusReportDate": "2026-10-06",
-        "attentionPoints": "Revisão do caminho crítico necessária para conter desvio.",
-        "hoursExecuted": 0,
-        "hoursPlanned": 0,
-        "priority": "P2",
-        "systems": [],
-        "teamLeader": "Francisco Molaia Santos",
-        "teamMembers": [
-          "Francisco Molaia Santos"
-        ],
-        "team": {
-          "leader": "Francisco Molaia Santos",
-          "members": [
-            "Francisco Molaia Santos"
-          ]
-        }
-      },
-      {
         "projectId": "c064a093-ea7c-45e6-8ec6-5bf10a5794a9",
         "name": "Mirassol - Assinatura Digital de Documentos",
         "client": "Mirassol",
         "clientLogo": "/assets/logos/mirassol.png?t=1791579205262",
         "status": "Ativo",
         "currentMilestone": "Desenvolvimento",
-        "progress": 38,
+        "progress": 40,
         "ragStatus": "green",
         "agreedDelivery": "2026-12-05",
         "targetDelivery": "2026-12-05",
@@ -210,9 +214,9 @@
         "statusReportDate": "2026-10-06",
         "previousStatusReport": "Inclusão do projeto na esteira de desenvolvimento.",
         "previousStatusReportDate": "2026-09-29",
-        "attentionPoints": "Execução fluindo dentro dos marcos acordados.",
-        "hoursExecuted": 71,
-        "hoursPlanned": 170.49999999999997,
+        "attentionPoints": "Disponibilização do usuário por parte da Mirassol para assinatura do subcontratante.",
+        "hoursExecuted": 76,
+        "hoursPlanned": 173.59999999999997,
         "priority": "P1",
         "systems": [
           "App Smart Tracking",
@@ -247,11 +251,11 @@
         "agreedDelivery": "2026-10-17",
         "targetDelivery": "2026-10-17",
         "varianceDays": 0,
-        "statusReport": "Fluxo central de abertura e aprovação de demandas estruturado (94%). Validação de usabilidade com gestores.",
+        "statusReport": "Pendente a homologção do processo Komatsu.",
         "statusReportDate": "2026-10-06",
         "previousStatusReport": "Homologação processos Komatsu",
         "previousStatusReportDate": "2026-09-29",
-        "attentionPoints": "Alinhamento dos critérios finais de aceite antes do encerramento da fase de planejamento.",
+        "attentionPoints": "Pendente a homologção do processo Komatsu.",
         "hoursExecuted": 619,
         "hoursPlanned": 646,
         "priority": "P1",
@@ -273,6 +277,34 @@
         }
       },
       {
+        "projectId": "53f7da8a-e2d4-4a4a-bdcf-5a8d4a8bfad6",
+        "name": "Mirassol - Projeto Check List por Viagem",
+        "client": "Mirassol",
+        "clientLogo": "/assets/logos/mirassol.png?t=1791579205262",
+        "status": "Ativo",
+        "currentMilestone": "Desenvolvimento",
+        "progress": 0,
+        "ragStatus": "green",
+        "agreedDelivery": "2027-01-31",
+        "targetDelivery": "2027-01-31",
+        "varianceDays": 0,
+        "statusReport": "Projeto iniciado e sincronizado com o Azure DevOps. ",
+        "statusReportDate": "2026-10-22",
+        "previousStatusReport": "Validação técnica preliminar e alinhamento de escopo operacional com os líderes de projeto.",
+        "previousStatusReportDate": "2026-10-06",
+        "attentionPoints": "Execução fluindo dentro dos marcos acordados.",
+        "hoursExecuted": 0,
+        "hoursPlanned": 0,
+        "priority": "P2",
+        "systems": [],
+        "teamLeader": "",
+        "teamMembers": [],
+        "team": {
+          "leader": "",
+          "members": []
+        }
+      },
+      {
         "projectId": "eb438ca6-f25e-4c5c-ab4b-a45e1b243ba1",
         "name": "Mirassol - Projeto Safety",
         "client": "Mirassol",
@@ -284,11 +316,11 @@
         "agreedDelivery": "2027-01-17",
         "targetDelivery": "2027-01-17",
         "varianceDays": 0,
-        "statusReport": "Projeto Safety está em fase de elicitação de requisitos.",
+        "statusReport": "Projeto Safety está em fase de elicitação de requisitos. Necessário contatar fornecedor para análise de viabilidade técnica.",
         "statusReportDate": "2026-10-06",
         "previousStatusReport": "Realizados alinhamentos iniciais para desenvolvimento do escopo do projeto.",
         "previousStatusReportDate": "2026-09-29",
-        "attentionPoints": "Revisão do caminho crítico necessária para conter desvio.",
+        "attentionPoints": "Mauricio da Carga Online será contatado até 23/10 para reunião de alinhamento técnico.",
         "hoursExecuted": 0,
         "hoursPlanned": 0,
         "priority": "P3",
@@ -316,19 +348,19 @@
         "client": "Mirassol",
         "clientLogo": "/assets/logos/mirassol.png?t=1791579205262",
         "status": "Ativo",
-        "currentMilestone": "Desenvolvimento",
-        "progress": 0,
-        "ragStatus": "green",
-        "agreedDelivery": "2027-01-31",
-        "targetDelivery": "2027-01-31",
+        "currentMilestone": "Planejamento",
+        "progress": 100,
+        "ragStatus": "red",
+        "agreedDelivery": "2026-10-31",
+        "targetDelivery": "2026-10-31",
         "varianceDays": 0,
-        "statusReport": "Desenvolvimento da interface de gestão de demandas",
+        "statusReport": "Desenvolvimento da interface de gestão de demandas. Pendente desenvolvimento da Proc para consulta dos marcos das demandas.",
         "statusReportDate": "2026-10-06",
         "previousStatusReport": "Apresentação do projeto a Mirassol.",
         "previousStatusReportDate": "2026-09-29",
         "attentionPoints": "Execução fluindo dentro dos marcos acordados.",
-        "hoursExecuted": 0,
-        "hoursPlanned": 0,
+        "hoursExecuted": 2,
+        "hoursPlanned": 2,
         "priority": "P1",
         "systems": [
           "Portal Integrator"
@@ -353,7 +385,7 @@
         "name": "ILC Pay (Rodobank)",
         "client": "Mirassol",
         "estimatedStart": "A definir",
-        "stage": "Espera",
+        "stage": "Em espera",
         "strategicValue": "Muito Alto",
         "description": "Aplicativo bancário destinado aos motoristas contratados pela Mirassol",
         "responsible": "ILC"
@@ -363,7 +395,7 @@
         "name": "Televida",
         "client": "Mirassol",
         "estimatedStart": "A definir",
-        "stage": "Discovery",
+        "stage": "Discovery Técnico",
         "strategicValue": "Médio",
         "description": "Funcionalidade de telemedicina no App Smart Tracking",
         "responsible": "ILC"
@@ -383,9 +415,9 @@
         "name": "Forms Tipo Quiz",
         "client": "Mirassol",
         "estimatedStart": "A definir",
-        "stage": "Prospecção",
+        "stage": "Ideação",
         "strategicValue": "Baixo",
-        "description": "Adicionar descrição",
+        "description": "Criador de formulários interativos com pontuação customizada e validação automática de respostas.",
         "responsible": "ILC"
       },
       {
@@ -393,12 +425,464 @@
         "name": "Auditoria de Comprovantes",
         "client": "Mirassol",
         "estimatedStart": "A definir",
-        "stage": "Prospecção",
+        "stage": "Ideação",
         "strategicValue": "Médio",
-        "description": "Adicionar descrição",
+        "description": "Criar solução para auditar automaticamente comprovantes por meio de IA.",
         "responsible": "ILC"
       }
     ],
-    "boardDecisions": []
+    "boardDecisions": [
+      {
+        "id": "dec-1792615891740",
+        "title": "Projeto Check List por Viagem",
+        "client": "Geral",
+        "impact": "Projeto aprovado e em fase de estruturação do escopo, para entrar na fila de desenvolvimento. (03/11 data de entrega da solução)",
+        "status": "Aprovado",
+        "deadline": "03/11/2026"
+      }
+    ]
+  },
+  {
+    "id": "2026-W42",
+    "weekNumber": 42,
+    "year": 2026,
+    "title": "Semana 42 / 2026",
+    "period": "13/10/2026 a 17/10/2026",
+    "meetingDate": "2026-10-16",
+    "executiveSummary": "Concluímos com sucesso a migração dos servidores e retomamos o desenvolvimento do aplicativo ILC, priorizando as funcionalidades de Frete Expresso, Tracking e Gestão de Demandas. Paralelamente, iniciamos o backend do projeto de Assinatura de Contratos via ZapSign e avançamos na Torre de Controle 4.0 (Gestão de Demandas). Também estamos conduzindo o desenvolvimento e a homologação simultânea do Frete Expresso 2.0, abrangendo os fluxos de solicitação, cotação e o painel do transportador para resposta de propostas.",
+    "statusPulse": {
+      "totalActive": 10,
+      "onTrack": 5,
+      "attention": 0,
+      "critical": 5,
+      "averageProgress": 54
+    },
+    "activeProjects": [
+      {
+        "projectId": "8bcd36f6-678a-4d3c-a0a6-40a92b5ea91a",
+        "name": "App ILC 2026",
+        "client": "ILC (Interno)",
+        "clientLogo": "/assets/logos/ilc.png?t=1791579200206",
+        "status": "Ativo",
+        "currentMilestone": "Planejamento",
+        "progress": 23,
+        "ragStatus": "red",
+        "agreedDelivery": "2026-11-28",
+        "targetDelivery": "2026-11-28",
+        "varianceDays": 0,
+        "statusReport": "Protótipo desenvolvido e iniciado desenvolvimento frontend",
+        "statusReportDate": "2026-10-06",
+        "previousStatusReport": "Desenvolvimento do protótipo em andamento.",
+        "previousStatusReportDate": "2026-09-29",
+        "attentionPoints": "Execução fluindo dentro dos marcos acordados.",
+        "hoursExecuted": 32,
+        "hoursPlanned": 138,
+        "priority": "P2",
+        "systems": [
+          "App ILC"
+        ],
+        "teamLeader": "Luis Santos",
+        "teamMembers": [
+          "Luis Santos",
+          "Mike Andrade",
+          "Francisco Molaia"
+        ],
+        "team": {
+          "leader": "Luis Santos",
+          "members": [
+            "Luis Santos",
+            "Mike Andrade",
+            "Francisco Molaia"
+          ]
+        }
+      },
+      {
+        "projectId": "75c1273d-4e9b-4b34-a534-15b868dccf3c",
+        "name": "ILC - Migração Data Center ADDIT → CCM Matrix OCI",
+        "client": "ILC (Interno)",
+        "clientLogo": "/assets/logos/ilc.png?t=1791579200206",
+        "status": "Ativo",
+        "currentMilestone": "Homologação",
+        "progress": 96,
+        "ragStatus": "red",
+        "agreedDelivery": "2026-10-26",
+        "targetDelivery": "2026-10-26",
+        "varianceDays": 0,
+        "statusReport": "Conclusão da migração e inicio da operação assistida.",
+        "statusReportDate": "2026-10-06",
+        "previousStatusReport": "Migração em andamento.",
+        "previousStatusReportDate": "2026-10-06",
+        "attentionPoints": "Pendente atualização do projeto no Azure.",
+        "hoursExecuted": 403,
+        "hoursPlanned": 421,
+        "priority": "P2",
+        "systems": [
+          "Infraestrutura"
+        ],
+        "teamLeader": "Francisco Molaia Santos",
+        "teamMembers": [
+          "Francisco Molaia Santos",
+          "Silvio Torres"
+        ],
+        "team": {
+          "leader": "Francisco Molaia Santos",
+          "members": [
+            "Francisco Molaia Santos",
+            "Silvio Torres"
+          ]
+        }
+      },
+      {
+        "projectId": "4d1d445e-584d-4bdb-a176-afce663b0300",
+        "name": "John Deere - Adição de Item na Promessa",
+        "client": "John Deere",
+        "clientLogo": "/assets/logos/john-deere.png?t=1791579235167",
+        "status": "Ativo",
+        "currentMilestone": "Treinamento",
+        "progress": 68,
+        "ragStatus": "green",
+        "agreedDelivery": "2026-11-30",
+        "targetDelivery": "2026-11-30",
+        "varianceDays": 0,
+        "statusReport": "Treinamento junto aos stakeholders será realizado no dia 23/10.",
+        "statusReportDate": "2026-10-06",
+        "previousStatusReport": "Fase de homologação realizada e validada junto ao cliente.",
+        "previousStatusReportDate": "2026-09-29",
+        "attentionPoints": "Execução fluindo dentro dos marcos acordados.",
+        "hoursExecuted": 82,
+        "hoursPlanned": 120,
+        "priority": "P2",
+        "systems": [
+          "Portal Integrator"
+        ],
+        "teamLeader": "Luis Santos",
+        "teamMembers": [
+          "Luis Santos",
+          "Silvio Torres"
+        ],
+        "team": {
+          "leader": "Luis Santos",
+          "members": [
+            "Luis Santos",
+            "Silvio Torres"
+          ]
+        }
+      },
+      {
+        "projectId": "7a1136ad-134c-41fe-a684-79e8b2ab5c93",
+        "name": "John Deere - Frete Expresso 2.0",
+        "client": "John Deere",
+        "clientLogo": "/assets/logos/john-deere.png?t=1791579235167",
+        "status": "Ativo",
+        "currentMilestone": "Desenvolvimento",
+        "progress": 47,
+        "ragStatus": "green",
+        "agreedDelivery": "2027-01-16",
+        "targetDelivery": "2027-01-16",
+        "varianceDays": 0,
+        "statusReport": "Desenvolvimento e homologação das etapas solicitações, cotações, painel transportador e respostas cotações em andamento.",
+        "statusReportDate": "2026-10-06",
+        "previousStatusReport": "Desenvolvimento e homologação da arquitetura e base operacional concluídos.",
+        "previousStatusReportDate": "2026-09-29",
+        "attentionPoints": "Execução fluindo dentro dos marcos acordados.",
+        "hoursExecuted": 349,
+        "hoursPlanned": 750,
+        "priority": "P1",
+        "systems": [
+          "Portal Integrator",
+          "App ILC"
+        ],
+        "teamLeader": "Luis Santos",
+        "teamMembers": [
+          "Luis Santos",
+          "Silvio Torres"
+        ],
+        "team": {
+          "leader": "Luis Santos",
+          "members": [
+            "Luis Santos",
+            "Silvio Torres"
+          ]
+        }
+      },
+      {
+        "projectId": "c99e39c8-2702-4961-8624-117ce09beac7",
+        "name": "John Deere - Reprogramação Sistêmica - Duplicação de Pedidos",
+        "client": "John Deere",
+        "clientLogo": "/assets/logos/john-deere.png?t=1791579235167",
+        "status": "Ativo",
+        "currentMilestone": "Treinamento",
+        "progress": 66,
+        "ragStatus": "green",
+        "agreedDelivery": "2026-11-17",
+        "targetDelivery": "2026-11-17",
+        "varianceDays": 0,
+        "statusReport": "Treinamento junto aos stakeholders será realizado no dia 23/10.",
+        "statusReportDate": "2026-10-06",
+        "previousStatusReport": "Fase de homologação realizada e validada junto ao cliente.",
+        "previousStatusReportDate": "2026-09-29",
+        "attentionPoints": "Execução fluindo dentro dos marcos acordados.",
+        "hoursExecuted": 76,
+        "hoursPlanned": 116,
+        "priority": "P2",
+        "systems": [
+          "Portal Integrator"
+        ],
+        "teamLeader": "Luis Santos",
+        "teamMembers": [
+          "Luis Santos",
+          "Silvio Torres"
+        ],
+        "team": {
+          "leader": "Luis Santos",
+          "members": [
+            "Luis Santos",
+            "Silvio Torres"
+          ]
+        }
+      },
+      {
+        "projectId": "c064a093-ea7c-45e6-8ec6-5bf10a5794a9",
+        "name": "Mirassol - Assinatura Digital de Documentos",
+        "client": "Mirassol",
+        "clientLogo": "/assets/logos/mirassol.png?t=1791579205262",
+        "status": "Ativo",
+        "currentMilestone": "Desenvolvimento",
+        "progress": 40,
+        "ragStatus": "green",
+        "agreedDelivery": "2026-12-05",
+        "targetDelivery": "2026-12-05",
+        "varianceDays": 0,
+        "statusReport": "Desenolvimento backend iniciado.",
+        "statusReportDate": "2026-10-06",
+        "previousStatusReport": "Inclusão do projeto na esteira de desenvolvimento.",
+        "previousStatusReportDate": "2026-09-29",
+        "attentionPoints": "Disponibilização do usuário por parte da Mirassol para assinatura do subcontratante.",
+        "hoursExecuted": 76,
+        "hoursPlanned": 173.59999999999997,
+        "priority": "P1",
+        "systems": [
+          "App Smart Tracking",
+          "Smart X"
+        ],
+        "teamLeader": "Vito Neves",
+        "teamMembers": [
+          "Vitor Neves",
+          "Luis Santos",
+          "Thiago Rodrigues",
+          "Mike Andrade"
+        ],
+        "team": {
+          "leader": "Vito Neves",
+          "members": [
+            "Vitor Neves",
+            "Luis Santos",
+            "Thiago Rodrigues",
+            "Mike Andrade"
+          ]
+        }
+      },
+      {
+        "projectId": "a5fcfbb4-ab62-4aff-b0fa-3f623219a49c",
+        "name": "Mirassol - Input Gestão de demandas",
+        "client": "Mirassol",
+        "clientLogo": "/assets/logos/mirassol.png?t=1791579205262",
+        "status": "Ativo",
+        "currentMilestone": "Desenvolvimento",
+        "progress": 97,
+        "ragStatus": "red",
+        "agreedDelivery": "2026-10-17",
+        "targetDelivery": "2026-10-17",
+        "varianceDays": 0,
+        "statusReport": "Pendente a homologção do processo Komatsu.",
+        "statusReportDate": "2026-10-06",
+        "previousStatusReport": "Homologação processos Komatsu",
+        "previousStatusReportDate": "2026-09-29",
+        "attentionPoints": "Pendente a homologção do processo Komatsu.",
+        "hoursExecuted": 619,
+        "hoursPlanned": 646,
+        "priority": "P1",
+        "systems": [
+          "Portal Integrator",
+          "App ILC"
+        ],
+        "teamLeader": "Vitor Neves",
+        "teamMembers": [
+          "Luis Santos",
+          "Silvio Torres"
+        ],
+        "team": {
+          "leader": "Vitor Neves",
+          "members": [
+            "Luis Santos",
+            "Silvio Torres"
+          ]
+        }
+      },
+      {
+        "projectId": "53f7da8a-e2d4-4a4a-bdcf-5a8d4a8bfad6",
+        "name": "Mirassol - Projeto Check List por Viagem",
+        "client": "Mirassol",
+        "clientLogo": "/assets/logos/mirassol.png?t=1791579205262",
+        "status": "Ativo",
+        "currentMilestone": "Desenvolvimento",
+        "progress": 0,
+        "ragStatus": "green",
+        "agreedDelivery": "2027-01-31",
+        "targetDelivery": "2027-01-31",
+        "varianceDays": 0,
+        "statusReport": "Projeto iniciado e sincronizado com o Azure DevOps. ",
+        "statusReportDate": "2026-10-22",
+        "previousStatusReport": "Validação técnica preliminar e alinhamento de escopo operacional com os líderes de projeto.",
+        "previousStatusReportDate": "2026-10-06",
+        "attentionPoints": "Execução fluindo dentro dos marcos acordados.",
+        "hoursExecuted": 0,
+        "hoursPlanned": 0,
+        "priority": "P2",
+        "systems": [],
+        "teamLeader": "",
+        "teamMembers": [],
+        "team": {
+          "leader": "",
+          "members": []
+        }
+      },
+      {
+        "projectId": "eb438ca6-f25e-4c5c-ab4b-a45e1b243ba1",
+        "name": "Mirassol - Projeto Safety",
+        "client": "Mirassol",
+        "clientLogo": "/assets/logos/mirassol.png?t=1791579205262",
+        "status": "Ativo",
+        "currentMilestone": "Planejamento",
+        "progress": 0,
+        "ragStatus": "red",
+        "agreedDelivery": "2027-01-17",
+        "targetDelivery": "2027-01-17",
+        "varianceDays": 0,
+        "statusReport": "Projeto Safety está em fase de elicitação de requisitos. Necessário contatar fornecedor para análise de viabilidade técnica.",
+        "statusReportDate": "2026-10-06",
+        "previousStatusReport": "Realizados alinhamentos iniciais para desenvolvimento do escopo do projeto.",
+        "previousStatusReportDate": "2026-09-29",
+        "attentionPoints": "Mauricio da Carga Online será contatado até 23/10 para reunião de alinhamento técnico.",
+        "hoursExecuted": 0,
+        "hoursPlanned": 0,
+        "priority": "P3",
+        "systems": [
+          "App Smart Tracking"
+        ],
+        "teamLeader": "Vitor Neves",
+        "teamMembers": [
+          "Vitor Neves",
+          "Luis Santos",
+          "Mike Andrade"
+        ],
+        "team": {
+          "leader": "Vitor Neves",
+          "members": [
+            "Vitor Neves",
+            "Luis Santos",
+            "Mike Andrade"
+          ]
+        }
+      },
+      {
+        "projectId": "caaaa6c3-0dd9-49bb-81c4-a7b757102304",
+        "name": "Mirassol - Torre de Controle 4.0",
+        "client": "Mirassol",
+        "clientLogo": "/assets/logos/mirassol.png?t=1791579205262",
+        "status": "Ativo",
+        "currentMilestone": "Planejamento",
+        "progress": 100,
+        "ragStatus": "red",
+        "agreedDelivery": "2026-10-31",
+        "targetDelivery": "2026-10-31",
+        "varianceDays": 0,
+        "statusReport": "Desenvolvimento da interface de gestão de demandas. Pendente desenvolvimento da Proc para consulta dos marcos das demandas.",
+        "statusReportDate": "2026-10-06",
+        "previousStatusReport": "Apresentação do projeto a Mirassol.",
+        "previousStatusReportDate": "2026-09-29",
+        "attentionPoints": "Execução fluindo dentro dos marcos acordados.",
+        "hoursExecuted": 2,
+        "hoursPlanned": 2,
+        "priority": "P1",
+        "systems": [
+          "Portal Integrator"
+        ],
+        "teamLeader": "Vitor Neves",
+        "teamMembers": [
+          "Vitor Neves",
+          "Silvio Torres"
+        ],
+        "team": {
+          "leader": "Vitor Neves",
+          "members": [
+            "Vitor Neves",
+            "Silvio Torres"
+          ]
+        }
+      }
+    ],
+    "roadmapProjects": [
+      {
+        "id": "road-1",
+        "name": "ILC Pay (Rodobank)",
+        "client": "Mirassol",
+        "estimatedStart": "A definir",
+        "stage": "Em espera",
+        "strategicValue": "Muito Alto",
+        "description": "Aplicativo bancário destinado aos motoristas contratados pela Mirassol",
+        "responsible": "ILC"
+      },
+      {
+        "id": "road-2",
+        "name": "Televida",
+        "client": "Mirassol",
+        "estimatedStart": "A definir",
+        "stage": "Discovery Técnico",
+        "strategicValue": "Médio",
+        "description": "Funcionalidade de telemedicina no App Smart Tracking",
+        "responsible": "ILC"
+      },
+      {
+        "id": "road-3",
+        "name": "Modernização do ROC",
+        "client": "ILC",
+        "estimatedStart": "A definir",
+        "stage": "Ideação",
+        "strategicValue": "Alto",
+        "description": "Aprimorar o relatório de ocupação de carga de forma que ele fique mais acertivo e com redução de ação humana.",
+        "responsible": "ILC"
+      },
+      {
+        "id": "road-4",
+        "name": "Forms Tipo Quiz",
+        "client": "Mirassol",
+        "estimatedStart": "A definir",
+        "stage": "Ideação",
+        "strategicValue": "Baixo",
+        "description": "Criador de formulários interativos com pontuação customizada e validação automática de respostas.",
+        "responsible": "ILC"
+      },
+      {
+        "id": "road-1792612651664",
+        "name": "Auditoria de Comprovantes",
+        "client": "Mirassol",
+        "estimatedStart": "A definir",
+        "stage": "Ideação",
+        "strategicValue": "Médio",
+        "description": "Criar solução para auditar automaticamente comprovantes por meio de IA.",
+        "responsible": "ILC"
+      }
+    ],
+    "boardDecisions": [
+      {
+        "id": "dec-1792615891740",
+        "title": "Projeto Check List por Viagem",
+        "client": "Geral",
+        "impact": "Projeto aprovado e em fase de estruturação do escopo, para entrar na fila de desenvolvimento. (03/11 data de entrega da solução)",
+        "status": "Aprovado",
+        "deadline": "03/11/2026"
+      }
+    ]
   }
 ]

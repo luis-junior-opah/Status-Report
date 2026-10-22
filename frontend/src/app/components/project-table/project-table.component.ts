@@ -33,7 +33,7 @@ import { ProjectService } from '../../services/project.service';
               <th class="py-3 px-4">Previsão Real</th>
               <th class="py-3 px-4">Desvio</th>
               <th class="py-3 px-4">Progresso</th>
-              <th class="py-3 px-4">Horas (Exec/Plan)</th>
+              <th class="py-3 px-4">Horas Azure</th>
               <th class="py-3 px-4 text-center">Ação</th>
             </tr>
           </thead>
@@ -130,7 +130,12 @@ import { ProjectService } from '../../services/project.service';
                 </div>
               </td>
               <td class="py-3 px-4 whitespace-nowrap text-slate-700">
-                {{ p.hours.totalExecuted }}h / {{ p.hours.totalPlanned }}h
+                <div>
+                  <span class="font-bold">{{ p.hours.totalExecuted }}h</span> / {{ p.hours.totalPlanned }}h
+                </div>
+                <div *ngIf="p.hours.agreed" class="text-[10px] text-emerald-700 font-bold">
+                  Acordo: {{ p.hours.agreed }}h
+                </div>
               </td>
               <td class="py-3 px-4 whitespace-nowrap text-center">
                 <button

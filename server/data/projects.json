@@ -1,5 +1,5 @@
 {
-  "lastSync": "2026-10-21T20:12:34.782Z",
+  "lastSync": "2026-10-22T16:04:50.671Z",
   "projects": [
     {
       "id": "a197458f-88c5-4fec-8ce7-a981ee3f6709",
@@ -25,7 +25,7 @@
       "progress": 46,
       "manualRagStatus": "amber",
       "executiveSummary": "Projeto integrado ao Azure DevOps. Iteração atual: Iteration 26.",
-      "azureLastUpdated": "2026-10-21T20:12:15.643Z",
+      "azureLastUpdated": "2026-10-22T16:04:38.396Z",
       "currentIterationName": "Iteration 26",
       "ragStatus": "amber",
       "varianceDays": 0,
@@ -4601,6 +4601,10 @@
         }
       ],
       "hours": {
+        "agreed": 698,
+        "agreedHours": 698,
+        "planned": 698,
+        "executed": 50.5,
         "clientPlanned": 0,
         "clientExecuted": 0,
         "ilcPlanned": 698,
@@ -4674,7 +4678,8 @@
           "Clécio Ciriaco da Silva",
           "Tatiane Godinho Dutra"
         ]
-      }
+      },
+      "agreedHours": 698
     },
     {
       "id": "eb438ca6-f25e-4c5c-ab4b-a45e1b243ba1",
@@ -4700,7 +4705,7 @@
       "progress": 0,
       "manualRagStatus": "auto",
       "executiveSummary": "Projeto Safety está em fase de elicitação de requisitos.",
-      "azureLastUpdated": "2026-10-21T20:12:17.028Z",
+      "azureLastUpdated": "2026-10-22T16:04:38.696Z",
       "currentIterationName": null,
       "ragStatus": "red",
       "varianceDays": 0,
@@ -4863,6 +4868,10 @@
         }
       ],
       "hours": {
+        "agreed": 0,
+        "agreedHours": 0,
+        "planned": 0,
+        "executed": 0,
         "clientPlanned": 0,
         "clientExecuted": 0,
         "ilcPlanned": 0,
@@ -4937,7 +4946,8 @@
           "Luis Santos",
           "Mike Andrade"
         ]
-      }
+      },
+      "agreedHours": 0
     },
     {
       "id": "9725bb95-eea2-4d9f-b0f8-bc83bc8b1aa6",
@@ -4963,7 +4973,7 @@
       "progress": 92,
       "manualRagStatus": "auto",
       "executiveSummary": "Projeto integrado ao Azure DevOps. Iteração atual: Em andamento.",
-      "azureLastUpdated": "2026-10-21T20:12:18.749Z",
+      "azureLastUpdated": "2026-10-22T16:04:39.306Z",
       "currentIterationName": null,
       "ragStatus": "red",
       "varianceDays": 0,
@@ -5239,6 +5249,10 @@
         }
       ],
       "hours": {
+        "agreed": 153,
+        "agreedHours": 153,
+        "planned": 153,
+        "executed": 140,
         "clientPlanned": 0,
         "clientExecuted": 0,
         "ilcPlanned": 153,
@@ -5309,7 +5323,8 @@
           "Francisco Molaia Santos",
           "Vitor Neves"
         ]
-      }
+      },
+      "agreedHours": 153
     },
     {
       "id": "5450faea-78d5-4c72-846d-56afa40ea98f",
@@ -5335,7 +5350,7 @@
       "progress": 0,
       "manualRagStatus": "auto",
       "executiveSummary": "Projeto integrado ao Azure DevOps. Iteração atual: Em andamento.",
-      "azureLastUpdated": "2026-10-21T20:12:19.587Z",
+      "azureLastUpdated": "2026-10-22T16:04:40.205Z",
       "currentIterationName": null,
       "ragStatus": "green",
       "varianceDays": 0,
@@ -5565,6 +5580,10 @@
         }
       ],
       "hours": {
+        "agreed": 0,
+        "agreedHours": 0,
+        "planned": 0,
+        "executed": 0,
         "clientPlanned": 0,
         "clientExecuted": 0,
         "ilcPlanned": 0,
@@ -5632,7 +5651,8 @@
       "team": {
         "leader": "",
         "members": []
-      }
+      },
+      "agreedHours": 0
     },
     {
       "id": "1124ed6f-b9ad-4951-89c8-bf0bce11abde",
@@ -5658,7 +5678,7 @@
       "progress": 0,
       "manualRagStatus": "auto",
       "executiveSummary": "Projeto integrado ao Azure DevOps. Iteração atual: Em andamento.",
-      "azureLastUpdated": "2026-10-21T20:12:20.497Z",
+      "azureLastUpdated": "2026-10-22T16:04:41.064Z",
       "currentIterationName": null,
       "ragStatus": "green",
       "varianceDays": 0,
@@ -5666,6 +5686,10 @@
       "hasManualPlannedDates": true,
       "activities": [],
       "hours": {
+        "agreed": 0,
+        "agreedHours": 0,
+        "planned": 0,
+        "executed": 0,
         "clientPlanned": 0,
         "clientExecuted": 0,
         "ilcPlanned": 0,
@@ -5733,7 +5757,8 @@
       "team": {
         "leader": "",
         "members": []
-      }
+      },
+      "agreedHours": 0
     },
     {
       "id": "d71751f9-7b44-4e86-bd47-c89e64aabcd7",
@@ -5759,7 +5784,7 @@
       "progress": 41,
       "manualRagStatus": "auto",
       "executiveSummary": "Projeto integrado ao Azure DevOps. Iteração atual: Iteration 4.",
-      "azureLastUpdated": "2026-10-21T20:12:21.202Z",
+      "azureLastUpdated": "2026-10-22T16:04:41.587Z",
       "currentIterationName": "Iteration 4",
       "ragStatus": "red",
       "varianceDays": 0,
@@ -5901,6 +5926,10 @@
         }
       ],
       "hours": {
+        "agreed": 27,
+        "agreedHours": 27,
+        "planned": 27,
+        "executed": 0,
         "clientPlanned": 0,
         "clientExecuted": 0,
         "ilcPlanned": 27,
@@ -5969,7 +5998,8 @@
         "members": [
           "Renata Dias de Avila Reis"
         ]
-      }
+      },
+      "agreedHours": 27
     },
     {
       "id": "a5fcfbb4-ab62-4aff-b0fa-3f623219a49c",
@@ -5995,7 +6025,7 @@
       "progress": 97,
       "manualRagStatus": "auto",
       "executiveSummary": "Projeto integrado ao Azure DevOps. Iteração atual: Em andamento.",
-      "azureLastUpdated": "2026-10-21T20:12:23.140Z",
+      "azureLastUpdated": "2026-10-22T16:04:42.519Z",
       "currentIterationName": null,
       "ragStatus": "red",
       "varianceDays": 0,
@@ -7225,6 +7255,10 @@
         }
       ],
       "hours": {
+        "agreed": 646,
+        "agreedHours": 646,
+        "planned": 646,
+        "executed": 619,
         "clientPlanned": 0,
         "clientExecuted": 0,
         "ilcPlanned": 646,
@@ -7298,7 +7332,8 @@
           "Luis Santos",
           "Silvio Torres"
         ]
-      }
+      },
+      "agreedHours": 646
     },
     {
       "id": "4d1d445e-584d-4bdb-a176-afce663b0300",
@@ -7324,13 +7359,81 @@
       "progress": 68,
       "manualRagStatus": "auto",
       "executiveSummary": "Desenvolvimento concluido, testes realizados. Homologado junto a John Deere, próximo passo treinar usuários.",
-      "azureLastUpdated": "2026-10-21T20:12:23.634Z",
+      "azureLastUpdated": "2026-10-22T16:04:43.183Z",
       "currentIterationName": "Iteration 01",
-      "ragStatus": "red",
+      "ragStatus": "green",
       "varianceDays": 0,
       "hasManualProgress": false,
       "hasManualPlannedDates": true,
       "activities": [
+        {
+          "id": "7202",
+          "azureId": 7202,
+          "title": "Treinamento",
+          "fullTitle": "#7202 Treinamento",
+          "rawTitle": "Treinamento",
+          "type": "Feature",
+          "state": "New",
+          "assignedTo": "Luis Carlos Oliveira Santos Junior",
+          "eapPhase": "Treinamento",
+          "month": "OUT / 26",
+          "startDate": "2026-10-23",
+          "targetDate": "2026-10-24",
+          "dateStr": "24/10/2026",
+          "ilcHours": 0,
+          "ilcHoursTotal": 8,
+          "clientHours": 0,
+          "status": "planned",
+          "isDelayed": false,
+          "isTightMargin": true,
+          "linkedTasks": [
+            {
+              "id": 7216,
+              "title": "Capacitação",
+              "type": "Task",
+              "state": "New",
+              "assignedTo": "Luis Carlos Oliveira Santos Junior",
+              "originalEstimate": 8,
+              "completedWork": 0,
+              "startDate": "2026-10-23",
+              "targetDate": "2026-10-24"
+            }
+          ]
+        },
+        {
+          "id": "7203",
+          "azureId": 7203,
+          "title": "Operação Assistida",
+          "fullTitle": "#7203 Operação Assistida",
+          "rawTitle": "Operação Assistida",
+          "type": "Feature",
+          "state": "New",
+          "assignedTo": "Luis Carlos Oliveira Santos Junior",
+          "eapPhase": "Operação Assistida",
+          "month": "NOV / 26",
+          "startDate": "2026-10-26",
+          "targetDate": "2026-11-30",
+          "dateStr": "30/11/2026",
+          "ilcHours": 0,
+          "ilcHoursTotal": 30,
+          "clientHours": 0,
+          "status": "planned",
+          "isDelayed": false,
+          "isTightMargin": false,
+          "linkedTasks": [
+            {
+              "id": 7217,
+              "title": "Acompanhamento em operação assistida",
+              "type": "Task",
+              "state": "New",
+              "assignedTo": "Luis Carlos Oliveira Santos Junior",
+              "originalEstimate": 30,
+              "completedWork": 0,
+              "startDate": "2026-10-26",
+              "targetDate": "2026-11-30"
+            }
+          ]
+        },
         {
           "id": "7200",
           "azureId": 7200,
@@ -7476,77 +7579,13 @@
               "targetDate": "2026-09-17"
             }
           ]
-        },
-        {
-          "id": "7203",
-          "azureId": 7203,
-          "title": "Operação Assistida",
-          "fullTitle": "#7203 Operação Assistida",
-          "rawTitle": "Operação Assistida",
-          "type": "Feature",
-          "state": "New",
-          "assignedTo": "Luis Carlos Oliveira Santos Junior",
-          "eapPhase": "Operação Assistida",
-          "month": "NOV / 26",
-          "startDate": "2026-10-19",
-          "targetDate": "2026-11-30",
-          "dateStr": "30/11/2026",
-          "ilcHours": 0,
-          "ilcHoursTotal": 30,
-          "clientHours": 0,
-          "status": "planned",
-          "isDelayed": false,
-          "isTightMargin": false,
-          "linkedTasks": [
-            {
-              "id": 7217,
-              "title": "Acompanhamento em operação assistida",
-              "type": "Task",
-              "state": "New",
-              "assignedTo": "Luis Carlos Oliveira Santos Junior",
-              "originalEstimate": 30,
-              "completedWork": 0,
-              "startDate": "2026-10-19",
-              "targetDate": "2026-11-30"
-            }
-          ]
-        },
-        {
-          "id": "7202",
-          "azureId": 7202,
-          "title": "Treinamento",
-          "fullTitle": "#7202 Treinamento",
-          "rawTitle": "Treinamento",
-          "type": "Feature",
-          "state": "New",
-          "assignedTo": "Luis Carlos Oliveira Santos Junior",
-          "eapPhase": "Treinamento",
-          "month": "OUT / 26",
-          "startDate": "2026-10-12",
-          "targetDate": "2026-10-17",
-          "dateStr": "17/10/2026",
-          "ilcHours": 0,
-          "ilcHoursTotal": 8,
-          "clientHours": 0,
-          "status": "planned",
-          "isDelayed": true,
-          "isTightMargin": false,
-          "linkedTasks": [
-            {
-              "id": 7216,
-              "title": "Capacitação",
-              "type": "Task",
-              "state": "New",
-              "assignedTo": "Luis Carlos Oliveira Santos Junior",
-              "originalEstimate": 8,
-              "completedWork": 0,
-              "startDate": "2026-10-12",
-              "targetDate": "2026-10-17"
-            }
-          ]
         }
       ],
       "hours": {
+        "agreed": 120,
+        "agreedHours": 120,
+        "planned": 120,
+        "executed": 82,
         "clientPlanned": 0,
         "clientExecuted": 0,
         "ilcPlanned": 120,
@@ -7604,9 +7643,7 @@
         "progress": true,
         "dates": true
       },
-      "inconsistencies": [
-        "DELAYED_ITEMS"
-      ],
+      "inconsistencies": [],
       "hasManualIlcHours": false,
       "hasManualAgreedDates": false,
       "priority": "P2",
@@ -7619,7 +7656,8 @@
           "Luis Santos",
           "Silvio Torres"
         ]
-      }
+      },
+      "agreedHours": 120
     },
     {
       "id": "c99e39c8-2702-4961-8624-117ce09beac7",
@@ -7645,9 +7683,9 @@
       "progress": 66,
       "manualRagStatus": "auto",
       "executiveSummary": "Desenvolvimento concluido, testes realizados. Homologado junto a John Deere, próximo passo treinar usuários.",
-      "azureLastUpdated": "2026-10-21T20:12:24.500Z",
+      "azureLastUpdated": "2026-10-22T16:04:43.911Z",
       "currentIterationName": "Iteration 1",
-      "ragStatus": "red",
+      "ragStatus": "green",
       "varianceDays": 0,
       "hasManualProgress": false,
       "hasManualPlannedDates": true,
@@ -7663,15 +7701,15 @@
           "assignedTo": "Luis Carlos Oliveira Santos Junior",
           "eapPhase": "Treinamento",
           "month": "OUT / 26",
-          "startDate": "2026-10-12",
-          "targetDate": "2026-10-16",
-          "dateStr": "16/10/2026",
+          "startDate": "2026-10-23",
+          "targetDate": "2026-10-24",
+          "dateStr": "24/10/2026",
           "ilcHours": 0,
           "ilcHoursTotal": 8,
           "clientHours": 0,
           "status": "planned",
-          "isDelayed": true,
-          "isTightMargin": false,
+          "isDelayed": false,
+          "isTightMargin": true,
           "linkedTasks": [
             {
               "id": 7196,
@@ -7681,8 +7719,42 @@
               "assignedTo": "Luis Carlos Oliveira Santos Junior",
               "originalEstimate": 8,
               "completedWork": 0,
-              "startDate": "2026-10-12",
-              "targetDate": "2026-10-16"
+              "startDate": "2026-10-23",
+              "targetDate": "2026-10-24"
+            }
+          ]
+        },
+        {
+          "id": "7184",
+          "azureId": 7184,
+          "title": "Operação Assistida",
+          "fullTitle": "#7184 Operação Assistida",
+          "rawTitle": "Operação Assistida",
+          "type": "Feature",
+          "state": "New",
+          "assignedTo": "Luis Carlos Oliveira Santos Junior",
+          "eapPhase": "Operação Assistida",
+          "month": "NOV / 26",
+          "startDate": "2026-10-26",
+          "targetDate": "2026-11-17",
+          "dateStr": "17/11/2026",
+          "ilcHours": 0,
+          "ilcHoursTotal": 32,
+          "clientHours": 0,
+          "status": "planned",
+          "isDelayed": false,
+          "isTightMargin": false,
+          "linkedTasks": [
+            {
+              "id": 7198,
+              "title": "Acompanhamento em operação assistida",
+              "type": "Task",
+              "state": "New",
+              "assignedTo": "Luis Carlos Oliveira Santos Junior",
+              "originalEstimate": 32,
+              "completedWork": 0,
+              "startDate": "2026-10-26",
+              "targetDate": "2026-11-17"
             }
           ]
         },
@@ -7831,43 +7903,13 @@
               "targetDate": "2026-09-23"
             }
           ]
-        },
-        {
-          "id": "7184",
-          "azureId": 7184,
-          "title": "Operação Assistida",
-          "fullTitle": "#7184 Operação Assistida",
-          "rawTitle": "Operação Assistida",
-          "type": "Feature",
-          "state": "New",
-          "assignedTo": "Luis Carlos Oliveira Santos Junior",
-          "eapPhase": "Operação Assistida",
-          "month": "NOV / 26",
-          "startDate": "2026-10-16",
-          "targetDate": "2026-11-17",
-          "dateStr": "17/11/2026",
-          "ilcHours": 0,
-          "ilcHoursTotal": 32,
-          "clientHours": 0,
-          "status": "planned",
-          "isDelayed": false,
-          "isTightMargin": false,
-          "linkedTasks": [
-            {
-              "id": 7198,
-              "title": "Acompanhamento em operação assistida",
-              "type": "Task",
-              "state": "New",
-              "assignedTo": "Luis Carlos Oliveira Santos Junior",
-              "originalEstimate": 32,
-              "completedWork": 0,
-              "startDate": "2026-10-16",
-              "targetDate": "2026-11-17"
-            }
-          ]
         }
       ],
       "hours": {
+        "agreed": 116,
+        "agreedHours": 116,
+        "planned": 116,
+        "executed": 76,
         "clientPlanned": 0,
         "clientExecuted": 0,
         "ilcPlanned": 116,
@@ -7925,9 +7967,7 @@
         "progress": true,
         "dates": true
       },
-      "inconsistencies": [
-        "DELAYED_ITEMS"
-      ],
+      "inconsistencies": [],
       "hasManualIlcHours": false,
       "hasManualAgreedDates": false,
       "priority": "P2",
@@ -7940,7 +7980,8 @@
           "Luis Santos",
           "Silvio Torres"
         ]
-      }
+      },
+      "agreedHours": 116
     },
     {
       "id": "a7d5d8e7-c1e1-4d14-9aac-746ea346ac02",
@@ -7966,7 +8007,7 @@
       "progress": 100,
       "manualRagStatus": "auto",
       "executiveSummary": "Projeto integrado ao Azure DevOps. Iteração atual: Em andamento.",
-      "azureLastUpdated": "2026-10-21T20:12:25.653Z",
+      "azureLastUpdated": "2026-10-22T16:04:44.749Z",
       "currentIterationName": null,
       "ragStatus": "green",
       "varianceDays": 0,
@@ -7987,7 +8028,7 @@
           "startDate": "2026-10-08",
           "targetDate": null,
           "dateStr": "Iteration 1",
-          "ilcHours": 0,
+          "ilcHours": 300,
           "ilcHoursTotal": 0,
           "clientHours": 0,
           "status": "in-progress",
@@ -8001,7 +8042,7 @@
               "state": "QA",
               "assignedTo": "Mike Andrade",
               "originalEstimate": 0,
-              "completedWork": 0,
+              "completedWork": 16,
               "startDate": null,
               "targetDate": null
             },
@@ -8012,7 +8053,7 @@
               "state": "Active",
               "assignedTo": "Mike Andrade",
               "originalEstimate": 0,
-              "completedWork": 0,
+              "completedWork": 64,
               "startDate": "2026-10-07",
               "targetDate": null
             },
@@ -8023,7 +8064,7 @@
               "state": "New",
               "assignedTo": "Mike Andrade",
               "originalEstimate": 0,
-              "completedWork": 0,
+              "completedWork": 56,
               "startDate": null,
               "targetDate": null
             },
@@ -8034,7 +8075,7 @@
               "state": "QA",
               "assignedTo": "Mike Andrade",
               "originalEstimate": 0,
-              "completedWork": 0,
+              "completedWork": 20,
               "startDate": null,
               "targetDate": null
             },
@@ -8045,7 +8086,7 @@
               "state": "QA",
               "assignedTo": "Mike Andrade",
               "originalEstimate": 0,
-              "completedWork": 0,
+              "completedWork": 24,
               "startDate": "2026-10-05",
               "targetDate": null
             },
@@ -8056,7 +8097,7 @@
               "state": "QA",
               "assignedTo": "Mike Andrade",
               "originalEstimate": 0,
-              "completedWork": 0,
+              "completedWork": 32,
               "startDate": null,
               "targetDate": null
             },
@@ -8067,7 +8108,7 @@
               "state": "New",
               "assignedTo": "Mike Andrade",
               "originalEstimate": 0,
-              "completedWork": 0,
+              "completedWork": 16,
               "startDate": null,
               "targetDate": null
             },
@@ -8078,7 +8119,7 @@
               "state": "New",
               "assignedTo": "Mike Andrade",
               "originalEstimate": 0,
-              "completedWork": 0,
+              "completedWork": 4,
               "startDate": null,
               "targetDate": null
             },
@@ -8089,7 +8130,7 @@
               "state": "New",
               "assignedTo": "Mike Andrade",
               "originalEstimate": 0,
-              "completedWork": 0,
+              "completedWork": 12,
               "startDate": null,
               "targetDate": null
             },
@@ -8100,7 +8141,7 @@
               "state": "Active",
               "assignedTo": "Mike Andrade",
               "originalEstimate": 0,
-              "completedWork": 0,
+              "completedWork": 24,
               "startDate": "2026-10-08",
               "targetDate": null
             },
@@ -8111,7 +8152,7 @@
               "state": "QA",
               "assignedTo": "Mike Andrade",
               "originalEstimate": 0,
-              "completedWork": 0,
+              "completedWork": 32,
               "startDate": "2026-10-08",
               "targetDate": null
             }
@@ -8874,7 +8915,7 @@
           "startDate": "2026-09-15",
           "targetDate": null,
           "dateStr": "Iteration 1",
-          "ilcHours": 0,
+          "ilcHours": 380,
           "ilcHoursTotal": 0,
           "clientHours": 0,
           "status": "in-progress",
@@ -8888,7 +8929,7 @@
               "state": "QA",
               "assignedTo": "Mike Andrade",
               "originalEstimate": 0,
-              "completedWork": 0,
+              "completedWork": 8,
               "startDate": "2026-09-16",
               "targetDate": null
             },
@@ -8899,7 +8940,7 @@
               "state": "QA",
               "assignedTo": "Mike Andrade",
               "originalEstimate": 0,
-              "completedWork": 0,
+              "completedWork": 12,
               "startDate": "2026-09-16",
               "targetDate": null
             },
@@ -8910,7 +8951,7 @@
               "state": "QA",
               "assignedTo": "Mike Andrade",
               "originalEstimate": 0,
-              "completedWork": 0,
+              "completedWork": 8,
               "startDate": null,
               "targetDate": null
             },
@@ -8921,7 +8962,7 @@
               "state": "QA",
               "assignedTo": "Mike Andrade",
               "originalEstimate": 0,
-              "completedWork": 0,
+              "completedWork": 10,
               "startDate": null,
               "targetDate": null
             },
@@ -8932,7 +8973,7 @@
               "state": "QA",
               "assignedTo": "Mike Andrade",
               "originalEstimate": 0,
-              "completedWork": 0,
+              "completedWork": 4,
               "startDate": null,
               "targetDate": null
             },
@@ -8943,7 +8984,7 @@
               "state": "QA",
               "assignedTo": "Mike Andrade",
               "originalEstimate": 0,
-              "completedWork": 0,
+              "completedWork": 24,
               "startDate": "2026-09-03",
               "targetDate": null
             },
@@ -8954,7 +8995,7 @@
               "state": "QA",
               "assignedTo": "Mike Andrade",
               "originalEstimate": 0,
-              "completedWork": 0,
+              "completedWork": 32,
               "startDate": null,
               "targetDate": null
             },
@@ -8965,7 +9006,7 @@
               "state": "QA",
               "assignedTo": "Mike Andrade",
               "originalEstimate": 0,
-              "completedWork": 0,
+              "completedWork": 20,
               "startDate": null,
               "targetDate": null
             },
@@ -8976,7 +9017,7 @@
               "state": "QA",
               "assignedTo": "Mike Andrade",
               "originalEstimate": 0,
-              "completedWork": 0,
+              "completedWork": 32,
               "startDate": null,
               "targetDate": null
             },
@@ -8987,7 +9028,7 @@
               "state": "QA",
               "assignedTo": "Mike Andrade",
               "originalEstimate": 0,
-              "completedWork": 0,
+              "completedWork": 56,
               "startDate": null,
               "targetDate": null
             },
@@ -8998,7 +9039,7 @@
               "state": "QA",
               "assignedTo": "Mike Andrade",
               "originalEstimate": 0,
-              "completedWork": 0,
+              "completedWork": 8,
               "startDate": null,
               "targetDate": null
             },
@@ -9009,7 +9050,7 @@
               "state": "QA",
               "assignedTo": "Mike Andrade",
               "originalEstimate": 0,
-              "completedWork": 0,
+              "completedWork": 56,
               "startDate": null,
               "targetDate": null
             },
@@ -9020,7 +9061,7 @@
               "state": "QA",
               "assignedTo": "Mike Andrade",
               "originalEstimate": 0,
-              "completedWork": 0,
+              "completedWork": 20,
               "startDate": null,
               "targetDate": null
             },
@@ -9031,7 +9072,7 @@
               "state": "QA",
               "assignedTo": "Mike Andrade",
               "originalEstimate": 0,
-              "completedWork": 0,
+              "completedWork": 6,
               "startDate": null,
               "targetDate": null
             },
@@ -9042,7 +9083,7 @@
               "state": "QA",
               "assignedTo": "Mike Andrade",
               "originalEstimate": 0,
-              "completedWork": 0,
+              "completedWork": 16,
               "startDate": null,
               "targetDate": null
             },
@@ -9053,7 +9094,7 @@
               "state": "QA",
               "assignedTo": "Mike Andrade",
               "originalEstimate": 0,
-              "completedWork": 0,
+              "completedWork": 8,
               "startDate": null,
               "targetDate": null
             },
@@ -9064,7 +9105,7 @@
               "state": "QA",
               "assignedTo": "Mike Andrade",
               "originalEstimate": 0,
-              "completedWork": 0,
+              "completedWork": 48,
               "startDate": null,
               "targetDate": null
             },
@@ -9075,7 +9116,7 @@
               "state": "QA",
               "assignedTo": "Mike Andrade",
               "originalEstimate": 0,
-              "completedWork": 0,
+              "completedWork": 12,
               "startDate": null,
               "targetDate": null
             }
@@ -9083,12 +9124,16 @@
         }
       ],
       "hours": {
+        "agreed": 720,
+        "agreedHours": 720,
+        "planned": 720,
+        "executed": 720,
         "clientPlanned": 0,
         "clientExecuted": 0,
-        "ilcPlanned": 40,
-        "ilcExecuted": 40,
-        "totalPlanned": 40,
-        "totalExecuted": 40,
+        "ilcPlanned": 720,
+        "ilcExecuted": 720,
+        "totalPlanned": 720,
+        "totalExecuted": 720,
         "distribution": [
           {
             "phase": "Planejamento",
@@ -9098,8 +9143,8 @@
           },
           {
             "phase": "Desenvolvimento",
-            "planned": 40,
-            "executed": 40,
+            "planned": 720,
+            "executed": 720,
             "percentage": 100
           },
           {
@@ -9124,7 +9169,7 @@
       },
       "azureOriginal": {
         "ilcPlanned": 40,
-        "ilcExecuted": 40,
+        "ilcExecuted": 720,
         "progress": 100,
         "agreedDates": {
           "start": "2025-11-13",
@@ -9149,7 +9194,8 @@
         "members": [
           "Mike Andrade"
         ]
-      }
+      },
+      "agreedHours": 720
     },
     {
       "id": "c064a093-ea7c-45e6-8ec6-5bf10a5794a9",
@@ -9172,10 +9218,10 @@
         "start": "2026-09-21",
         "end": null
       },
-      "progress": 38,
+      "progress": 40,
       "manualRagStatus": "auto",
       "executiveSummary": "Projeto em fase de desenvolvimento backend volume total de horas acordado 157.",
-      "azureLastUpdated": "2026-10-21T20:12:26.241Z",
+      "azureLastUpdated": "2026-10-22T16:04:45.518Z",
       "currentIterationName": "Iteration 1",
       "ragStatus": "green",
       "varianceDays": 0,
@@ -9194,8 +9240,8 @@
           "startDate": "2026-10-13",
           "targetDate": "2026-10-28",
           "dateStr": "28/10/2026",
-          "ilcHours": 8,
-          "ilcHoursTotal": 36.499999999999986,
+          "ilcHours": 13,
+          "ilcHoursTotal": 39.59999999999999,
           "clientHours": 0,
           "status": "in-progress",
           "isDelayed": false,
@@ -9304,12 +9350,12 @@
               "id": 7036,
               "title": "[BE] - Implementar montagem do endereço contratual",
               "type": "Task",
-              "state": "Active",
+              "state": "QA",
               "assignedTo": "Thiago Rodrigues Do Nascimento Silva",
-              "originalEstimate": 1.9,
-              "completedWork": 0,
+              "originalEstimate": 5,
+              "completedWork": 5,
               "startDate": "2026-10-20",
-              "targetDate": "2026-11-20"
+              "targetDate": "2026-10-20"
             },
             {
               "id": 7037,
@@ -10046,12 +10092,16 @@
         }
       ],
       "hours": {
+        "agreed": 173.59999999999997,
+        "agreedHours": 173.59999999999997,
+        "planned": 173.59999999999997,
+        "executed": 76,
         "clientPlanned": 0,
         "clientExecuted": 0,
-        "ilcPlanned": 170.49999999999997,
-        "ilcExecuted": 71,
-        "totalPlanned": 170.49999999999997,
-        "totalExecuted": 71,
+        "ilcPlanned": 173.59999999999997,
+        "ilcExecuted": 76,
+        "totalPlanned": 173.59999999999997,
+        "totalExecuted": 76,
         "distribution": [
           {
             "phase": "Planejamento",
@@ -10061,9 +10111,9 @@
           },
           {
             "phase": "Desenvolvimento",
-            "planned": 79.49999999999999,
-            "executed": 8,
-            "percentage": 10
+            "planned": 82.6,
+            "executed": 13,
+            "percentage": 16
           },
           {
             "phase": "Homologação",
@@ -10086,9 +10136,9 @@
         ]
       },
       "azureOriginal": {
-        "ilcPlanned": 187.60000000000005,
-        "ilcExecuted": 71,
-        "progress": 38,
+        "ilcPlanned": 190.70000000000005,
+        "ilcExecuted": 76,
+        "progress": 40,
         "agreedDates": {
           "start": "2026-08-31",
           "end": "2026-12-05"
@@ -10120,7 +10170,8 @@
           "Thiago Rodrigues",
           "Mike Andrade"
         ]
-      }
+      },
+      "agreedHours": 173.59999999999997
     },
     {
       "id": "7a1136ad-134c-41fe-a684-79e8b2ab5c93",
@@ -10146,7 +10197,7 @@
       "progress": 47,
       "manualRagStatus": "auto",
       "executiveSummary": "Etapa de gerenciamento de parâmetros em fase final de desenvolvimento.",
-      "azureLastUpdated": "2026-10-21T20:12:28.862Z",
+      "azureLastUpdated": "2026-10-22T16:04:46.387Z",
       "currentIterationName": "Iteration 1",
       "ragStatus": "green",
       "varianceDays": 0,
@@ -10762,6 +10813,10 @@
         }
       ],
       "hours": {
+        "agreed": 750,
+        "agreedHours": 750,
+        "planned": 750,
+        "executed": 349,
         "clientPlanned": 0,
         "clientExecuted": 0,
         "ilcPlanned": 750,
@@ -10833,7 +10888,8 @@
           "Luis Santos",
           "Silvio Torres"
         ]
-      }
+      },
+      "agreedHours": 750
     },
     {
       "id": "631642d0-4957-40cf-ae78-b62dd47af334",
@@ -10859,7 +10915,7 @@
       "progress": 62,
       "manualRagStatus": "auto",
       "executiveSummary": "Projeto integrado ao Azure DevOps. Iteração atual: SPRINT 7a.",
-      "azureLastUpdated": "2026-10-21T20:12:30.550Z",
+      "azureLastUpdated": "2026-10-22T16:04:47.604Z",
       "currentIterationName": "SPRINT 7a",
       "ragStatus": "red",
       "varianceDays": 0,
@@ -12538,6 +12594,10 @@
         }
       ],
       "hours": {
+        "agreed": 1215.5,
+        "agreedHours": 1215.5,
+        "planned": 1215.5,
+        "executed": 476.5,
         "clientPlanned": 0,
         "clientExecuted": 0,
         "ilcPlanned": 1215.5,
@@ -12578,8 +12638,8 @@
         ]
       },
       "azureOriginal": {
-        "ilcPlanned": 3061.25,
-        "ilcExecuted": 1897.25,
+        "ilcPlanned": 3065.25,
+        "ilcExecuted": 1901.25,
         "progress": 62,
         "agreedDates": {
           "start": "2025-05-14",
@@ -12607,7 +12667,8 @@
           "Renata Dias de Avila Reis",
           "Anderson Rodrigo de Jesus Souza"
         ]
-      }
+      },
+      "agreedHours": 1215.5
     },
     {
       "id": "09fbe35d-364d-4e90-b950-7aa9a5186dda",
@@ -12633,7 +12694,7 @@
       "progress": 44,
       "manualRagStatus": "auto",
       "executiveSummary": "Projeto integrado ao Azure DevOps. Iteração atual: SPRINT JUL - 2022 - 1 QUINZENA.",
-      "azureLastUpdated": "2026-10-21T20:12:31.943Z",
+      "azureLastUpdated": "2026-10-22T16:04:48.584Z",
       "currentIterationName": "SPRINT JUL - 2022 - 1 QUINZENA",
       "ragStatus": "red",
       "varianceDays": 0,
@@ -13601,6 +13662,10 @@
         }
       ],
       "hours": {
+        "agreed": 327,
+        "agreedHours": 327,
+        "planned": 327,
+        "executed": 170.5,
         "clientPlanned": 0,
         "clientExecuted": 0,
         "ilcPlanned": 327,
@@ -13669,7 +13734,8 @@
         "members": [
           "Filipe Andrade"
         ]
-      }
+      },
+      "agreedHours": 327
     },
     {
       "id": "71a23666-1dc1-44e7-a1c7-6eda5b1a578d",
@@ -13695,7 +13761,7 @@
       "progress": 100,
       "manualRagStatus": "auto",
       "executiveSummary": "Projeto integrado ao Azure DevOps. Iteração atual: Em andamento.",
-      "azureLastUpdated": "2026-10-21T20:12:33.132Z",
+      "azureLastUpdated": "2026-10-22T16:04:49.212Z",
       "currentIterationName": null,
       "ragStatus": "green",
       "varianceDays": 0,
@@ -14442,6 +14508,10 @@
         }
       ],
       "hours": {
+        "agreed": 452,
+        "agreedHours": 452,
+        "planned": 452,
+        "executed": 472,
         "clientPlanned": 0,
         "clientExecuted": 0,
         "ilcPlanned": 452,
@@ -14508,7 +14578,8 @@
         "members": [
           "Lucas Maier Gomes Bruno"
         ]
-      }
+      },
+      "agreedHours": 452
     },
     {
       "id": "e89f3868-5d0e-49da-8b15-decf3fea11bc",
@@ -14534,7 +14605,7 @@
       "progress": 94,
       "manualRagStatus": "auto",
       "executiveSummary": "Projeto integrado ao Azure DevOps. Iteração atual: Iteration 20.",
-      "azureLastUpdated": "2026-10-21T20:12:34.021Z",
+      "azureLastUpdated": "2026-10-22T16:04:50.251Z",
       "currentIterationName": "Iteration 20",
       "ragStatus": "red",
       "varianceDays": 0,
@@ -19274,6 +19345,10 @@
         }
       ],
       "hours": {
+        "agreed": 2497.5,
+        "agreedHours": 2497.5,
+        "planned": 2497.5,
+        "executed": 2344,
         "clientPlanned": 0,
         "clientExecuted": 0,
         "ilcPlanned": 2497.5,
@@ -19347,7 +19422,8 @@
           "Thiago Rodrigues do Nascimento Silva",
           "Silvio Torres"
         ]
-      }
+      },
+      "agreedHours": 2497.5
     },
     {
       "id": "142cf5ca-cb09-457b-9675-eeae95487cc4",
@@ -19373,7 +19449,7 @@
       "progress": 65,
       "manualRagStatus": "auto",
       "executiveSummary": "Projeto integrado ao Azure DevOps. Iteração atual: Sprint 5.",
-      "azureLastUpdated": "2026-10-21T20:12:34.782Z",
+      "azureLastUpdated": "2026-10-22T16:04:50.671Z",
       "currentIterationName": "Sprint 6",
       "ragStatus": "red",
       "varianceDays": 0,
@@ -19826,6 +19902,10 @@
         }
       ],
       "hours": {
+        "agreed": 128,
+        "agreedHours": 128,
+        "planned": 128,
+        "executed": 0,
         "clientPlanned": 0,
         "clientExecuted": 0,
         "ilcPlanned": 128,
@@ -19894,7 +19974,8 @@
         "members": [
           "Luis Carlos Oliveira Santos Junior"
         ]
-      }
+      },
+      "agreedHours": 128
     },
     {
       "id": "8bcd36f6-678a-4d3c-a0a6-40a92b5ea91a",
@@ -19918,10 +19999,10 @@
         "start": "2026-10-05",
         "end": null
       },
-      "progress": 0,
+      "progress": 23,
       "manualRagStatus": "auto",
       "executiveSummary": "Projeto sincronizado com o Azure DevOps. Iteração: Iteration 1.",
-      "azureLastUpdated": "2026-10-21T20:12:31.194Z",
+      "azureLastUpdated": "2026-10-22T16:04:47.954Z",
       "currentIterationName": "Iteration 1",
       "activities": [
         {
@@ -20040,12 +20121,12 @@
           "startDate": "2026-10-05",
           "targetDate": "2026-10-21",
           "dateStr": "21/10/2026",
-          "ilcHours": 0,
+          "ilcHours": 32,
           "ilcHoursTotal": 43,
           "clientHours": 0,
           "status": "in-progress",
-          "isDelayed": false,
-          "isTightMargin": true,
+          "isDelayed": true,
+          "isTightMargin": false,
           "linkedTasks": [
             {
               "id": 7332,
@@ -20054,7 +20135,7 @@
               "state": "Active",
               "assignedTo": "Mike Andrade",
               "originalEstimate": 40,
-              "completedWork": 0,
+              "completedWork": 32,
               "startDate": "2026-10-05",
               "targetDate": "2026-10-21"
             },
@@ -20215,8 +20296,8 @@
       },
       "azureOriginal": {
         "ilcPlanned": 138,
-        "ilcExecuted": 0,
-        "progress": 0,
+        "ilcExecuted": 32,
+        "progress": 23,
         "agreedDates": {
           "start": "2026-10-05",
           "end": "2026-11-28"
@@ -20227,18 +20308,22 @@
         }
       },
       "hours": {
+        "agreed": 138,
+        "agreedHours": 138,
+        "planned": 138,
+        "executed": 32,
         "clientPlanned": 0,
         "clientExecuted": 0,
         "ilcPlanned": 138,
-        "ilcExecuted": 0,
+        "ilcExecuted": 32,
         "totalPlanned": 138,
-        "totalExecuted": 0,
+        "totalExecuted": 32,
         "distribution": [
           {
             "phase": "Planejamento",
             "planned": 43,
-            "executed": 0,
-            "percentage": 0
+            "executed": 32,
+            "percentage": 74
           },
           {
             "phase": "Desenvolvimento",
@@ -20266,9 +20351,11 @@
           }
         ]
       },
-      "ragStatus": "green",
+      "ragStatus": "red",
       "varianceDays": 0,
-      "inconsistencies": [],
+      "inconsistencies": [
+        "DELAYED_ITEMS"
+      ],
       "hasManualIlcHours": false,
       "hasManualProgress": false,
       "priority": "P2",
@@ -20283,7 +20370,8 @@
           "Francisco Molaia"
         ]
       },
-      "hasManualAgreedDates": false
+      "hasManualAgreedDates": false,
+      "agreedHours": 138
     },
     {
       "id": "caaaa6c3-0dd9-49bb-81c4-a7b757102304",
@@ -20291,6 +20379,761 @@
       "isManual": false,
       "name": "Mirassol - Torre de Controle 4.0",
       "description": "Desenvolvimento da Torre de Controle 4PL, para gestão de demandas das unidades da Mirassol",
+      "client": "Mirassol",
+      "status": "Ativo",
+      "isVisible": true,
+      "currentMilestone": "Planejamento",
+      "agreedDates": {
+        "start": "2026-10-01",
+        "end": "2026-10-31"
+      },
+      "plannedDates": {
+        "start": "2026-10-01",
+        "end": "2026-10-31"
+      },
+      "executedDates": {
+        "start": "2026-08-01",
+        "end": null
+      },
+      "progress": 100,
+      "manualRagStatus": "auto",
+      "executiveSummary": "Projeto sincronizado com o Azure DevOps. Iteração: Em andamento.",
+      "azureLastUpdated": "2026-10-22T16:04:42.050Z",
+      "currentIterationName": "Iteration 1",
+      "activities": [
+        {
+          "id": "7389",
+          "azureId": 7389,
+          "title": "Planejamento",
+          "fullTitle": "#7389 Planejamento",
+          "rawTitle": "Planejamento",
+          "type": "User Story",
+          "state": "New",
+          "assignedTo": "Vitor Neves",
+          "eapPhase": "Planejamento",
+          "month": "OUT / 26",
+          "startDate": "2026-10-01",
+          "targetDate": "2026-10-03",
+          "dateStr": "03/10/2026",
+          "ilcHours": 2,
+          "ilcHoursTotal": 2,
+          "clientHours": 0,
+          "status": "planned",
+          "isDelayed": true,
+          "isTightMargin": false,
+          "linkedTasks": [
+            {
+              "id": 7392,
+              "title": "Apresentação do projeto a Mirassol",
+              "type": "Task",
+              "state": "New",
+              "assignedTo": "Vitor Neves",
+              "originalEstimate": 2,
+              "completedWork": 2,
+              "startDate": "2026-10-01",
+              "targetDate": "2026-10-30"
+            },
+            {
+              "id": 7393,
+              "title": "Marco Zero do Projeto",
+              "type": "Task",
+              "state": "New",
+              "assignedTo": "Vitor Neves",
+              "originalEstimate": 0,
+              "completedWork": 0,
+              "startDate": "2026-10-01",
+              "targetDate": "2026-10-30"
+            }
+          ]
+        },
+        {
+          "id": "7390",
+          "azureId": 7390,
+          "title": "Desenvolvimento",
+          "fullTitle": "#7390 Desenvolvimento",
+          "rawTitle": "Desenvolvimento",
+          "type": "User Story",
+          "state": "New",
+          "assignedTo": "Vitor Neves",
+          "eapPhase": "Desenvolvimento",
+          "month": "OUT / 26",
+          "startDate": "2026-10-05",
+          "targetDate": "2026-10-31",
+          "dateStr": "31/10/2026",
+          "ilcHours": 0,
+          "ilcHoursTotal": 0,
+          "clientHours": 0,
+          "status": "planned",
+          "isDelayed": false,
+          "isTightMargin": false,
+          "linkedTasks": []
+        },
+        {
+          "id": "7391",
+          "azureId": 7391,
+          "title": "Homologação",
+          "fullTitle": "#7391 Homologação",
+          "rawTitle": "Homologação",
+          "type": "User Story",
+          "state": "New",
+          "assignedTo": "Vitor Neves",
+          "eapPhase": "Homologação",
+          "month": "OUT / 26",
+          "startDate": "2026-10-26",
+          "targetDate": "2026-10-31",
+          "dateStr": "31/10/2026",
+          "ilcHours": 0,
+          "ilcHoursTotal": 0,
+          "clientHours": 0,
+          "status": "planned",
+          "isDelayed": false,
+          "isTightMargin": false,
+          "linkedTasks": []
+        }
+      ],
+      "priority": "P1",
+      "systems": [
+        "Portal Integrator"
+      ],
+      "team": {
+        "leader": "Vitor Neves",
+        "members": [
+          "Vitor Neves",
+          "Silvio Torres"
+        ]
+      },
+      "lockedFields": {
+        "ilcHours": true,
+        "progress": true,
+        "dates": true
+      },
+      "azureOriginal": {
+        "ilcPlanned": 2,
+        "ilcExecuted": 2,
+        "progress": 100,
+        "agreedDates": {
+          "start": "2026-10-01",
+          "end": "2026-10-31"
+        },
+        "plannedDates": {
+          "start": "2026-10-01",
+          "end": "2026-10-31"
+        }
+      },
+      "hours": {
+        "agreed": 2,
+        "agreedHours": 2,
+        "planned": 2,
+        "executed": 2,
+        "clientPlanned": 0,
+        "clientExecuted": 0,
+        "ilcPlanned": 2,
+        "ilcExecuted": 2,
+        "totalPlanned": 2,
+        "totalExecuted": 2,
+        "distribution": [
+          {
+            "phase": "Planejamento",
+            "planned": 2,
+            "executed": 2,
+            "percentage": 100
+          },
+          {
+            "phase": "Desenvolvimento",
+            "planned": 0,
+            "executed": 0,
+            "percentage": 0
+          },
+          {
+            "phase": "Homologação",
+            "planned": 0,
+            "executed": 0,
+            "percentage": 0
+          },
+          {
+            "phase": "Treinamento",
+            "planned": 0,
+            "executed": 0,
+            "percentage": 0
+          },
+          {
+            "phase": "Operação Assistida",
+            "planned": 0,
+            "executed": 0,
+            "percentage": 0
+          }
+        ]
+      },
+      "ragStatus": "red",
+      "varianceDays": 0,
+      "inconsistencies": [
+        "DELAYED_ITEMS"
+      ],
+      "hasManualIlcHours": false,
+      "hasManualProgress": false,
+      "hasManualAgreedDates": false,
+      "agreedHours": 2
+    },
+    {
+      "id": "75c1273d-4e9b-4b34-a534-15b868dccf3c",
+      "azureId": "75c1273d-4e9b-4b34-a534-15b868dccf3c",
+      "isManual": false,
+      "name": "ILC - Migração Data Center ADDIT → CCM Matrix OCI",
+      "description": "Migração servidor",
+      "client": "ILC (Interno)",
+      "status": "Ativo",
+      "isVisible": true,
+      "currentMilestone": "Homologação",
+      "agreedDates": {
+        "start": "2026-09-01",
+        "end": "2026-10-26"
+      },
+      "plannedDates": {
+        "start": "2026-09-01",
+        "end": "2026-10-26"
+      },
+      "executedDates": {
+        "start": "2026-09-27",
+        "end": null
+      },
+      "progress": 96,
+      "manualRagStatus": "auto",
+      "executiveSummary": "Pendente atualização do projeto no Azure",
+      "azureLastUpdated": "2026-10-22T16:04:45.984Z",
+      "currentIterationName": "Iteration 1",
+      "activities": [
+        {
+          "id": "7372",
+          "azureId": 7372,
+          "title": "Backup / monitoramento",
+          "fullTitle": "#7372 Backup / monitoramento",
+          "rawTitle": "Backup / monitoramento",
+          "type": "User Story",
+          "state": "Closed",
+          "assignedTo": "Francisco Molaia Santos",
+          "eapPhase": "Desenvolvimento",
+          "month": "OUT / 26",
+          "startDate": "2026-09-18",
+          "targetDate": "2026-10-21",
+          "dateStr": "21/10/2026",
+          "ilcHours": 32,
+          "ilcHoursTotal": 32,
+          "clientHours": 0,
+          "status": "completed",
+          "isDelayed": false,
+          "isTightMargin": false,
+          "linkedTasks": [
+            {
+              "id": 7386,
+              "title": "Configuração do FileServer e integração de arquivos no ambiente CCM / OCI",
+              "type": "Task",
+              "state": "Closed",
+              "assignedTo": "Francisco Molaia Santos",
+              "originalEstimate": 32,
+              "completedWork": 32,
+              "startDate": "2026-09-18",
+              "targetDate": "2026-10-20"
+            }
+          ]
+        },
+        {
+          "id": "7371",
+          "azureId": 7371,
+          "title": "Rede / publicações",
+          "fullTitle": "#7371 Rede / publicações",
+          "rawTitle": "Rede / publicações",
+          "type": "User Story",
+          "state": "Closed",
+          "assignedTo": "Francisco Molaia Santos",
+          "eapPhase": "Desenvolvimento",
+          "month": "OUT / 26",
+          "startDate": "2026-09-23",
+          "targetDate": "2026-10-26",
+          "dateStr": "26/10/2026",
+          "ilcHours": 24,
+          "ilcHoursTotal": 24,
+          "clientHours": 0,
+          "status": "completed",
+          "isDelayed": false,
+          "isTightMargin": false,
+          "linkedTasks": [
+            {
+              "id": 7385,
+              "title": "Configuração do proxy reverso Nginx, adequação de rede e publicação das aplicações no CCM / OCI",
+              "type": "Task",
+              "state": "Closed",
+              "assignedTo": "Francisco Molaia Santos",
+              "originalEstimate": 24,
+              "completedWork": 24,
+              "startDate": "2026-09-23",
+              "targetDate": "2026-10-25"
+            }
+          ]
+        },
+        {
+          "id": "7368",
+          "azureId": 7368,
+          "title": "Operação assistida",
+          "fullTitle": "#7368 Operação assistida",
+          "rawTitle": "Operação assistida",
+          "type": "User Story",
+          "state": "Closed",
+          "assignedTo": "Francisco Molaia Santos",
+          "eapPhase": "Operação Assistida",
+          "month": "OUT / 26",
+          "startDate": "2026-10-12",
+          "targetDate": "2026-10-17",
+          "dateStr": "17/10/2026",
+          "ilcHours": 15,
+          "ilcHoursTotal": 15,
+          "clientHours": 0,
+          "status": "completed",
+          "isDelayed": false,
+          "isTightMargin": false,
+          "linkedTasks": [
+            {
+              "id": 7384,
+              "title": "Operação assistida",
+              "type": "Task",
+              "state": "Closed",
+              "assignedTo": "Francisco Molaia Santos",
+              "originalEstimate": 15,
+              "completedWork": 15,
+              "startDate": "2026-10-12",
+              "targetDate": "2026-10-17"
+            }
+          ]
+        },
+        {
+          "id": "7367",
+          "azureId": 7367,
+          "title": "Migração da base",
+          "fullTitle": "#7367 Migração da base",
+          "rawTitle": "Migração da base",
+          "type": "User Story",
+          "state": "Closed",
+          "assignedTo": "Francisco Molaia Santos",
+          "eapPhase": "Desenvolvimento",
+          "month": "OUT / 26",
+          "startDate": "2026-10-09",
+          "targetDate": "2026-10-12",
+          "dateStr": "12/10/2026",
+          "ilcHours": 76,
+          "ilcHoursTotal": 76,
+          "clientHours": 0,
+          "status": "completed",
+          "isDelayed": false,
+          "isTightMargin": false,
+          "linkedTasks": [
+            {
+              "id": 7382,
+              "title": "Migração da base",
+              "type": "Task",
+              "state": "Closed",
+              "assignedTo": "Francisco Molaia Santos",
+              "originalEstimate": 76,
+              "completedWork": 76,
+              "startDate": "2026-10-10",
+              "targetDate": "2026-10-11"
+            }
+          ]
+        },
+        {
+          "id": "7366",
+          "azureId": 7366,
+          "title": "Cutover Oracle",
+          "fullTitle": "#7366 Cutover Oracle",
+          "rawTitle": "Cutover Oracle",
+          "type": "User Story",
+          "state": "Closed",
+          "assignedTo": "Francisco Molaia Santos",
+          "eapPhase": "Desenvolvimento",
+          "month": "OUT / 26",
+          "startDate": "2026-10-01",
+          "targetDate": "2026-10-17",
+          "dateStr": "17/10/2026",
+          "ilcHours": 14,
+          "ilcHoursTotal": 16,
+          "clientHours": 0,
+          "status": "completed",
+          "isDelayed": false,
+          "isTightMargin": false,
+          "linkedTasks": [
+            {
+              "id": 7381,
+              "title": "Cutover Oracle",
+              "type": "Task",
+              "state": "Closed",
+              "assignedTo": "Francisco Molaia Santos",
+              "originalEstimate": 16,
+              "completedWork": 14,
+              "startDate": "2026-10-01",
+              "targetDate": "2026-10-17"
+            }
+          ]
+        },
+        {
+          "id": "7365",
+          "azureId": 7365,
+          "title": "Go/No-Go técnico",
+          "fullTitle": "#7365 Go/No-Go técnico",
+          "rawTitle": "Go/No-Go técnico",
+          "type": "User Story",
+          "state": "Closed",
+          "assignedTo": "Francisco Molaia Santos",
+          "eapPhase": "Homologação",
+          "month": "OUT / 26",
+          "startDate": "2026-10-09",
+          "targetDate": "2026-10-17",
+          "dateStr": "17/10/2026",
+          "ilcHours": 16,
+          "ilcHoursTotal": 16,
+          "clientHours": 0,
+          "status": "completed",
+          "isDelayed": false,
+          "isTightMargin": false,
+          "linkedTasks": [
+            {
+              "id": 7380,
+              "title": "Go/No-Go técnico",
+              "type": "Task",
+              "state": "Closed",
+              "assignedTo": "Francisco Molaia Santos",
+              "originalEstimate": 16,
+              "completedWork": 16,
+              "startDate": "2026-10-10",
+              "targetDate": "2026-10-17"
+            }
+          ]
+        },
+        {
+          "id": "7364",
+          "azureId": 7364,
+          "title": "Oracle homologação",
+          "fullTitle": "#7364 Oracle homologação",
+          "rawTitle": "Oracle homologação",
+          "type": "User Story",
+          "state": "Closed",
+          "assignedTo": "Francisco Molaia Santos",
+          "eapPhase": "Homologação",
+          "month": "OUT / 26",
+          "startDate": "2026-10-08",
+          "targetDate": "2026-10-17",
+          "dateStr": "17/10/2026",
+          "ilcHours": 56,
+          "ilcHoursTotal": 56,
+          "clientHours": 0,
+          "status": "completed",
+          "isDelayed": false,
+          "isTightMargin": false,
+          "linkedTasks": [
+            {
+              "id": 7379,
+              "title": "Homologação técnica e funcional do Oracle no novo datacenter CCM / OCI",
+              "type": "Task",
+              "state": "Closed",
+              "assignedTo": "Francisco Molaia Santos",
+              "originalEstimate": 56,
+              "completedWork": 56,
+              "startDate": "2026-10-08",
+              "targetDate": "2026-10-17"
+            }
+          ]
+        },
+        {
+          "id": "7363",
+          "azureId": 7363,
+          "title": "Sentinela",
+          "fullTitle": "#7363 Sentinela",
+          "rawTitle": "Sentinela",
+          "type": "User Story",
+          "state": "Closed",
+          "assignedTo": "Francisco Molaia Santos",
+          "eapPhase": "Desenvolvimento",
+          "month": "OUT / 26",
+          "startDate": "2026-10-09",
+          "targetDate": "2026-10-10",
+          "dateStr": "10/10/2026",
+          "ilcHours": 10,
+          "ilcHoursTotal": 10,
+          "clientHours": 0,
+          "status": "completed",
+          "isDelayed": false,
+          "isTightMargin": false,
+          "linkedTasks": [
+            {
+              "id": 7378,
+              "title": "Sentinela",
+              "type": "Task",
+              "state": "Closed",
+              "assignedTo": "Francisco Molaia Santos",
+              "originalEstimate": 10,
+              "completedWork": 10,
+              "startDate": "2026-10-09",
+              "targetDate": "2026-10-09"
+            }
+          ]
+        },
+        {
+          "id": "7362",
+          "azureId": 7362,
+          "title": "Comunicação / Freeze",
+          "fullTitle": "#7362 Comunicação / Freeze",
+          "rawTitle": "Comunicação / Freeze",
+          "type": "User Story",
+          "state": "Closed",
+          "assignedTo": "Francisco Molaia Santos",
+          "eapPhase": "Desenvolvimento",
+          "month": "OUT / 26",
+          "startDate": "2026-09-11",
+          "targetDate": "2026-10-17",
+          "dateStr": "17/10/2026",
+          "ilcHours": 64,
+          "ilcHoursTotal": 64,
+          "clientHours": 0,
+          "status": "completed",
+          "isDelayed": false,
+          "isTightMargin": false,
+          "linkedTasks": [
+            {
+              "id": 7377,
+              "title": "Comunicação / Freeze",
+              "type": "Task",
+              "state": "Closed",
+              "assignedTo": "Francisco Molaia Santos",
+              "originalEstimate": 64,
+              "completedWork": 64,
+              "startDate": "2026-09-11",
+              "targetDate": "2026-10-16"
+            }
+          ]
+        },
+        {
+          "id": "7361",
+          "azureId": 7361,
+          "title": "Zammad homologação",
+          "fullTitle": "#7361 Zammad homologação",
+          "rawTitle": "Zammad homologação",
+          "type": "User Story",
+          "state": "Closed",
+          "assignedTo": "Francisco Molaia Santos",
+          "eapPhase": "Homologação",
+          "month": "OUT / 26",
+          "startDate": "2026-09-24",
+          "targetDate": "2026-10-17",
+          "dateStr": "17/10/2026",
+          "ilcHours": 24,
+          "ilcHoursTotal": 24,
+          "clientHours": 0,
+          "status": "completed",
+          "isDelayed": false,
+          "isTightMargin": false,
+          "linkedTasks": [
+            {
+              "id": 7376,
+              "title": "Zammad homologação",
+              "type": "Task",
+              "state": "Closed",
+              "assignedTo": "Francisco Molaia Santos",
+              "originalEstimate": 24,
+              "completedWork": 24,
+              "startDate": "2026-09-24",
+              "targetDate": "2026-10-16"
+            }
+          ]
+        },
+        {
+          "id": "7360",
+          "azureId": 7360,
+          "title": "5 PROD configurados",
+          "fullTitle": "#7360 5 PROD configurados",
+          "rawTitle": "5 PROD configurados",
+          "type": "User Story",
+          "state": "Closed",
+          "assignedTo": "Francisco Molaia Santos",
+          "eapPhase": "Desenvolvimento",
+          "month": "SET / 26",
+          "startDate": "2026-09-01",
+          "targetDate": "2026-09-12",
+          "dateStr": "12/09/2026",
+          "ilcHours": 72,
+          "ilcHoursTotal": 72,
+          "clientHours": 0,
+          "status": "completed",
+          "isDelayed": false,
+          "isTightMargin": false,
+          "linkedTasks": [
+            {
+              "id": 7375,
+              "title": "5 PROD configurados - Oracle Linux 9",
+              "type": "Task",
+              "state": "Closed",
+              "assignedTo": "Francisco Molaia Santos",
+              "originalEstimate": 72,
+              "completedWork": 72,
+              "startDate": "2026-09-01",
+              "targetDate": "2026-09-11"
+            }
+          ]
+        },
+        {
+          "id": "7373",
+          "azureId": 7373,
+          "title": "Checklist / evidências",
+          "fullTitle": "#7373 Checklist / evidências",
+          "rawTitle": "Checklist / evidências",
+          "type": "User Story",
+          "state": "New",
+          "assignedTo": "Francisco Molaia Santos",
+          "eapPhase": "Homologação",
+          "month": "OUT / 26",
+          "startDate": "2026-10-16",
+          "targetDate": "2026-10-17",
+          "dateStr": "17/10/2026",
+          "ilcHours": 0,
+          "ilcHoursTotal": 8,
+          "clientHours": 0,
+          "status": "planned",
+          "isDelayed": true,
+          "isTightMargin": false,
+          "linkedTasks": [
+            {
+              "id": 7387,
+              "title": "Checklist / Evidências",
+              "type": "Task",
+              "state": "New",
+              "assignedTo": "Francisco Molaia Santos",
+              "originalEstimate": 8,
+              "completedWork": 0,
+              "startDate": "2026-09-27",
+              "targetDate": "2026-10-17"
+            }
+          ]
+        },
+        {
+          "id": "7374",
+          "azureId": 7374,
+          "title": "Aceite previsto",
+          "fullTitle": "#7374 Aceite previsto",
+          "rawTitle": "Aceite previsto",
+          "type": "User Story",
+          "state": "New",
+          "assignedTo": "Francisco Molaia Santos",
+          "eapPhase": "Homologação",
+          "month": "OUT / 26",
+          "startDate": "2026-10-16",
+          "targetDate": "2026-10-17",
+          "dateStr": "17/10/2026",
+          "ilcHours": 0,
+          "ilcHoursTotal": 8,
+          "clientHours": 0,
+          "status": "planned",
+          "isDelayed": true,
+          "isTightMargin": false,
+          "linkedTasks": [
+            {
+              "id": 7388,
+              "title": "Aceite previsto",
+              "type": "Task",
+              "state": "New",
+              "assignedTo": "Francisco Molaia Santos",
+              "originalEstimate": 8,
+              "completedWork": 0,
+              "startDate": "2026-09-27",
+              "targetDate": "2026-10-17"
+            }
+          ]
+        }
+      ],
+      "priority": "P2",
+      "systems": [
+        "Infraestrutura"
+      ],
+      "team": {
+        "leader": "Francisco Molaia Santos",
+        "members": [
+          "Francisco Molaia Santos",
+          "Silvio Torres"
+        ]
+      },
+      "lockedFields": {
+        "ilcHours": true,
+        "progress": true,
+        "dates": true
+      },
+      "azureOriginal": {
+        "ilcPlanned": 421,
+        "ilcExecuted": 403,
+        "progress": 96,
+        "agreedDates": {
+          "start": "2026-09-01",
+          "end": "2026-10-26"
+        },
+        "plannedDates": {
+          "start": "2026-09-01",
+          "end": "2026-10-26"
+        }
+      },
+      "hours": {
+        "agreed": 421,
+        "agreedHours": 421,
+        "planned": 421,
+        "executed": 403,
+        "clientPlanned": 0,
+        "clientExecuted": 0,
+        "ilcPlanned": 421,
+        "ilcExecuted": 403,
+        "totalPlanned": 421,
+        "totalExecuted": 403,
+        "distribution": [
+          {
+            "phase": "Planejamento",
+            "planned": 0,
+            "executed": 0,
+            "percentage": 0
+          },
+          {
+            "phase": "Desenvolvimento",
+            "planned": 294,
+            "executed": 292,
+            "percentage": 99
+          },
+          {
+            "phase": "Homologação",
+            "planned": 112,
+            "executed": 96,
+            "percentage": 86
+          },
+          {
+            "phase": "Treinamento",
+            "planned": 0,
+            "executed": 0,
+            "percentage": 0
+          },
+          {
+            "phase": "Operação Assistida",
+            "planned": 15,
+            "executed": 15,
+            "percentage": 100
+          }
+        ]
+      },
+      "ragStatus": "red",
+      "varianceDays": 0,
+      "inconsistencies": [
+        "DELAYED_ITEMS"
+      ],
+      "hasManualIlcHours": false,
+      "hasManualProgress": false,
+      "hasManualAgreedDates": false,
+      "agreedHours": 421
+    },
+    {
+      "id": "53f7da8a-e2d4-4a4a-bdcf-5a8d4a8bfad6",
+      "azureId": "53f7da8a-e2d4-4a4a-bdcf-5a8d4a8bfad6",
+      "isManual": false,
+      "name": "Mirassol - Projeto Check List por Viagem",
+      "description": "Desenvolvimento de um formulário de checagem da situação do veículo a cada viagem.",
       "client": "Mirassol",
       "status": "Ativo",
       "isVisible": true,
@@ -20310,19 +21153,14 @@
       "progress": 0,
       "manualRagStatus": "auto",
       "executiveSummary": "Projeto sincronizado com o Azure DevOps. Iteração: Em andamento.",
-      "azureLastUpdated": "2026-10-21T20:12:21.885Z",
+      "azureLastUpdated": "2026-10-22T16:04:40.737Z",
       "currentIterationName": null,
       "activities": [],
-      "priority": "P1",
-      "systems": [
-        "Portal Integrator"
-      ],
+      "priority": "P2",
+      "systems": [],
       "team": {
-        "leader": "Vitor Neves",
-        "members": [
-          "Vitor Neves",
-          "Silvio Torres"
-        ]
+        "leader": "",
+        "members": []
       },
       "lockedFields": {
         "ilcHours": true,
@@ -20343,6 +21181,10 @@
         }
       },
       "hours": {
+        "agreed": 0,
+        "agreedHours": 0,
+        "planned": 0,
+        "executed": 0,
         "clientPlanned": 0,
         "clientExecuted": 0,
         "ilcPlanned": 0,
@@ -20390,441 +21232,7 @@
       ],
       "hasManualIlcHours": false,
       "hasManualProgress": false,
-      "hasManualAgreedDates": false
-    },
-    {
-      "id": "75c1273d-4e9b-4b34-a534-15b868dccf3c",
-      "azureId": "75c1273d-4e9b-4b34-a534-15b868dccf3c",
-      "isManual": false,
-      "name": "Migração Data Center ADDIT → CCM Matrix OCI",
-      "description": "Migração servidor",
-      "client": "Mirassol",
-      "status": "Ativo",
-      "isVisible": true,
-      "currentMilestone": "Desenvolvimento",
-      "agreedDates": {
-        "start": "2026-09-27",
-        "end": "2026-10-17"
-      },
-      "plannedDates": {
-        "start": "2026-09-27",
-        "end": "2026-10-17"
-      },
-      "executedDates": {
-        "start": "2026-09-27",
-        "end": null
-      },
-      "progress": 0,
-      "manualRagStatus": "auto",
-      "executiveSummary": "Projeto sincronizado com o Azure DevOps. Iteração: Iteration 1.",
-      "azureLastUpdated": "2026-10-21T20:12:27.781Z",
-      "currentIterationName": "Iteration 1",
-      "activities": [
-        {
-          "id": "7360",
-          "azureId": 7360,
-          "title": "5 PROD configurados",
-          "fullTitle": "#7360 5 PROD configurados",
-          "rawTitle": "5 PROD configurados",
-          "type": "User Story",
-          "state": "New",
-          "assignedTo": "Francisco Molaia Santos",
-          "eapPhase": "Desenvolvimento",
-          "month": "SET / 26",
-          "startDate": "2026-09-28",
-          "targetDate": "2026-09-29",
-          "dateStr": "29/09/2026",
-          "ilcHours": 0,
-          "ilcHoursTotal": 0,
-          "clientHours": 0,
-          "status": "planned",
-          "isDelayed": true,
-          "isTightMargin": false,
-          "linkedTasks": []
-        },
-        {
-          "id": "7361",
-          "azureId": 7361,
-          "title": "Zammad homologação",
-          "fullTitle": "#7361 Zammad homologação",
-          "rawTitle": "Zammad homologação",
-          "type": "User Story",
-          "state": "New",
-          "assignedTo": "Francisco Molaia Santos",
-          "eapPhase": "Homologação",
-          "month": "SET / 26",
-          "startDate": "2026-09-30",
-          "targetDate": "2026-10-01",
-          "dateStr": "01/10/2026",
-          "ilcHours": 0,
-          "ilcHoursTotal": 0,
-          "clientHours": 0,
-          "status": "planned",
-          "isDelayed": true,
-          "isTightMargin": false,
-          "linkedTasks": []
-        },
-        {
-          "id": "7362",
-          "azureId": 7362,
-          "title": "Comunicação / Freeze",
-          "fullTitle": "#7362 Comunicação / Freeze",
-          "rawTitle": "Comunicação / Freeze",
-          "type": "User Story",
-          "state": "New",
-          "assignedTo": "Francisco Molaia Santos",
-          "eapPhase": "Desenvolvimento",
-          "month": "SET / 26",
-          "startDate": "2026-09-30",
-          "targetDate": "2026-10-01",
-          "dateStr": "01/10/2026",
-          "ilcHours": 0,
-          "ilcHoursTotal": 0,
-          "clientHours": 0,
-          "status": "planned",
-          "isDelayed": true,
-          "isTightMargin": false,
-          "linkedTasks": []
-        },
-        {
-          "id": "7363",
-          "azureId": 7363,
-          "title": "Sentinela",
-          "fullTitle": "#7363 Sentinela",
-          "rawTitle": "Sentinela",
-          "type": "User Story",
-          "state": "New",
-          "assignedTo": "Francisco Molaia Santos",
-          "eapPhase": "Desenvolvimento",
-          "month": "OUT / 26",
-          "startDate": "2026-10-02",
-          "targetDate": "2026-10-03",
-          "dateStr": "03/10/2026",
-          "ilcHours": 0,
-          "ilcHoursTotal": 0,
-          "clientHours": 0,
-          "status": "planned",
-          "isDelayed": true,
-          "isTightMargin": false,
-          "linkedTasks": []
-        },
-        {
-          "id": "7364",
-          "azureId": 7364,
-          "title": "Oracle homologação",
-          "fullTitle": "#7364 Oracle homologação",
-          "rawTitle": "Oracle homologação",
-          "type": "User Story",
-          "state": "New",
-          "assignedTo": "Francisco Molaia Santos",
-          "eapPhase": "Homologação",
-          "month": "OUT / 26",
-          "startDate": "2026-10-05",
-          "targetDate": "2026-10-10",
-          "dateStr": "10/10/2026",
-          "ilcHours": 0,
-          "ilcHoursTotal": 0,
-          "clientHours": 0,
-          "status": "planned",
-          "isDelayed": true,
-          "isTightMargin": false,
-          "linkedTasks": []
-        },
-        {
-          "id": "7365",
-          "azureId": 7365,
-          "title": "Go/No-Go técnico",
-          "fullTitle": "#7365 Go/No-Go técnico",
-          "rawTitle": "Go/No-Go técnico",
-          "type": "User Story",
-          "state": "New",
-          "assignedTo": "Francisco Molaia Santos",
-          "eapPhase": "Homologação",
-          "month": "OUT / 26",
-          "startDate": "2026-10-09",
-          "targetDate": "2026-10-10",
-          "dateStr": "10/10/2026",
-          "ilcHours": 0,
-          "ilcHoursTotal": 0,
-          "clientHours": 0,
-          "status": "planned",
-          "isDelayed": true,
-          "isTightMargin": false,
-          "linkedTasks": []
-        },
-        {
-          "id": "7366",
-          "azureId": 7366,
-          "title": "Cutover Oracle",
-          "fullTitle": "#7366 Cutover Oracle",
-          "rawTitle": "Cutover Oracle",
-          "type": "User Story",
-          "state": "New",
-          "assignedTo": "Francisco Molaia Santos",
-          "eapPhase": "Desenvolvimento",
-          "month": "OUT / 26",
-          "startDate": "2026-10-10",
-          "targetDate": "2026-10-12",
-          "dateStr": "12/10/2026",
-          "ilcHours": 0,
-          "ilcHoursTotal": 0,
-          "clientHours": 0,
-          "status": "planned",
-          "isDelayed": true,
-          "isTightMargin": false,
-          "linkedTasks": []
-        },
-        {
-          "id": "7367",
-          "azureId": 7367,
-          "title": "Migração da base",
-          "fullTitle": "#7367 Migração da base",
-          "rawTitle": "Migração da base",
-          "type": "User Story",
-          "state": "New",
-          "assignedTo": "Francisco Molaia Santos",
-          "eapPhase": "Desenvolvimento",
-          "month": "OUT / 26",
-          "startDate": "2026-10-10",
-          "targetDate": "2026-10-11",
-          "dateStr": "11/10/2026",
-          "ilcHours": 0,
-          "ilcHoursTotal": 0,
-          "clientHours": 0,
-          "status": "planned",
-          "isDelayed": true,
-          "isTightMargin": false,
-          "linkedTasks": []
-        },
-        {
-          "id": "7368",
-          "azureId": 7368,
-          "title": "Operação assistida",
-          "fullTitle": "#7368 Operação assistida",
-          "rawTitle": "Operação assistida",
-          "type": "User Story",
-          "state": "New",
-          "assignedTo": "Francisco Molaia Santos",
-          "eapPhase": "Operação Assistida",
-          "month": "OUT / 26",
-          "startDate": "2026-10-11",
-          "targetDate": "2026-10-12",
-          "dateStr": "12/10/2026",
-          "ilcHours": 0,
-          "ilcHoursTotal": 0,
-          "clientHours": 0,
-          "status": "planned",
-          "isDelayed": true,
-          "isTightMargin": false,
-          "linkedTasks": []
-        },
-        {
-          "id": "7369",
-          "azureId": 7369,
-          "title": "Oracle validações",
-          "fullTitle": "#7369 Oracle validações",
-          "rawTitle": "Oracle validações",
-          "type": "User Story",
-          "state": "New",
-          "assignedTo": "Francisco Molaia Santos",
-          "eapPhase": "Homologação",
-          "month": "OUT / 26",
-          "startDate": "2026-10-12",
-          "targetDate": "2026-10-16",
-          "dateStr": "16/10/2026",
-          "ilcHours": 0,
-          "ilcHoursTotal": 0,
-          "clientHours": 0,
-          "status": "planned",
-          "isDelayed": true,
-          "isTightMargin": false,
-          "linkedTasks": []
-        },
-        {
-          "id": "7370",
-          "azureId": 7370,
-          "title": "Aplicações / integrações",
-          "fullTitle": "#7370 Aplicações / integrações",
-          "rawTitle": "Aplicações / integrações",
-          "type": "User Story",
-          "state": "New",
-          "assignedTo": "Francisco Molaia Santos",
-          "eapPhase": "Desenvolvimento",
-          "month": "OUT / 26",
-          "startDate": "2026-10-12",
-          "targetDate": "2026-10-16",
-          "dateStr": "16/10/2026",
-          "ilcHours": 0,
-          "ilcHoursTotal": 0,
-          "clientHours": 0,
-          "status": "planned",
-          "isDelayed": true,
-          "isTightMargin": false,
-          "linkedTasks": []
-        },
-        {
-          "id": "7371",
-          "azureId": 7371,
-          "title": "Rede / publicações",
-          "fullTitle": "#7371 Rede / publicações",
-          "rawTitle": "Rede / publicações",
-          "type": "User Story",
-          "state": "New",
-          "assignedTo": "Francisco Molaia Santos",
-          "eapPhase": "Desenvolvimento",
-          "month": "OUT / 26",
-          "startDate": "2026-10-12",
-          "targetDate": "2026-10-16",
-          "dateStr": "16/10/2026",
-          "ilcHours": 0,
-          "ilcHoursTotal": 0,
-          "clientHours": 0,
-          "status": "planned",
-          "isDelayed": true,
-          "isTightMargin": false,
-          "linkedTasks": []
-        },
-        {
-          "id": "7372",
-          "azureId": 7372,
-          "title": "Backup / monitoramento",
-          "fullTitle": "#7372 Backup / monitoramento",
-          "rawTitle": "Backup / monitoramento",
-          "type": "User Story",
-          "state": "New",
-          "assignedTo": "Francisco Molaia Santos",
-          "eapPhase": "Desenvolvimento",
-          "month": "OUT / 26",
-          "startDate": "2026-10-12",
-          "targetDate": "2026-10-16",
-          "dateStr": "16/10/2026",
-          "ilcHours": 0,
-          "ilcHoursTotal": 0,
-          "clientHours": 0,
-          "status": "planned",
-          "isDelayed": true,
-          "isTightMargin": false,
-          "linkedTasks": []
-        },
-        {
-          "id": "7373",
-          "azureId": 7373,
-          "title": "Checklist / evidências",
-          "fullTitle": "#7373 Checklist / evidências",
-          "rawTitle": "Checklist / evidências",
-          "type": "User Story",
-          "state": "New",
-          "assignedTo": "Francisco Molaia Santos",
-          "eapPhase": "Homologação",
-          "month": "OUT / 26",
-          "startDate": "2026-10-16",
-          "targetDate": "2026-10-17",
-          "dateStr": "17/10/2026",
-          "ilcHours": 0,
-          "ilcHoursTotal": 0,
-          "clientHours": 0,
-          "status": "planned",
-          "isDelayed": true,
-          "isTightMargin": false,
-          "linkedTasks": []
-        },
-        {
-          "id": "7374",
-          "azureId": 7374,
-          "title": "Aceite previsto",
-          "fullTitle": "#7374 Aceite previsto",
-          "rawTitle": "Aceite previsto",
-          "type": "User Story",
-          "state": "New",
-          "assignedTo": "Francisco Molaia Santos",
-          "eapPhase": "Homologação",
-          "month": "OUT / 26",
-          "startDate": "2026-10-16",
-          "targetDate": "2026-10-17",
-          "dateStr": "17/10/2026",
-          "ilcHours": 0,
-          "ilcHoursTotal": 0,
-          "clientHours": 0,
-          "status": "planned",
-          "isDelayed": true,
-          "isTightMargin": false,
-          "linkedTasks": []
-        }
-      ],
-      "priority": "P2",
-      "systems": [],
-      "team": {
-        "leader": "Francisco Molaia Santos",
-        "members": [
-          "Francisco Molaia Santos"
-        ]
-      },
-      "lockedFields": {
-        "ilcHours": true,
-        "progress": true,
-        "dates": true
-      },
-      "azureOriginal": {
-        "ilcPlanned": 0,
-        "ilcExecuted": 0,
-        "progress": 0,
-        "agreedDates": {
-          "start": "2026-09-27",
-          "end": "2026-10-17"
-        },
-        "plannedDates": {
-          "start": "2026-09-27",
-          "end": "2026-10-17"
-        }
-      },
-      "hours": {
-        "clientPlanned": 0,
-        "clientExecuted": 0,
-        "ilcPlanned": 0,
-        "ilcExecuted": 0,
-        "totalPlanned": 0,
-        "totalExecuted": 0,
-        "distribution": [
-          {
-            "phase": "Planejamento",
-            "planned": 0,
-            "executed": 0,
-            "percentage": 0
-          },
-          {
-            "phase": "Desenvolvimento",
-            "planned": 0,
-            "executed": 0,
-            "percentage": 0
-          },
-          {
-            "phase": "Homologação",
-            "planned": 0,
-            "executed": 0,
-            "percentage": 0
-          },
-          {
-            "phase": "Treinamento",
-            "planned": 0,
-            "executed": 0,
-            "percentage": 0
-          },
-          {
-            "phase": "Operação Assistida",
-            "planned": 0,
-            "executed": 0,
-            "percentage": 0
-          }
-        ]
-      },
-      "ragStatus": "red",
-      "varianceDays": 0,
-      "inconsistencies": [
-        "NO_HOURS",
-        "DELAYED_ITEMS"
-      ],
-      "hasManualIlcHours": false,
-      "hasManualProgress": false
+      "agreedHours": 0
     }
   ]
 }

@@ -212,7 +212,7 @@ import { WeeklyReport, WeeklyReportProject, RoadmapProject, BoardDecision } from
 
                   <div class="flex items-center justify-between text-[10px] text-slate-500 font-medium">
                     <span class="font-bold text-slate-700 truncate max-w-[140px]">{{ p.client }}</span>
-                    <span>{{ (p.activities?.length || 0) }} entregas • {{ p.hours.totalPlanned }}h</span>
+                    <span>{{ (p.activities?.length || 0) }} entregas • {{ p.hours.totalPlanned }}h (Azure)</span>
                   </div>
 
                   <!-- Inconsistency Badges -->
@@ -403,19 +403,16 @@ import { WeeklyReport, WeeklyReportProject, RoadmapProject, BoardDecision } from
                   </div>
 
                   <div>
-                    <label class="block font-bold text-emerald-700 mb-1">Horas Cliente (Plan / Exec):</label>
-                    <div class="flex gap-1.5">
-                      <input
-                        type="number"
-                        [(ngModel)]="p.hours.clientPlanned"
-                        placeholder="Plan"
-                        class="w-1/2 border border-slate-300 rounded-lg px-2 py-1.5 bg-white">
-                      <input
-                        type="number"
-                        [(ngModel)]="p.hours.clientExecuted"
-                        placeholder="Exec"
-                        class="w-1/2 border border-slate-300 rounded-lg px-2 py-1.5 bg-white">
-                    </div>
+                    <label class="block font-bold text-emerald-700 mb-1 flex items-center justify-between">
+                      <span>Horas Firmadas (Cliente):</span>
+                      <span class="text-[10px] text-emerald-600 font-normal">Contrato</span>
+                    </label>
+                    <input
+                      type="number"
+                      min="0"
+                      [(ngModel)]="p.hours.agreed"
+                      placeholder="Ex: 250"
+                      class="w-full border border-emerald-300 rounded-lg px-2.5 py-1.5 bg-white font-bold text-emerald-800 outline-none focus:ring-2 focus:ring-emerald-500 shadow-2xs">
                   </div>
 
                   <!-- Status Report da Semana (Executive Summary) -->
@@ -648,9 +645,12 @@ import { WeeklyReport, WeeklyReportProject, RoadmapProject, BoardDecision } from
                     </div>
                   </div>
 
-                  <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1">
+                  <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 pt-1">
                     <div>
-                      <label class="block font-bold text-slate-600 mb-1">Progresso Geral (%):</label>
+                      <label class="block font-bold text-slate-600 mb-1 flex items-center justify-between">
+                        <span>Progresso Físico (%):</span>
+                        <span class="text-[10px] text-slate-400 font-normal">Azure</span>
+                      </label>
                       <input
                         type="number"
                         min="0"
@@ -661,19 +661,38 @@ import { WeeklyReport, WeeklyReportProject, RoadmapProject, BoardDecision } from
                     </div>
 
                     <div>
-                      <label class="block font-bold text-blue-700 mb-1">Horas ILC Planejadas:</label>
+                      <label class="block font-bold text-emerald-700 mb-1 flex items-center justify-between">
+                        <span>Horas Firmadas:</span>
+                        <span class="text-[10px] text-emerald-600 font-normal">Cliente</span>
+                      </label>
                       <input
                         type="number"
-                        [(ngModel)]="p.hours.ilcPlanned"
+                        min="0"
+                        [(ngModel)]="p.hours.agreed"
+                        placeholder="Ex: 250"
+                        class="w-full border border-emerald-300 rounded-lg px-2.5 py-1.5 bg-white font-bold text-emerald-800">
+                    </div>
+
+                    <div>
+                      <label class="block font-bold text-blue-700 mb-1 flex items-center justify-between">
+                        <span>Planejado (Azure):</span>
+                        <span class="text-[10px] text-blue-600 font-normal">Tasks</span>
+                      </label>
+                      <input
+                        type="number"
+                        [(ngModel)]="p.hours.totalPlanned"
                         [disabled]="isFieldLocked(p, 'ilcHours')"
                         class="w-full border border-slate-300 rounded-lg px-2.5 py-1.5 bg-white disabled:bg-slate-100 disabled:text-slate-500 font-bold">
                     </div>
 
                     <div>
-                      <label class="block font-bold text-blue-700 mb-1">Horas ILC Executadas:</label>
+                      <label class="block font-bold text-indigo-700 mb-1 flex items-center justify-between">
+                        <span>Executado (Azure):</span>
+                        <span class="text-[10px] text-indigo-600 font-normal">Apontado</span>
+                      </label>
                       <input
                         type="number"
-                        [(ngModel)]="p.hours.ilcExecuted"
+                        [(ngModel)]="p.hours.totalExecuted"
                         [disabled]="isFieldLocked(p, 'ilcHours')"
                         class="w-full border border-slate-300 rounded-lg px-2.5 py-1.5 bg-white disabled:bg-slate-100 disabled:text-slate-500 font-bold">
                     </div>
@@ -864,18 +883,20 @@ import { WeeklyReport, WeeklyReportProject, RoadmapProject, BoardDecision } from
 
                 <div class="grid grid-cols-2 gap-3">
                   <div>
-                    <label class="block font-bold text-blue-700 mb-1">Horas Planejadas ILC:</label>
+                    <label class="block font-bold text-emerald-700 mb-1">Horas Firmadas com o Cliente:</label>
                     <input
                       type="number"
-                      [(ngModel)]="newProjData.ilcPlanned"
-                      class="w-full border border-slate-300 rounded-xl px-3 py-2 text-xs outline-none bg-white">
+                      [(ngModel)]="newProjData.agreedHours"
+                      placeholder="Ex: 200"
+                      class="w-full border border-slate-300 rounded-xl px-3 py-2 text-xs outline-none bg-white font-bold text-emerald-800">
                   </div>
                   <div>
-                    <label class="block font-bold text-emerald-700 mb-1">Horas Planejadas Cliente:</label>
+                    <label class="block font-bold text-blue-700 mb-1">Horas Planejadas Iniciais (Estimativa):</label>
                     <input
                       type="number"
-                      [(ngModel)]="newProjData.clientPlanned"
-                      class="w-full border border-slate-300 rounded-xl px-3 py-2 text-xs outline-none bg-white">
+                      [(ngModel)]="newProjData.plannedHours"
+                      placeholder="Ex: 200"
+                      class="w-full border border-slate-300 rounded-xl px-3 py-2 text-xs outline-none bg-white font-bold text-blue-800">
                   </div>
                 </div>
 
@@ -1989,6 +2010,8 @@ export class CuratorModalComponent implements OnInit {
     client: 'John Deere',
     startDate: '2026-08-01',
     endDate: '2027-01-31',
+    agreedHours: 200,
+    plannedHours: 200,
     ilcPlanned: 200,
     clientPlanned: 0,
     executiveSummary: '',
@@ -2269,6 +2292,13 @@ export class CuratorModalComponent implements OnInit {
   async saveProject(p: Project) {
     this.savingId.set(p.id);
     try {
+      if (p.hours) {
+        if (p.hours.agreed !== undefined) {
+          p.hours.agreed = Number(p.hours.agreed) || 0;
+          p.hours.agreedHours = p.hours.agreed;
+          p.agreedHours = p.hours.agreed;
+        }
+      }
       await this.service.updateProject(p.id, {
         name: p.name,
         description: p.description,
@@ -2281,6 +2311,7 @@ export class CuratorModalComponent implements OnInit {
         executiveSummary: p.executiveSummary,
         agreedDates: p.agreedDates,
         plannedDates: p.plannedDates,
+        agreedHours: p.hours?.agreed,
         hours: p.hours,
         activities: p.activities,
         lockedFields: p.lockedFields,
@@ -2345,6 +2376,8 @@ export class CuratorModalComponent implements OnInit {
 
   async handleCreateManualProject() {
     if (!this.newProjData.name) return;
+    const agreedH = Number(this.newProjData.agreedHours) || Number(this.newProjData.plannedHours) || 200;
+    const plannedH = Number(this.newProjData.plannedHours) || 200;
     const created = await this.service.createManualProject({
       name: this.newProjData.name,
       client: this.newProjData.client,
@@ -2353,10 +2386,15 @@ export class CuratorModalComponent implements OnInit {
         start: this.newProjData.startDate,
         end: this.newProjData.endDate
       },
+      agreedHours: agreedH,
       hours: {
-        ilcPlanned: this.newProjData.ilcPlanned,
+        agreed: agreedH,
+        agreedHours: agreedH,
+        planned: plannedH,
+        executed: 0,
+        ilcPlanned: plannedH,
         ilcExecuted: 0,
-        clientPlanned: this.newProjData.clientPlanned,
+        clientPlanned: 0,
         clientExecuted: 0
       },
       priority: this.newProjData.priority || 'P2',

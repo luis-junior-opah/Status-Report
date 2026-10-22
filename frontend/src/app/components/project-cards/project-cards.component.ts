@@ -163,9 +163,9 @@ import { Project, EapPhase } from '../../models/project.model';
                 (+{{ p.team!.members!.length }})
               </span>
             </div>
-            <div class="text-[10px] text-slate-400 mt-0.5">
-              <span class="font-bold text-slate-700">{{ p.hours.totalExecuted }}h</span>
-              <span> / {{ p.hours.totalPlanned }}h</span>
+            <div class="text-[10px] text-slate-400 mt-0.5 flex items-center gap-1.5 flex-wrap">
+              <span>Azure: <strong class="text-slate-700">{{ p.hours.totalExecuted }}h</strong> / {{ p.hours.totalPlanned }}h</span>
+              <span *ngIf="p.hours.agreed" class="text-emerald-700 font-bold">• Acordo: {{ p.hours.agreed }}h</span>
             </div>
           </div>
           <button

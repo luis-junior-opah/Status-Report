@@ -193,9 +193,10 @@ class ProjectStore {
     let ilcExecuted = 0;
     let ilcPlanned = 0;
 
-    // Client hours managed via Option B (Curator)
-    const clientPlanned = Number(project.hours?.clientPlanned) || 0;
-    const clientExecuted = Number(project.hours?.clientExecuted) || 0;
+    // Volume de Horas Firmado com o Cliente (Acordo Comercial gerenciado na Curadoria)
+    let agreedHours = project.hours?.agreed !== undefined ? Number(project.hours.agreed) :
+      (project.agreedHours !== undefined ? Number(project.agreedHours) :
+      (project.hours?.agreedHours !== undefined ? Number(project.hours.agreedHours) : null));
 
     const distribution = {
       'Planejamento': { planned: 0, executed: 0 },
@@ -217,7 +218,7 @@ class ProjectStore {
       }
     }
 
-    // If manual override for ILC hours was explicitly set in Curator AND the field is unlocked
+    // If manual override for hours was explicitly set in Curator AND the field is unlocked
     if (project.lockedFields?.ilcHours === false && project.hasManualIlcHours && project.hours?.ilcPlanned !== undefined) {
       ilcPlanned = Number(project.hours.ilcPlanned) || 0;
       ilcExecuted = Number(project.hours.ilcExecuted) || 0;
@@ -232,12 +233,20 @@ class ProjectStore {
       }
     }
 
-    const totalPlanned = ilcPlanned + clientPlanned;
-    const totalExecuted = ilcExecuted + clientExecuted;
+    const totalPlanned = ilcPlanned;
+    const totalExecuted = ilcExecuted;
+
+    if (agreedHours === null || isNaN(agreedHours)) {
+      agreedHours = totalPlanned;
+    }
 
     return {
-      clientPlanned,
-      clientExecuted,
+      agreed: agreedHours,
+      agreedHours: agreedHours,
+      planned: totalPlanned,
+      executed: totalExecuted,
+      clientPlanned: 0,
+      clientExecuted: 0,
       ilcPlanned,
       ilcExecuted,
       totalPlanned,
@@ -311,7 +320,10 @@ class ProjectStore {
             agreedDates: { start: defaultPlannedStart, end: defaultPlannedEnd },
             plannedDates: { start: defaultPlannedStart, end: defaultPlannedEnd }
           },
+          agreedHours: azure.taskHours?.totalPlanned || 0,
           hours: {
+            agreed: azure.taskHours?.totalPlanned || 0,
+            agreedHours: azure.taskHours?.totalPlanned || 0,
             clientPlanned: 0,
             clientExecuted: 0,
             ilcPlanned: azure.taskHours?.totalPlanned || 0,
@@ -370,6 +382,13 @@ class ProjectStore {
         if (!existing.lockedFields) {
           existing.lockedFields = { ilcHours: true, progress: true, dates: true };
         }
+
+        // Preserve agreedHours when syncing Azure
+        const preservedAgreed = existing.agreedHours ?? existing.hours?.agreed ?? existing.hours?.agreedHours ?? (azure.taskHours?.totalPlanned || 0);
+        existing.agreedHours = preservedAgreed;
+        if (!existing.hours) existing.hours = {};
+        existing.hours.agreed = preservedAgreed;
+        existing.hours.agreedHours = preservedAgreed;
 
         // Overwrite hours from Azure if field is locked to Azure
         if (existing.lockedFields.ilcHours !== false) {
@@ -449,11 +468,14 @@ class ProjectStore {
         progress: false,
         dates: false
       },
+      agreedHours: Number(data.hours?.agreed ?? data.agreedHours ?? data.hours?.planned ?? data.hours?.ilcPlanned ?? 0),
       hours: {
-        clientPlanned: Number(data.hours?.clientPlanned) || 0,
-        clientExecuted: Number(data.hours?.clientExecuted) || 0,
-        ilcPlanned: Number(data.hours?.ilcPlanned) || 0,
-        ilcExecuted: Number(data.hours?.ilcExecuted) || 0
+        agreed: Number(data.hours?.agreed ?? data.agreedHours ?? data.hours?.planned ?? data.hours?.ilcPlanned ?? 0),
+        agreedHours: Number(data.hours?.agreed ?? data.agreedHours ?? data.hours?.planned ?? data.hours?.ilcPlanned ?? 0),
+        clientPlanned: 0,
+        clientExecuted: 0,
+        ilcPlanned: Number(data.hours?.ilcPlanned ?? data.hours?.planned ?? data.hours?.totalPlanned ?? 0),
+        ilcExecuted: Number(data.hours?.ilcExecuted ?? data.hours?.executed ?? data.hours?.totalExecuted ?? 0)
       }
     };
 
@@ -633,6 +655,7 @@ class ProjectStore {
 
     let totalPlannedHours = 0;
     let totalExecutedHours = 0;
+    let agreedHours = 0;
     let clientPlannedHours = 0;
     let clientExecutedHours = 0;
     let ilcPlannedHours = 0;
@@ -642,6 +665,7 @@ class ProjectStore {
       const h = p.hours || this.calculateHours(p);
       totalPlannedHours += h.totalPlanned || 0;
       totalExecutedHours += h.totalExecuted || 0;
+      agreedHours += (h.agreed ?? p.agreedHours ?? h.totalPlanned ?? 0);
       clientPlannedHours += h.clientPlanned || 0;
       clientExecutedHours += h.clientExecuted || 0;
       ilcPlannedHours += h.ilcPlanned || 0;
@@ -661,6 +685,7 @@ class ProjectStore {
       hoursSummary: {
         totalPlanned: totalPlannedHours,
         totalExecuted: totalExecutedHours,
+        agreedHours,
         clientPlanned: clientPlannedHours,
         clientExecuted: clientExecutedHours,
         ilcPlanned: ilcPlannedHours,
@@ -750,14 +775,28 @@ class ProjectStore {
     }
 
     if (updates.hours) {
+      const agreedVal = updates.hours.agreed !== undefined ? Number(updates.hours.agreed) :
+        (updates.agreedHours !== undefined ? Number(updates.agreedHours) :
+        (updates.hours.agreedHours !== undefined ? Number(updates.hours.agreedHours) : (proj.hours?.agreed ?? proj.agreedHours ?? proj.hours?.totalPlanned ?? 0)));
+
+      proj.agreedHours = agreedVal;
       proj.hours = {
         ...proj.hours,
-        clientPlanned: Number(updates.hours.clientPlanned) || 0,
-        clientExecuted: Number(updates.hours.clientExecuted) || 0,
-        ilcPlanned: Number(updates.hours.ilcPlanned) || proj.hours.ilcPlanned,
-        ilcExecuted: Number(updates.hours.ilcExecuted) || proj.hours.ilcExecuted
+        agreed: agreedVal,
+        agreedHours: agreedVal,
+        clientPlanned: 0,
+        clientExecuted: 0,
+        ilcPlanned: updates.hours.totalPlanned !== undefined ? Number(updates.hours.totalPlanned) : (updates.hours.ilcPlanned !== undefined ? Number(updates.hours.ilcPlanned) : proj.hours.ilcPlanned),
+        ilcExecuted: updates.hours.totalExecuted !== undefined ? Number(updates.hours.totalExecuted) : (updates.hours.ilcExecuted !== undefined ? Number(updates.hours.ilcExecuted) : proj.hours.ilcExecuted)
       };
       proj.hasManualIlcHours = true;
+    } else if (updates.agreedHours !== undefined) {
+      const agreedVal = Number(updates.agreedHours) || 0;
+      proj.agreedHours = agreedVal;
+      if (proj.hours) {
+        proj.hours.agreed = agreedVal;
+        proj.hours.agreedHours = agreedVal;
+      }
     }
 
     if (updates.activities) {
