@@ -147,31 +147,70 @@ import { WeeklyReport, WeeklyReportProject, RoadmapProject, BoardDecision } from
                   </button>
                 </div>
 
+                <!-- Visibility Filter (Todos / Visíveis / Ocultos) -->
+                <div>
+                  <div class="flex items-center justify-between text-[10px] font-extrabold text-slate-500 uppercase tracking-wider mb-1 px-0.5">
+                    <span>Visibilidade</span>
+                    <span class="text-[9px] text-slate-400 font-normal">Exibição pública</span>
+                  </div>
+                  <div class="flex items-center gap-1 bg-slate-100 p-0.5 rounded-xl border border-slate-200 text-[10px] font-bold">
+                    <button
+                      type="button"
+                      (click)="setVisibilityFilter('Todos')"
+                      [ngClass]="visibilityFilter() === 'Todos' ? 'bg-white text-slate-900 shadow-2xs font-black' : 'text-slate-500 hover:text-slate-800 font-semibold'"
+                      class="flex-1 py-1 px-1.5 rounded-lg transition text-center cursor-pointer">
+                      Todos ({{ getVisibilityCount('Todos') }})
+                    </button>
+                    <button
+                      type="button"
+                      (click)="setVisibilityFilter('Visiveis')"
+                      [ngClass]="visibilityFilter() === 'Visiveis' ? 'bg-emerald-600 text-white shadow-2xs font-black' : 'text-slate-500 hover:text-slate-800 font-semibold'"
+                      class="flex-1 py-1 px-1.5 rounded-lg transition text-center cursor-pointer flex items-center justify-center gap-1">
+                      <span>👁️ Visíveis</span>
+                      <span class="text-[9px] opacity-90">({{ getVisibilityCount('Visiveis') }})</span>
+                    </button>
+                    <button
+                      type="button"
+                      (click)="setVisibilityFilter('Ocultos')"
+                      [ngClass]="visibilityFilter() === 'Ocultos' ? 'bg-slate-800 text-white shadow-2xs font-black' : 'text-slate-500 hover:text-slate-800 font-semibold'"
+                      class="flex-1 py-1 px-1.5 rounded-lg transition text-center cursor-pointer flex items-center justify-center gap-1">
+                      <span>🚫 Ocultos</span>
+                      <span class="text-[9px] opacity-90">({{ getVisibilityCount('Ocultos') }})</span>
+                    </button>
+                  </div>
+                </div>
+
                 <!-- Origin Filter (Todos / Azure / Manual) -->
-                <div class="flex items-center gap-1 bg-slate-100 p-0.5 rounded-xl border border-slate-200 text-[10px] font-bold">
-                  <button
-                    type="button"
-                    (click)="originFilter.set('Todos')"
-                    [ngClass]="originFilter() === 'Todos' ? 'bg-white text-slate-900 shadow-2xs' : 'text-slate-500 hover:text-slate-800'"
-                    class="flex-1 py-1 px-1.5 rounded-lg transition text-center cursor-pointer">
-                    Todos ({{ getOriginCount('Todos') }})
-                  </button>
-                  <button
-                    type="button"
-                    (click)="originFilter.set('Azure')"
-                    [ngClass]="originFilter() === 'Azure' ? 'bg-blue-600 text-white shadow-2xs' : 'text-slate-500 hover:text-slate-800'"
-                    class="flex-1 py-1 px-1.5 rounded-lg transition text-center cursor-pointer flex items-center justify-center gap-1">
-                    <span>☁️ Azure</span>
-                    <span class="text-[9px] opacity-80">({{ getOriginCount('Azure') }})</span>
-                  </button>
-                  <button
-                    type="button"
-                    (click)="originFilter.set('Manual')"
-                    [ngClass]="originFilter() === 'Manual' ? 'bg-amber-500 text-white shadow-2xs' : 'text-slate-500 hover:text-slate-800'"
-                    class="flex-1 py-1 px-1.5 rounded-lg transition text-center cursor-pointer flex items-center justify-center gap-1">
-                    <span>✍️ Manual</span>
-                    <span class="text-[9px] opacity-80">({{ getOriginCount('Manual') }})</span>
-                  </button>
+                <div>
+                  <div class="flex items-center justify-between text-[10px] font-extrabold text-slate-500 uppercase tracking-wider mb-1 px-0.5">
+                    <span>Origem</span>
+                    <span class="text-[9px] text-slate-400 font-normal">Fonte de dados</span>
+                  </div>
+                  <div class="flex items-center gap-1 bg-slate-100 p-0.5 rounded-xl border border-slate-200 text-[10px] font-bold">
+                    <button
+                      type="button"
+                      (click)="setOriginFilter('Todos')"
+                      [ngClass]="originFilter() === 'Todos' ? 'bg-white text-slate-900 shadow-2xs font-black' : 'text-slate-500 hover:text-slate-800 font-semibold'"
+                      class="flex-1 py-1 px-1.5 rounded-lg transition text-center cursor-pointer">
+                      Todos ({{ getOriginCount('Todos') }})
+                    </button>
+                    <button
+                      type="button"
+                      (click)="setOriginFilter('Azure')"
+                      [ngClass]="originFilter() === 'Azure' ? 'bg-blue-600 text-white shadow-2xs font-black' : 'text-slate-500 hover:text-slate-800 font-semibold'"
+                      class="flex-1 py-1 px-1.5 rounded-lg transition text-center cursor-pointer flex items-center justify-center gap-1">
+                      <span>☁️ Azure</span>
+                      <span class="text-[9px] opacity-80">({{ getOriginCount('Azure') }})</span>
+                    </button>
+                    <button
+                      type="button"
+                      (click)="setOriginFilter('Manual')"
+                      [ngClass]="originFilter() === 'Manual' ? 'bg-amber-500 text-white shadow-2xs font-black' : 'text-slate-500 hover:text-slate-800 font-semibold'"
+                      class="flex-1 py-1 px-1.5 rounded-lg transition text-center cursor-pointer flex items-center justify-center gap-1">
+                      <span>✍️ Manual</span>
+                      <span class="text-[9px] opacity-80">({{ getOriginCount('Manual') }})</span>
+                    </button>
+                  </div>
                 </div>
               </div>
 
@@ -1921,6 +1960,7 @@ export class CuratorModalComponent implements OnInit {
   clientFilter = signal<string>('Todos');
   originFilter = signal<'Todos' | 'Manual' | 'Azure'>('Todos');
   weeklyOriginFilter = signal<'Todos' | 'Manual' | 'Azure'>('Todos');
+  visibilityFilter = signal<'Todos' | 'Visiveis' | 'Ocultos'>('Todos');
   onlyInconsistent = signal<boolean>(false);
 
   // Custom links state
@@ -2041,6 +2081,29 @@ export class CuratorModalComponent implements OnInit {
     return !this.isManualProject(p);
   }
 
+  getVisibilityCount(type: 'Todos' | 'Visiveis' | 'Ocultos'): number {
+    const list = this.service.adminProjects();
+    if (type === 'Todos') return list.length;
+    if (type === 'Visiveis') return list.filter(p => p.isVisible).length;
+    return list.filter(p => !p.isVisible).length;
+  }
+
+  setVisibilityFilter(type: 'Todos' | 'Visiveis' | 'Ocultos') {
+    this.visibilityFilter.set(type);
+    const filtered = this.filteredAdminProjects();
+    if (filtered.length > 0 && !filtered.some(p => p.id === this.selectedProjectId())) {
+      this.selectedProjectId.set(filtered[0].id);
+    }
+  }
+
+  setOriginFilter(type: 'Todos' | 'Manual' | 'Azure') {
+    this.originFilter.set(type);
+    const filtered = this.filteredAdminProjects();
+    if (filtered.length > 0 && !filtered.some(p => p.id === this.selectedProjectId())) {
+      this.selectedProjectId.set(filtered[0].id);
+    }
+  }
+
   getOriginCount(type: 'Todos' | 'Manual' | 'Azure'): number {
     const list = this.service.adminProjects();
     if (type === 'Todos') return list.length;
@@ -2061,6 +2124,7 @@ export class CuratorModalComponent implements OnInit {
     const query = this.projectSearch().toLowerCase().trim();
     const client = this.clientFilter();
     const origin = this.originFilter();
+    const visibility = this.visibilityFilter();
     const alertOnly = this.onlyInconsistent();
 
     return list
@@ -2069,6 +2133,12 @@ export class CuratorModalComponent implements OnInit {
           return false;
         }
         if (origin === 'Azure' && !this.isAzureProject(p)) {
+          return false;
+        }
+        if (visibility === 'Visiveis' && !p.isVisible) {
+          return false;
+        }
+        if (visibility === 'Ocultos' && p.isVisible) {
           return false;
         }
         if (client !== 'Todos' && p.client.toLowerCase() !== client.toLowerCase()) {
