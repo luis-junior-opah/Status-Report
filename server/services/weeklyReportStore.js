@@ -340,6 +340,12 @@ class WeeklyReportStore {
       .filter(p => p.isVisible)
       .sort((a, b) => projectStore.compareProjects(a, b));
 
+    // Identify if this is the latest report and what the chronologically previous report is
+    const sorted = this.reports.slice().sort((a, b) => b.id.localeCompare(a.id));
+    const reportIdx = sorted.findIndex(r => r.id === report.id);
+    const isLatest = reportIdx === 0;
+    const prevReport = (reportIdx >= 0 && reportIdx < sorted.length - 1) ? sorted[reportIdx + 1] : null;
+
     const existingMap = new Map();
     (report.activeProjects || []).forEach(ap => {
       if (ap.projectId) existingMap.set(ap.projectId, ap);
@@ -373,6 +379,48 @@ class WeeklyReportStore {
       const details = resolveProjectWeeklyDetails(p);
       const clientLogo = projectStore.getClientLogo ? projectStore.getClientLogo(p.client) : null;
 
+      // 1. STATUS REPORT ANTERIOR: Strictly from previous edition's statusReport if available
+      let prevReportText = null;
+      let prevReportDate = '2026-10-06';
+
+      if (prevReport && Array.isArray(prevReport.activeProjects)) {
+        const prevProject = prevReport.activeProjects.find(ap =>
+          ap.projectId === p.id ||
+          (ap.name && ap.name.toLowerCase().trim() === (p.name || '').toLowerCase().trim()) ||
+          (ap.name && cleanName && ap.name.replace(/^Mirassol\s*-\s*/i, '').toLowerCase().trim() === cleanName)
+        );
+        if (prevProject && prevProject.statusReport) {
+          prevReportText = prevProject.statusReport;
+          prevReportDate = prevProject.statusReportDate || prevReport.meetingDate || '2026-10-16';
+        }
+      }
+
+      if (!prevReportText) {
+        prevReportText = (existing && existing.previousStatusReport) ? existing.previousStatusReport : (details.previousStatusReport || 'Sem reporte anterior registrado.');
+        prevReportDate = (existing && existing.previousStatusReportDate) ? existing.previousStatusReportDate : '2026-10-06';
+      }
+
+      // 2. STATUS REPORT ATUAL: In the active/latest edition, p.executiveSummary is the live source of truth
+      let currentReportText = '';
+      let currentReportDate = (existing && existing.statusReportDate) ? existing.statusReportDate : (report.meetingDate || new Date().toISOString().split('T')[0]);
+
+      if (isLatest) {
+        const hasRealSummary = p.executiveSummary && p.executiveSummary.trim() &&
+          !p.executiveSummary.includes('Projeto integrado ao Azure DevOps') &&
+          !p.executiveSummary.includes('Projeto cadastrado manualmente');
+
+        if (hasRealSummary) {
+          currentReportText = p.executiveSummary.trim();
+        } else if (existing && existing.statusReport) {
+          currentReportText = existing.statusReport;
+        } else {
+          currentReportText = details.statusReport;
+        }
+      } else {
+        // Historical reports remain frozen as originally saved
+        currentReportText = (existing && existing.statusReport) ? existing.statusReport : details.statusReport;
+      }
+
       return {
         projectId: p.id,
         name: p.name,
@@ -385,10 +433,10 @@ class WeeklyReportStore {
         agreedDelivery: p.agreedDates ? p.agreedDates.end : null,
         targetDelivery: p.executedDates?.end || p.plannedDates?.end || null,
         varianceDays: p.varianceDays || 0,
-        statusReport: (existing && existing.statusReport) ? existing.statusReport : details.statusReport,
-        statusReportDate: (existing && existing.statusReportDate) ? existing.statusReportDate : (report.meetingDate || '2026-10-16'),
-        previousStatusReport: (existing && existing.previousStatusReport) ? existing.previousStatusReport : (details.previousStatusReport || 'Sem reporte anterior registrado.'),
-        previousStatusReportDate: (existing && existing.previousStatusReportDate) ? existing.previousStatusReportDate : '2026-10-06',
+        statusReport: currentReportText,
+        statusReportDate: currentReportDate,
+        previousStatusReport: prevReportText,
+        previousStatusReportDate: prevReportDate,
         attentionPoints: (existing && existing.attentionPoints) ? existing.attentionPoints : details.attentionPoints,
         hoursExecuted: p.hours?.totalExecuted || 0,
         hoursPlanned: p.hours?.totalPlanned || 0,
@@ -581,8 +629,42 @@ class WeeklyReportStore {
       this.reports.unshift(reportData);
     }
     this.reports.sort((a, b) => b.id.localeCompare(a.id));
+
+    // If saving the latest report, sync updated statusReport to project.executiveSummary in projectStore
+    const isLatest = this.reports.length > 0 && this.reports[0].id === reportData.id;
+    if (isLatest && Array.isArray(reportData.activeProjects)) {
+      let projectsChanged = false;
+      for (const ap of reportData.activeProjects) {
+        if (ap.projectId && typeof ap.statusReport === 'string' && ap.statusReport.trim()) {
+          const proj = projectStore.getProjectById(ap.projectId);
+          if (proj && proj.executiveSummary !== ap.statusReport.trim()) {
+            proj.executiveSummary = ap.statusReport.trim();
+            projectsChanged = true;
+          }
+        }
+      }
+      if (projectsChanged) {
+        projectStore.save();
+      }
+    }
+
     this.persist();
     return this.reports.find(r => r.id === reportData.id);
+  }
+
+  updateProjectStatusReport(projectId, newExecutiveSummary) {
+    if (!projectId || newExecutiveSummary === undefined) return;
+    const sorted = this.reports.slice().sort((a, b) => b.id.localeCompare(a.id));
+    if (sorted.length === 0) return;
+    const latest = sorted[0];
+    if (Array.isArray(latest.activeProjects)) {
+      const proj = latest.activeProjects.find(ap => ap.projectId === projectId);
+      if (proj) {
+        proj.statusReport = newExecutiveSummary;
+        proj.statusReportDate = new Date().toISOString().split('T')[0];
+        this.persist();
+      }
+    }
   }
 
   deleteReport(id) {

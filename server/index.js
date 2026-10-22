@@ -152,7 +152,12 @@ app.put('/api/admin/projects/:id', checkAdminAuth, (req, res) => {
   if (!updated) {
     return res.status(404).json({ success: false, message: 'Projeto não encontrado.' });
   }
-  try { weeklyReportStore.syncAllReportsWithProjects(); } catch (_) {}
+  try {
+    if (req.body.executiveSummary !== undefined) {
+      weeklyReportStore.updateProjectStatusReport(req.params.id, req.body.executiveSummary);
+    }
+    weeklyReportStore.syncAllReportsWithProjects();
+  } catch (_) {}
   res.json({ success: true, data: updated });
 });
 

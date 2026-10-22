@@ -190,15 +190,70 @@ import { Project, ProjectActivity, EapPhase, AzureAuditReport } from '../../mode
 
         <!-- STATUS REPORT DA SEMANA BANNER -->
         <div class="p-3.5 bg-blue-50/70 rounded-2xl border border-blue-200/80 text-xs">
-          <div class="text-[10px] font-extrabold text-blue-900 uppercase tracking-wider mb-1 flex items-center gap-1.5">
-            <svg class="w-3.5 h-3.5 text-blue-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-            </svg>
-            <span>Status Report da Semana</span>
+          <div class="flex items-center justify-between gap-2 mb-1.5">
+            <div class="text-[10px] font-extrabold text-blue-900 uppercase tracking-wider flex items-center gap-1.5">
+              <svg class="w-3.5 h-3.5 text-blue-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+              <span>Status Report da Semana</span>
+              <span *ngIf="statusReportSavedToast()" class="ml-2 text-emerald-600 font-bold text-[10px] bg-emerald-50 px-2 py-0.5 rounded-md border border-emerald-200 animate-pulse">
+                ✓ Atualizado com sucesso!
+              </span>
+            </div>
+
+            <!-- Edit Button (visible when not editing) -->
+            <button
+              *ngIf="!isEditingStatusReport()"
+              (click)="startEditingStatusReport(project.executiveSummary)"
+              type="button"
+              class="inline-flex items-center gap-1 px-2.5 py-1 text-[11px] font-bold text-blue-700 bg-white hover:bg-blue-100 rounded-lg border border-blue-200 shadow-2xs transition cursor-pointer"
+              title="Editar relato e sincronizar com o Status Report semanal">
+              <svg class="w-3 h-3 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+              </svg>
+              <span>Editar Relato</span>
+            </button>
           </div>
-          <p class="text-xs text-slate-700 leading-relaxed font-normal">
-            {{ project.executiveSummary || 'Acompanhamento regular sem ocorrências impeditivas reportadas.' }}
-          </p>
+
+          <!-- Read-only View -->
+          <div *ngIf="!isEditingStatusReport()">
+            <p class="text-xs text-slate-700 leading-relaxed font-normal whitespace-pre-line">
+              {{ project.executiveSummary || 'Acompanhamento regular sem ocorrências impeditivas reportadas.' }}
+            </p>
+          </div>
+
+          <!-- Interactive Inline Editor -->
+          <div *ngIf="isEditingStatusReport()" class="mt-2 space-y-2">
+            <textarea
+              [ngModel]="editedStatusReport()"
+              (ngModelChange)="editedStatusReport.set($event)"
+              rows="3"
+              placeholder="Digite o relato executivo da semana deste projeto..."
+              class="w-full text-xs text-slate-800 bg-white border border-blue-300 rounded-xl p-2.5 outline-none focus:ring-2 focus:ring-blue-500 shadow-inner resize-y">
+            </textarea>
+            <div class="flex items-center justify-between gap-2 pt-1">
+              <span class="text-[10px] text-blue-600 font-medium">
+                💡 O relato salvo aqui atualiza automaticamente o "Status report atual" no Status Report semanal.
+              </span>
+              <div class="flex items-center gap-2">
+                <button
+                  type="button"
+                  (click)="cancelEditingStatusReport()"
+                  [disabled]="isSavingStatusReport()"
+                  class="px-3 py-1 text-xs font-semibold text-slate-600 bg-white hover:bg-slate-100 border border-slate-200 rounded-lg transition cursor-pointer">
+                  Cancelar
+                </button>
+                <button
+                  type="button"
+                  (click)="saveStatusReport(project.id)"
+                  [disabled]="isSavingStatusReport()"
+                  class="px-3.5 py-1 text-xs font-bold text-white bg-blue-600 hover:bg-blue-700 rounded-lg shadow-xs transition cursor-pointer flex items-center gap-1.5 disabled:opacity-50">
+                  <span *ngIf="isSavingStatusReport()" class="w-3 h-3 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
+                  <span>{{ isSavingStatusReport() ? 'Salvando...' : '💾 Salvar Relato' }}</span>
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
 
         <!-- EXECUTIVE KPI STRIP -->
@@ -977,6 +1032,12 @@ export class EapGanttComponent {
   auditFilter = signal<'Todos' | 'Épico' | 'Feature' | 'US / PBI' | 'Task / Bug' | 'incompletos'>('Todos');
   auditSearch = signal<string>('');
 
+  // Status Report da Semana inline editing
+  isEditingStatusReport = signal<boolean>(false);
+  editedStatusReport = signal<string>('');
+  isSavingStatusReport = signal<boolean>(false);
+  statusReportSavedToast = signal<boolean>(false);
+
   officialPhases: { name: EapPhase; subtitle: string }[] = [
     { name: 'Planejamento', subtitle: 'Requisitos e Base' },
     { name: 'Desenvolvimento', subtitle: 'Módulos e Backend' },
@@ -992,6 +1053,7 @@ export class EapGanttComponent {
     effect(() => {
       const proj = this.service.activeEapProject();
       if (!proj) return;
+      this.isEditingStatusReport.set(false);
       const { earliest, latest } = this.projectDateBounds();
       const totalDays = Math.ceil((latest.getTime() - earliest.getTime()) / (24 * 3600 * 1000));
       if (totalDays <= 35) {
@@ -1002,6 +1064,32 @@ export class EapGanttComponent {
         this.timeZoom.set('months');
       }
     }, { allowSignalWrites: true });
+  }
+
+  startEditingStatusReport(currentText: string | undefined) {
+    this.editedStatusReport.set(currentText || '');
+    this.isEditingStatusReport.set(true);
+  }
+
+  cancelEditingStatusReport() {
+    this.isEditingStatusReport.set(false);
+  }
+
+  async saveStatusReport(projectId: string) {
+    if (!projectId) return;
+    this.isSavingStatusReport.set(true);
+    try {
+      await this.service.updateProject(projectId, {
+        executiveSummary: this.editedStatusReport()
+      });
+      this.isEditingStatusReport.set(false);
+      this.statusReportSavedToast.set(true);
+      setTimeout(() => this.statusReportSavedToast.set(false), 3000);
+    } catch (err: any) {
+      alert('Erro ao salvar relato: ' + (err?.message || err));
+    } finally {
+      this.isSavingStatusReport.set(false);
+    }
   }
 
   // Exact date bounds derived from project agreed dates and all activities

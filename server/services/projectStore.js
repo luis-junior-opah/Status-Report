@@ -495,6 +495,10 @@ class ProjectStore {
     return (a.name || '').localeCompare(b.name || '', 'pt-BR', { sensitivity: 'base' });
   }
 
+  getProjectById(id) {
+    return this.projects.find(p => p.id === id) || null;
+  }
+
   getPublicProjects(filterClient = null) {
     let list = this.projects.filter(p => p.isVisible);
     if (filterClient && filterClient !== 'Todos') {

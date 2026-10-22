@@ -405,6 +405,10 @@ export class ProjectService {
     if (res?.success) {
       await this.loadPublicData();
       await this.loadAdminData();
+      await this.loadWeeklyReports();
+      if (this.selectedReportId()) {
+        await this.loadWeeklyReport(this.selectedReportId()!);
+      }
     }
     return res?.data;
   }
@@ -418,6 +422,10 @@ export class ProjectService {
     if (res?.success) {
       await this.loadPublicData();
       await this.loadAdminData();
+      await this.loadWeeklyReports();
+      if (this.selectedReportId()) {
+        await this.loadWeeklyReport(this.selectedReportId()!);
+      }
     }
     return res?.data;
   }
@@ -617,6 +625,8 @@ export class ProjectService {
       if (res?.success) {
         this.currentWeeklyReport.set(res.data);
         await this.loadWeeklyReports();
+        await this.loadPublicData();
+        await this.loadAdminData();
         return true;
       }
     } catch (err: any) {
