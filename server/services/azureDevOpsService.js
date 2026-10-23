@@ -451,14 +451,13 @@ class AzureDevOpsService {
           const tDate = new Date(targetDate + 'T12:00:00');
           tDate.setHours(0, 0, 0, 0);
           const diffDays = Math.round((tDate.getTime() - today.getTime()) / (1000 * 3600 * 24));
-          if (diffDays < 0) {
+          // Regra calibrada: desvio a partir de 2 dias de atraso; atenção entre -1 e 1 dia de atraso
+          if (diffDays <= -2) {
+            // Atraso crítico a partir de 2 dias (atraso >= 2d)
             isDelayed = true;
-          } else {
-            // Definição de margem curta: até 2 dias (dias úteis ou corridos)
-            const bDays = this.getBusinessDaysDiff(today, tDate);
-            if (diffDays <= 2 || bDays <= 2) {
-              isTightMargin = true;
-            }
+          } else if (diffDays >= -1 && diffDays <= 1) {
+            // Atenção entre -1 e 1 dia de atraso (entrega iminente hoje/amanhã ou atraso tolerado de 1d)
+            isTightMargin = true;
           }
         }
 

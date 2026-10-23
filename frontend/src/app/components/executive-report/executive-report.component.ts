@@ -116,7 +116,7 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
             <!-- 2. Saúde -->
             <div class="group relative px-2 py-2 sm:py-2.5 rounded-xl border text-center shadow-2xs transition cursor-help"
               [ngClass]="getPortfolioHealth() >= 70 ? 'bg-emerald-50 border-emerald-300 hover:bg-emerald-100/70' : (getPortfolioHealth() >= 50 ? 'bg-amber-50 border-amber-300 hover:bg-amber-100/70' : 'bg-rose-50 border-rose-300 hover:bg-rose-100/70')"
-              title="Saúde do Portfólio: Índice ponderado (Verde 100%, Amarelo 50%, Vermelho 0%) dividido pelo total de ativos.">
+              title="Saúde do Portfólio: Índice ponderado executivo (No Prazo: 100, Atenção: 75, Desvio: 25) dividido pelo total de projetos ativos.">
               <div class="flex items-center justify-center gap-1">
                 <span class="text-[9px] sm:text-[10px] font-bold uppercase tracking-tight block truncate"
                   [ngClass]="getPortfolioHealth() >= 70 ? 'text-emerald-900' : (getPortfolioHealth() >= 50 ? 'text-amber-900' : 'text-rose-900')">
@@ -136,9 +136,9 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
               <!-- Floating Tooltip -->
               <div class="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:flex flex-col items-start w-60 p-2.5 bg-slate-950/95 text-white text-[10px] leading-snug rounded-xl shadow-2xl z-50 text-left border border-slate-700 backdrop-blur-xs">
                 <span class="font-extrabold text-emerald-300 mb-0.5 block">💚 Saúde do Portfólio</span>
-                <span class="text-slate-300 font-normal block">Índice sintético de estabilidade operacional e previsibilidade de entrega.</span>
+                <span class="text-slate-300 font-normal block">Índice sintético ponderado de estabilidade operacional e previsibilidade de entrega.</span>
                 <span class="text-[9px] text-emerald-300 mt-1.5 pt-1 border-t border-slate-800 font-medium block">
-                  <strong>Cálculo:</strong> (No Prazo × 100 + Atenção × 50 + Desvio × 0) ÷ Total de Projetos Ativos.
+                  <strong>Cálculo:</strong> (No Prazo × 100 + Atenção × 75 + Desvio × 25) ÷ Total de Projetos Ativos.
                 </span>
                 <div class="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-slate-950/95"></div>
               </div>
@@ -219,7 +219,7 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
 
             <!-- 6. Em Atenção -->
             <div class="group relative px-2 py-2 sm:py-2.5 bg-amber-50 hover:bg-amber-100/70 rounded-xl border border-amber-300 text-center shadow-2xs transition cursor-help"
-              title="Em Atenção: Projetos com risco moderado ou pontos de atenção gerencial.">
+              title="Em Atenção: Projetos com risco moderado, entrega iminente (-1d a +1d) ou atraso tolerado de 1 dia.">
               <div class="flex items-center justify-center gap-1">
                 <span class="text-[9px] sm:text-[10px] font-bold text-amber-900 uppercase tracking-tight block truncate">🟡 Atenção</span>
                 <span class="text-[9px] text-amber-600">ⓘ</span>
@@ -230,9 +230,9 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
               <!-- Floating Tooltip -->
               <div class="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:flex flex-col items-start w-56 p-2.5 bg-slate-950/95 text-white text-[10px] leading-snug rounded-xl shadow-2xl z-50 text-left border border-slate-700 backdrop-blur-xs">
                 <span class="font-extrabold text-amber-300 mb-0.5 block">🟡 Projetos em Atenção</span>
-                <span class="text-slate-300 font-normal block">Projetos com riscos moderados, margem curta de entrega (≤ 2 dias) ou dependências.</span>
+                <span class="text-slate-300 font-normal block">Projetos com riscos moderados, margem curta de entrega (-1d a +1d) ou atraso operacional leve de 1 dia.</span>
                 <span class="text-[9px] text-emerald-300 mt-1.5 pt-1 border-t border-slate-800 font-medium block">
-                  <strong>Cálculo:</strong> Projetos ativos com farol Amarelo (desvio leve ou atividades com margem curta ≤ 2 dias na EAP).
+                  <strong>Cálculo:</strong> Projetos ativos com farol Amarelo (atividades na EAP com entrega iminente -1d/+1d ou variância de 1 dia).
                 </span>
                 <div class="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-slate-950/95"></div>
               </div>
@@ -240,7 +240,7 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
 
             <!-- 7. Com Desvio -->
             <div class="group relative px-2 py-2 sm:py-2.5 bg-rose-50 hover:bg-rose-100/70 rounded-xl border border-rose-300 text-center shadow-2xs transition cursor-help"
-              title="Com Desvio: Projetos com desvio crítico de prazo, atividades vencidas ou impedimentos.">
+              title="Com Desvio: Projetos com desvio crítico (atraso ≥ 2 dias na EAP ou variância de prazo ≥ 2 dias).">
               <div class="flex items-center justify-center gap-1">
                 <span class="text-[9px] sm:text-[10px] font-bold text-rose-900 uppercase tracking-tight block truncate">🔴 Desvio</span>
                 <span class="text-[9px] text-rose-600">ⓘ</span>
@@ -251,9 +251,9 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
               <!-- Floating Tooltip -->
               <div class="pointer-events-none absolute bottom-full right-0 mb-2 hidden group-hover:flex flex-col items-start w-56 p-2.5 bg-slate-950/95 text-white text-[10px] leading-snug rounded-xl shadow-2xl z-50 text-left border border-slate-700 backdrop-blur-xs">
                 <span class="font-extrabold text-rose-300 mb-0.5 block">🔴 Projetos com Desvio</span>
-                <span class="text-slate-300 font-normal block">Projetos com estouro de datas acordadas ou impedimentos críticos em aberto.</span>
+                <span class="text-slate-300 font-normal block">Projetos com atraso crítico acumulado (≥ 2 dias) em relação aos marcos da EAP ou datas pactuadas.</span>
                 <span class="text-[9px] text-emerald-300 mt-1.5 pt-1 border-t border-slate-800 font-medium block">
-                  <strong>Cálculo:</strong> Projetos com status 'Ativo' e farol de saúde Vermelho (ragStatus = 'red').
+                  <strong>Cálculo:</strong> Projetos com status 'Ativo' e farol Vermelho (atraso na EAP ≥ 2 dias ou variância geral ≥ 2 dias).
                 </span>
                 <div class="absolute top-full right-4 border-4 border-transparent border-t-slate-950/95"></div>
               </div>
@@ -1812,9 +1812,9 @@ export class ExecutiveReportComponent implements OnInit {
     let totalScore = 0;
     for (const p of activeList) {
       if (p.ragStatus === 'red') {
-        totalScore += 0;
-      } else if (p.ragStatus === 'amber' || this.hasAttentionPoints(p)) {
-        totalScore += 50;
+        totalScore += 25;
+      } else if (p.ragStatus === 'amber') {
+        totalScore += 75;
       } else {
         totalScore += 100;
       }

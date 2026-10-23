@@ -9,9 +9,9 @@
     "executiveSummary": "Concluímos com sucesso a migração dos servidores e retomamos o desenvolvimento do aplicativo ILC, priorizando as funcionalidades de Frete Expresso, Tracking e Gestão de Demandas. Paralelamente, iniciamos o backend do projeto de Assinatura de Contratos via ZapSign e avançamos na Torre de Controle 4.0 (Gestão de Demandas). Também estamos conduzindo o desenvolvimento e a homologação simultânea do Frete Expresso 2.0, abrangendo os fluxos de solicitação, cotação e o painel do transportador para resposta de propostas.",
     "statusPulse": {
       "totalActive": 9,
-      "onTrack": 2,
-      "attention": 3,
-      "critical": 4,
+      "onTrack": 4,
+      "attention": 2,
+      "critical": 3,
       "averageProgress": 49
     },
     "activeProjects": [
@@ -133,7 +133,7 @@
         "status": "Ativo",
         "currentMilestone": "Desenvolvimento",
         "progress": 47,
-        "ragStatus": "amber",
+        "ragStatus": "green",
         "agreedDelivery": "2027-01-16",
         "targetDelivery": "2027-01-16",
         "varianceDays": 0,
@@ -350,7 +350,7 @@
         "status": "Ativo",
         "currentMilestone": "Planejamento",
         "progress": 100,
-        "ragStatus": "red",
+        "ragStatus": "green",
         "agreedDelivery": "2026-10-31",
         "targetDelivery": "2026-10-31",
         "varianceDays": 0,
@@ -472,9 +472,9 @@
     "executiveSummary": "Concluímos com sucesso a migração dos servidores e retomamos o desenvolvimento do aplicativo ILC, priorizando as funcionalidades de Frete Expresso, Tracking e Gestão de Demandas. Paralelamente, iniciamos o backend do projeto de Assinatura de Contratos via ZapSign e avançamos na Torre de Controle 4.0 (Gestão de Demandas). Também estamos conduzindo o desenvolvimento e a homologação simultânea do Frete Expresso 2.0, abrangendo os fluxos de solicitação, cotação e o painel do transportador para resposta de propostas.",
     "statusPulse": {
       "totalActive": 9,
-      "onTrack": 2,
-      "attention": 3,
-      "critical": 4,
+      "onTrack": 4,
+      "attention": 2,
+      "critical": 3,
       "averageProgress": 49
     },
     "activeProjects": [
@@ -596,7 +596,7 @@
         "status": "Ativo",
         "currentMilestone": "Desenvolvimento",
         "progress": 47,
-        "ragStatus": "amber",
+        "ragStatus": "green",
         "agreedDelivery": "2027-01-16",
         "targetDelivery": "2027-01-16",
         "varianceDays": 0,
@@ -813,7 +813,7 @@
         "status": "Ativo",
         "currentMilestone": "Planejamento",
         "progress": 100,
-        "ragStatus": "red",
+        "ragStatus": "green",
         "agreedDelivery": "2026-10-31",
         "targetDelivery": "2026-10-31",
         "varianceDays": 0,

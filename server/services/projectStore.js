@@ -152,15 +152,21 @@ class ProjectStore {
     t.setHours(0, 0, 0, 0);
     const startOfToday = new Date(today);
     startOfToday.setHours(0, 0, 0, 0);
-    const diff = Math.round((t.getTime() - startOfToday.getTime()) / (1000 * 3600 * 24));
-    if (diff < 0) {
+    const diffDays = Math.round((t.getTime() - startOfToday.getTime()) / (1000 * 3600 * 24));
+
+    // Regra calibrada: desvio a partir de 2 dias de atraso; atenção entre -1 e 1 dia de atraso
+    if (diffDays <= -2) {
+      // Atraso crítico a partir de 2 dias
       activity.isDelayed = true;
       activity.isTightMargin = false;
-    } else {
+    } else if (diffDays >= -1 && diffDays <= 1) {
+      // Atenção: entrega iminente hoje/amanhã ou atraso tolerado de 1 dia
       activity.isDelayed = false;
-      const bDays = this.getBusinessDaysDiff(startOfToday, t);
-      // Margem curta: até 2 dias (dias úteis ou dias corridos)
-      activity.isTightMargin = (diff <= 2 || bDays <= 2);
+      activity.isTightMargin = true;
+    } else {
+      // No prazo com folga confortável (> 1 dia)
+      activity.isDelayed = false;
+      activity.isTightMargin = false;
     }
     return activity;
   }
@@ -178,14 +184,14 @@ class ProjectStore {
     if (project.manualRagStatus && project.manualRagStatus !== 'auto') {
       return project.manualRagStatus;
     }
+    if (project.status === 'Finalizado' || project.progress === 100) return 'green';
     if (project.status === 'Congelado') return 'amber';
-    if (project.status === 'Finalizado') return 'green';
 
     const activities = project.activities || [];
     const today = new Date();
     today.setHours(0, 0, 0, 0);
 
-    // Atualiza flags de atraso e margem curta nas atividades com a regra de 2 dias
+    // Atualiza flags de atraso e margem curta nas atividades com a regra calibrada
     activities.forEach(a => this.recalculateActivityFlags(a, today));
 
     const hasDelayedActivity = activities.some(a => a.isDelayed && a.status !== 'completed');
@@ -197,8 +203,10 @@ class ProjectStore {
       project.plannedDates?.end
     );
 
-    if (variance > 7 || hasDelayedActivity) return 'red';
-    if (variance > 0 || hasTightMarginActivity) return 'amber';
+    // Desvio crítico a partir de 2 dias de atraso ou variância >= 2 dias
+    if (variance >= 2 || hasDelayedActivity) return 'red';
+    // Atenção: margem curta (-1 a +1 dia) ou variância de 1 dia
+    if (variance === 1 || hasTightMarginActivity) return 'amber';
     return 'green';
   }
 
