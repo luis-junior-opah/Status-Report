@@ -21,7 +21,7 @@ import { Project } from '../../models/project.model';
             <div class="flex items-center gap-2">
               <span class="text-2xl">🛠️</span>
               <h2 class="text-xl font-black text-slate-900 tracking-tight">
-                Painel de Sustentação & Manutenção de Projetos
+                Painel de Sustentação
               </h2>
             </div>
           </div>
@@ -72,16 +72,6 @@ import { Project } from '../../models/project.model';
                 🌐 Todo Período
               </button>
             </div>
-
-            <!-- Reload Button -->
-            <button
-              type="button"
-              (click)="refreshData()"
-              [disabled]="service.isLoadingMaintenance()"
-              class="p-2 bg-slate-800 hover:bg-slate-700 text-white rounded-xl transition text-xs font-bold cursor-pointer disabled:opacity-50"
-              title="Recarregar dados de sustentação">
-              <span [class.animate-spin]="service.isLoadingMaintenance()">🔄</span>
-            </button>
           </div>
 
         </div>
@@ -202,15 +192,12 @@ import { Project } from '../../models/project.model';
               <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-slate-100 mb-4 gap-3">
                 <div>
                   <h3 class="text-sm font-black text-slate-900 tracking-tight flex items-center gap-1.5">
-                    <span>📈</span> Histórico de Esforço Mensal (2026)
+                    <span>📈</span> Histórico de Esforço (2026)
                   </h3>
-                  <p class="text-[11px] text-slate-500 font-medium mt-0.5">
-                    Volume mensal de horas ao longo de 2026.
-                  </p>
                 </div>
                 
-                <!-- Controls: Series Filter & Mode Switcher -->
-                <div class="flex items-center gap-2 flex-wrap">
+                <!-- Controls: Series Filter & Mode Switcher (Aligned Side-by-Side) -->
+                <div class="flex items-center gap-2 shrink-0">
                   <!-- Series Filter (Ambos | Novos | Sustentação) -->
                   <div class="flex items-center bg-slate-100 p-0.5 rounded-lg border border-slate-200 shadow-2xs">
                     <button
@@ -469,9 +456,6 @@ import { Project } from '../../models/project.model';
                   <h3 class="text-sm font-black text-slate-900 tracking-tight flex items-center gap-1.5">
                     <span>⚖️</span> Comparativo: Novos vs. Sustentação
                   </h3>
-                  <p class="text-[11px] text-slate-500 font-medium mt-0.5">
-                    Distribuição da capacidade técnica da empresa.
-                  </p>
                 </div>
               </div>
 
