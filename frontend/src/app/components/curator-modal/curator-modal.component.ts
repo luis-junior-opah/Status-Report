@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { ProjectService } from '../../services/project.service';
 import { Project, EapPhase, ClientConfig, AzureConfigStatus, AzureAuditItem, AzureAuditReport, ProjectPriority, ProjectTeam } from '../../models/project.model';
 import { WeeklyReport, WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models/weekly-report.model';
-import { TeamMemberConfig } from '../../models/team.model';
 
 @Component({
   selector: 'app-curator-modal',
@@ -104,15 +103,6 @@ import { TeamMemberConfig } from '../../models/team.model';
               class="px-4 py-2.5 rounded-t-xl transition flex items-center gap-1.5">
               <span>Azure DevOps & Conexão</span>
               <span *ngIf="service.azureStatus()?.isWarning" class="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span>
-            </button>
-            <button
-              (click)="onOpenTeamTab()"
-              [ngClass]="activeTab() === 'team' ? 'bg-white border-t border-x border-slate-200 text-indigo-700 shadow-xs' : 'text-slate-500 hover:text-slate-800'"
-              class="px-4 py-2.5 rounded-t-xl transition flex items-center gap-1.5 font-bold">
-              <span>👥 Gestão de Equipe</span>
-              <span class="px-1.5 py-0.2 bg-indigo-100 text-indigo-800 rounded-full text-[10px] font-black shrink-0">
-                {{ service.adminTeamMembers().length }}
-              </span>
             </button>
           </div>
 
@@ -1879,214 +1869,6 @@ import { TeamMemberConfig } from '../../models/team.model';
 
           </div>
 
-          <!-- TAB 7: GESTÃO DE EQUIPE (VISIBILIDADE E ALOCAÇÃO DE PROJETOS) -->
-          <div *ngIf="activeTab() === 'team'" class="flex-1 overflow-y-auto p-6 max-w-5xl mx-auto w-full space-y-6">
-            
-            <!-- Tab Header & Quick Info -->
-            <div class="bg-white p-5 rounded-2xl border border-slate-200/90 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
-              <div>
-                <div class="flex items-center gap-2 mb-1">
-                  <span class="text-xl">👥</span>
-                  <h3 class="text-base font-extrabold text-slate-900">Gestão de Equipe & Visibilidade</h3>
-                  <span class="text-xs bg-indigo-100 text-indigo-800 font-bold px-2 py-0.5 rounded-full">
-                    {{ service.adminTeamMembers().length }} Colaboradores
-                  </span>
-                </div>
-                <p class="text-xs text-slate-500 max-w-2xl">
-                  Defina quais integrantes da equipe são visíveis no Dashboard público (aba Equipe e gráficos de esforço)
-                  e gerencie em quais projetos cada integrante está alocado.
-                </p>
-              </div>
-
-              <!-- Quick Bulk Actions -->
-              <div class="flex items-center gap-2">
-                <button
-                  type="button"
-                  (click)="setAllTeamVisibility(true)"
-                  class="px-3 py-1.5 bg-emerald-50 hover:bg-emerald-100 border border-emerald-300 text-emerald-800 rounded-xl text-xs font-bold transition flex items-center gap-1 cursor-pointer">
-                  <span>👁️</span> Tornar Todos Visíveis
-                </button>
-                <button
-                  type="button"
-                  (click)="setAllTeamVisibility(false)"
-                  class="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 border border-slate-300 text-slate-700 rounded-xl text-xs font-bold transition flex items-center gap-1 cursor-pointer">
-                  <span>🚫</span> Ocultar Todos
-                </button>
-              </div>
-            </div>
-
-            <!-- Feedback Message Banner -->
-            <div
-              *ngIf="teamFeedbackMsg()"
-              class="p-3.5 bg-emerald-50 border border-emerald-200 rounded-xl text-xs font-bold text-emerald-800 flex items-center justify-between animate-fade-in shadow-xs">
-              <span class="flex items-center gap-2">
-                <span class="text-emerald-600">✓</span>
-                {{ teamFeedbackMsg() }}
-              </span>
-              <button (click)="teamFeedbackMsg.set(null)" class="text-emerald-500 hover:text-emerald-800 text-xs cursor-pointer">✕</button>
-            </div>
-
-            <!-- Search & Filter Controls -->
-            <div class="bg-white p-4 rounded-2xl border border-slate-200/90 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-3">
-              <!-- Search Input -->
-              <div class="relative w-full sm:w-80">
-                <input
-                  type="text"
-                  [ngModel]="teamSearch()"
-                  (ngModelChange)="teamSearch.set($event)"
-                  placeholder="Buscar colaborador ou cargo..."
-                  class="w-full pl-8 pr-3 py-1.5 text-xs bg-slate-50 border border-slate-200 rounded-xl outline-none focus:ring-2 focus:ring-indigo-500">
-                <span class="absolute left-2.5 top-2 text-slate-400 text-xs">🔍</span>
-                <button
-                  *ngIf="teamSearch()"
-                  (click)="teamSearch.set('')"
-                  class="absolute right-2.5 top-1.5 text-slate-400 hover:text-slate-600 text-xs cursor-pointer">
-                  ✕
-                </button>
-              </div>
-
-              <!-- Visibility Filter Tabs -->
-              <div class="flex items-center bg-slate-100 p-1 rounded-xl border border-slate-200 w-full sm:w-auto justify-center">
-                <button
-                  type="button"
-                  (click)="teamVisibilityFilter.set('Todos')"
-                  [ngClass]="teamVisibilityFilter() === 'Todos' ? 'bg-white text-slate-900 font-bold shadow-xs' : 'text-slate-600 hover:text-slate-900'"
-                  class="px-3 py-1 rounded-lg text-xs transition cursor-pointer">
-                  Todos ({{ service.adminTeamMembers().length }})
-                </button>
-                <button
-                  type="button"
-                  (click)="teamVisibilityFilter.set('Visíveis')"
-                  [ngClass]="teamVisibilityFilter() === 'Visíveis' ? 'bg-emerald-600 text-white font-bold shadow-xs' : 'text-slate-600 hover:text-slate-900'"
-                  class="px-3 py-1 rounded-lg text-xs transition cursor-pointer">
-                  Visíveis ({{ visibleTeamCount() }})
-                </button>
-                <button
-                  type="button"
-                  (click)="teamVisibilityFilter.set('Ocultos')"
-                  [ngClass]="teamVisibilityFilter() === 'Ocultos' ? 'bg-slate-700 text-white font-bold shadow-xs' : 'text-slate-600 hover:text-slate-900'"
-                  class="px-3 py-1 rounded-lg text-xs transition cursor-pointer">
-                  Ocultos ({{ hiddenTeamCount() }})
-                </button>
-              </div>
-            </div>
-
-            <!-- Loading State -->
-            <div *ngIf="service.isLoadingAdminTeam()" class="py-12 text-center">
-              <div class="inline-block animate-spin rounded-full h-8 w-8 border-4 border-indigo-600 border-t-transparent"></div>
-              <p class="mt-2 text-xs text-slate-500 font-bold">Carregando dados da equipe...</p>
-            </div>
-
-            <!-- Empty State -->
-            <div *ngIf="!service.isLoadingAdminTeam() && filteredTeamMembers().length === 0" class="bg-white rounded-2xl border border-slate-200 p-12 text-center text-slate-400 text-xs">
-              Nenhum integrante encontrado para os critérios de busca.
-            </div>
-
-            <!-- Collaborators Cards List -->
-            <div *ngIf="!service.isLoadingAdminTeam() && filteredTeamMembers().length > 0" class="space-y-4">
-              <div
-                *ngFor="let member of filteredTeamMembers()"
-                class="bg-white rounded-2xl border p-4 transition shadow-2xs hover:shadow-xs"
-                [ngClass]="member.isVisible ? 'border-slate-200' : 'border-slate-200/60 bg-slate-50/70 opacity-80'">
-                
-                <!-- Member Header Row -->
-                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-slate-100">
-                  <div class="flex items-center gap-3">
-                    <!-- Avatar circle with initials -->
-                    <div
-                      class="w-10 h-10 rounded-2xl flex items-center justify-center font-black text-sm text-white shrink-0 shadow-2xs"
-                      [ngClass]="member.isVisible ? 'bg-indigo-600' : 'bg-slate-400'">
-                      {{ getInitials(member.name) }}
-                    </div>
-
-                    <div>
-                      <div class="flex items-center gap-2">
-                        <span class="text-sm font-extrabold text-slate-900">{{ member.name }}</span>
-                        <!-- Visibility Badge -->
-                        <span
-                          class="px-2 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider"
-                          [ngClass]="member.isVisible ? 'bg-emerald-100 text-emerald-800 border border-emerald-200' : 'bg-slate-200 text-slate-600 border border-slate-300'">
-                          {{ member.isVisible ? '👁️ Visível' : '🚫 Oculto' }}
-                        </span>
-                      </div>
-                      <div class="text-[11px] text-slate-400 mt-0.5">
-                        Alocado em <strong>{{ member.allocatedProjects?.length || 0 }}</strong> projeto(s)
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- Visibility Toggle Button -->
-                  <div class="flex items-center gap-2 self-end sm:self-auto">
-                    <button
-                      type="button"
-                      (click)="toggleMemberVisibility(member)"
-                      [disabled]="isSavingTeamMember() === member.name"
-                      [ngClass]="member.isVisible ? 'bg-slate-100 hover:bg-rose-50 hover:text-rose-700 hover:border-rose-300 text-slate-700 border-slate-200' : 'bg-indigo-50 hover:bg-indigo-100 text-indigo-700 border-indigo-200'"
-                      class="px-3 py-1.5 rounded-xl border text-xs font-bold transition flex items-center gap-1.5 cursor-pointer shadow-2xs disabled:opacity-50">
-                      <span *ngIf="isSavingTeamMember() === member.name" class="inline-block animate-spin">⏳</span>
-                      <span>{{ member.isVisible ? '🚫 Ocultar do Dashboard' : '👁️ Tornar Visível' }}</span>
-                    </button>
-                  </div>
-                </div>
-
-                <!-- Member Configuration: Cargo & Alocação em Projetos -->
-                <div class="pt-3 grid grid-cols-1 md:grid-cols-12 gap-4">
-                  <!-- Role Input (4 cols) -->
-                  <div class="md:col-span-4 space-y-1">
-                    <label class="text-[10px] font-black uppercase text-slate-500 tracking-wider">
-                      Cargo / Função:
-                    </label>
-                    <div class="flex items-center gap-1.5">
-                      <input
-                        type="text"
-                        [ngModel]="member.role || ''"
-                        #roleInput
-                        (blur)="saveMemberRole(member, roleInput.value)"
-                        (keyup.enter)="saveMemberRole(member, roleInput.value)"
-                        placeholder="Ex: Tech Lead, Desenvolvedor, QA..."
-                        class="w-full text-xs bg-slate-50 border border-slate-200 rounded-xl px-3 py-1.5 outline-none focus:ring-2 focus:ring-indigo-500 font-medium">
-                      <button
-                        type="button"
-                        (click)="saveMemberRole(member, roleInput.value)"
-                        title="Salvar cargo"
-                        class="px-2 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold rounded-xl border border-slate-200 cursor-pointer">
-                        💾
-                      </button>
-                    </div>
-                  </div>
-
-                  <!-- Allocated Projects Selector (8 cols) -->
-                  <div class="md:col-span-8 space-y-1">
-                    <div class="flex items-center justify-between">
-                      <label class="text-[10px] font-black uppercase text-slate-500 tracking-wider">
-                        Projetos Alocados (clique para adicionar ou remover):
-                      </label>
-                      <span class="text-[10px] text-slate-400">
-                        {{ member.allocatedProjects?.length || 0 }} de {{ allProjectNames().length }} projetos
-                      </span>
-                    </div>
-
-                    <!-- Projects Chips List -->
-                    <div class="flex flex-wrap gap-1.5 max-h-36 overflow-y-auto p-1.5 bg-slate-50/80 rounded-xl border border-slate-200/80">
-                      <button
-                        type="button"
-                        *ngFor="let pName of allProjectNames()"
-                        (click)="toggleProjectForMember(member, pName)"
-                        [disabled]="isSavingTeamMember() === member.name"
-                        [ngClass]="isProjectAllocated(member, pName) ? 'bg-indigo-600 text-white font-bold border-indigo-700 shadow-2xs' : 'bg-white text-slate-600 hover:bg-slate-100 border-slate-200 font-medium'"
-                        class="px-2.5 py-1 rounded-lg text-[11px] border transition flex items-center gap-1 cursor-pointer disabled:opacity-50 text-left">
-                        <span>{{ isProjectAllocated(member, pName) ? '✓' : '+' }}</span>
-                        <span class="truncate max-w-[200px]">{{ pName }}</span>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-
-          </div>
-
         </div>
 
         <!-- Footer -->
@@ -2384,13 +2166,7 @@ export class CuratorModalComponent implements OnInit {
 
   authError = signal<string | null>(null);
   savingId = signal<string | null>(null);
-  activeTab = signal<'projects' | 'new-project' | 'custom-links' | 'weekly-report' | 'clients' | 'azure' | 'team'>('projects');
-
-  // Team Management state
-  teamSearch = signal<string>('');
-  teamVisibilityFilter = signal<'Todos' | 'Visíveis' | 'Ocultos'>('Todos');
-  teamFeedbackMsg = signal<string | null>(null);
-  isSavingTeamMember = signal<string | null>(null);
+  activeTab = signal<'projects' | 'new-project' | 'custom-links' | 'weekly-report' | 'clients' | 'azure'>('projects');
 
   // Weekly report curator state
   isGeneratingReport = signal<boolean>(false);
@@ -2748,7 +2524,6 @@ export class CuratorModalComponent implements OnInit {
     try {
       await this.service.loadAdminData();
       await this.service.loadAzureStatus();
-      await this.service.loadAdminTeam();
       this.autoSelectFirstProject();
     } catch (err: any) {
       this.authError.set('PIN incorreto. Tente novamente.');
@@ -2758,99 +2533,6 @@ export class CuratorModalComponent implements OnInit {
   async onOpenAzureTab() {
     this.activeTab.set('azure');
     await this.service.loadAzureStatus();
-  }
-
-  async onOpenTeamTab() {
-    this.activeTab.set('team');
-    await this.service.loadAdminTeam();
-  }
-
-  allProjectNames = computed(() => {
-    const list = this.service.adminProjects();
-    return Array.from(new Set(list.map(p => p.name))).sort((a, b) => a.localeCompare(b));
-  });
-
-  filteredTeamMembers = computed(() => {
-    const q = this.teamSearch().trim().toLowerCase();
-    const vis = this.teamVisibilityFilter();
-    return this.service.adminTeamMembers().filter(m => {
-      const matchSearch = !q || m.name.toLowerCase().includes(q) || (m.role && m.role.toLowerCase().includes(q));
-      const matchVis = vis === 'Todos' || (vis === 'Visíveis' && m.isVisible) || (vis === 'Ocultos' && !m.isVisible);
-      return matchSearch && matchVis;
-    });
-  });
-
-  visibleTeamCount = computed(() => this.service.adminTeamMembers().filter(m => m.isVisible).length);
-  hiddenTeamCount = computed(() => this.service.adminTeamMembers().filter(m => !m.isVisible).length);
-
-  getInitials(name: string): string {
-    if (!name) return '??';
-    const parts = name.trim().split(/\s+/);
-    if (parts.length === 1) return parts[0].substring(0, 2).toUpperCase();
-    return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
-  }
-
-  isProjectAllocated(member: TeamMemberConfig, projectName: string): boolean {
-    return !!member.allocatedProjects && member.allocatedProjects.includes(projectName);
-  }
-
-  async toggleMemberVisibility(member: TeamMemberConfig) {
-    this.isSavingTeamMember.set(member.name);
-    try {
-      const updated = await this.service.updateAdminTeamMember(member.name, { isVisible: !member.isVisible });
-      if (updated) {
-        this.showTeamFeedback(`Visibilidade de ${member.name} alterada para ${updated.isVisible ? 'Visível' : 'Oculto'}.`);
-      }
-    } finally {
-      this.isSavingTeamMember.set(null);
-    }
-  }
-
-  async saveMemberRole(member: TeamMemberConfig, newRole: string) {
-    const trimmed = (newRole || '').trim();
-    if (member.role === trimmed) return;
-    this.isSavingTeamMember.set(member.name);
-    try {
-      const updated = await this.service.updateAdminTeamMember(member.name, { role: trimmed });
-      if (updated) {
-        this.showTeamFeedback(`Cargo de ${member.name} atualizado com sucesso.`);
-      }
-    } finally {
-      this.isSavingTeamMember.set(null);
-    }
-  }
-
-  async toggleProjectForMember(member: TeamMemberConfig, projectName: string) {
-    this.isSavingTeamMember.set(member.name);
-    try {
-      const current = member.allocatedProjects || [];
-      const exists = current.includes(projectName);
-      const updatedProjects = exists ? current.filter(p => p !== projectName) : [...current, projectName];
-      const updated = await this.service.updateAdminTeamMember(member.name, { allocatedProjects: updatedProjects });
-      if (updated) {
-        this.showTeamFeedback(`Alocação de ${member.name} atualizada (${updatedProjects.length} projeto(s)).`);
-      }
-    } finally {
-      this.isSavingTeamMember.set(null);
-    }
-  }
-
-  async setAllTeamVisibility(visible: boolean) {
-    const current = this.service.adminTeamMembers();
-    const updated = current.map(m => ({ ...m, isVisible: visible }));
-    const ok = await this.service.updateAllAdminTeamMembers(updated);
-    if (ok) {
-      this.showTeamFeedback(`Todos os ${updated.length} integrantes foram marcados como ${visible ? 'Visíveis' : 'Ocultos'}.`);
-    }
-  }
-
-  private showTeamFeedback(msg: string) {
-    this.teamFeedbackMsg.set(msg);
-    setTimeout(() => {
-      if (this.teamFeedbackMsg() === msg) {
-        this.teamFeedbackMsg.set(null);
-      }
-    }, 3500);
   }
 
   isFieldLocked(p: Project, field: 'ilcHours' | 'progress' | 'dates'): boolean {

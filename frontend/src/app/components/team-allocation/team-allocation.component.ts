@@ -82,16 +82,6 @@ import { TeamAllocationReport, TeamMemberAllocation, ProjectTeamAllocation } fro
               title="Recarregar dados de alocação de equipe">
               <span [class.animate-spin]="service.isLoadingTeam()">🔄</span>
             </button>
-
-            <!-- Curadoria Shortcut -->
-            <button
-              type="button"
-              (click)="openCuratorTeam()"
-              class="px-3 py-1.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-xs font-bold transition flex items-center gap-1.5 cursor-pointer shadow-xs"
-              title="Gerenciar visibilidade e alocações de colaboradores na Curadoria">
-              <span>✍️ Curadoria de Equipe</span>
-            </button>
-
           </div>
 
         </div>
@@ -113,7 +103,7 @@ import { TeamAllocationReport, TeamMemberAllocation, ProjectTeamAllocation } fro
           <div class="bg-gradient-to-br from-indigo-50 to-indigo-100/60 p-4 rounded-2xl border border-indigo-200 shadow-2xs">
             <div class="flex items-center justify-between mb-1.5">
               <span class="text-xs font-extrabold text-indigo-900 uppercase tracking-wider flex items-center gap-1.5">
-                <span>👥</span> Integrantes Visíveis
+                <span>👥</span> Integrantes no Período
               </span>
               <span class="text-[10px] font-black px-2 py-0.5 rounded-full bg-indigo-200 text-indigo-900">
                 Ativos
@@ -126,7 +116,7 @@ import { TeamAllocationReport, TeamMemberAllocation, ProjectTeamAllocation } fro
               <span class="text-xs font-bold text-indigo-800">colaboradores</span>
             </div>
             <p class="text-[10px] text-indigo-800/80 font-medium mt-3.5">
-              Integrantes configurados como visíveis pela curadoria.
+              Colaboradores com esforço apontado no período selecionado.
             </p>
           </div>
 
@@ -489,10 +479,6 @@ export class TeamAllocationComponent implements OnInit {
   onClientChange(clientName: string) {
     this.service.selectedClient.set(clientName);
     this.refreshData();
-  }
-
-  openCuratorTeam() {
-    this.service.isAdminOpen.set(true);
   }
 
   formatHours(val?: number | null): string {

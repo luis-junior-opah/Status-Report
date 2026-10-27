@@ -333,20 +333,17 @@ class TeamStore {
       return m;
     });
 
-    if (visibleOnly) {
-      membersList = membersList.filter(m => m.isVisible !== false);
-    }
-
+    // List only team members with recorded effort in the filtered period and client
+    membersList = membersList.filter(m => m.totalHours > 0);
     membersList.sort((a, b) => b.totalHours - a.totalHours);
 
     const totalCompanyHours = Math.round((totalMaint + totalNew) * 10) / 10;
     const maintenanceRatio = totalCompanyHours > 0 ? Math.round((totalMaint / totalCompanyHours) * 100) : 0;
 
-    // Project capacity breakdown
+    // Project capacity breakdown (only projects with hours in the period)
     const projectBreakdown = projs.map(p => {
       const isMaint = p.category === 'maintenance';
       const allocatedTeam = membersList.filter(m =>
-        (m.allocatedProjects || []).some(ap => ap.toLowerCase() === p.name.toLowerCase()) ||
         (m.projects || []).some(pr => pr.projectName.toLowerCase() === p.name.toLowerCase())
       );
       const hours = allocatedTeam.reduce((sum, m) => {
@@ -364,7 +361,8 @@ class TeamStore {
         teamMembers: allocatedTeam.map(t => ({ name: t.name, role: t.role, hours: (t.projects || []).find(x => x.projectName === p.name)?.hours || 0 })),
         totalHours: Math.round(hours * 10) / 10
       };
-    }).sort((a, b) => b.totalHours - a.totalHours);
+    }).filter(p => p.totalHours > 0)
+      .sort((a, b) => b.totalHours - a.totalHours);
 
     return {
       period,
