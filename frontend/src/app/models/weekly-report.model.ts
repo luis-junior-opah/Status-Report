@@ -108,6 +108,8 @@ export interface WeeklyReportMaintenanceProject {
   hoursExecuted: number;
   hoursPlanned: number;
   hoursAgreed?: number;
+  hoursExecutedInPeriod?: number;
+  lifetimeHoursExecuted?: number;
   attentionPoints?: string;
   statusReport?: string;
   statusReportDate?: string;
@@ -115,6 +117,7 @@ export interface WeeklyReportMaintenanceProject {
   previousStatusReportDate?: string;
   teamLeader?: string;
   teamMembers?: string[];
+  periodTeamMembers?: string[];
   team?: {
     leader?: string;
     members?: string[];
@@ -127,5 +130,14 @@ export interface WeeklyReportMaintenanceSection {
   totalProjects: number;
   totalHours: number;
   periodLabel: string;
+  startDate?: string;
+  endDate?: string;
+  newProjectHours?: number;
+  totalPeriodHours?: number;
+  maintenancePercent?: number;
+  newProjectPercent?: number;
+  activeSystemsCount?: number;
+  teamMembersCount?: number;
+  teamMembers?: string[];
   projects: WeeklyReportMaintenanceProject[];
 }

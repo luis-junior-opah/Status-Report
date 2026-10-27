@@ -837,7 +837,7 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
 
           <div class="flex items-center gap-2 self-start sm:self-auto">
             <span class="text-xs font-black px-3 py-1.5 rounded-xl bg-purple-100 text-purple-900 border border-purple-300 shadow-2xs">
-              ⏱️ {{ formatHours(currentReport()?.maintenanceSection?.totalHours || service.maintenanceMetrics()?.totalMaintenanceHours) }}h executadas no ciclo
+              ⏱️ {{ formatHours(currentReport()?.maintenanceSection?.totalHours) }}h executadas no ciclo
             </span>
           </div>
         </div>
@@ -850,15 +850,15 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
             <span class="text-[10px] font-extrabold text-purple-900 uppercase tracking-wider block">Esforço em Suporte</span>
             <div class="flex items-baseline gap-1 mt-1">
               <span class="text-2xl font-black text-purple-950">
-                {{ formatHours(currentReport()?.maintenanceSection?.totalHours || service.maintenanceMetrics()?.totalMaintenanceHours) }}
+                {{ formatHours(currentReport()?.maintenanceSection?.totalHours) }}
               </span>
               <span class="text-xs font-bold text-purple-700">horas</span>
             </div>
             <div class="mt-2 w-full bg-purple-100 rounded-full h-1.5 overflow-hidden">
-              <div class="bg-purple-600 h-full rounded-full" [style.width.%]="service.maintenanceMetrics()?.maintenancePercent || 45"></div>
+              <div class="bg-purple-600 h-full rounded-full" [style.width.%]="currentReport()?.maintenanceSection?.maintenancePercent || 0"></div>
             </div>
             <span class="text-[9px] text-purple-800/80 font-semibold block mt-1">
-              {{ service.maintenanceMetrics()?.maintenancePercent || 45 }}% da capacidade total da empresa
+              {{ currentReport()?.maintenanceSection?.maintenancePercent || 0 }}% da capacidade total no ciclo ({{ formatHours(currentReport()?.maintenanceSection?.totalPeriodHours) }}h)
             </span>
           </div>
 
@@ -866,15 +866,15 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
           <div class="p-3.5 rounded-2xl bg-white border border-purple-200/90 shadow-2xs">
             <span class="text-[10px] font-extrabold text-slate-500 uppercase tracking-wider block">Divisão de Capacidade</span>
             <div class="flex items-baseline justify-between mt-1">
-              <span class="text-xs font-black text-blue-700">🚀 {{ 100 - (service.maintenanceMetrics()?.maintenancePercent || 45) }}% Novos</span>
-              <span class="text-xs font-black text-purple-700">🛠️ {{ service.maintenanceMetrics()?.maintenancePercent || 45 }}% Sust.</span>
+              <span class="text-xs font-black text-blue-700">🚀 {{ currentReport()?.maintenanceSection?.newProjectPercent ?? 100 }}% Novos</span>
+              <span class="text-xs font-black text-purple-700">🛠️ {{ currentReport()?.maintenanceSection?.maintenancePercent ?? 0 }}% Sust.</span>
             </div>
             <div class="mt-2.5 w-full bg-slate-100 rounded-full h-1.5 overflow-hidden flex">
-              <div class="bg-blue-600 h-full" [style.width.%]="100 - (service.maintenanceMetrics()?.maintenancePercent || 45)"></div>
-              <div class="bg-purple-600 h-full" [style.width.%]="service.maintenanceMetrics()?.maintenancePercent || 45"></div>
+              <div class="bg-blue-600 h-full" [style.width.%]="currentReport()?.maintenanceSection?.newProjectPercent ?? 100"></div>
+              <div class="bg-purple-600 h-full" [style.width.%]="currentReport()?.maintenanceSection?.maintenancePercent ?? 0"></div>
             </div>
             <span class="text-[9px] text-slate-500 font-medium block mt-1">
-              Distribuição de horas apontadas na empresa
+              {{ formatHours(currentReport()?.maintenanceSection?.newProjectHours) }}h Novos vs {{ formatHours(currentReport()?.maintenanceSection?.totalHours) }}h Sust.
             </span>
           </div>
 
@@ -888,7 +888,7 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
               <span class="text-xs font-bold text-emerald-700">aplicações</span>
             </div>
             <span class="text-[9px] text-emerald-800 font-semibold block mt-3">
-              100% dos sistemas com atendimento ativo
+              {{ currentReport()?.maintenanceSection?.activeSystemsCount || 0 }} com esforço apontado no ciclo
             </span>
           </div>
 
@@ -902,7 +902,7 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
               <span class="text-xs font-bold text-slate-600">profissionais</span>
             </div>
             <span class="text-[9px] text-slate-500 font-medium block mt-3">
-              Especialistas N2/N3 envolvidos no suporte
+              Atuando em sustentação no período
             </span>
           </div>
 
@@ -919,7 +919,7 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
                   <span>📊</span> Esforço por Sistema de Sustentação
                 </span>
                 <span class="text-[10px] font-bold text-slate-500">
-                  Total: {{ formatHours(getMaintenanceTotalHours()) }}h
+                  Total no ciclo: {{ formatHours(getMaintenanceTotalHours()) }}h
                 </span>
               </div>
 
@@ -944,7 +944,7 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
             </div>
 
             <p class="text-[9px] text-slate-400 mt-3 pt-2 border-t border-slate-100">
-              Proporção de horas consumidas entre os sistemas mantidos pela ILC.
+              Horas executadas por sistema no ciclo do relatório ({{ currentReport()?.period }}).
             </p>
           </div>
 
@@ -1019,8 +1019,8 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
                     [ngClass]="mp.ragStatus === 'red' ? 'bg-rose-100 text-rose-800 border border-rose-300' : (mp.ragStatus === 'amber' ? 'bg-amber-100 text-amber-800 border border-amber-300' : 'bg-emerald-100 text-emerald-800 border border-emerald-300')">
                     {{ mp.ragStatus === 'red' ? '⚠️ Desvio' : (mp.ragStatus === 'amber' ? '⚠️ Atenção' : '✓ No Prazo') }}
                   </span>
-                  <span class="text-[9px] font-black px-2 py-0.5 rounded-full bg-slate-100 text-slate-800 border border-slate-200">
-                    {{ formatHours(mp.hoursExecuted) }}h totais
+                  <span class="text-[9px] font-black px-2 py-0.5 rounded-full bg-slate-100 text-slate-800 border border-slate-200" [title]="'Total acumulado histórico: ' + formatHours(mp.lifetimeHoursExecuted) + 'h'">
+                    {{ formatHours(mp.hoursExecuted) }}h no ciclo
                   </span>
                 </div>
               </div>
@@ -2452,23 +2452,20 @@ export class ExecutiveReportComponent implements OnInit {
   }
 
   getMaintenanceTeamMembersCount(): number {
-    const list = this.currentReport()?.maintenanceSection?.projects || [];
-    const set = new Set<string>();
-    for (const p of list) {
-      if (p.teamLeader) set.add(p.teamLeader.trim().toLowerCase());
-      if (p.team?.leader) set.add(p.team.leader.trim().toLowerCase());
-      for (const m of (p.teamMembers || p.team?.members || [])) {
-        if (m) set.add(m.trim().toLowerCase());
-      }
+    const sec = this.currentReport()?.maintenanceSection;
+    if (sec?.teamMembersCount !== undefined) {
+      return sec.teamMembersCount;
     }
-    if (set.size > 0) return set.size;
-    return this.service.maintenanceMetrics()?.teamMembers?.length || 0;
+    if (sec?.teamMembers && sec.teamMembers.length > 0) {
+      return sec.teamMembers.length;
+    }
+    return 0;
   }
 
   getMaintenanceTotalHours(): number {
     const sec = this.currentReport()?.maintenanceSection;
-    if (sec?.totalHours && sec.totalHours > 0) return sec.totalHours;
-    return this.service.maintenanceMetrics()?.totalMaintenanceHours || 0;
+    if (sec?.totalHours !== undefined) return sec.totalHours;
+    return 0;
   }
 
   getProjectMaintenanceShare(hoursExecuted: number): number {

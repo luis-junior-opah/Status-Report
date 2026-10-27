@@ -449,8 +449,21 @@
     "boardDecisions": [],
     "maintenanceSection": {
       "totalProjects": 4,
-      "totalHours": 4035.1000000000004,
-      "periodLabel": "Semana 44 (2026-10-20 a 2026-10-27)",
+      "totalHours": 117.5,
+      "newProjectHours": 314,
+      "totalPeriodHours": 431.5,
+      "maintenancePercent": 27,
+      "newProjectPercent": 73,
+      "activeSystemsCount": 2,
+      "teamMembersCount": 3,
+      "teamMembers": [
+        "Francisco Molaia Santos",
+        "Silvio Torres",
+        "Thiago Rodrigues do Nascimento Silva"
+      ],
+      "startDate": "2026-10-20",
+      "endDate": "2026-10-27",
+      "periodLabel": "20/10/2026 a 27/10/2026",
       "projects": [
         {
           "id": "a7d5d8e7-c1e1-4d14-9aac-746ea346ac02",
@@ -459,7 +472,9 @@
           "client": "ILC (Interno)",
           "status": "Ativo",
           "ragStatus": "green",
-          "hoursExecuted": 720,
+          "hoursExecuted": 0,
+          "hoursExecutedInPeriod": 0,
+          "lifetimeHoursExecuted": 720,
           "hoursPlanned": 720,
           "hoursAgreed": 720,
           "statusReport": "Módulo de tracking e telemetria veicular 100% desenvolvido. Validação de homologação em campo com frotas parceiras.",
@@ -471,54 +486,14 @@
           "teamMembers": [
             "Mike Andrade"
           ],
+          "periodTeamMembers": [],
           "team": {
             "leader": "Mike Andrade",
             "members": [
               "Mike Andrade"
             ]
           },
-          "recentActivities": [
-            {
-              "id": "7119",
-              "title": "Versão 54",
-              "targetDate": null,
-              "hours": 300,
-              "status": "in-progress",
-              "assignedTo": "Mike Andrade"
-            },
-            {
-              "id": "6082",
-              "title": "Versão 52",
-              "targetDate": null,
-              "hours": 0,
-              "status": "completed",
-              "assignedTo": "Mike Andrade"
-            },
-            {
-              "id": "5277",
-              "title": "Versão 48",
-              "targetDate": null,
-              "hours": 0,
-              "status": "completed",
-              "assignedTo": "Mike Andrade"
-            },
-            {
-              "id": "5280",
-              "title": "Ajustes visuais e correções gerais",
-              "targetDate": null,
-              "hours": 0,
-              "status": "completed",
-              "assignedTo": "Mike Andrade"
-            },
-            {
-              "id": "5336",
-              "title": "Versão 49",
-              "targetDate": null,
-              "hours": 0,
-              "status": "completed",
-              "assignedTo": "Mike Andrade"
-            }
-          ],
+          "recentActivities": [],
           "summary": "Módulo de tracking e telemetria veicular 100% desenvolvido. Validação de homologação em campo com frotas parceiras."
         },
         {
@@ -528,7 +503,9 @@
           "client": "ILC (Interno)",
           "status": "Ativo",
           "ragStatus": "red",
-          "hoursExecuted": 2074.5,
+          "hoursExecuted": 113.5,
+          "hoursExecutedInPeriod": 113.5,
+          "lifetimeHoursExecuted": 2074.5,
           "hoursPlanned": 3392.4,
           "hoursAgreed": 1215.5,
           "statusReport": "Camada de mensageria e barramento de integração em construção (62%). Integrações com APIs legadas em validação.",
@@ -541,6 +518,10 @@
             "Renata Dias de Avila Reis",
             "Anderson Rodrigo de Jesus Souza"
           ],
+          "periodTeamMembers": [
+            "Francisco Molaia Santos",
+            "Silvio Torres"
+          ],
           "team": {
             "leader": "Renata Dias de Avila Reis",
             "members": [
@@ -550,44 +531,44 @@
           },
           "recentActivities": [
             {
-              "id": "5152",
-              "title": "LAT LONG - SMART TRACKING X PORTAL ILC",
-              "targetDate": "2025-10-09",
-              "hours": 47,
-              "status": "planned",
-              "assignedTo": "Renata Dias de Avila Reis"
-            },
-            {
-              "id": "4766",
-              "title": "Desenvolvimento da Nova Área de Login — Portal Integrator",
-              "targetDate": "2025-09-04",
+              "id": "4505",
+              "title": "SmartX – Implementar e testar comportamento do campo \"Outros\" com entrada de texto",
+              "targetDate": null,
               "hours": 0,
               "status": "completed",
               "assignedTo": "Anderson Rodrigo de Jesus Souza"
             },
             {
-              "id": "5153",
-              "title": "LAT LONG - SMART TRACKING X PORTAL ILC",
-              "targetDate": "2025-10-09",
-              "hours": 47,
-              "status": "planned",
-              "assignedTo": "Renata Dias de Avila Reis"
-            },
-            {
-              "id": "4469",
-              "title": "Sustentação",
-              "targetDate": "2026-09-16",
-              "hours": 382.5,
-              "status": "planned",
-              "assignedTo": null
-            },
-            {
-              "id": "4374",
-              "title": "Envio de e-mail frete expresso",
-              "targetDate": "2025-04-22",
-              "hours": 3.5,
+              "id": "4507",
+              "title": "SmartX – Implementar botão de exclusão nos campos de lista de seleção",
+              "targetDate": null,
+              "hours": 0,
               "status": "completed",
+              "assignedTo": "Anderson Rodrigo de Jesus Souza"
+            },
+            {
+              "id": "6980",
+              "title": "Migração de Data Center ADDIT to CCM Matrix",
+              "targetDate": "2026-10-26",
+              "hours": 236,
+              "status": "in-progress",
               "assignedTo": "Francisco Molaia Santos"
+            },
+            {
+              "id": "7463",
+              "title": "Modernizar o acesso ao Portal Integrator ILC",
+              "targetDate": "2026-10-27",
+              "hours": 61,
+              "status": "in-progress",
+              "assignedTo": "Francisco Molaia Santos"
+            },
+            {
+              "id": "integrator-operacional",
+              "title": "Atividades Operacionais & Suporte",
+              "targetDate": "2026-10-26",
+              "hours": 315.3,
+              "status": "in_progress",
+              "assignedTo": "Equipe de Sustentação"
             }
           ],
           "summary": "Camada de mensageria e barramento de integração em construção (62%). Integrações com APIs legadas em validação."
@@ -599,7 +580,9 @@
           "client": "ILC (Interno)",
           "status": "Ativo",
           "ragStatus": "amber",
-          "hoursExecuted": 770.3,
+          "hoursExecuted": 4,
+          "hoursExecutedInPeriod": 4,
+          "lifetimeHoursExecuted": 770.3,
           "hoursPlanned": 1791.5,
           "hoursAgreed": 698,
           "statusReport": "Evolução dos módulos de telemetria inteligente e conectividade veicular (46%). Sprint atual focado em microserviços.",
@@ -616,6 +599,9 @@
             "Clécio Ciriaco da Silva",
             "Tatiane Godinho Dutra"
           ],
+          "periodTeamMembers": [
+            "Thiago Rodrigues do Nascimento Silva"
+          ],
           "team": {
             "leader": "Renata Dias de Avila Reis",
             "members": [
@@ -629,44 +615,12 @@
           },
           "recentActivities": [
             {
-              "id": "4971",
-              "title": "configuracao de sistema criacao se smart X V2 ( permanece V1)",
-              "targetDate": "2025-08-25",
-              "hours": 0,
-              "status": "completed",
-              "assignedTo": "Saddam José Viera Flores"
-            },
-            {
-              "id": "4970",
-              "title": "remover envio de email para motorista V1",
-              "targetDate": "2025-08-25",
-              "hours": 0,
-              "status": "completed",
-              "assignedTo": "Saddam José Viera Flores"
-            },
-            {
-              "id": "4679",
-              "title": "FORMULÁRIOS",
-              "targetDate": "2025-07-28",
-              "hours": 34,
-              "status": "planned",
-              "assignedTo": "Renata Dias de Avila Reis"
-            },
-            {
-              "id": "4177",
-              "title": "XFORMS",
-              "targetDate": "2025-07-14",
-              "hours": 16.5,
-              "status": "planned",
-              "assignedTo": "Tatiane Godinho Dutra"
-            },
-            {
-              "id": "4734",
-              "title": "TOKEN",
-              "targetDate": "2025-08-11",
-              "hours": 0,
-              "status": "completed",
-              "assignedTo": "Renata Dias de Avila Reis"
+              "id": "5963",
+              "title": "Atualização da V1.2 em produção - Cadastro de Motoristas",
+              "targetDate": "2026-10-20",
+              "hours": 132,
+              "status": "in-progress",
+              "assignedTo": "Vitor Neves"
             }
           ],
           "summary": "Evolução dos módulos de telemetria inteligente e conectividade veicular (46%). Sprint atual focado em microserviços."
@@ -678,7 +632,9 @@
           "client": "John Deere",
           "status": "Ativo",
           "ragStatus": "red",
-          "hoursExecuted": 470.3,
+          "hoursExecuted": 0,
+          "hoursExecutedInPeriod": 0,
+          "lifetimeHoursExecuted": 470.3,
           "hoursPlanned": 1066.5,
           "hoursAgreed": 327,
           "statusReport": "Revisão das regras de negócio e barramento dos módulos embarcados John Deere (44%).",
@@ -690,38 +646,14 @@
           "teamMembers": [
             "Filipe Andrade"
           ],
+          "periodTeamMembers": [],
           "team": {
             "leader": "Filipe Andrade",
             "members": [
               "Filipe Andrade"
             ]
           },
-          "recentActivities": [
-            {
-              "id": "880",
-              "title": "LANÇAMENTO VERSÃO ARM - GOOGLE",
-              "targetDate": "2021-10-22",
-              "hours": 0,
-              "status": "completed",
-              "assignedTo": "Filipe Andrade"
-            },
-            {
-              "id": "1056",
-              "title": "APP - GESTÃO EMBARCADA",
-              "targetDate": "2021-11-15",
-              "hours": 170.5,
-              "status": "planned",
-              "assignedTo": null
-            },
-            {
-              "id": "ge---gest-o-embarcada-operacional",
-              "title": "Atividades Operacionais & Suporte",
-              "targetDate": "2022-06-30",
-              "hours": 299.8,
-              "status": "in_progress",
-              "assignedTo": "Equipe de Sustentação"
-            }
-          ],
+          "recentActivities": [],
           "summary": "Revisão das regras de negócio e barramento dos módulos embarcados John Deere (44%)."
         }
       ]
@@ -1176,8 +1108,21 @@
     ],
     "maintenanceSection": {
       "totalProjects": 4,
-      "totalHours": 4035.1000000000004,
-      "periodLabel": "Semana 43 (2026-10-15 a 2026-10-22)",
+      "totalHours": 46,
+      "newProjectHours": 553,
+      "totalPeriodHours": 599,
+      "maintenancePercent": 8,
+      "newProjectPercent": 92,
+      "activeSystemsCount": 2,
+      "teamMembersCount": 3,
+      "teamMembers": [
+        "Francisco Molaia Santos",
+        "Silvio Torres",
+        "Thiago Rodrigues do Nascimento Silva"
+      ],
+      "startDate": "2026-10-14",
+      "endDate": "2026-10-21",
+      "periodLabel": "14/10/2026 a 21/10/2026",
       "projects": [
         {
           "id": "a7d5d8e7-c1e1-4d14-9aac-746ea346ac02",
@@ -1186,7 +1131,9 @@
           "client": "ILC (Interno)",
           "status": "Ativo",
           "ragStatus": "green",
-          "hoursExecuted": 720,
+          "hoursExecuted": 0,
+          "hoursExecutedInPeriod": 0,
+          "lifetimeHoursExecuted": 720,
           "hoursPlanned": 720,
           "hoursAgreed": 720,
           "statusReport": "Módulo de tracking e telemetria veicular 100% desenvolvido. Validação de homologação em campo com frotas parceiras.",
@@ -1198,54 +1145,14 @@
           "teamMembers": [
             "Mike Andrade"
           ],
+          "periodTeamMembers": [],
           "team": {
             "leader": "Mike Andrade",
             "members": [
               "Mike Andrade"
             ]
           },
-          "recentActivities": [
-            {
-              "id": "7119",
-              "title": "Versão 54",
-              "targetDate": null,
-              "hours": 300,
-              "status": "in-progress",
-              "assignedTo": "Mike Andrade"
-            },
-            {
-              "id": "6082",
-              "title": "Versão 52",
-              "targetDate": null,
-              "hours": 0,
-              "status": "completed",
-              "assignedTo": "Mike Andrade"
-            },
-            {
-              "id": "5277",
-              "title": "Versão 48",
-              "targetDate": null,
-              "hours": 0,
-              "status": "completed",
-              "assignedTo": "Mike Andrade"
-            },
-            {
-              "id": "5280",
-              "title": "Ajustes visuais e correções gerais",
-              "targetDate": null,
-              "hours": 0,
-              "status": "completed",
-              "assignedTo": "Mike Andrade"
-            },
-            {
-              "id": "5336",
-              "title": "Versão 49",
-              "targetDate": null,
-              "hours": 0,
-              "status": "completed",
-              "assignedTo": "Mike Andrade"
-            }
-          ],
+          "recentActivities": [],
           "summary": "Módulo de tracking e telemetria veicular 100% desenvolvido. Validação de homologação em campo com frotas parceiras."
         },
         {
@@ -1255,7 +1162,9 @@
           "client": "ILC (Interno)",
           "status": "Ativo",
           "ragStatus": "red",
-          "hoursExecuted": 2074.5,
+          "hoursExecuted": 42,
+          "hoursExecutedInPeriod": 42,
+          "lifetimeHoursExecuted": 2074.5,
           "hoursPlanned": 3392.4,
           "hoursAgreed": 1215.5,
           "statusReport": "Camada de mensageria e barramento de integração em construção (62%). Integrações com APIs legadas em validação.",
@@ -1268,6 +1177,10 @@
             "Renata Dias de Avila Reis",
             "Anderson Rodrigo de Jesus Souza"
           ],
+          "periodTeamMembers": [
+            "Francisco Molaia Santos",
+            "Silvio Torres"
+          ],
           "team": {
             "leader": "Renata Dias de Avila Reis",
             "members": [
@@ -1277,44 +1190,20 @@
           },
           "recentActivities": [
             {
-              "id": "5152",
-              "title": "LAT LONG - SMART TRACKING X PORTAL ILC",
-              "targetDate": "2025-10-09",
-              "hours": 47,
-              "status": "planned",
-              "assignedTo": "Renata Dias de Avila Reis"
-            },
-            {
-              "id": "4766",
-              "title": "Desenvolvimento da Nova Área de Login — Portal Integrator",
-              "targetDate": "2025-09-04",
+              "id": "4505",
+              "title": "SmartX – Implementar e testar comportamento do campo \"Outros\" com entrada de texto",
+              "targetDate": null,
               "hours": 0,
               "status": "completed",
               "assignedTo": "Anderson Rodrigo de Jesus Souza"
             },
             {
-              "id": "5153",
-              "title": "LAT LONG - SMART TRACKING X PORTAL ILC",
-              "targetDate": "2025-10-09",
-              "hours": 47,
-              "status": "planned",
-              "assignedTo": "Renata Dias de Avila Reis"
-            },
-            {
-              "id": "4469",
-              "title": "Sustentação",
-              "targetDate": "2026-09-16",
-              "hours": 382.5,
-              "status": "planned",
-              "assignedTo": null
-            },
-            {
-              "id": "4374",
-              "title": "Envio de e-mail frete expresso",
-              "targetDate": "2025-04-22",
-              "hours": 3.5,
+              "id": "4507",
+              "title": "SmartX – Implementar botão de exclusão nos campos de lista de seleção",
+              "targetDate": null,
+              "hours": 0,
               "status": "completed",
-              "assignedTo": "Francisco Molaia Santos"
+              "assignedTo": "Anderson Rodrigo de Jesus Souza"
             }
           ],
           "summary": "Camada de mensageria e barramento de integração em construção (62%). Integrações com APIs legadas em validação."
@@ -1326,7 +1215,9 @@
           "client": "ILC (Interno)",
           "status": "Ativo",
           "ragStatus": "amber",
-          "hoursExecuted": 770.3,
+          "hoursExecuted": 4,
+          "hoursExecutedInPeriod": 4,
+          "lifetimeHoursExecuted": 770.3,
           "hoursPlanned": 1791.5,
           "hoursAgreed": 698,
           "statusReport": "Evolução dos módulos de telemetria inteligente e conectividade veicular (46%). Sprint atual focado em microserviços.",
@@ -1343,6 +1234,9 @@
             "Clécio Ciriaco da Silva",
             "Tatiane Godinho Dutra"
           ],
+          "periodTeamMembers": [
+            "Thiago Rodrigues do Nascimento Silva"
+          ],
           "team": {
             "leader": "Renata Dias de Avila Reis",
             "members": [
@@ -1356,44 +1250,12 @@
           },
           "recentActivities": [
             {
-              "id": "4971",
-              "title": "configuracao de sistema criacao se smart X V2 ( permanece V1)",
-              "targetDate": "2025-08-25",
-              "hours": 0,
-              "status": "completed",
-              "assignedTo": "Saddam José Viera Flores"
-            },
-            {
-              "id": "4970",
-              "title": "remover envio de email para motorista V1",
-              "targetDate": "2025-08-25",
-              "hours": 0,
-              "status": "completed",
-              "assignedTo": "Saddam José Viera Flores"
-            },
-            {
-              "id": "4679",
-              "title": "FORMULÁRIOS",
-              "targetDate": "2025-07-28",
-              "hours": 34,
-              "status": "planned",
-              "assignedTo": "Renata Dias de Avila Reis"
-            },
-            {
-              "id": "4177",
-              "title": "XFORMS",
-              "targetDate": "2025-07-14",
-              "hours": 16.5,
-              "status": "planned",
-              "assignedTo": "Tatiane Godinho Dutra"
-            },
-            {
-              "id": "4734",
-              "title": "TOKEN",
-              "targetDate": "2025-08-11",
-              "hours": 0,
-              "status": "completed",
-              "assignedTo": "Renata Dias de Avila Reis"
+              "id": "5963",
+              "title": "Atualização da V1.2 em produção - Cadastro de Motoristas",
+              "targetDate": "2026-10-20",
+              "hours": 132,
+              "status": "in-progress",
+              "assignedTo": "Vitor Neves"
             }
           ],
           "summary": "Evolução dos módulos de telemetria inteligente e conectividade veicular (46%). Sprint atual focado em microserviços."
@@ -1405,7 +1267,9 @@
           "client": "John Deere",
           "status": "Ativo",
           "ragStatus": "red",
-          "hoursExecuted": 470.3,
+          "hoursExecuted": 0,
+          "hoursExecutedInPeriod": 0,
+          "lifetimeHoursExecuted": 470.3,
           "hoursPlanned": 1066.5,
           "hoursAgreed": 327,
           "statusReport": "Revisão das regras de negócio e barramento dos módulos embarcados John Deere (44%).",
@@ -1417,38 +1281,14 @@
           "teamMembers": [
             "Filipe Andrade"
           ],
+          "periodTeamMembers": [],
           "team": {
             "leader": "Filipe Andrade",
             "members": [
               "Filipe Andrade"
             ]
           },
-          "recentActivities": [
-            {
-              "id": "880",
-              "title": "LANÇAMENTO VERSÃO ARM - GOOGLE",
-              "targetDate": "2021-10-22",
-              "hours": 0,
-              "status": "completed",
-              "assignedTo": "Filipe Andrade"
-            },
-            {
-              "id": "1056",
-              "title": "APP - GESTÃO EMBARCADA",
-              "targetDate": "2021-11-15",
-              "hours": 170.5,
-              "status": "planned",
-              "assignedTo": null
-            },
-            {
-              "id": "ge---gest-o-embarcada-operacional",
-              "title": "Atividades Operacionais & Suporte",
-              "targetDate": "2022-06-30",
-              "hours": 299.8,
-              "status": "in_progress",
-              "assignedTo": "Equipe de Sustentação"
-            }
-          ],
+          "recentActivities": [],
           "summary": "Revisão das regras de negócio e barramento dos módulos embarcados John Deere (44%)."
         }
       ]
@@ -1883,8 +1723,20 @@
     ],
     "maintenanceSection": {
       "totalProjects": 4,
-      "totalHours": 4035.1000000000004,
-      "periodLabel": "Semana 42 (2026-10-09 a 2026-10-16)",
+      "totalHours": 49,
+      "newProjectHours": 479,
+      "totalPeriodHours": 528,
+      "maintenancePercent": 9,
+      "newProjectPercent": 91,
+      "activeSystemsCount": 1,
+      "teamMembersCount": 2,
+      "teamMembers": [
+        "Francisco Molaia Santos",
+        "Silvio Torres"
+      ],
+      "startDate": "2026-10-13",
+      "endDate": "2026-10-17",
+      "periodLabel": "13/10/2026 a 17/10/2026",
       "projects": [
         {
           "id": "a7d5d8e7-c1e1-4d14-9aac-746ea346ac02",
@@ -1893,7 +1745,9 @@
           "client": "ILC (Interno)",
           "status": "Ativo",
           "ragStatus": "green",
-          "hoursExecuted": 720,
+          "hoursExecuted": 0,
+          "hoursExecutedInPeriod": 0,
+          "lifetimeHoursExecuted": 720,
           "hoursPlanned": 720,
           "hoursAgreed": 720,
           "statusReport": "Módulo de tracking e telemetria veicular 100% desenvolvido. Validação de homologação em campo com frotas parceiras.",
@@ -1905,54 +1759,14 @@
           "teamMembers": [
             "Mike Andrade"
           ],
+          "periodTeamMembers": [],
           "team": {
             "leader": "Mike Andrade",
             "members": [
               "Mike Andrade"
             ]
           },
-          "recentActivities": [
-            {
-              "id": "7119",
-              "title": "Versão 54",
-              "targetDate": null,
-              "hours": 300,
-              "status": "in-progress",
-              "assignedTo": "Mike Andrade"
-            },
-            {
-              "id": "6082",
-              "title": "Versão 52",
-              "targetDate": null,
-              "hours": 0,
-              "status": "completed",
-              "assignedTo": "Mike Andrade"
-            },
-            {
-              "id": "5277",
-              "title": "Versão 48",
-              "targetDate": null,
-              "hours": 0,
-              "status": "completed",
-              "assignedTo": "Mike Andrade"
-            },
-            {
-              "id": "5280",
-              "title": "Ajustes visuais e correções gerais",
-              "targetDate": null,
-              "hours": 0,
-              "status": "completed",
-              "assignedTo": "Mike Andrade"
-            },
-            {
-              "id": "5336",
-              "title": "Versão 49",
-              "targetDate": null,
-              "hours": 0,
-              "status": "completed",
-              "assignedTo": "Mike Andrade"
-            }
-          ],
+          "recentActivities": [],
           "summary": "Módulo de tracking e telemetria veicular 100% desenvolvido. Validação de homologação em campo com frotas parceiras."
         },
         {
@@ -1962,7 +1776,9 @@
           "client": "ILC (Interno)",
           "status": "Ativo",
           "ragStatus": "red",
-          "hoursExecuted": 2074.5,
+          "hoursExecuted": 49,
+          "hoursExecutedInPeriod": 49,
+          "lifetimeHoursExecuted": 2074.5,
           "hoursPlanned": 3392.4,
           "hoursAgreed": 1215.5,
           "statusReport": "Camada de mensageria e barramento de integração em construção (62%). Integrações com APIs legadas em validação.",
@@ -1975,6 +1791,10 @@
             "Renata Dias de Avila Reis",
             "Anderson Rodrigo de Jesus Souza"
           ],
+          "periodTeamMembers": [
+            "Francisco Molaia Santos",
+            "Silvio Torres"
+          ],
           "team": {
             "leader": "Renata Dias de Avila Reis",
             "members": [
@@ -1984,44 +1804,20 @@
           },
           "recentActivities": [
             {
-              "id": "5152",
-              "title": "LAT LONG - SMART TRACKING X PORTAL ILC",
-              "targetDate": "2025-10-09",
-              "hours": 47,
-              "status": "planned",
-              "assignedTo": "Renata Dias de Avila Reis"
-            },
-            {
-              "id": "4766",
-              "title": "Desenvolvimento da Nova Área de Login — Portal Integrator",
-              "targetDate": "2025-09-04",
+              "id": "4505",
+              "title": "SmartX – Implementar e testar comportamento do campo \"Outros\" com entrada de texto",
+              "targetDate": null,
               "hours": 0,
               "status": "completed",
               "assignedTo": "Anderson Rodrigo de Jesus Souza"
             },
             {
-              "id": "5153",
-              "title": "LAT LONG - SMART TRACKING X PORTAL ILC",
-              "targetDate": "2025-10-09",
-              "hours": 47,
-              "status": "planned",
-              "assignedTo": "Renata Dias de Avila Reis"
-            },
-            {
-              "id": "4469",
-              "title": "Sustentação",
-              "targetDate": "2026-09-16",
-              "hours": 382.5,
-              "status": "planned",
-              "assignedTo": null
-            },
-            {
-              "id": "4374",
-              "title": "Envio de e-mail frete expresso",
-              "targetDate": "2025-04-22",
-              "hours": 3.5,
+              "id": "4507",
+              "title": "SmartX – Implementar botão de exclusão nos campos de lista de seleção",
+              "targetDate": null,
+              "hours": 0,
               "status": "completed",
-              "assignedTo": "Francisco Molaia Santos"
+              "assignedTo": "Anderson Rodrigo de Jesus Souza"
             }
           ],
           "summary": "Camada de mensageria e barramento de integração em construção (62%). Integrações com APIs legadas em validação."
@@ -2033,7 +1829,9 @@
           "client": "ILC (Interno)",
           "status": "Ativo",
           "ragStatus": "amber",
-          "hoursExecuted": 770.3,
+          "hoursExecuted": 0,
+          "hoursExecutedInPeriod": 0,
+          "lifetimeHoursExecuted": 770.3,
           "hoursPlanned": 1791.5,
           "hoursAgreed": 698,
           "statusReport": "Evolução dos módulos de telemetria inteligente e conectividade veicular (46%). Sprint atual focado em microserviços.",
@@ -2050,6 +1848,7 @@
             "Clécio Ciriaco da Silva",
             "Tatiane Godinho Dutra"
           ],
+          "periodTeamMembers": [],
           "team": {
             "leader": "Renata Dias de Avila Reis",
             "members": [
@@ -2061,48 +1860,7 @@
               "Tatiane Godinho Dutra"
             ]
           },
-          "recentActivities": [
-            {
-              "id": "4971",
-              "title": "configuracao de sistema criacao se smart X V2 ( permanece V1)",
-              "targetDate": "2025-08-25",
-              "hours": 0,
-              "status": "completed",
-              "assignedTo": "Saddam José Viera Flores"
-            },
-            {
-              "id": "4970",
-              "title": "remover envio de email para motorista V1",
-              "targetDate": "2025-08-25",
-              "hours": 0,
-              "status": "completed",
-              "assignedTo": "Saddam José Viera Flores"
-            },
-            {
-              "id": "4679",
-              "title": "FORMULÁRIOS",
-              "targetDate": "2025-07-28",
-              "hours": 34,
-              "status": "planned",
-              "assignedTo": "Renata Dias de Avila Reis"
-            },
-            {
-              "id": "4177",
-              "title": "XFORMS",
-              "targetDate": "2025-07-14",
-              "hours": 16.5,
-              "status": "planned",
-              "assignedTo": "Tatiane Godinho Dutra"
-            },
-            {
-              "id": "4734",
-              "title": "TOKEN",
-              "targetDate": "2025-08-11",
-              "hours": 0,
-              "status": "completed",
-              "assignedTo": "Renata Dias de Avila Reis"
-            }
-          ],
+          "recentActivities": [],
           "summary": "Evolução dos módulos de telemetria inteligente e conectividade veicular (46%). Sprint atual focado em microserviços."
         },
         {
@@ -2112,7 +1870,9 @@
           "client": "John Deere",
           "status": "Ativo",
           "ragStatus": "red",
-          "hoursExecuted": 470.3,
+          "hoursExecuted": 0,
+          "hoursExecutedInPeriod": 0,
+          "lifetimeHoursExecuted": 470.3,
           "hoursPlanned": 1066.5,
           "hoursAgreed": 327,
           "statusReport": "Revisão das regras de negócio e barramento dos módulos embarcados John Deere (44%).",
@@ -2124,38 +1884,14 @@
           "teamMembers": [
             "Filipe Andrade"
           ],
+          "periodTeamMembers": [],
           "team": {
             "leader": "Filipe Andrade",
             "members": [
               "Filipe Andrade"
             ]
           },
-          "recentActivities": [
-            {
-              "id": "880",
-              "title": "LANÇAMENTO VERSÃO ARM - GOOGLE",
-              "targetDate": "2021-10-22",
-              "hours": 0,
-              "status": "completed",
-              "assignedTo": "Filipe Andrade"
-            },
-            {
-              "id": "1056",
-              "title": "APP - GESTÃO EMBARCADA",
-              "targetDate": "2021-11-15",
-              "hours": 170.5,
-              "status": "planned",
-              "assignedTo": null
-            },
-            {
-              "id": "ge---gest-o-embarcada-operacional",
-              "title": "Atividades Operacionais & Suporte",
-              "targetDate": "2022-06-30",
-              "hours": 299.8,
-              "status": "in_progress",
-              "assignedTo": "Equipe de Sustentação"
-            }
-          ],
+          "recentActivities": [],
           "summary": "Revisão das regras de negócio e barramento dos módulos embarcados John Deere (44%)."
         }
       ]

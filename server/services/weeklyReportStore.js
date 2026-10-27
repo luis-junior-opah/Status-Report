@@ -333,6 +333,124 @@ class WeeklyReportStore {
     this.reports = [current, past];
   }
 
+  extractReportPeriodDates(report) {
+    if (report && report.period && typeof report.period === 'string') {
+      const parts = report.period.split(/\s+a\s+/i);
+      if (parts.length === 2) {
+        const parsePart = (str, fallbackYear) => {
+          const segs = str.trim().split('/');
+          if (segs.length === 3) {
+            const y = segs[2].length === 2 ? '20' + segs[2] : segs[2];
+            return `${y}-${segs[1].padStart(2, '0')}-${segs[0].padStart(2, '0')}`;
+          } else if (segs.length === 2) {
+            return `${fallbackYear}-${segs[1].padStart(2, '0')}-${segs[0].padStart(2, '0')}`;
+          }
+          return null;
+        };
+        const year = report.year || (report.meetingDate ? report.meetingDate.slice(0, 4) : '2026');
+        const start = parsePart(parts[0], year);
+        const end = parsePart(parts[1], year);
+        if (start && end) {
+          return { startDate: start, endDate: end };
+        }
+      }
+    }
+    const meetingD = (report && report.meetingDate) ? new Date(report.meetingDate + 'T12:00:00') : new Date();
+    const start = new Date(meetingD.getTime() - 7 * 24 * 3600 * 1000).toISOString().split('T')[0];
+    const end = (report && report.meetingDate) || new Date().toISOString().split('T')[0];
+    return { startDate: start, endDate: end };
+  }
+
+  computePeriodMaintenanceMetrics(startDate, endDate, allProjects) {
+    let newProjectHours = 0;
+    let maintenanceHours = 0;
+    const projectPeriodHoursMap = {};
+    const projectPeriodMembersMap = {};
+    const maintMembersSet = new Set();
+    const allMembersSet = new Set();
+    let activeSystemsCount = 0;
+
+    (allProjects || []).forEach(p => {
+      const isMaint = p.category === 'maintenance';
+      projectPeriodHoursMap[p.id] = 0;
+      projectPeriodMembersMap[p.id] = new Set();
+
+      (p.activities || []).forEach(a => {
+        const aType = (a.type || '').toLowerCase();
+        const validTasks = (a.linkedTasks || []).filter(t => (Number(t.completedWork) || 0) > 0);
+
+        if (validTasks.length > 0) {
+          validTasks.forEach(t => {
+            const tType = (t.type || '').toLowerCase();
+            if (isMaint && (tType.includes('epic') || tType.includes('feature'))) return;
+            const h = Number(t.completedWork) || 0;
+            if (h <= 0) return;
+            const d = (t.targetDate || t.startDate || a.targetDate || a.startDate || '').slice(0, 10);
+            if (d && d >= startDate && d <= endDate) {
+              if (isMaint) {
+                maintenanceHours += h;
+                projectPeriodHoursMap[p.id] = (projectPeriodHoursMap[p.id] || 0) + h;
+                if (t.assignedTo) {
+                  maintMembersSet.add(t.assignedTo);
+                  projectPeriodMembersMap[p.id].add(t.assignedTo);
+                }
+              } else {
+                newProjectHours += h;
+              }
+              if (t.assignedTo) allMembersSet.add(t.assignedTo);
+            }
+          });
+        } else {
+          if (isMaint && (aType.includes('epic') || aType.includes('feature'))) return;
+          const h = Number(a.ilcHours) || 0;
+          if (h <= 0) return;
+          const d = (a.targetDate || a.startDate || '').slice(0, 10);
+          if (d && d >= startDate && d <= endDate) {
+            if (isMaint) {
+              maintenanceHours += h;
+              projectPeriodHoursMap[p.id] = (projectPeriodHoursMap[p.id] || 0) + h;
+              if (a.assignedTo) {
+                maintMembersSet.add(a.assignedTo);
+                projectPeriodMembersMap[p.id].add(a.assignedTo);
+              }
+            } else {
+              newProjectHours += h;
+            }
+            if (a.assignedTo) allMembersSet.add(a.assignedTo);
+          }
+        }
+      });
+
+      projectPeriodHoursMap[p.id] = Math.round(projectPeriodHoursMap[p.id] * 10) / 10;
+      if (isMaint && projectPeriodHoursMap[p.id] > 0) {
+        activeSystemsCount++;
+      }
+    });
+
+    const roundedMaintHours = Math.round(maintenanceHours * 10) / 10;
+    const roundedNewHours = Math.round(newProjectHours * 10) / 10;
+    const totalPeriodHours = Math.round((roundedNewHours + roundedMaintHours) * 10) / 10;
+    const maintenancePercent = totalPeriodHours > 0 ? Math.round((roundedMaintHours / totalPeriodHours) * 100) : 0;
+    const newProjectPercent = 100 - maintenancePercent;
+
+    return {
+      startDate,
+      endDate,
+      maintenanceHours: roundedMaintHours,
+      newProjectHours: roundedNewHours,
+      totalPeriodHours,
+      maintenancePercent,
+      newProjectPercent,
+      activeSystemsCount,
+      teamMembersCount: maintMembersSet.size,
+      teamMembers: Array.from(maintMembersSet),
+      projectPeriodHoursMap,
+      projectPeriodMembersMap: Object.fromEntries(
+        Object.entries(projectPeriodMembersMap).map(([k, set]) => [k, Array.from(set)])
+      )
+    };
+  }
+
   syncReportWithProjects(report) {
     if (!report) return;
     const allProjects = projectStore.getAllProjects() || [];
@@ -461,18 +579,28 @@ class WeeklyReportStore {
 
     // Sessão dedicada a Sustentação no Status Report
     const allMaintenanceProjects = allProjects.filter(p => p.category === 'maintenance');
-    const meetingD = report.meetingDate ? new Date(report.meetingDate + 'T12:00:00') : new Date();
-    const periodStart = new Date(meetingD.getTime() - 7 * 24 * 3600 * 1000).toISOString().split('T')[0];
-    const periodEnd = report.meetingDate || new Date().toISOString().split('T')[0];
+    const { startDate, endDate } = this.extractReportPeriodDates(report);
+    const periodMetrics = this.computePeriodMaintenanceMetrics(startDate, endDate, allProjects);
 
     report.maintenanceSection = {
       totalProjects: allMaintenanceProjects.length,
-      totalHours: allMaintenanceProjects.reduce((s, p) => s + (p.hours?.totalExecuted || 0), 0),
-      periodLabel: `Semana ${report.weekNumber} (${periodStart} a ${periodEnd})`,
+      totalHours: periodMetrics.maintenanceHours,
+      newProjectHours: periodMetrics.newProjectHours,
+      totalPeriodHours: periodMetrics.totalPeriodHours,
+      maintenancePercent: periodMetrics.maintenancePercent,
+      newProjectPercent: periodMetrics.newProjectPercent,
+      activeSystemsCount: periodMetrics.activeSystemsCount,
+      teamMembersCount: periodMetrics.teamMembersCount,
+      teamMembers: periodMetrics.teamMembers,
+      startDate: periodMetrics.startDate,
+      endDate: periodMetrics.endDate,
+      periodLabel: report.period || `Semana ${report.weekNumber} (${periodMetrics.startDate} a ${periodMetrics.endDate})`,
       projects: allMaintenanceProjects.map(p => {
         const existing = (report.maintenanceSection?.projects || []).find(ep => (ep.id === p.id || ep.projectId === p.id || (ep.name && ep.name.toLowerCase() === (p.name || '').toLowerCase())));
         const prevMaintProject = (prevReport?.maintenanceSection?.projects || []).find(ep => (ep.id === p.id || ep.projectId === p.id || (ep.name && ep.name.toLowerCase() === (p.name || '').toLowerCase())));
         const details = resolveProjectWeeklyDetails(p);
+        const periodHours = periodMetrics.projectPeriodHoursMap[p.id] || 0;
+        const periodMembers = periodMetrics.projectPeriodMembersMap[p.id] || [];
 
         // 1. STATUS REPORT ANTERIOR
         let prevReportText = '';
@@ -511,8 +639,8 @@ class WeeklyReportStore {
 
         const recentActs = (p.activities || [])
           .filter(a => {
-            const d = a.targetDate || a.startDate;
-            return a.status === 'completed' || (d && d >= periodStart) || (a.ilcHours > 0);
+            const d = (a.targetDate || a.startDate || '').slice(0, 10);
+            return (d && d >= startDate && d <= endDate) || (a.status === 'completed' && (!d || (d >= startDate && d <= endDate)));
           })
           .slice(0, 5)
           .map(a => ({
@@ -531,7 +659,9 @@ class WeeklyReportStore {
           client: p.client,
           status: p.status || 'Ativo',
           ragStatus: p.ragStatus || 'green',
-          hoursExecuted: p.hours?.totalExecuted || 0,
+          hoursExecuted: periodHours,
+          hoursExecutedInPeriod: periodHours,
+          lifetimeHoursExecuted: p.hours?.totalExecuted || 0,
           hoursPlanned: p.hours?.totalPlanned || 0,
           hoursAgreed: p.hours?.agreed || p.agreedHours || 0,
           statusReport: currentReportText,
@@ -541,6 +671,7 @@ class WeeklyReportStore {
           attentionPoints: attentionText,
           teamLeader: p.team?.leader || (p.team?.members ? p.team.members[0] : ''),
           teamMembers: p.team?.members || [],
+          periodTeamMembers: periodMembers,
           team: p.team || { leader: p.team?.leader || '', members: [] },
           recentActivities: recentActs,
           summary: currentReportText
