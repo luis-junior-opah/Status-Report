@@ -18,19 +18,12 @@ import { TeamAllocationReport, TeamMemberAllocation, ProjectTeamAllocation } fro
           
           <!-- Title & Description -->
           <div>
-            <div class="flex items-center gap-2 mb-1">
+            <div class="flex items-center gap-2">
               <span class="text-2xl">👥</span>
               <h2 class="text-xl font-black text-slate-900 tracking-tight">
                 Análise & Alocação de Equipe
               </h2>
-              <span class="text-[10px] font-black uppercase px-2 py-0.5 rounded-full bg-indigo-100 text-indigo-800 border border-indigo-200">
-                Aba Independente
-              </span>
             </div>
-            <p class="text-xs text-slate-500 max-w-2xl">
-              Visão consolidada da alocação de capacidade técnica, dedicação entre novos desenvolvimentos e sustentação contínua,
-              e mapeamento de projetos em que cada colaborador está alocado.
-            </p>
           </div>
 
           <!-- Controls: Client, Period & Curadoria Link -->
