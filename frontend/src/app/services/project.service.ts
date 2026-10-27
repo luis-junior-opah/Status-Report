@@ -307,17 +307,37 @@ export class ProjectService {
     return rounded.toLocaleString('pt-BR', { minimumFractionDigits: 0, maximumFractionDigits: 1 });
   }
 
-  // Active project for EAP Gantt
+  // Active project for EAP Gantt (searches all projects so maintenance projects are fully supported)
   activeEapProject = computed(() => {
     const selId = this.selectedEapProjectId();
-    const list = this.filteredProjects();
     if (selId) {
-      const found = list.find(p => p.id === selId);
+      const found = this.projects().find(p => p.id === selId);
       if (found) return found;
     }
+    const list = this.filteredProjects();
     // Default to Frete Expresso 2.0 or first project
     const frete = list.find(p => p.name.toLowerCase().includes('frete expresso'));
-    return frete || list[0] || null;
+    return frete || list[0] || this.projects()[0] || null;
+  });
+
+  // Projects available in EAP Gantt selector (includes both new developments and maintenance projects)
+  eapAvailableProjects = computed(() => {
+    let list = this.projects();
+    if (this.isCustomView() && this.customProjectIds() && this.customProjectIds()!.length > 0) {
+      const allowed = new Set(this.customProjectIds()!.map(id => id.trim().toLowerCase()));
+      list = list.filter(p => allowed.has(p.id.toLowerCase()));
+    } else {
+      const client = this.selectedClient();
+      if (client !== 'Todos') {
+        list = list.filter(p => p.client.toLowerCase() === client.toLowerCase());
+      }
+    }
+    // Always guarantee that if active project is selected (e.g. from Sustentação view), it is included in the list even if client filter would exclude it
+    const active = this.activeEapProject();
+    if (active && !list.some(p => p.id === active.id)) {
+      list = [active, ...list];
+    }
+    return list.slice().sort((a, b) => this.compareProjects(a, b));
   });
 
   async loadPublicData() {

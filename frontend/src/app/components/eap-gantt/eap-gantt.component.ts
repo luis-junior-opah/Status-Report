@@ -37,6 +37,9 @@ import { Project, ProjectActivity, EapPhase, AzureAuditReport } from '../../mode
                 <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">
                   Cronograma Oficial EAP
                 </span>
+                <span *ngIf="project.category === 'maintenance'" class="text-[10px] font-bold bg-purple-100 text-purple-800 px-2.5 py-0.5 rounded-full border border-purple-200 shadow-2xs">
+                  🛠️ Projeto de Sustentação
+                </span>
                 <span *ngIf="project.inconsistencies && project.inconsistencies.length > 0" class="text-[10px] font-bold bg-amber-100 text-amber-800 px-2 py-0.5 rounded-full border border-amber-200">
                   ⚠️ Inconsistências Detectadas
                 </span>
@@ -79,8 +82,8 @@ import { Project, ProjectActivity, EapPhase, AzureAuditReport } from '../../mode
               [ngModel]="project.id"
               (ngModelChange)="service.selectedEapProjectId.set($event)"
               class="bg-slate-50 border border-slate-300 text-slate-800 text-xs rounded-xl px-3 py-2 focus:ring-2 focus:ring-blue-500 font-semibold outline-none max-w-xs truncate">
-              <option *ngFor="let p of service.filteredProjects()" [value]="p.id">
-                [{{ p.priority || 'P2' }}] {{ p.name }}
+              <option *ngFor="let p of service.eapAvailableProjects()" [value]="p.id">
+                [{{ p.category === 'maintenance' ? '🛠️ Sustentação' : (p.priority || 'P2') }}] {{ p.name }}
               </option>
             </select>
 
@@ -98,8 +101,15 @@ import { Project, ProjectActivity, EapPhase, AzureAuditReport } from '../../mode
               </svg>
             </button>
 
-            <!-- Back to Home View -->
+            <!-- Back to Sustentação or Home View -->
             <button
+              *ngIf="project.category === 'maintenance'"
+              (click)="service.activeView.set('maintenance')"
+              class="px-3 py-2 bg-purple-700 hover:bg-purple-800 text-white rounded-xl text-xs font-bold transition cursor-pointer shadow-xs">
+              ← Sustentação
+            </button>
+            <button
+              *ngIf="project.category !== 'maintenance'"
               (click)="service.activeView.set('macro')"
               class="px-3 py-2 bg-slate-800 hover:bg-slate-900 text-white rounded-xl text-xs font-bold transition cursor-pointer shadow-xs">
               ← Home
