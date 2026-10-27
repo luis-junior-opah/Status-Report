@@ -523,34 +523,56 @@ import { Project, ProjectActivity, EapPhase, AzureAuditReport } from '../../mode
         <div class="bg-white p-5 rounded-3xl border border-slate-200/90 shadow-sm flex flex-col justify-between">
           <div>
             <div class="flex items-center justify-between mb-3">
-              <h3 class="text-xs font-black text-slate-800 uppercase tracking-wider">
-                Distribuição de Horas por Etapa da EAP
-              </h3>
-              <span class="text-xs font-bold text-slate-500">
-                Total: {{ formatHours(project.hours.totalPlanned) }}h
+              <div>
+                <h3 class="text-xs font-black text-slate-800 uppercase tracking-wider">
+                  Orçamento de Horas por Etapa da EAP
+                </h3>
+                <span class="text-[10px] text-slate-400">
+                  Consumo do esforço orçado vs entregas concluídas
+                </span>
+              </div>
+              <span class="text-xs font-extrabold text-slate-700 bg-slate-100 px-2.5 py-1 rounded-xl border border-slate-200">
+                Total Orçado: {{ formatHours(project.hours.totalPlanned) }}h
               </span>
             </div>
 
-            <div class="space-y-3.5">
+            <div class="space-y-3.5 mt-3">
               <div *ngFor="let dist of project.hours.distribution; let i = index" class="text-xs">
-                <div class="flex items-center justify-between font-bold text-slate-700 mb-1">
+                <div class="flex flex-wrap items-center justify-between font-bold text-slate-700 mb-1 gap-1">
                   <div class="flex items-center gap-2">
                     <span class="w-5 h-5 rounded-lg bg-slate-900 text-white text-[10px] font-black flex items-center justify-center">
                       {{ i + 1 }}
                     </span>
                     <span>{{ dist.phase }}</span>
+                    <!-- Phase Scope Delivery Badge -->
+                    <span
+                      *ngIf="isPhaseCompleted(project, dist.phase)"
+                      class="text-[10px] font-black bg-emerald-100 text-emerald-800 border border-emerald-200 px-2 py-0.2 rounded-full flex items-center gap-1">
+                      ✓ Concluída
+                    </span>
                   </div>
-                  <div class="text-right">
+                  <div class="text-right flex items-center gap-1.5 flex-wrap">
                     <span class="text-slate-900 font-extrabold">{{ formatHours(dist.executed) }}h</span>
                     <span class="text-slate-400 font-normal"> / {{ formatHours(dist.planned) }}h</span>
-                    <span class="text-blue-700 font-bold ml-1.5">({{ dist.percentage }}%)</span>
+                    <span
+                      [ngClass]="dist.percentage > 100 ? 'text-amber-700 font-black bg-amber-50 border border-amber-200 px-1.5 py-0.2 rounded' : 'text-blue-700 font-bold'"
+                      class="ml-0.5">
+                      ({{ dist.percentage }}% orçado)
+                    </span>
+                    <span *ngIf="dist.percentage > 100" class="text-[10px] font-bold text-amber-600">
+                      (+{{ formatHours(dist.executed - dist.planned) }}h desvio)
+                    </span>
+                    <span *ngIf="dist.planned > 0 && dist.executed < dist.planned && isPhaseCompleted(project, dist.phase)" class="text-[10px] font-bold text-emerald-600">
+                      (-{{ formatHours(dist.planned - dist.executed) }}h economia)
+                    </span>
                   </div>
                 </div>
-                <!-- Progress bar -->
+                <!-- Progress bar (visualizing budget consumption) -->
                 <div class="w-full bg-slate-100 rounded-full h-2 overflow-hidden border border-slate-200/60">
                   <div
-                    class="bg-blue-600 h-full rounded-full transition-all duration-500"
-                    [style.width.%]="dist.percentage">
+                    [ngClass]="dist.percentage > 100 ? 'bg-amber-500' : 'bg-blue-600'"
+                    class="h-full rounded-full transition-all duration-500"
+                    [style.width.%]="Math.min(100, dist.percentage)">
                   </div>
                 </div>
               </div>
@@ -1281,6 +1303,12 @@ export class EapGanttComponent {
 
   getActivitiesForPhase(project: Project, phaseName: EapPhase): ProjectActivity[] {
     return (project.activities || []).filter(a => a.eapPhase === phaseName);
+  }
+
+  isPhaseCompleted(project: Project, phaseName: EapPhase): boolean {
+    const acts = this.getActivitiesForPhase(project, phaseName);
+    if (acts.length === 0) return false;
+    return acts.every(a => a.status === 'completed' || ['closed', 'done', 'resolved', 'finalizado', 'concluído'].includes((a.state || '').toLowerCase()));
   }
 
   getPhaseHours(project: Project, phaseName: EapPhase): number {

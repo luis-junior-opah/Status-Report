@@ -1,5 +1,5 @@
 {
-  "lastSync": "2026-10-27T20:12:46.781Z",
+  "lastSync": "2026-10-27T21:45:14.115Z",
   "projects": [
     {
       "id": "a197458f-88c5-4fec-8ce7-a981ee3f6709",
@@ -22,10 +22,10 @@
         "start": "2025-07-01",
         "end": null
       },
-      "progress": 46,
+      "progress": 99,
       "manualRagStatus": "amber",
       "executiveSummary": "Projeto integrado ao Azure DevOps. Iteração atual: Iteration 26.",
-      "azureLastUpdated": "2026-10-27T20:12:27.667Z",
+      "azureLastUpdated": "2026-10-27T21:45:01.181Z",
       "currentIterationName": "Iteration 26",
       "ragStatus": "amber",
       "varianceDays": 0,
@@ -7722,38 +7722,53 @@
             "phase": "Planejamento",
             "planned": 0,
             "executed": 0,
-            "percentage": 0
+            "percentage": 0,
+            "completed": false,
+            "deliverablesTotal": 0,
+            "deliverablesCompleted": 0
           },
           {
             "phase": "Desenvolvimento",
             "planned": 1583,
             "executed": 717.3,
-            "percentage": 45
+            "percentage": 45,
+            "completed": false,
+            "deliverablesTotal": 40,
+            "deliverablesCompleted": 14
           },
           {
             "phase": "Homologação",
             "planned": 47,
             "executed": 19,
-            "percentage": 40
+            "percentage": 40,
+            "completed": false,
+            "deliverablesTotal": 3,
+            "deliverablesCompleted": 0
           },
           {
             "phase": "Treinamento",
             "planned": 0,
             "executed": 0,
-            "percentage": 0
+            "percentage": 0,
+            "completed": false,
+            "deliverablesTotal": 0,
+            "deliverablesCompleted": 0
           },
           {
             "phase": "Operação Assistida",
             "planned": 161.5,
             "executed": 34,
-            "percentage": 21
+            "percentage": 21,
+            "completed": false,
+            "deliverablesTotal": 1,
+            "deliverablesCompleted": 0
           }
         ]
       },
       "azureOriginal": {
         "ilcPlanned": 1676.5,
         "ilcExecuted": 770.3,
-        "progress": 46,
+        "progress": 99,
         "agreedDates": {
           "start": "2025-07-01",
           "end": "2026-10-20"
@@ -7813,7 +7828,7 @@
       "progress": 0,
       "manualRagStatus": "auto",
       "executiveSummary": "Projeto Safety está em fase de elicitação de requisitos.",
-      "azureLastUpdated": "2026-10-27T20:12:28.873Z",
+      "azureLastUpdated": "2026-10-27T21:45:01.464Z",
       "currentIterationName": null,
       "ragStatus": "red",
       "varianceDays": 0,
@@ -7991,31 +8006,46 @@
             "phase": "Planejamento",
             "planned": 0,
             "executed": 0,
-            "percentage": 0
+            "percentage": 0,
+            "completed": false,
+            "deliverablesTotal": 1,
+            "deliverablesCompleted": 0
           },
           {
             "phase": "Desenvolvimento",
             "planned": 0,
             "executed": 0,
-            "percentage": 0
+            "percentage": 0,
+            "completed": false,
+            "deliverablesTotal": 3,
+            "deliverablesCompleted": 0
           },
           {
             "phase": "Homologação",
             "planned": 0,
             "executed": 0,
-            "percentage": 0
+            "percentage": 0,
+            "completed": false,
+            "deliverablesTotal": 1,
+            "deliverablesCompleted": 0
           },
           {
             "phase": "Treinamento",
             "planned": 0,
             "executed": 0,
-            "percentage": 0
+            "percentage": 0,
+            "completed": false,
+            "deliverablesTotal": 1,
+            "deliverablesCompleted": 0
           },
           {
             "phase": "Operação Assistida",
             "planned": 0,
             "executed": 0,
-            "percentage": 0
+            "percentage": 0,
+            "completed": false,
+            "deliverablesTotal": 1,
+            "deliverablesCompleted": 0
           }
         ]
       },
@@ -8079,10 +8109,10 @@
         "start": "2026-10-06",
         "end": null
       },
-      "progress": 92,
+      "progress": 97,
       "manualRagStatus": "auto",
       "executiveSummary": "Projeto integrado ao Azure DevOps. Iteração atual: Em andamento.",
-      "azureLastUpdated": "2026-10-27T20:12:30.287Z",
+      "azureLastUpdated": "2026-10-27T21:45:01.925Z",
       "currentIterationName": null,
       "ragStatus": "red",
       "varianceDays": 0,
@@ -8373,38 +8403,53 @@
             "phase": "Planejamento",
             "planned": 0,
             "executed": 0,
-            "percentage": 0
+            "percentage": 0,
+            "completed": false,
+            "deliverablesTotal": 0,
+            "deliverablesCompleted": 0
           },
           {
             "phase": "Desenvolvimento",
             "planned": 153,
             "executed": 140,
-            "percentage": 92
+            "percentage": 92,
+            "completed": false,
+            "deliverablesTotal": 3,
+            "deliverablesCompleted": 1
           },
           {
             "phase": "Homologação",
             "planned": 0,
             "executed": 0,
-            "percentage": 0
+            "percentage": 0,
+            "completed": false,
+            "deliverablesTotal": 0,
+            "deliverablesCompleted": 0
           },
           {
             "phase": "Treinamento",
             "planned": 0,
             "executed": 0,
-            "percentage": 0
+            "percentage": 0,
+            "completed": false,
+            "deliverablesTotal": 0,
+            "deliverablesCompleted": 0
           },
           {
             "phase": "Operação Assistida",
             "planned": 0,
             "executed": 0,
-            "percentage": 0
+            "percentage": 0,
+            "completed": false,
+            "deliverablesTotal": 0,
+            "deliverablesCompleted": 0
           }
         ]
       },
       "azureOriginal": {
         "ilcPlanned": 153,
         "ilcExecuted": 140,
-        "progress": 92,
+        "progress": 97,
         "agreedDates": {
           "start": "2026-07-01",
           "end": "2026-09-04"
@@ -8460,7 +8505,7 @@
       "progress": 0,
       "manualRagStatus": "auto",
       "executiveSummary": "Projeto integrado ao Azure DevOps. Iteração atual: Em andamento.",
-      "azureLastUpdated": "2026-10-27T20:12:31.434Z",
+      "azureLastUpdated": "2026-10-27T21:45:02.853Z",
       "currentIterationName": null,
       "ragStatus": "green",
       "varianceDays": 0,
@@ -8705,31 +8750,46 @@
             "phase": "Planejamento",
             "planned": 0,
             "executed": 0,
-            "percentage": 0
+            "percentage": 0,
+            "completed": false,
+            "deliverablesTotal": 0,
+            "deliverablesCompleted": 0
           },
           {
             "phase": "Desenvolvimento",
             "planned": 0,
             "executed": 0,
-            "percentage": 0
+            "percentage": 0,
+            "completed": false,
+            "deliverablesTotal": 9,
+            "deliverablesCompleted": 0
           },
           {
             "phase": "Homologação",
             "planned": 0,
             "executed": 0,
-            "percentage": 0
+            "percentage": 0,
+            "completed": false,
+            "deliverablesTotal": 0,
+            "deliverablesCompleted": 0
           },
           {
             "phase": "Treinamento",
             "planned": 0,
             "executed": 0,
-            "percentage": 0
+            "percentage": 0,
+            "completed": false,
+            "deliverablesTotal": 0,
+            "deliverablesCompleted": 0
           },
           {
             "phase": "Operação Assistida",
             "planned": 0,
             "executed": 0,
-            "percentage": 0
+            "percentage": 0,
+            "completed": false,
+            "deliverablesTotal": 0,
+            "deliverablesCompleted": 0
           }
         ]
       },
@@ -8789,7 +8849,7 @@
       "progress": 0,
       "manualRagStatus": "auto",
       "executiveSummary": "Projeto integrado ao Azure DevOps. Iteração atual: Em andamento.",
-      "azureLastUpdated": "2026-10-27T20:12:33.662Z",
+      "azureLastUpdated": "2026-10-27T21:45:03.748Z",
       "currentIterationName": null,
       "ragStatus": "green",
       "varianceDays": 0,
@@ -8812,31 +8872,46 @@
             "phase": "Planejamento",
             "planned": 0,
             "executed": 0,
-            "percentage": 0
+            "percentage": 0,
+            "completed": false,
+            "deliverablesTotal": 0,
+            "deliverablesCompleted": 0
           },
           {
             "phase": "Desenvolvimento",
             "planned": 0,
             "executed": 0,
-            "percentage": 0
+            "percentage": 0,
+            "completed": false,
+            "deliverablesTotal": 0,
+            "deliverablesCompleted": 0
           },
           {
             "phase": "Homologação",
             "planned": 0,
             "executed": 0,
-            "percentage": 0
+            "percentage": 0,
+            "completed": false,
+            "deliverablesTotal": 0,
+            "deliverablesCompleted": 0
           },
           {
             "phase": "Treinamento",
             "planned": 0,
             "executed": 0,
-            "percentage": 0
+            "percentage": 0,
+            "completed": false,
+            "deliverablesTotal": 0,
+            "deliverablesCompleted": 0
           },
           {
             "phase": "Operação Assistida",
             "planned": 0,
             "executed": 0,
-            "percentage": 0
+            "percentage": 0,
+            "completed": false,
+            "deliverablesTotal": 0,
+            "deliverablesCompleted": 0
           }
         ]
       },
@@ -8893,10 +8968,10 @@
         "start": "2025-08-25",
         "end": null
       },
-      "progress": 41,
+      "progress": 54,
       "manualRagStatus": "auto",
       "executiveSummary": "Projeto integrado ao Azure DevOps. Iteração atual: Iteration 4.",
-      "azureLastUpdated": "2026-10-27T20:12:34.702Z",
+      "azureLastUpdated": "2026-10-27T21:45:04.254Z",
       "currentIterationName": "Iteration 4",
       "ragStatus": "red",
       "varianceDays": 0,
@@ -9612,38 +9687,53 @@
             "phase": "Planejamento",
             "planned": 0,
             "executed": 0,
-            "percentage": 0
+            "percentage": 0,
+            "completed": false,
+            "deliverablesTotal": 0,
+            "deliverablesCompleted": 0
           },
           {
             "phase": "Desenvolvimento",
             "planned": 383,
             "executed": 155,
-            "percentage": 40
+            "percentage": 40,
+            "completed": false,
+            "deliverablesTotal": 10,
+            "deliverablesCompleted": 2
           },
           {
             "phase": "Homologação",
             "planned": 0,
             "executed": 0,
-            "percentage": 0
+            "percentage": 0,
+            "completed": false,
+            "deliverablesTotal": 0,
+            "deliverablesCompleted": 0
           },
           {
             "phase": "Treinamento",
             "planned": 0,
             "executed": 0,
-            "percentage": 0
+            "percentage": 0,
+            "completed": false,
+            "deliverablesTotal": 0,
+            "deliverablesCompleted": 0
           },
           {
             "phase": "Operação Assistida",
             "planned": 2,
             "executed": 2,
-            "percentage": 100
+            "percentage": 100,
+            "completed": false,
+            "deliverablesTotal": 1,
+            "deliverablesCompleted": 0
           }
         ]
       },
       "azureOriginal": {
         "ilcPlanned": 385,
         "ilcExecuted": 157,
-        "progress": 41,
+        "progress": 54,
         "agreedDates": {
           "start": "2025-08-25",
           "end": "2026-01-16"
@@ -9681,126 +9771,181 @@
       "client": "Mirassol",
       "status": "Ativo",
       "isVisible": true,
-      "currentMilestone": "Desenvolvimento",
+      "currentMilestone": "Operação Assistida",
       "agreedDates": {
-        "start": "2026-06-09",
-        "end": "2026-10-17"
+        "start": "2026-05-01",
+        "end": "2026-10-27"
       },
       "plannedDates": {
-        "start": "2026-06-09",
-        "end": "2026-10-17"
+        "start": "2026-05-01",
+        "end": "2026-10-27"
       },
       "executedDates": {
         "start": "2026-10-06",
         "end": null
       },
-      "progress": 97,
+      "progress": 100,
       "manualRagStatus": "auto",
-      "executiveSummary": "Pendente a homologção do processo Komatsu.",
-      "azureLastUpdated": "2026-10-27T20:12:36.770Z",
-      "currentIterationName": null,
-      "ragStatus": "red",
+      "executiveSummary": "Realizada subida do processo da Komatsu para produção.",
+      "azureLastUpdated": "2026-10-27T21:45:05.712Z",
+      "currentIterationName": "Iteration 1",
+      "ragStatus": "green",
       "varianceDays": 0,
       "hasManualProgress": false,
       "hasManualPlannedDates": true,
       "activities": [
         {
-          "id": "6514",
-          "azureId": 6514,
-          "title": "Evolução Geral - Processamento de Documentos",
-          "fullTitle": "#6514 Evolução Geral - Processamento de Documentos",
-          "rawTitle": "Evolução Geral - Processamento de Documentos",
+          "id": "7275",
+          "azureId": 7275,
+          "title": "Implantação - KOMATSU",
+          "fullTitle": "#7275 Implantação - KOMATSU",
+          "rawTitle": "Implantação - KOMATSU",
           "type": "User Story",
-          "state": "Active",
+          "state": "Closed",
           "assignedTo": "Vitor Neves",
           "eapPhase": "Desenvolvimento",
           "month": "OUT / 26",
-          "startDate": "2026-09-01",
-          "targetDate": "2026-10-17",
-          "dateStr": "17/10/2026",
-          "ilcHours": 52,
-          "ilcHoursTotal": 72,
+          "startDate": "2026-09-21",
+          "targetDate": "2026-10-16",
+          "dateStr": "16/10/2026",
+          "ilcHours": 66,
+          "ilcHoursTotal": 82,
           "clientHours": 0,
-          "status": "in-progress",
-          "isDelayed": true,
+          "status": "completed",
+          "isDelayed": false,
           "isTightMargin": false,
           "linkedTasks": [
             {
-              "id": 6515,
-              "title": "Implementar tratamento de ZIP",
+              "id": 7276,
+              "title": "Mapear fluxo operacional KOMATSU",
               "type": "Task",
               "state": "Closed",
               "assignedTo": "Vitor Neves",
-              "originalEstimate": 12,
-              "completedWork": 14,
-              "startDate": "2026-09-01",
-              "targetDate": "2026-09-02"
+              "originalEstimate": 6,
+              "completedWork": 6,
+              "startDate": "2026-09-21",
+              "targetDate": "2026-09-21"
             },
             {
-              "id": 6516,
-              "title": "Implementar processamento recursivo de diretórios",
+              "id": 7277,
+              "title": "Mapear estrutura de e-mails e documentos KOMATSU",
               "type": "Task",
               "state": "Closed",
               "assignedTo": "Vitor Neves",
-              "originalEstimate": 8,
-              "completedWork": 10,
-              "startDate": "2026-09-02",
-              "targetDate": "2026-09-02"
+              "originalEstimate": 6,
+              "completedWork": 6,
+              "startDate": "2026-09-21",
+              "targetDate": "2026-09-22"
             },
             {
-              "id": 6517,
-              "title": "Implementar filtro de extensões suportadas",
-              "type": "Task",
-              "state": "Closed",
-              "assignedTo": "Vitor Neves",
-              "originalEstimate": 4,
-              "completedWork": 4,
-              "startDate": "2026-09-03",
-              "targetDate": "2026-09-03"
-            },
-            {
-              "id": 6518,
-              "title": "Implementar processamento OCR para PDF e XLSX",
-              "type": "Task",
-              "state": "Closed",
-              "assignedTo": "Vitor Neves",
-              "originalEstimate": 12,
-              "completedWork": 14,
-              "startDate": "2026-09-03",
-              "targetDate": "2026-09-04"
-            },
-            {
-              "id": 6519,
-              "title": "Padronizar composição dos documentos para IA",
+              "id": 7278,
+              "title": "Definir estratégia de processamento das NF-e KOMATSU",
               "type": "Task",
               "state": "Closed",
               "assignedTo": "Vitor Neves",
               "originalEstimate": 8,
               "completedWork": 8,
-              "startDate": "2026-09-04",
-              "targetDate": "2026-09-08"
+              "startDate": "2026-09-22",
+              "targetDate": "2026-09-22"
             },
             {
-              "id": 7301,
-              "title": "Integrar recuperação de anexos via internetMessageId",
+              "id": 7279,
+              "title": "Definir regra de relacionamento entre Processo Mãe e Processos Filhos",
               "type": "Task",
-              "state": "Active",
+              "state": "Closed",
+              "assignedTo": "Vitor Neves",
+              "originalEstimate": 8,
+              "completedWork": 8,
+              "startDate": "2026-09-23",
+              "targetDate": "2026-09-23"
+            },
+            {
+              "id": 7280,
+              "title": "Ajustar schema de triagem para KOMATSU",
+              "type": "Task",
+              "state": "Closed",
+              "assignedTo": "Vitor Neves",
+              "originalEstimate": 6,
+              "completedWork": 6,
+              "startDate": "2026-09-23",
+              "targetDate": "2026-09-24"
+            },
+            {
+              "id": 7281,
+              "title": "Ajustar prompt da IA para identificação das etapas KOMATSU",
+              "type": "Task",
+              "state": "Closed",
+              "assignedTo": "Vitor Neves",
+              "originalEstimate": 10,
+              "completedWork": 10,
+              "startDate": "2026-09-24",
+              "targetDate": "2026-09-25"
+            },
+            {
+              "id": 7282,
+              "title": "Validar processamento de processo único KOMATSU",
+              "type": "Task",
+              "state": "Closed",
+              "assignedTo": "Vitor Neves",
+              "originalEstimate": 4,
+              "completedWork": 4,
+              "startDate": "2026-09-25",
+              "targetDate": "2026-09-25"
+            },
+            {
+              "id": 7283,
+              "title": "Implementar tratamento de Filho recebido antes do Processo Mãe",
+              "type": "Task",
+              "state": "Closed",
+              "assignedTo": "Vitor Neves",
+              "originalEstimate": 8,
+              "completedWork": 4,
+              "startDate": "2026-10-06",
+              "targetDate": "2026-10-07"
+            },
+            {
+              "id": 7284,
+              "title": "Implementar regra de momento de geração da PC",
+              "type": "Task",
+              "state": "Closed",
+              "assignedTo": "Vitor Neves",
+              "originalEstimate": 8,
+              "completedWork": 4,
+              "startDate": "2026-10-07",
+              "targetDate": "2026-10-08"
+            },
+            {
+              "id": 7285,
+              "title": "Ajustar Fluxo 2 para processamento KOMATSU",
+              "type": "Task",
+              "state": "Closed",
               "assignedTo": "Vitor Neves",
               "originalEstimate": 12,
-              "completedWork": 2,
-              "startDate": "2026-10-09",
-              "targetDate": "2026-10-13"
+              "completedWork": 4,
+              "startDate": "2026-10-08",
+              "targetDate": "2026-10-09"
             },
             {
-              "id": 7302,
-              "title": "Implementar geração das NF-e e PCs pelo backend",
+              "id": 7286,
+              "title": "Homologar fluxo KOMATSU com operação",
               "type": "Task",
-              "state": "New",
+              "state": "Closed",
               "assignedTo": "Vitor Neves",
-              "originalEstimate": 16,
-              "completedWork": 0,
-              "startDate": "2026-10-13",
+              "originalEstimate": 2,
+              "completedWork": 2,
+              "startDate": "2026-10-15",
               "targetDate": "2026-10-15"
+            },
+            {
+              "id": 7287,
+              "title": "Implantar KOMATSU em produção",
+              "type": "Task",
+              "state": "Closed",
+              "assignedTo": "Vitor Neves",
+              "originalEstimate": 4,
+              "completedWork": 4,
+              "startDate": "2026-10-27",
+              "targetDate": "2026-10-27"
             }
           ]
         },
@@ -9811,7 +9956,7 @@
           "fullTitle": "#6501 Evolução Geral - Contextualização de Múltiplos E-mails",
           "rawTitle": "Evolução Geral - Contextualização de Múltiplos E-mails",
           "type": "User Story",
-          "state": "Active",
+          "state": "Closed",
           "assignedTo": "Vitor Neves",
           "eapPhase": "Desenvolvimento",
           "month": "OUT / 26",
@@ -9821,8 +9966,8 @@
           "ilcHours": 113,
           "ilcHoursTotal": 114,
           "clientHours": 0,
-          "status": "in-progress",
-          "isDelayed": true,
+          "status": "completed",
+          "isDelayed": false,
           "isTightMargin": false,
           "linkedTasks": [
             {
@@ -9994,7 +10139,7 @@
               "id": 7297,
               "title": "Implementar ação CONSULTAR no Switch de relacionamento",
               "type": "Task",
-              "state": "Active",
+              "state": "Closed",
               "assignedTo": "Vitor Neves",
               "originalEstimate": 4,
               "completedWork": 2,
@@ -10005,7 +10150,7 @@
               "id": 7298,
               "title": "Validar relacionamento com múltiplos processos Mãe e Filhos",
               "type": "Task",
-              "state": "Active",
+              "state": "Closed",
               "assignedTo": "Vitor Neves",
               "originalEstimate": 6,
               "completedWork": 3,
@@ -10015,157 +10160,135 @@
           ]
         },
         {
-          "id": "7275",
-          "azureId": 7275,
-          "title": "Implantação - KOMATSU",
-          "fullTitle": "#7275 Implantação - KOMATSU",
-          "rawTitle": "Implantação - KOMATSU",
+          "id": "6514",
+          "azureId": 6514,
+          "title": "Evolução Geral - Processamento de Documentos",
+          "fullTitle": "#6514 Evolução Geral - Processamento de Documentos",
+          "rawTitle": "Evolução Geral - Processamento de Documentos",
           "type": "User Story",
-          "state": "Active",
+          "state": "Closed",
           "assignedTo": "Vitor Neves",
           "eapPhase": "Desenvolvimento",
           "month": "OUT / 26",
-          "startDate": "2026-09-21",
-          "targetDate": "2026-10-16",
-          "dateStr": "16/10/2026",
-          "ilcHours": 60,
-          "ilcHoursTotal": 86,
+          "startDate": "2026-09-01",
+          "targetDate": "2026-10-17",
+          "dateStr": "17/10/2026",
+          "ilcHours": 78,
+          "ilcHoursTotal": 92,
           "clientHours": 0,
-          "status": "in-progress",
-          "isDelayed": true,
+          "status": "completed",
+          "isDelayed": false,
           "isTightMargin": false,
           "linkedTasks": [
             {
-              "id": 7276,
-              "title": "Mapear fluxo operacional KOMATSU",
+              "id": 6515,
+              "title": "Implementar tratamento de ZIP",
               "type": "Task",
               "state": "Closed",
               "assignedTo": "Vitor Neves",
+              "originalEstimate": 12,
+              "completedWork": 14,
+              "startDate": "2026-09-01",
+              "targetDate": "2026-09-02"
+            },
+            {
+              "id": 6516,
+              "title": "Implementar processamento recursivo de diretórios",
+              "type": "Task",
+              "state": "Closed",
+              "assignedTo": "Vitor Neves",
+              "originalEstimate": 8,
+              "completedWork": 10,
+              "startDate": "2026-09-02",
+              "targetDate": "2026-09-02"
+            },
+            {
+              "id": 6517,
+              "title": "Implementar filtro de extensões suportadas",
+              "type": "Task",
+              "state": "Closed",
+              "assignedTo": "Vitor Neves",
+              "originalEstimate": 4,
+              "completedWork": 4,
+              "startDate": "2026-09-03",
+              "targetDate": "2026-09-03"
+            },
+            {
+              "id": 6518,
+              "title": "Implementar processamento OCR para PDF e XLSX",
+              "type": "Task",
+              "state": "Closed",
+              "assignedTo": "Vitor Neves",
+              "originalEstimate": 12,
+              "completedWork": 14,
+              "startDate": "2026-09-03",
+              "targetDate": "2026-09-04"
+            },
+            {
+              "id": 6519,
+              "title": "Padronizar composição dos documentos para IA",
+              "type": "Task",
+              "state": "Closed",
+              "assignedTo": "Vitor Neves",
+              "originalEstimate": 8,
+              "completedWork": 8,
+              "startDate": "2026-09-04",
+              "targetDate": "2026-09-08"
+            },
+            {
+              "id": 7128,
+              "title": "#DEMANDA #BUG - Corrigir chave NF-e invalida no leitor de PDF e preparar processamento para producao",
+              "type": "Task",
+              "state": "Closed",
+              "assignedTo": "Silvio Torres",
               "originalEstimate": 6,
-              "completedWork": 6,
+              "completedWork": 8,
               "startDate": "2026-09-21",
               "targetDate": "2026-09-21"
             },
             {
-              "id": 7277,
-              "title": "Mapear estrutura de e-mails e documentos KOMATSU",
+              "id": 7139,
+              "title": "Priorizar gravação em EDICAO e enriquecer logs de falha de CEP",
               "type": "Task",
               "state": "Closed",
-              "assignedTo": "Vitor Neves",
+              "assignedTo": "Silvio Torres",
               "originalEstimate": 6,
-              "completedWork": 6,
+              "completedWork": 8,
               "startDate": "2026-09-21",
               "targetDate": "2026-09-22"
             },
             {
-              "id": 7278,
-              "title": "Definir estratégia de processamento das NF-e KOMATSU",
+              "id": 7140,
+              "title": "Tratar Connection reset by peer no envio de relatórios",
               "type": "Task",
               "state": "Closed",
-              "assignedTo": "Vitor Neves",
+              "assignedTo": "Silvio Torres",
               "originalEstimate": 8,
-              "completedWork": 8,
+              "completedWork": 10,
               "startDate": "2026-09-22",
               "targetDate": "2026-09-22"
             },
             {
-              "id": 7279,
-              "title": "Definir regra de relacionamento entre Processo Mãe e Processos Filhos",
+              "id": 7301,
+              "title": "Integrar recuperação de anexos via internetMessageId",
               "type": "Task",
               "state": "Closed",
-              "assignedTo": "Vitor Neves",
-              "originalEstimate": 8,
-              "completedWork": 8,
-              "startDate": "2026-09-23",
-              "targetDate": "2026-09-23"
-            },
-            {
-              "id": 7280,
-              "title": "Ajustar schema de triagem para KOMATSU",
-              "type": "Task",
-              "state": "Closed",
-              "assignedTo": "Vitor Neves",
-              "originalEstimate": 6,
-              "completedWork": 6,
-              "startDate": "2026-09-23",
-              "targetDate": "2026-09-24"
-            },
-            {
-              "id": 7281,
-              "title": "Ajustar prompt da IA para identificação das etapas KOMATSU",
-              "type": "Task",
-              "state": "Closed",
-              "assignedTo": "Vitor Neves",
-              "originalEstimate": 10,
-              "completedWork": 10,
-              "startDate": "2026-09-24",
-              "targetDate": "2026-09-25"
-            },
-            {
-              "id": 7282,
-              "title": "Validar processamento de processo único KOMATSU",
-              "type": "Task",
-              "state": "Closed",
-              "assignedTo": "Vitor Neves",
-              "originalEstimate": 4,
-              "completedWork": 4,
-              "startDate": "2026-09-25",
-              "targetDate": "2026-09-25"
-            },
-            {
-              "id": 7283,
-              "title": "Implementar tratamento de Filho recebido antes do Processo Mãe",
-              "type": "Task",
-              "state": "Active",
-              "assignedTo": "Vitor Neves",
-              "originalEstimate": 8,
-              "completedWork": 4,
-              "startDate": "2026-10-06",
-              "targetDate": "2026-10-07"
-            },
-            {
-              "id": 7284,
-              "title": "Implementar regra de momento de geração da PC",
-              "type": "Task",
-              "state": "Active",
-              "assignedTo": "Vitor Neves",
-              "originalEstimate": 8,
-              "completedWork": 4,
-              "startDate": "2026-10-07",
-              "targetDate": "2026-10-08"
-            },
-            {
-              "id": 7285,
-              "title": "Ajustar Fluxo 2 para processamento KOMATSU",
-              "type": "Task",
-              "state": "Active",
               "assignedTo": "Vitor Neves",
               "originalEstimate": 12,
-              "completedWork": 4,
-              "startDate": "2026-10-08",
-              "targetDate": "2026-10-09"
+              "completedWork": 2,
+              "startDate": "2026-10-09",
+              "targetDate": "2026-10-13"
             },
             {
-              "id": 7286,
-              "title": "Homologar fluxo KOMATSU com operação",
+              "id": 7302,
+              "title": "Implementar geração das NF-e e PCs pelo backend",
               "type": "Task",
-              "state": "New",
-              "assignedTo": "Vitor Neves",
-              "originalEstimate": 6,
+              "state": "Closed",
+              "assignedTo": "Silvio Torres",
+              "originalEstimate": 16,
               "completedWork": 0,
-              "startDate": "2026-10-15",
+              "startDate": "2026-10-13",
               "targetDate": "2026-10-15"
-            },
-            {
-              "id": 7287,
-              "title": "Implantar KOMATSU em produção",
-              "type": "Task",
-              "state": "New",
-              "assignedTo": "Vitor Neves",
-              "originalEstimate": 4,
-              "completedWork": 0,
-              "startDate": "2026-10-16",
-              "targetDate": "2026-10-16"
             }
           ]
         },
@@ -10924,119 +11047,78 @@
               "targetDate": "2026-06-15"
             }
           ]
-        },
-        {
-          "id": "mirassol---input-gest-o-de-demandas-operacional",
-          "azureId": null,
-          "title": "Atividades Operacionais & Suporte",
-          "fullTitle": "Atividades Operacionais & Suporte",
-          "rawTitle": "Atividades Operacionais & Suporte",
-          "type": "TaskGroup",
-          "state": "Active",
-          "assignedTo": "Equipe de Sustentação",
-          "eapPhase": "Operação Assistida",
-          "month": "SET / 26",
-          "startDate": "2026-09-21",
-          "targetDate": "2026-09-22",
-          "dateStr": "22/09/2026",
-          "ilcHours": 26,
-          "ilcHoursTotal": 20,
-          "clientHours": 0,
-          "status": "in_progress",
-          "isDelayed": true,
-          "isTightMargin": false,
-          "linkedTasks": [
-            {
-              "id": 7128,
-              "title": "#DEMANDA #BUG - Corrigir chave NF-e invalida no leitor de PDF e preparar processamento para producao",
-              "type": "Task",
-              "state": "Closed",
-              "assignedTo": "Silvio Torres",
-              "originalEstimate": 6,
-              "completedWork": 8,
-              "startDate": "2026-09-21",
-              "targetDate": "2026-09-21"
-            },
-            {
-              "id": 7139,
-              "title": "Priorizar gravação em EDICAO e enriquecer logs de falha de CEP",
-              "type": "Task",
-              "state": "Closed",
-              "assignedTo": "Silvio Torres",
-              "originalEstimate": 6,
-              "completedWork": 8,
-              "startDate": "2026-09-21",
-              "targetDate": "2026-09-22"
-            },
-            {
-              "id": 7140,
-              "title": "Tratar Connection reset by peer no envio de relatórios",
-              "type": "Task",
-              "state": "Closed",
-              "assignedTo": "Silvio Torres",
-              "originalEstimate": 8,
-              "completedWork": 10,
-              "startDate": "2026-09-22",
-              "targetDate": "2026-09-22"
-            }
-          ]
         }
       ],
       "hours": {
         "agreed": 646,
         "agreedHours": 646,
-        "planned": 666,
-        "executed": 645,
+        "planned": 662,
+        "executed": 651,
         "clientPlanned": 0,
         "clientExecuted": 0,
-        "ilcPlanned": 666,
-        "ilcExecuted": 645,
-        "totalPlanned": 666,
-        "totalExecuted": 645,
+        "ilcPlanned": 662,
+        "ilcExecuted": 651,
+        "totalPlanned": 662,
+        "totalExecuted": 651,
         "distribution": [
           {
             "phase": "Planejamento",
             "planned": 0,
             "executed": 0,
-            "percentage": 0
+            "percentage": 0,
+            "completed": false,
+            "deliverablesTotal": 0,
+            "deliverablesCompleted": 0
           },
           {
             "phase": "Desenvolvimento",
-            "planned": 625,
-            "executed": 596,
-            "percentage": 95
+            "planned": 641,
+            "executed": 628,
+            "percentage": 98,
+            "completed": true,
+            "deliverablesTotal": 10,
+            "deliverablesCompleted": 10
           },
           {
             "phase": "Homologação",
             "planned": 21,
             "executed": 23,
-            "percentage": 100
+            "percentage": 110,
+            "completed": true,
+            "deliverablesTotal": 1,
+            "deliverablesCompleted": 1
           },
           {
             "phase": "Treinamento",
             "planned": 0,
             "executed": 0,
-            "percentage": 0
+            "percentage": 0,
+            "completed": false,
+            "deliverablesTotal": 0,
+            "deliverablesCompleted": 0
           },
           {
             "phase": "Operação Assistida",
-            "planned": 20,
-            "executed": 26,
-            "percentage": 100
+            "planned": 0,
+            "executed": 0,
+            "percentage": 0,
+            "completed": false,
+            "deliverablesTotal": 0,
+            "deliverablesCompleted": 0
           }
         ]
       },
       "azureOriginal": {
-        "ilcPlanned": 666,
-        "ilcExecuted": 645,
-        "progress": 97,
+        "ilcPlanned": 662,
+        "ilcExecuted": 651,
+        "progress": 100,
         "agreedDates": {
-          "start": "2026-06-09",
-          "end": "2026-10-17"
+          "start": "2026-05-01",
+          "end": "2026-10-27"
         },
         "plannedDates": {
-          "start": "2026-06-09",
-          "end": "2026-10-17"
+          "start": "2026-05-01",
+          "end": "2026-10-27"
         }
       },
       "lockedFields": {
@@ -11044,9 +11126,7 @@
         "progress": true,
         "dates": true
       },
-      "inconsistencies": [
-        "DELAYED_ITEMS"
-      ],
+      "inconsistencies": [],
       "hasManualIlcHours": false,
       "hasManualAgreedDates": false,
       "priority": "P1",
@@ -11085,10 +11165,10 @@
         "start": "2026-08-10",
         "end": null
       },
-      "progress": 75,
+      "progress": 88,
       "manualRagStatus": "auto",
       "executiveSummary": "Treinamento realizado com sucesso, atualização do módulo em ambinete de produção e inicio da operação assistida.",
-      "azureLastUpdated": "2026-10-27T20:12:37.278Z",
+      "azureLastUpdated": "2026-10-27T21:45:06.396Z",
       "currentIterationName": "Iteration 01",
       "ragStatus": "green",
       "varianceDays": 0,
@@ -11326,38 +11406,53 @@
             "phase": "Planejamento",
             "planned": 27,
             "executed": 27,
-            "percentage": 100
+            "percentage": 100,
+            "completed": true,
+            "deliverablesTotal": 1,
+            "deliverablesCompleted": 1
           },
           {
             "phase": "Desenvolvimento",
             "planned": 39,
             "executed": 39,
-            "percentage": 100
+            "percentage": 100,
+            "completed": true,
+            "deliverablesTotal": 1,
+            "deliverablesCompleted": 1
           },
           {
             "phase": "Homologação",
             "planned": 16,
             "executed": 16,
-            "percentage": 100
+            "percentage": 100,
+            "completed": true,
+            "deliverablesTotal": 1,
+            "deliverablesCompleted": 1
           },
           {
             "phase": "Treinamento",
             "planned": 8,
             "executed": 8,
-            "percentage": 100
+            "percentage": 100,
+            "completed": true,
+            "deliverablesTotal": 1,
+            "deliverablesCompleted": 1
           },
           {
             "phase": "Operação Assistida",
             "planned": 30,
             "executed": 0,
-            "percentage": 0
+            "percentage": 0,
+            "completed": false,
+            "deliverablesTotal": 1,
+            "deliverablesCompleted": 0
           }
         ]
       },
       "azureOriginal": {
         "ilcPlanned": 120,
         "ilcExecuted": 90,
-        "progress": 75,
+        "progress": 88,
         "agreedDates": {
           "start": "2026-09-01",
           "end": "2026-11-30"
@@ -11412,8 +11507,8 @@
       },
       "progress": 66,
       "manualRagStatus": "auto",
-      "executiveSummary": "Treinamento foi reagendado, aguardando confirmação de nova data.",
-      "azureLastUpdated": "2026-10-27T20:12:37.736Z",
+      "executiveSummary": "Treinamento foi reagendado para o dia 29/10.",
+      "azureLastUpdated": "2026-10-27T21:45:06.984Z",
       "currentIterationName": "Iteration 1",
       "ragStatus": "green",
       "varianceDays": 0,
@@ -11651,31 +11746,46 @@
             "phase": "Planejamento",
             "planned": 17,
             "executed": 17,
-            "percentage": 100
+            "percentage": 100,
+            "completed": true,
+            "deliverablesTotal": 1,
+            "deliverablesCompleted": 1
           },
           {
             "phase": "Desenvolvimento",
             "planned": 43,
             "executed": 43,
-            "percentage": 100
+            "percentage": 100,
+            "completed": true,
+            "deliverablesTotal": 1,
+            "deliverablesCompleted": 1
           },
           {
             "phase": "Homologação",
             "planned": 16,
             "executed": 16,
-            "percentage": 100
+            "percentage": 100,
+            "completed": true,
+            "deliverablesTotal": 1,
+            "deliverablesCompleted": 1
           },
           {
             "phase": "Treinamento",
             "planned": 8,
             "executed": 0,
-            "percentage": 0
+            "percentage": 0,
+            "completed": false,
+            "deliverablesTotal": 1,
+            "deliverablesCompleted": 0
           },
           {
             "phase": "Operação Assistida",
             "planned": 32,
             "executed": 0,
-            "percentage": 0
+            "percentage": 0,
+            "completed": false,
+            "deliverablesTotal": 1,
+            "deliverablesCompleted": 0
           }
         ]
       },
@@ -11735,10 +11845,10 @@
         "start": "2026-10-06",
         "end": null
       },
-      "progress": 100,
+      "progress": 50,
       "manualRagStatus": "auto",
       "executiveSummary": "Projeto integrado ao Azure DevOps. Iteração atual: Em andamento.",
-      "azureLastUpdated": "2026-10-27T20:12:38.371Z",
+      "azureLastUpdated": "2026-10-27T21:45:07.597Z",
       "currentIterationName": null,
       "ragStatus": "green",
       "varianceDays": 0,
@@ -12870,38 +12980,53 @@
             "phase": "Planejamento",
             "planned": 0,
             "executed": 0,
-            "percentage": 0
+            "percentage": 0,
+            "completed": false,
+            "deliverablesTotal": 0,
+            "deliverablesCompleted": 0
           },
           {
             "phase": "Desenvolvimento",
             "planned": 720,
             "executed": 720,
-            "percentage": 100
+            "percentage": 100,
+            "completed": false,
+            "deliverablesTotal": 8,
+            "deliverablesCompleted": 6
           },
           {
             "phase": "Homologação",
             "planned": 0,
             "executed": 0,
-            "percentage": 0
+            "percentage": 0,
+            "completed": false,
+            "deliverablesTotal": 0,
+            "deliverablesCompleted": 0
           },
           {
             "phase": "Treinamento",
             "planned": 0,
             "executed": 0,
-            "percentage": 0
+            "percentage": 0,
+            "completed": false,
+            "deliverablesTotal": 0,
+            "deliverablesCompleted": 0
           },
           {
             "phase": "Operação Assistida",
             "planned": 0,
             "executed": 0,
-            "percentage": 0
+            "percentage": 0,
+            "completed": false,
+            "deliverablesTotal": 0,
+            "deliverablesCompleted": 0
           }
         ]
       },
       "azureOriginal": {
         "ilcPlanned": 40,
         "ilcExecuted": 720,
-        "progress": 100,
+        "progress": 50,
         "agreedDates": {
           "start": "2025-11-13",
           "end": "2026-05-18"
@@ -12951,10 +13076,10 @@
         "start": "2026-09-21",
         "end": null
       },
-      "progress": 46,
+      "progress": 44,
       "manualRagStatus": "auto",
-      "executiveSummary": "Desenvolvimento backend em andamento",
-      "azureLastUpdated": "2026-10-27T20:12:39.498Z",
+      "executiveSummary": "Desenvolvimento backend em andamento, integração com ZapSign, e envio de notificações. Agora será iniciado o desenvolvimento frontend no Smart Tracking.",
+      "azureLastUpdated": "2026-10-27T21:45:08.260Z",
       "currentIterationName": "Iteration 1",
       "ragStatus": "amber",
       "varianceDays": 0,
@@ -13995,38 +14120,53 @@
             "phase": "Planejamento",
             "planned": 63,
             "executed": 63,
-            "percentage": 100
+            "percentage": 100,
+            "completed": true,
+            "deliverablesTotal": 2,
+            "deliverablesCompleted": 2
           },
           {
             "phase": "Desenvolvimento",
             "planned": 119.9,
             "executed": 34,
-            "percentage": 28
+            "percentage": 28,
+            "completed": false,
+            "deliverablesTotal": 4,
+            "deliverablesCompleted": 0
           },
           {
             "phase": "Homologação",
             "planned": 28,
             "executed": 0,
-            "percentage": 0
+            "percentage": 0,
+            "completed": false,
+            "deliverablesTotal": 1,
+            "deliverablesCompleted": 0
           },
           {
             "phase": "Treinamento",
             "planned": 0,
             "executed": 0,
-            "percentage": 0
+            "percentage": 0,
+            "completed": false,
+            "deliverablesTotal": 0,
+            "deliverablesCompleted": 0
           },
           {
             "phase": "Operação Assistida",
             "planned": 0,
             "executed": 0,
-            "percentage": 0
+            "percentage": 0,
+            "completed": false,
+            "deliverablesTotal": 0,
+            "deliverablesCompleted": 0
           }
         ]
       },
       "azureOriginal": {
         "ilcPlanned": 210.9,
         "ilcExecuted": 97,
-        "progress": 46,
+        "progress": 44,
         "agreedDates": {
           "start": "2026-08-31",
           "end": "2026-12-05"
@@ -14086,7 +14226,7 @@
       "progress": 59,
       "manualRagStatus": "auto",
       "executiveSummary": "Fase final de ajustes e homologação das etapas solicitações, cotações, painel transportador e respostas cotações e inicio da etapa aprovação e custo extra.",
-      "azureLastUpdated": "2026-10-27T20:12:40.932Z",
+      "azureLastUpdated": "2026-10-27T21:45:09.333Z",
       "currentIterationName": "Iteration 1",
       "ragStatus": "red",
       "varianceDays": 0,
@@ -14152,8 +14292,8 @@
           "startDate": "2026-11-01",
           "targetDate": "2026-11-15",
           "dateStr": "15/11/2026",
-          "ilcHours": 0,
-          "ilcHoursTotal": 47,
+          "ilcHours": 4,
+          "ilcHoursTotal": 51,
           "clientHours": 0,
           "status": "planned",
           "isDelayed": false,
@@ -14169,6 +14309,17 @@
               "completedWork": 0,
               "startDate": "2026-11-01",
               "targetDate": "2026-10-15"
+            },
+            {
+              "id": 7488,
+              "title": "Implementar Step 03 — aprovação de cotações, alçadas e custo extra",
+              "type": "Task",
+              "state": "QA",
+              "assignedTo": "Silvio Torres",
+              "originalEstimate": 4,
+              "completedWork": 4,
+              "startDate": "2026-10-27",
+              "targetDate": "2026-10-27"
             },
             {
               "id": 7261,
@@ -14704,50 +14855,65 @@
       "hours": {
         "agreed": 750,
         "agreedHours": 750,
-        "planned": 750,
-        "executed": 444,
+        "planned": 754,
+        "executed": 448,
         "clientPlanned": 0,
         "clientExecuted": 0,
-        "ilcPlanned": 750,
-        "ilcExecuted": 444,
-        "totalPlanned": 750,
-        "totalExecuted": 444,
+        "ilcPlanned": 754,
+        "ilcExecuted": 448,
+        "totalPlanned": 754,
+        "totalExecuted": 448,
         "distribution": [
           {
             "phase": "Planejamento",
             "planned": 91,
             "executed": 91,
-            "percentage": 100
+            "percentage": 100,
+            "completed": true,
+            "deliverablesTotal": 2,
+            "deliverablesCompleted": 2
           },
           {
             "phase": "Desenvolvimento",
             "planned": 354,
             "executed": 326,
-            "percentage": 92
+            "percentage": 92,
+            "completed": false,
+            "deliverablesTotal": 5,
+            "deliverablesCompleted": 1
           },
           {
             "phase": "Homologação",
-            "planned": 259,
-            "executed": 27,
-            "percentage": 10
+            "planned": 263,
+            "executed": 31,
+            "percentage": 12,
+            "completed": false,
+            "deliverablesTotal": 9,
+            "deliverablesCompleted": 1
           },
           {
             "phase": "Treinamento",
             "planned": 16,
             "executed": 0,
-            "percentage": 0
+            "percentage": 0,
+            "completed": false,
+            "deliverablesTotal": 1,
+            "deliverablesCompleted": 0
           },
           {
             "phase": "Operação Assistida",
             "planned": 30,
             "executed": 0,
-            "percentage": 0
+            "percentage": 0,
+            "completed": false,
+            "deliverablesTotal": 1,
+            "deliverablesCompleted": 0
           }
         ]
       },
       "azureOriginal": {
-        "ilcPlanned": 750,
-        "ilcExecuted": 444,
+        "ilcPlanned": 754,
+        "ilcExecuted": 448,
         "progress": 59,
         "agreedDates": {
           "start": "2026-08-03",
@@ -14804,10 +14970,10 @@
         "start": "2025-07-28",
         "end": null
       },
-      "progress": 64,
+      "progress": 82,
       "manualRagStatus": "auto",
       "executiveSummary": "Projeto integrado ao Azure DevOps. Iteração atual: SPRINT 7a.",
-      "azureLastUpdated": "2026-10-27T20:12:42.760Z",
+      "azureLastUpdated": "2026-10-27T21:45:10.646Z",
       "currentIterationName": "SPRINT 7a",
       "ragStatus": "red",
       "varianceDays": 0,
@@ -20720,38 +20886,53 @@
             "phase": "Planejamento",
             "planned": 0,
             "executed": 0,
-            "percentage": 0
+            "percentage": 0,
+            "completed": false,
+            "deliverablesTotal": 0,
+            "deliverablesCompleted": 0
           },
           {
             "phase": "Desenvolvimento",
             "planned": 2327.1,
             "executed": 1376.7,
-            "percentage": 59
+            "percentage": 59,
+            "completed": false,
+            "deliverablesTotal": 48,
+            "deliverablesCompleted": 15
           },
           {
             "phase": "Homologação",
             "planned": 0,
             "executed": 0,
-            "percentage": 0
+            "percentage": 0,
+            "completed": false,
+            "deliverablesTotal": 0,
+            "deliverablesCompleted": 0
           },
           {
             "phase": "Treinamento",
             "planned": 0,
             "executed": 0,
-            "percentage": 0
+            "percentage": 0,
+            "completed": false,
+            "deliverablesTotal": 0,
+            "deliverablesCompleted": 0
           },
           {
             "phase": "Operação Assistida",
             "planned": 1065.3,
             "executed": 697.8,
-            "percentage": 66
+            "percentage": 66,
+            "completed": false,
+            "deliverablesTotal": 2,
+            "deliverablesCompleted": 0
           }
         ]
       },
       "azureOriginal": {
         "ilcPlanned": 3145.4,
         "ilcExecuted": 2027.5,
-        "progress": 64,
+        "progress": 82,
         "agreedDates": {
           "start": "2025-04-22",
           "end": "2026-10-27"
@@ -20804,10 +20985,10 @@
         "start": "2021-08-01",
         "end": null
       },
-      "progress": 44,
+      "progress": 91,
       "manualRagStatus": "auto",
       "executiveSummary": "Projeto integrado ao Azure DevOps. Iteração atual: SPRINT JUL - 2022 - 1 QUINZENA.",
-      "azureLastUpdated": "2026-10-27T20:12:43.938Z",
+      "azureLastUpdated": "2026-10-27T21:45:11.856Z",
       "currentIterationName": "SPRINT JUL - 2022 - 1 QUINZENA",
       "ragStatus": "red",
       "varianceDays": 0,
@@ -22968,38 +23149,53 @@
             "phase": "Planejamento",
             "planned": 0,
             "executed": 0,
-            "percentage": 0
+            "percentage": 0,
+            "completed": false,
+            "deliverablesTotal": 0,
+            "deliverablesCompleted": 0
           },
           {
             "phase": "Desenvolvimento",
             "planned": 327,
             "executed": 170.5,
-            "percentage": 52
+            "percentage": 52,
+            "completed": false,
+            "deliverablesTotal": 7,
+            "deliverablesCompleted": 1
           },
           {
             "phase": "Homologação",
             "planned": 0,
             "executed": 0,
-            "percentage": 0
+            "percentage": 0,
+            "completed": false,
+            "deliverablesTotal": 0,
+            "deliverablesCompleted": 0
           },
           {
             "phase": "Treinamento",
             "planned": 0,
             "executed": 0,
-            "percentage": 0
+            "percentage": 0,
+            "completed": false,
+            "deliverablesTotal": 0,
+            "deliverablesCompleted": 0
           },
           {
             "phase": "Operação Assistida",
             "planned": 739.5,
             "executed": 299.8,
-            "percentage": 41
+            "percentage": 41,
+            "completed": false,
+            "deliverablesTotal": 1,
+            "deliverablesCompleted": 0
           }
         ]
       },
       "azureOriginal": {
         "ilcPlanned": 1065.5,
         "ilcExecuted": 470.3,
-        "progress": 44,
+        "progress": 91,
         "agreedDates": {
           "start": "2021-01-15",
           "end": "2022-07-15"
@@ -23054,7 +23250,7 @@
       "progress": 100,
       "manualRagStatus": "auto",
       "executiveSummary": "Projeto integrado ao Azure DevOps. Iteração atual: Em andamento.",
-      "azureLastUpdated": "2026-10-27T20:12:45.049Z",
+      "azureLastUpdated": "2026-10-27T21:45:12.380Z",
       "currentIterationName": null,
       "ragStatus": "green",
       "varianceDays": 0,
@@ -23816,31 +24012,46 @@
             "phase": "Planejamento",
             "planned": 0,
             "executed": 0,
-            "percentage": 0
+            "percentage": 0,
+            "completed": false,
+            "deliverablesTotal": 0,
+            "deliverablesCompleted": 0
           },
           {
             "phase": "Desenvolvimento",
             "planned": 452,
             "executed": 472,
-            "percentage": 100
+            "percentage": 104,
+            "completed": true,
+            "deliverablesTotal": 1,
+            "deliverablesCompleted": 1
           },
           {
             "phase": "Homologação",
             "planned": 0,
             "executed": 0,
-            "percentage": 0
+            "percentage": 0,
+            "completed": false,
+            "deliverablesTotal": 0,
+            "deliverablesCompleted": 0
           },
           {
             "phase": "Treinamento",
             "planned": 0,
             "executed": 0,
-            "percentage": 0
+            "percentage": 0,
+            "completed": false,
+            "deliverablesTotal": 0,
+            "deliverablesCompleted": 0
           },
           {
             "phase": "Operação Assistida",
             "planned": 0,
             "executed": 0,
-            "percentage": 0
+            "percentage": 0,
+            "completed": false,
+            "deliverablesTotal": 0,
+            "deliverablesCompleted": 0
           }
         ]
       },
@@ -23897,10 +24108,10 @@
         "start": "2025-11-11",
         "end": null
       },
-      "progress": 94,
+      "progress": 87,
       "manualRagStatus": "auto",
       "executiveSummary": "Projeto integrado ao Azure DevOps. Iteração atual: Iteration 20.",
-      "azureLastUpdated": "2026-10-27T20:12:46.227Z",
+      "azureLastUpdated": "2026-10-27T21:45:13.692Z",
       "currentIterationName": "Iteration 20",
       "ragStatus": "red",
       "varianceDays": 0,
@@ -28655,38 +28866,53 @@
             "phase": "Planejamento",
             "planned": 271,
             "executed": 272.5,
-            "percentage": 100
+            "percentage": 101,
+            "completed": false,
+            "deliverablesTotal": 1,
+            "deliverablesCompleted": 0
           },
           {
             "phase": "Desenvolvimento",
             "planned": 2226.5,
             "executed": 2071.5,
-            "percentage": 93
+            "percentage": 93,
+            "completed": false,
+            "deliverablesTotal": 33,
+            "deliverablesCompleted": 7
           },
           {
             "phase": "Homologação",
             "planned": 0,
             "executed": 0,
-            "percentage": 0
+            "percentage": 0,
+            "completed": false,
+            "deliverablesTotal": 0,
+            "deliverablesCompleted": 0
           },
           {
             "phase": "Treinamento",
             "planned": 0,
             "executed": 0,
-            "percentage": 0
+            "percentage": 0,
+            "completed": false,
+            "deliverablesTotal": 0,
+            "deliverablesCompleted": 0
           },
           {
             "phase": "Operação Assistida",
             "planned": 0,
             "executed": 0,
-            "percentage": 0
+            "percentage": 0,
+            "completed": false,
+            "deliverablesTotal": 0,
+            "deliverablesCompleted": 0
           }
         ]
       },
       "azureOriginal": {
         "ilcPlanned": 2469.5,
         "ilcExecuted": 2316,
-        "progress": 94,
+        "progress": 87,
         "agreedDates": {
           "start": "2025-11-10",
           "end": "2026-08-30"
@@ -28742,10 +28968,10 @@
         "start": "2026-08-09",
         "end": null
       },
-      "progress": 69,
+      "progress": 53,
       "manualRagStatus": "auto",
       "executiveSummary": "Projeto integrado ao Azure DevOps. Iteração atual: Sprint 5.",
-      "azureLastUpdated": "2026-10-27T20:12:46.781Z",
+      "azureLastUpdated": "2026-10-27T21:45:14.114Z",
       "currentIterationName": "Sprint 6",
       "ragStatus": "red",
       "varianceDays": 0,
@@ -29358,38 +29584,53 @@
             "phase": "Planejamento",
             "planned": 0,
             "executed": 0,
-            "percentage": 0
+            "percentage": 0,
+            "completed": false,
+            "deliverablesTotal": 0,
+            "deliverablesCompleted": 0
           },
           {
             "phase": "Desenvolvimento",
             "planned": 0,
             "executed": 0,
-            "percentage": 0
+            "percentage": 0,
+            "completed": false,
+            "deliverablesTotal": 0,
+            "deliverablesCompleted": 0
           },
           {
             "phase": "Homologação",
             "planned": 272,
             "executed": 144,
-            "percentage": 53
+            "percentage": 53,
+            "completed": false,
+            "deliverablesTotal": 6,
+            "deliverablesCompleted": 0
           },
           {
             "phase": "Treinamento",
             "planned": 0,
             "executed": 0,
-            "percentage": 0
+            "percentage": 0,
+            "completed": false,
+            "deliverablesTotal": 0,
+            "deliverablesCompleted": 0
           },
           {
             "phase": "Operação Assistida",
             "planned": 0,
             "executed": 0,
-            "percentage": 0
+            "percentage": 0,
+            "completed": false,
+            "deliverablesTotal": 0,
+            "deliverablesCompleted": 0
           }
         ]
       },
       "azureOriginal": {
         "ilcPlanned": 208,
         "ilcExecuted": 144,
-        "progress": 69,
+        "progress": 53,
         "agreedDates": {
           "start": "2026-08-09",
           "end": "2026-10-31"
@@ -29444,7 +29685,7 @@
       "progress": 9,
       "manualRagStatus": "auto",
       "executiveSummary": "Conclusão do desenvolvimento to protótipo, alinhamento para refinamento e estruturação dos pacotes de entregas.",
-      "azureLastUpdated": "2026-10-27T20:12:43.328Z",
+      "azureLastUpdated": "2026-10-27T21:45:11.175Z",
       "currentIterationName": "Iteration 1",
       "activities": [
         {
@@ -29842,31 +30083,46 @@
             "phase": "Planejamento",
             "planned": 40,
             "executed": 32,
-            "percentage": 80
+            "percentage": 80,
+            "completed": false,
+            "deliverablesTotal": 1,
+            "deliverablesCompleted": 0
           },
           {
             "phase": "Desenvolvimento",
             "planned": 232,
             "executed": 0,
-            "percentage": 0
+            "percentage": 0,
+            "completed": false,
+            "deliverablesTotal": 3,
+            "deliverablesCompleted": 0
           },
           {
             "phase": "Homologação",
             "planned": 36,
             "executed": 0,
-            "percentage": 0
+            "percentage": 0,
+            "completed": false,
+            "deliverablesTotal": 2,
+            "deliverablesCompleted": 0
           },
           {
             "phase": "Treinamento",
             "planned": 0,
             "executed": 0,
-            "percentage": 0
+            "percentage": 0,
+            "completed": false,
+            "deliverablesTotal": 0,
+            "deliverablesCompleted": 0
           },
           {
             "phase": "Operação Assistida",
             "planned": 32,
             "executed": 0,
-            "percentage": 0
+            "percentage": 0,
+            "completed": false,
+            "deliverablesTotal": 2,
+            "deliverablesCompleted": 0
           }
         ]
       },
@@ -29913,10 +30169,10 @@
         "start": "2026-08-01",
         "end": null
       },
-      "progress": 26,
+      "progress": 45,
       "manualRagStatus": "auto",
-      "executiveSummary": "VERIFICAR",
-      "azureLastUpdated": "2026-10-27T20:12:35.776Z",
+      "executiveSummary": "Melhoria no Portal ILC módulo Gestão de Demandas para uso da operação, incluindo rastreamentos de demandas ponta a ponta. Desenvolvimento dos BIs, visibilidade de demandas geradas, ajustes na integração com o Rodopar.",
+      "azureLastUpdated": "2026-10-27T21:45:04.867Z",
       "currentIterationName": "Iteration 1",
       "activities": [
         {
@@ -30285,6 +30541,17 @@
               "completedWork": 2,
               "startDate": "2026-10-23",
               "targetDate": "2026-10-30"
+            },
+            {
+              "id": 7489,
+              "title": "[BI] - Ajustar cálculo de SLA de coleta e entrega para viagens pendentes",
+              "type": "Task",
+              "state": "New",
+              "assignedTo": "Lucas Maier Gomes Bruno",
+              "originalEstimate": 0,
+              "completedWork": 0,
+              "startDate": "2026-10-01",
+              "targetDate": "2026-10-30"
             }
           ]
         },
@@ -30626,7 +30893,7 @@
           "startDate": "2026-10-13",
           "targetDate": "2026-11-06",
           "dateStr": "06/11/2026",
-          "ilcHours": 6,
+          "ilcHours": 32,
           "ilcHoursTotal": 47,
           "clientHours": 0,
           "status": "in-progress",
@@ -30638,7 +30905,7 @@
               "title": "Investigar PCs não localizadas no Rodopar",
               "type": "Task",
               "state": "Active",
-              "assignedTo": "Vitor Neves",
+              "assignedTo": "Gustavo Roberto Santos de Oliveira",
               "originalEstimate": 4,
               "completedWork": 0,
               "startDate": "2026-10-20",
@@ -30649,7 +30916,7 @@
               "title": "Definir tratamento de PCs canceladas ou excluídas da visualização",
               "type": "Task",
               "state": "Active",
-              "assignedTo": "Vitor Neves",
+              "assignedTo": "Gustavo Roberto Santos de Oliveira",
               "originalEstimate": 3,
               "completedWork": 0,
               "startDate": "2026-10-23",
@@ -30660,7 +30927,7 @@
               "title": "Analisar PCs duplicadas e recriadas manualmente",
               "type": "Task",
               "state": "Active",
-              "assignedTo": "Vitor Neves",
+              "assignedTo": "Gustavo Roberto Santos de Oliveira",
               "originalEstimate": 4,
               "completedWork": 0,
               "startDate": "2026-10-23",
@@ -30681,10 +30948,10 @@
               "id": 7409,
               "title": "Implementar confirmação automática da integração",
               "type": "Task",
-              "state": "New",
+              "state": "Closed",
               "assignedTo": "Vitor Neves",
               "originalEstimate": 10,
-              "completedWork": 0,
+              "completedWork": 10,
               "startDate": "2026-10-27",
               "targetDate": "2026-11-06"
             },
@@ -30703,10 +30970,10 @@
               "id": 7461,
               "title": "Implementar alertas automáticos de falhas na integração de demandas via Microsoft Teams",
               "type": "Task",
-              "state": "Active",
+              "state": "Closed",
               "assignedTo": "Vitor Neves",
               "originalEstimate": 8,
-              "completedWork": 0,
+              "completedWork": 8,
               "startDate": "2026-10-27",
               "targetDate": "2026-10-27"
             },
@@ -30714,10 +30981,10 @@
               "id": 7462,
               "title": "Implementar canal exclusivo de alertas de falhas da Torre 4.0 no Microsoft Teams",
               "type": "Task",
-              "state": "Active",
+              "state": "Closed",
               "assignedTo": "Vitor Neves",
               "originalEstimate": 8,
-              "completedWork": 0,
+              "completedWork": 8,
               "startDate": "2026-10-26",
               "targetDate": "2026-10-26"
             }
@@ -30799,8 +31066,8 @@
       },
       "azureOriginal": {
         "ilcPlanned": 264,
-        "ilcExecuted": 69,
-        "progress": 26,
+        "ilcExecuted": 95,
+        "progress": 45,
         "agreedDates": {
           "start": "2026-10-01",
           "end": "2026-11-13"
@@ -30814,43 +31081,58 @@
         "agreed": 264,
         "agreedHours": 264,
         "planned": 264,
-        "executed": 69,
+        "executed": 95,
         "clientPlanned": 0,
         "clientExecuted": 0,
         "ilcPlanned": 264,
-        "ilcExecuted": 69,
+        "ilcExecuted": 95,
         "totalPlanned": 264,
-        "totalExecuted": 69,
+        "totalExecuted": 95,
         "distribution": [
           {
             "phase": "Planejamento",
             "planned": 11,
             "executed": 11,
-            "percentage": 100
+            "percentage": 100,
+            "completed": true,
+            "deliverablesTotal": 1,
+            "deliverablesCompleted": 1
           },
           {
             "phase": "Desenvolvimento",
             "planned": 126,
             "executed": 34,
-            "percentage": 27
+            "percentage": 27,
+            "completed": false,
+            "deliverablesTotal": 5,
+            "deliverablesCompleted": 0
           },
           {
             "phase": "Homologação",
             "planned": 74,
-            "executed": 6,
-            "percentage": 8
+            "executed": 32,
+            "percentage": 43,
+            "completed": false,
+            "deliverablesTotal": 3,
+            "deliverablesCompleted": 0
           },
           {
             "phase": "Treinamento",
             "planned": 21,
             "executed": 8,
-            "percentage": 38
+            "percentage": 38,
+            "completed": false,
+            "deliverablesTotal": 2,
+            "deliverablesCompleted": 0
           },
           {
             "phase": "Operação Assistida",
             "planned": 32,
             "executed": 10,
-            "percentage": 31
+            "percentage": 31,
+            "completed": false,
+            "deliverablesTotal": 2,
+            "deliverablesCompleted": 0
           }
         ]
       },
@@ -30888,7 +31170,7 @@
       "progress": 100,
       "manualRagStatus": "auto",
       "executiveSummary": "Pendente atualização do projeto no Azure",
-      "azureLastUpdated": "2026-10-27T20:12:40.057Z",
+      "azureLastUpdated": "2026-10-27T21:45:08.939Z",
       "currentIterationName": "Iteration 1",
       "activities": [
         {
@@ -31379,31 +31661,46 @@
             "phase": "Planejamento",
             "planned": 0,
             "executed": 0,
-            "percentage": 0
+            "percentage": 0,
+            "completed": false,
+            "deliverablesTotal": 0,
+            "deliverablesCompleted": 0
           },
           {
             "phase": "Desenvolvimento",
             "planned": 294,
             "executed": 292,
-            "percentage": 99
+            "percentage": 99,
+            "completed": true,
+            "deliverablesTotal": 7,
+            "deliverablesCompleted": 7
           },
           {
             "phase": "Homologação",
             "planned": 107,
             "executed": 107,
-            "percentage": 100
+            "percentage": 100,
+            "completed": true,
+            "deliverablesTotal": 5,
+            "deliverablesCompleted": 5
           },
           {
             "phase": "Treinamento",
             "planned": 0,
             "executed": 0,
-            "percentage": 0
+            "percentage": 0,
+            "completed": false,
+            "deliverablesTotal": 0,
+            "deliverablesCompleted": 0
           },
           {
             "phase": "Operação Assistida",
             "planned": 15,
             "executed": 15,
-            "percentage": 100
+            "percentage": 100,
+            "completed": true,
+            "deliverablesTotal": 1,
+            "deliverablesCompleted": 1
           }
         ]
       },
@@ -31440,8 +31737,8 @@
       },
       "progress": 0,
       "manualRagStatus": "auto",
-      "executiveSummary": "VERIFICAR",
-      "azureLastUpdated": "2026-10-27T20:12:32.773Z",
+      "executiveSummary": "Desenvolvimento de escopo do projeto.",
+      "azureLastUpdated": "2026-10-27T21:45:03.229Z",
       "currentIterationName": null,
       "activities": [],
       "priority": "P2",
@@ -31489,31 +31786,46 @@
             "phase": "Planejamento",
             "planned": 0,
             "executed": 0,
-            "percentage": 0
+            "percentage": 0,
+            "completed": false,
+            "deliverablesTotal": 0,
+            "deliverablesCompleted": 0
           },
           {
             "phase": "Desenvolvimento",
             "planned": 0,
             "executed": 0,
-            "percentage": 0
+            "percentage": 0,
+            "completed": false,
+            "deliverablesTotal": 0,
+            "deliverablesCompleted": 0
           },
           {
             "phase": "Homologação",
             "planned": 0,
             "executed": 0,
-            "percentage": 0
+            "percentage": 0,
+            "completed": false,
+            "deliverablesTotal": 0,
+            "deliverablesCompleted": 0
           },
           {
             "phase": "Treinamento",
             "planned": 0,
             "executed": 0,
-            "percentage": 0
+            "percentage": 0,
+            "completed": false,
+            "deliverablesTotal": 0,
+            "deliverablesCompleted": 0
           },
           {
             "phase": "Operação Assistida",
             "planned": 0,
             "executed": 0,
-            "percentage": 0
+            "percentage": 0,
+            "completed": false,
+            "deliverablesTotal": 0,
+            "deliverablesCompleted": 0
           }
         ]
       },

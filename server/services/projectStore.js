@@ -326,12 +326,19 @@ class ProjectStore {
       ilcExecuted: totalExecuted,
       totalPlanned,
       totalExecuted,
-      distribution: Object.entries(distribution).map(([phase, data]) => ({
-        phase,
-        planned: this.roundHours(data.planned),
-        executed: this.roundHours(data.executed),
-        percentage: data.planned > 0 ? Math.min(100, Math.round((data.executed / data.planned) * 100)) : 0
-      }))
+      distribution: Object.entries(distribution).map(([phase, data]) => {
+        const phActs = activities.filter(a => a.eapPhase === phase);
+        const allCompleted = phActs.length > 0 && phActs.every(a => a.status === 'completed' || ['closed', 'done', 'resolved', 'finalizado', 'concluído', 'completed'].includes((a.state || '').toLowerCase()));
+        return {
+          phase,
+          planned: this.roundHours(data.planned),
+          executed: this.roundHours(data.executed),
+          percentage: data.planned > 0 ? Math.round((data.executed / data.planned) * 100) : 0,
+          completed: allCompleted,
+          deliverablesTotal: phActs.length,
+          deliverablesCompleted: phActs.filter(a => a.status === 'completed' || ['closed', 'done', 'resolved', 'finalizado', 'concluído', 'completed'].includes((a.state || '').toLowerCase())).length
+        };
+      })
     };
   }
 
@@ -474,7 +481,28 @@ class ProjectStore {
 
         // Overwrite progress from Azure if field is locked to Azure
         if (existing.lockedFields.progress !== false) {
-          existing.progress = azure.progress !== undefined ? azure.progress : (existing.progress || 0);
+          const acts = existing.activities || [];
+          const allActsClosed = acts.length > 0 && acts.every(a => a.status === 'completed' || ['closed', 'done', 'resolved', 'finalizado', 'concluído', 'completed'].includes((a.state || '').toLowerCase()));
+          let allTasksClosed = false;
+          let totalTasksCount = 0;
+          let closedTasksCount = 0;
+          for (const a of acts) {
+            for (const t of (a.linkedTasks || [])) {
+              totalTasksCount++;
+              if (['closed', 'done', 'resolved', 'finalizado', 'concluído', 'completed'].includes((t.state || '').toLowerCase())) {
+                closedTasksCount++;
+              }
+            }
+          }
+          if (totalTasksCount > 0 && closedTasksCount === totalTasksCount) {
+            allTasksClosed = true;
+          }
+
+          if (allTasksClosed || allActsClosed || existing.status === 'Finalizado') {
+            existing.progress = 100;
+          } else {
+            existing.progress = azure.progress !== undefined ? azure.progress : (existing.progress || 0);
+          }
           existing.hasManualProgress = false;
         }
 

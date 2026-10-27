@@ -57,6 +57,9 @@ export interface PhaseDistribution {
   planned: number;
   executed: number;
   percentage: number;
+  completed?: boolean;
+  deliverablesTotal?: number;
+  deliverablesCompleted?: number;
 }
 
 export interface ProjectHours {

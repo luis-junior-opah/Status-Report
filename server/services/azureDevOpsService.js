@@ -591,12 +591,33 @@ class AzureDevOpsService {
       }
     }
 
-    // Progress percentage: Prioritize task hours executed vs planned, fallback to completed deliverables count
+    // Progress percentage: Deliverables & Tasks Completion (Earned Value / Scope Completion)
+    const isStateClosed = (s) => ['closed', 'done', 'resolved', 'finalizado', 'concluído', 'completed'].includes((s || '').toLowerCase());
+    const isStateActive = (s) => ['active', 'in progress', 'doing', 'em andamento', 'qa', 'in-progress'].includes((s || '').toLowerCase());
+
     let progress = 0;
-    if (totalTaskOriginalEstimate > 0) {
-      progress = Math.min(100, Math.round((totalTaskCompletedWork / totalTaskOriginalEstimate) * 100));
+    const closedTasks = allCollectedTasks.filter(t => isStateClosed(t.state));
+    const allTasksCompleted = allCollectedTasks.length > 0 && closedTasks.length === allCollectedTasks.length;
+    const allActivitiesCompleted = activities.length > 0 && activities.every(a => a.status === 'completed' || isStateClosed(a.state));
+
+    if (allTasksCompleted || allActivitiesCompleted) {
+      progress = 100;
+    } else if (allCollectedTasks.length > 0) {
+      let totalWeight = 0;
+      let earnedValue = 0;
+      for (const t of allCollectedTasks) {
+        const weight = t.originalEstimate > 0 ? t.originalEstimate : (t.completedWork > 0 ? t.completedWork : 1);
+        totalWeight += weight;
+        if (isStateClosed(t.state)) {
+          earnedValue += weight;
+        } else if (isStateActive(t.state)) {
+          const partial = t.originalEstimate > 0 ? Math.min(weight * 0.8, t.completedWork || (weight * 0.5)) : (weight * 0.5);
+          earnedValue += partial;
+        }
+      }
+      progress = totalWeight > 0 ? Math.min(99, Math.round((earnedValue / totalWeight) * 100)) : 0;
     } else if (activities.length > 0) {
-      const closed = activities.filter(a => a.status === 'completed').length;
+      const closed = activities.filter(a => a.status === 'completed' || isStateClosed(a.state)).length;
       progress = Math.round((closed / activities.length) * 100);
     }
 
