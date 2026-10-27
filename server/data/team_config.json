@@ -1,0 +1,329 @@
+[
+  {
+    "name": "Adriano Damasceno Otranto",
+    "isVisible": true,
+    "role": "Engenheiro de Software Sênior",
+    "allocatedProjects": [
+      "GESTÃO DE DEMANDAS (MVP)"
+    ]
+  },
+  {
+    "name": "Anderson Rodrigo de Jesus Souza",
+    "isVisible": true,
+    "role": "Engenheiro de Software",
+    "allocatedProjects": [
+      "INTEGRATOR",
+      "SMART X"
+    ]
+  },
+  {
+    "name": "Bruna Neves",
+    "isVisible": true,
+    "role": "Especialista de Sistemas",
+    "allocatedProjects": [
+      "GE - GESTÃO EMBARCADA"
+    ]
+  },
+  {
+    "name": "Cesar Augusto Rodrigues",
+    "isVisible": true,
+    "role": "Especialista de Sistemas",
+    "allocatedProjects": [
+      "GE - GESTÃO EMBARCADA"
+    ]
+  },
+  {
+    "name": "Clécio Ciriaco da Silva",
+    "isVisible": true,
+    "role": "Especialista de Sistemas",
+    "allocatedProjects": [
+      "SMART X"
+    ]
+  },
+  {
+    "name": "Denis Ivan Lenz",
+    "isVisible": true,
+    "role": "Especialista de Sistemas",
+    "allocatedProjects": [
+      "SMART X"
+    ]
+  },
+  {
+    "name": "Filipe Andrade",
+    "isVisible": true,
+    "role": "Especialista de Sistemas",
+    "allocatedProjects": [
+      "GE - GESTÃO EMBARCADA"
+    ]
+  },
+  {
+    "name": "Francisco Molaia",
+    "isVisible": true,
+    "role": "Líder Técnico / Arquiteto",
+    "allocatedProjects": [
+      "App ILC 2026"
+    ]
+  },
+  {
+    "name": "Francisco Molaia Santos",
+    "isVisible": true,
+    "role": "Líder Técnico / Arquiteto",
+    "allocatedProjects": [
+      "App ILC 2026",
+      "GESTÃO DE DEMANDAS (MVP)",
+      "ILC - Migração Data Center ADDIT → CCM Matrix OCI",
+      "INTEGRATOR",
+      "Migração Angular Integrator V0",
+      "SMART X",
+      "Atualização de Documentos",
+      "Cockpit Petrobras"
+    ]
+  },
+  {
+    "name": "Guillermes Stephen Viana Mozzer",
+    "isVisible": true,
+    "role": "Especialista de Sistemas",
+    "allocatedProjects": [
+      "APP ILC MOBILE",
+      "SMART X"
+    ]
+  },
+  {
+    "name": "Gustavo Roberto Santos de Oliveira",
+    "isVisible": true,
+    "role": "Especialista de Sistemas",
+    "allocatedProjects": [
+      "Mirassol - Torre de Controle 4.0"
+    ]
+  },
+  {
+    "name": "Jadson Silva",
+    "isVisible": true,
+    "role": "Especialista de Sistemas",
+    "allocatedProjects": [
+      "GE - GESTÃO EMBARCADA"
+    ]
+  },
+  {
+    "name": "Leandro Rigo",
+    "isVisible": true,
+    "role": "Especialista de Sistemas",
+    "allocatedProjects": [
+      "GE - GESTÃO EMBARCADA"
+    ]
+  },
+  {
+    "name": "Lucas Alves dos Santos",
+    "isVisible": true,
+    "role": "Engenheiro de Software",
+    "allocatedProjects": [
+      "APP - SMART TRACKING",
+      "INTEGRATOR"
+    ]
+  },
+  {
+    "name": "Lucas de Souza Santos",
+    "isVisible": true,
+    "role": "Engenheiro de Software",
+    "allocatedProjects": [
+      "SMART X"
+    ]
+  },
+  {
+    "name": "Lucas Jose Silva",
+    "isVisible": true,
+    "role": "Engenheiro de Software",
+    "allocatedProjects": [
+      "GE - GESTÃO EMBARCADA"
+    ]
+  },
+  {
+    "name": "Lucas Maier Gomes Bruno",
+    "isVisible": true,
+    "role": "Engenheiro de Software",
+    "allocatedProjects": [
+      "Mirassol - Torre de Controle 4.0",
+      "Cockpit Petrobras"
+    ]
+  },
+  {
+    "name": "Luciana Melhado",
+    "isVisible": true,
+    "role": "Especialista de Sistemas",
+    "allocatedProjects": [
+      "GE - GESTÃO EMBARCADA"
+    ]
+  },
+  {
+    "name": "Luis Carlos Oliveira Santos Junior",
+    "isVisible": true,
+    "role": "Líder Técnico / Arquiteto",
+    "allocatedProjects": [
+      "App ILC 2026",
+      "GESTÃO DE DEMANDAS (MVP)",
+      "Migração Angular Integrator V0",
+      "John Deere - Adição de Item na Promessa",
+      "John Deere - Frete Expresso 2.0",
+      "John Deere - Reprogramação Sistêmica - Duplicação de Pedidos",
+      "Mirassol - Assinatura Digital de Documentos",
+      "Mirassol - Input Gestão de demandas"
+    ]
+  },
+  {
+    "name": "Luis Santos",
+    "isVisible": true,
+    "role": "Especialista de Sistemas",
+    "allocatedProjects": [
+      "App ILC 2026",
+      "John Deere - Adição de Item na Promessa",
+      "John Deere - Frete Expresso 2.0",
+      "John Deere - Reprogramação Sistêmica - Duplicação de Pedidos",
+      "Mirassol - Assinatura Digital de Documentos",
+      "Mirassol - Input Gestão de demandas",
+      "Mirassol - Projeto Check List por Viagem",
+      "Mirassol - Projeto Safety",
+      "Mirassol - Torre de Controle 4.0"
+    ]
+  },
+  {
+    "name": "Mike Andrade",
+    "isVisible": true,
+    "role": "Líder Técnico / Arquiteto",
+    "allocatedProjects": [
+      "APP - SMART TRACKING",
+      "App ILC 2026",
+      "APP ILC MOBILE",
+      "GESTÃO DE DEMANDAS (MVP)",
+      "INTEGRATOR",
+      "Mirassol - Assinatura Digital de Documentos",
+      "Mirassol - Projeto Check List por Viagem",
+      "Mirassol - Projeto Safety"
+    ]
+  },
+  {
+    "name": "Radamés Henrique Galvão",
+    "isVisible": true,
+    "role": "Especialista de Sistemas",
+    "allocatedProjects": [
+      "GESTÃO DE DEMANDAS (MVP)"
+    ]
+  },
+  {
+    "name": "Raul Machado",
+    "isVisible": true,
+    "role": "Especialista de Sistemas",
+    "allocatedProjects": [
+      "GE - GESTÃO EMBARCADA"
+    ]
+  },
+  {
+    "name": "Renata Dias de Avila Reis",
+    "isVisible": true,
+    "role": "Especialista de Sistemas",
+    "allocatedProjects": [
+      "APP ILC MOBILE",
+      "INTEGRATOR",
+      "SMART X"
+    ]
+  },
+  {
+    "name": "Saddam José Viera Flores",
+    "isVisible": true,
+    "role": "Engenheiro de Software Sênior",
+    "allocatedProjects": [
+      "GESTÃO DE DEMANDAS (MVP)",
+      "SMART X"
+    ]
+  },
+  {
+    "name": "Silvio Torres",
+    "isVisible": true,
+    "role": "Especialista de Sistemas",
+    "allocatedProjects": [
+      "GESTÃO DE DEMANDAS (MVP)",
+      "ILC - Migração Data Center ADDIT → CCM Matrix OCI",
+      "INTEGRATOR",
+      "John Deere - Adição de Item na Promessa",
+      "John Deere - Frete Expresso 2.0",
+      "John Deere - Reprogramação Sistêmica - Duplicação de Pedidos",
+      "Mirassol - Input Gestão de demandas",
+      "Mirassol - Torre de Controle 4.0"
+    ]
+  },
+  {
+    "name": "Tatiane Godinho Dutra",
+    "isVisible": true,
+    "role": "Especialista de Sistemas",
+    "allocatedProjects": [
+      "SMART X"
+    ]
+  },
+  {
+    "name": "Thiago Rodrigues",
+    "isVisible": true,
+    "role": "Engenheiro de Software Sênior",
+    "allocatedProjects": [
+      "Mirassol - Assinatura Digital de Documentos",
+      "Mirassol - Projeto Check List por Viagem"
+    ]
+  },
+  {
+    "name": "Thiago Rodrigues do Nascimento Silva",
+    "isVisible": true,
+    "role": "Engenheiro de Software Sênior",
+    "allocatedProjects": [
+      "GESTÃO DE DEMANDAS (MVP)",
+      "SMART X",
+      "Atualização de Documentos",
+      "Mirassol - Assinatura Digital de Documentos",
+      "Cockpit Petrobras"
+    ]
+  },
+  {
+    "name": "Thiago Rodrigues Do Nascimento Silva",
+    "isVisible": true,
+    "role": "Engenheiro de Software Sênior",
+    "allocatedProjects": [
+      "Mirassol - Assinatura Digital de Documentos"
+    ]
+  },
+  {
+    "name": "Tiago de Freitas Figueiredo",
+    "isVisible": true,
+    "role": "Especialista de Sistemas",
+    "allocatedProjects": [
+      "INTEGRATOR",
+      "GE - GESTÃO EMBARCADA"
+    ]
+  },
+  {
+    "name": "Vito Neves",
+    "isVisible": true,
+    "role": "Especialista de Sistemas",
+    "allocatedProjects": [
+      "Mirassol - Assinatura Digital de Documentos"
+    ]
+  },
+  {
+    "name": "Vitor Neves",
+    "isVisible": true,
+    "role": "Engenheiro de Software Sênior",
+    "allocatedProjects": [
+      "GESTÃO DE DEMANDAS (MVP)",
+      "Atualização de Documentos",
+      "Mirassol - Assinatura Digital de Documentos",
+      "Mirassol - Input Gestão de demandas",
+      "Mirassol - Projeto Check List por Viagem",
+      "Mirassol - Projeto Safety",
+      "Mirassol - Torre de Controle 4.0"
+    ]
+  },
+  {
+    "name": "Wesley Rafael",
+    "isVisible": true,
+    "role": "Especialista de Sistemas",
+    "allocatedProjects": [
+      "GE - GESTÃO EMBARCADA"
+    ]
+  }
+]

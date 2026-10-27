@@ -5,6 +5,7 @@ const config = require('./config');
 const projectStore = require('./services/projectStore');
 const syncScheduler = require('./services/syncScheduler');
 const weeklyReportStore = require('./services/weeklyReportStore');
+const teamStore = require('./services/teamStore');
 
 const app = express();
 
@@ -49,6 +50,15 @@ app.get('/api/public/maintenance-metrics', (req, res) => {
   res.json({
     success: true,
     data: projectStore.getMaintenanceMetrics(clientFilter, period)
+  });
+});
+
+app.get('/api/public/team-allocation', (req, res) => {
+  const clientFilter = req.query.client || null;
+  const period = req.query.period || 'year_2026';
+  res.json({
+    success: true,
+    data: teamStore.getTeamAllocationReport(clientFilter, period, true)
   });
 });
 
@@ -110,6 +120,32 @@ function checkAdminAuth(req, res, next) {
   }
   next();
 }
+
+// Admin Team Management (Visibility & Project Allocation)
+app.get('/api/admin/team', checkAdminAuth, (req, res) => {
+  res.json({
+    success: true,
+    data: teamStore.getAllMembers()
+  });
+});
+
+app.put('/api/admin/team/:name', checkAdminAuth, (req, res) => {
+  try {
+    const updated = teamStore.updateMember(req.params.name, req.body);
+    res.json({ success: true, data: updated });
+  } catch (err) {
+    res.status(400).json({ success: false, message: err.message });
+  }
+});
+
+app.put('/api/admin/team', checkAdminAuth, (req, res) => {
+  try {
+    const updated = teamStore.updateAllMembers(req.body.members);
+    res.json({ success: true, data: updated });
+  } catch (err) {
+    res.status(400).json({ success: false, message: err.message });
+  }
+});
 
 // Admin Weekly Report Management
 app.post('/api/admin/weekly-reports/generate', checkAdminAuth, (req, res) => {

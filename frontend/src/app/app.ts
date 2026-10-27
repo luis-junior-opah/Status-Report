@@ -11,6 +11,7 @@ import { ProjectTableComponent } from './components/project-table/project-table.
 import { CuratorModalComponent } from './components/curator-modal/curator-modal.component';
 import { ExecutiveReportComponent } from './components/executive-report/executive-report.component';
 import { MaintenanceDashboardComponent } from './components/maintenance-dashboard/maintenance-dashboard.component';
+import { TeamAllocationComponent } from './components/team-allocation/team-allocation.component';
 
 @Component({
   selector: 'app-root',
@@ -26,7 +27,8 @@ import { MaintenanceDashboardComponent } from './components/maintenance-dashboar
     ProjectTableComponent,
     CuratorModalComponent,
     ExecutiveReportComponent,
-    MaintenanceDashboardComponent
+    MaintenanceDashboardComponent,
+    TeamAllocationComponent
   ],
   templateUrl: './app.html',
   styleUrl: './app.css'

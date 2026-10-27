@@ -991,61 +991,96 @@ class ProjectStore {
       }
 
       for (const a of acts) {
-        const actDate = a.targetDate || a.startDate;
-        const actMonth = actDate ? actDate.slice(0, 7) : null;
-        const hours = this.roundHours(a.ilcHours || 0);
+        const aType = (a.type || '').toLowerCase();
+        const validTasks = (a.linkedTasks || []).filter(t => (Number(t.completedWork) || 0) > 0);
 
-        if (actMonth && monthlyMap[actMonth]) {
-          if (isMaint) {
-            monthlyMap[actMonth].maintenanceHours = this.roundHours(monthlyMap[actMonth].maintenanceHours + hours);
-          } else {
-            monthlyMap[actMonth].newProjectHours = this.roundHours(monthlyMap[actMonth].newProjectHours + hours);
-          }
-        }
+        if (validTasks.length > 0) {
+          for (const t of validTasks) {
+            const tType = (t.type || '').toLowerCase();
+            // Nos projetos de sustentação, desconsiderar Epic e Feature (apenas US e Task)
+            if (isMaint && (tType.includes('epic') || tType.includes('feature'))) continue;
 
-        if (isDateInPeriod(actDate)) {
-          if (isMaint) {
-            totalMaintHours = this.roundHours(totalMaintHours + hours);
-          } else {
-            totalNewHours = this.roundHours(totalNewHours + hours);
-          }
+            const tHours = this.roundHours(t.completedWork || 0);
+            if (tHours <= 0) continue;
 
-          if (a.assignedTo) {
-            const m = getOrCreateMember(a.assignedTo);
-            if (m) {
+            const tDate = t.targetDate || t.startDate || a.targetDate || a.startDate;
+            const tMonth = tDate ? tDate.slice(0, 7) : null;
+
+            if (tMonth && monthlyMap[tMonth]) {
               if (isMaint) {
-                m.maintenanceHours = this.roundHours(m.maintenanceHours + hours);
+                monthlyMap[tMonth].maintenanceHours = this.roundHours(monthlyMap[tMonth].maintenanceHours + tHours);
               } else {
-                m.newProjectHours = this.roundHours(m.newProjectHours + hours);
+                monthlyMap[tMonth].newProjectHours = this.roundHours(monthlyMap[tMonth].newProjectHours + tHours);
               }
-              m.projectsMap[p.name] = {
-                projectName: p.name,
-                client: p.client,
-                hours: this.roundHours((m.projectsMap[p.name]?.hours || 0) + hours),
-                category: isMaint ? 'maintenance' : 'new_project'
-              };
+            }
+
+            if (isDateInPeriod(tDate)) {
+              if (isMaint) {
+                totalMaintHours = this.roundHours(totalMaintHours + tHours);
+              } else {
+                totalNewHours = this.roundHours(totalNewHours + tHours);
+              }
+
+              const assigned = t.assignedTo || a.assignedTo;
+              if (assigned) {
+                const m = getOrCreateMember(assigned);
+                if (m) {
+                  if (isMaint) {
+                    m.maintenanceHours = this.roundHours(m.maintenanceHours + tHours);
+                  } else {
+                    m.newProjectHours = this.roundHours(m.newProjectHours + tHours);
+                  }
+                  m.projectsMap[p.name] = {
+                    projectName: p.name,
+                    client: p.client,
+                    hours: this.roundHours((m.projectsMap[p.name]?.hours || 0) + tHours),
+                    category: isMaint ? 'maintenance' : 'new_project'
+                  };
+                }
+              }
             }
           }
-        }
+        } else {
+          // Atividade sem tarefas filhas granulares
+          // Nos projetos de sustentação, desconsiderar Epic e Feature
+          if (isMaint && (aType.includes('epic') || aType.includes('feature'))) continue;
 
-        for (const t of (a.linkedTasks || [])) {
-          const tDate = t.targetDate || t.startDate || actDate;
-          const tHours = this.roundHours(t.completedWork || 0);
+          const aHours = this.roundHours(a.ilcHours || 0);
+          if (aHours <= 0) continue;
 
-          if (t.assignedTo && isDateInPeriod(tDate)) {
-            const m = getOrCreateMember(t.assignedTo);
-            if (m && (!a.assignedTo || a.assignedTo !== t.assignedTo)) {
-              if (isMaint) {
-                m.maintenanceHours = this.roundHours(m.maintenanceHours + tHours);
-              } else {
-                m.newProjectHours = this.roundHours(m.newProjectHours + tHours);
+          const aDate = a.targetDate || a.startDate;
+          const aMonth = aDate ? aDate.slice(0, 7) : null;
+
+          if (aMonth && monthlyMap[aMonth]) {
+            if (isMaint) {
+              monthlyMap[aMonth].maintenanceHours = this.roundHours(monthlyMap[aMonth].maintenanceHours + aHours);
+            } else {
+              monthlyMap[aMonth].newProjectHours = this.roundHours(monthlyMap[aMonth].newProjectHours + aHours);
+            }
+          }
+
+          if (isDateInPeriod(aDate)) {
+            if (isMaint) {
+              totalMaintHours = this.roundHours(totalMaintHours + aHours);
+            } else {
+              totalNewHours = this.roundHours(totalNewHours + aHours);
+            }
+
+            if (a.assignedTo) {
+              const m = getOrCreateMember(a.assignedTo);
+              if (m) {
+                if (isMaint) {
+                  m.maintenanceHours = this.roundHours(m.maintenanceHours + aHours);
+                } else {
+                  m.newProjectHours = this.roundHours(m.newProjectHours + aHours);
+                }
+                m.projectsMap[p.name] = {
+                  projectName: p.name,
+                  client: p.client,
+                  hours: this.roundHours((m.projectsMap[p.name]?.hours || 0) + aHours),
+                  category: isMaint ? 'maintenance' : 'new_project'
+                };
               }
-              m.projectsMap[p.name] = {
-                projectName: p.name,
-                client: p.client,
-                hours: this.roundHours((m.projectsMap[p.name]?.hours || 0) + tHours),
-                category: isMaint ? 'maintenance' : 'new_project'
-              };
             }
           }
         }
@@ -1067,6 +1102,11 @@ class ProjectStore {
       'bg-indigo-600', 'bg-rose-600', 'bg-cyan-600', 'bg-teal-600'
     ];
 
+    let teamStore = null;
+    try {
+      teamStore = require('./teamStore');
+    } catch (e) {}
+
     const teamMembers = Object.values(memberMap)
       .map((m, idx) => {
         m.totalHours = this.roundHours(m.newProjectHours + m.maintenanceHours);
@@ -1076,7 +1116,7 @@ class ProjectStore {
         delete m.projectsMap;
         return m;
       })
-      .filter(m => m.totalHours > 0)
+      .filter(m => m.totalHours > 0 && (!teamStore || teamStore.isMemberVisible(m.name)))
       .sort((a, b) => b.totalHours - a.totalHours);
 
     return {

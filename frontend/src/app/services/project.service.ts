@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Project, ProjectStats, ClientConfig, EapPhase, AzureConfigStatus, AzureAuditReport } from '../models/project.model';
 import { WeeklyReport, WeeklyReportSummary, RoadmapProject, BoardDecision } from '../models/weekly-report.model';
 import { MaintenanceMetrics, MaintenancePeriod } from '../models/maintenance.model';
+import { TeamMemberConfig, TeamAllocationReport } from '../models/team.model';
 import { firstValueFrom } from 'rxjs';
 
 @Injectable({
@@ -28,12 +29,19 @@ export class ProjectService {
   selectedSystem = signal<string>('Todos'); // 'Todos' | 'Portal Integrator' | 'App Smart Tracking' | 'Smart X' | 'App ILC'
   sortBy = signal<'targetDelivery' | 'client' | 'priority' | 'progress'>('targetDelivery');
   searchQuery = signal<string>('');
-  activeView = signal<'macro' | 'eap-gantt' | 'cards' | 'table' | 'report' | 'maintenance'>('macro');
+  activeView = signal<'macro' | 'eap-gantt' | 'cards' | 'table' | 'report' | 'maintenance' | 'team'>('macro');
 
   // Maintenance Dashboard signals
   maintenanceMetrics = signal<MaintenanceMetrics | null>(null);
   isLoadingMaintenance = signal<boolean>(false);
   selectedMaintenancePeriod = signal<MaintenancePeriod>('year_2026');
+
+  // Team Allocation signals
+  teamAllocationReport = signal<TeamAllocationReport | null>(null);
+  isLoadingTeam = signal<boolean>(false);
+  selectedTeamPeriod = signal<MaintenancePeriod>('year_2026');
+  adminTeamMembers = signal<TeamMemberConfig[]>([]);
+  isLoadingAdminTeam = signal<boolean>(false);
 
   // Weekly Report signals (for Board Executive Presentation)
   weeklyReports = signal<WeeklyReportSummary[]>([]);
@@ -685,6 +693,91 @@ export class ProjectService {
       return null;
     } finally {
       this.isLoadingMaintenance.set(false);
+    }
+  }
+
+  async loadTeamAllocation(clientFilter?: string, period?: MaintenancePeriod): Promise<TeamAllocationReport | null> {
+    const p = period || this.selectedTeamPeriod();
+    const c = clientFilter || this.selectedClient();
+    this.isLoadingTeam.set(true);
+    try {
+      const url = `/api/public/team-allocation?client=${encodeURIComponent(c)}&period=${encodeURIComponent(p)}`;
+      const res = await firstValueFrom(this.http.get<{ success: boolean; data: TeamAllocationReport }>(url));
+      if (res?.success && res.data) {
+        this.teamAllocationReport.set(res.data);
+        return res.data;
+      }
+      return null;
+    } catch (err) {
+      console.error('Erro ao carregar relatório de alocação de equipe:', err);
+      return null;
+    } finally {
+      this.isLoadingTeam.set(false);
+    }
+  }
+
+  async loadAdminTeam(): Promise<TeamMemberConfig[]> {
+    this.isLoadingAdminTeam.set(true);
+    try {
+      const res = await firstValueFrom(
+        this.http.get<{ success: boolean; data: TeamMemberConfig[] }>('/api/admin/team', {
+          headers: { 'x-admin-pin': this.adminPin() }
+        })
+      );
+      if (res?.success && res.data) {
+        this.adminTeamMembers.set(res.data);
+        return res.data;
+      }
+      return [];
+    } catch (err) {
+      console.error('Erro ao carregar lista de membros da equipe (admin):', err);
+      return [];
+    } finally {
+      this.isLoadingAdminTeam.set(false);
+    }
+  }
+
+  async updateAdminTeamMember(name: string, updates: Partial<TeamMemberConfig>): Promise<TeamMemberConfig | null> {
+    try {
+      const res = await firstValueFrom(
+        this.http.put<{ success: boolean; data: TeamMemberConfig }>(
+          `/api/admin/team/${encodeURIComponent(name)}`,
+          updates,
+          { headers: { 'x-admin-pin': this.adminPin() } }
+        )
+      );
+      if (res?.success && res.data) {
+        await this.loadAdminTeam();
+        await this.loadTeamAllocation();
+        await this.loadMaintenanceMetrics();
+        return res.data;
+      }
+      return null;
+    } catch (err) {
+      console.error(`Erro ao atualizar colaborador "${name}":`, err);
+      return null;
+    }
+  }
+
+  async updateAllAdminTeamMembers(members: TeamMemberConfig[]): Promise<boolean> {
+    try {
+      const res = await firstValueFrom(
+        this.http.put<{ success: boolean; data: TeamMemberConfig[] }>(
+          '/api/admin/team',
+          { members },
+          { headers: { 'x-admin-pin': this.adminPin() } }
+        )
+      );
+      if (res?.success) {
+        await this.loadAdminTeam();
+        await this.loadTeamAllocation();
+        await this.loadMaintenanceMetrics();
+        return true;
+      }
+      return false;
+    } catch (err) {
+      console.error('Erro ao salvar colaboradores da equipe:', err);
+      return false;
     }
   }
 
