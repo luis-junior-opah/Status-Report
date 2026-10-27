@@ -18,16 +18,12 @@ import { Project } from '../../models/project.model';
           
           <!-- Title & Description -->
           <div>
-            <div class="flex items-center gap-2 mb-1">
+            <div class="flex items-center gap-2">
               <span class="text-2xl">🛠️</span>
               <h2 class="text-xl font-black text-slate-900 tracking-tight">
                 Painel de Sustentação & Manutenção de Projetos
               </h2>
             </div>
-            <p class="text-xs text-slate-500 max-w-2xl">
-              Acompanhamento histórico de horas dedicadas à sustentação/suporte contínuo de sistemas concluídos
-              e comparativo de capacidade com novos projetos.
-            </p>
           </div>
 
           <!-- Controls: Client Filter & Period Selector -->
