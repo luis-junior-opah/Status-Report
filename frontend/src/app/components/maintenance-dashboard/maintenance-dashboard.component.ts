@@ -602,17 +602,11 @@ import { Project } from '../../models/project.model';
                 </div>
               </div>
 
-              <!-- Card Bottom: Team and EAP Link -->
-              <div class="pt-2 border-t border-slate-200/80 flex items-center justify-between text-xs">
-                <span class="text-[10px] text-slate-500 truncate max-w-[170px]" [title]="service.getTeamTooltip(p)">
+              <!-- Card Bottom: Team -->
+              <div class="pt-2 border-t border-slate-200/80 flex items-center text-xs">
+                <span class="text-[10px] text-slate-500 truncate" [title]="service.getTeamTooltip(p)">
                   👥 {{ p.team?.leader || (p.team?.members?.join(', ') || 'Equipe ILC') }}
                 </span>
-                <button
-                  type="button"
-                  (click)="service.openEapForProject(p.id)"
-                  class="text-xs font-bold text-purple-700 hover:text-purple-900 hover:underline cursor-pointer">
-                  Ver EAP →
-                </button>
               </div>
 
             </div>

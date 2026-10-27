@@ -1084,17 +1084,6 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
 
             </div>
 
-            <!-- Footer: Ver Detalhes na EAP -->
-            <div class="mt-4 pt-2.5 border-t border-slate-100 flex items-center justify-end text-[11px] text-slate-500">
-              <button
-                type="button"
-                (click)="service.openEapForProject(mp.id)"
-                class="font-extrabold text-purple-700 hover:text-purple-900 hover:underline cursor-pointer flex items-center gap-1">
-                <span>Ver EAP</span>
-                <span>→</span>
-              </button>
-            </div>
-
           </div>
 
         </div>
