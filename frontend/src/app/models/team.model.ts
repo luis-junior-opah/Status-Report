@@ -14,6 +14,19 @@ export interface TeamMemberProjectShare {
   tasksCount: number;
 }
 
+export interface MemberTaskItem {
+  id: string | number;
+  title: string;
+  type?: string;
+  state?: string;
+  hours: number;
+  projectId?: string;
+  projectName: string;
+  client?: string;
+  category?: 'new_project' | 'maintenance';
+  date?: string;
+}
+
 export interface TeamMemberAllocation {
   name: string;
   isVisible: boolean;
@@ -26,6 +39,7 @@ export interface TeamMemberAllocation {
   tasksCount: number;
   allocatedProjects: string[];
   projects: TeamMemberProjectShare[];
+  tasks?: MemberTaskItem[];
 }
 
 export interface ProjectTeamAllocation {

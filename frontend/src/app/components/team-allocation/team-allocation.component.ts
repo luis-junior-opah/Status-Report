@@ -337,6 +337,64 @@ import { TeamAllocationReport, TeamMemberAllocation, ProjectTeamAllocation } fro
                 </div>
               </div>
 
+              <!-- Tasks List in Period -->
+              <div class="pt-3 border-t border-slate-100 mt-3">
+                <div class="flex items-center justify-between mb-2">
+                  <span class="text-[10px] font-extrabold uppercase text-slate-400 tracking-wider flex items-center gap-1">
+                    <span>📋</span> Tasks no Período:
+                  </span>
+                  <span class="text-[10px] font-black text-indigo-700 bg-indigo-50 px-2 py-0.5 rounded-full border border-indigo-200">
+                    {{ member.tasks?.length || 0 }} {{ (member.tasks?.length || 0) === 1 ? 'task' : 'tasks' }}
+                  </span>
+                </div>
+
+                <!-- Tasks items -->
+                <div class="space-y-1.5">
+                  <div
+                    *ngFor="let t of (isMemberExpanded(member.name) ? member.tasks : member.tasks?.slice(0, 3))"
+                    class="p-2 rounded-xl bg-slate-50/90 hover:bg-slate-100/90 border border-slate-200/90 flex flex-col gap-1 text-[11px] transition shadow-2xs">
+                    
+                    <!-- Top line: ID/type badge + title + hours -->
+                    <div class="flex items-start justify-between gap-1.5">
+                      <div class="min-w-0 flex items-center gap-1.5">
+                        <span *ngIf="t.type === 'Bug'" class="text-[9px] px-1.5 py-0.2 bg-rose-100 text-rose-800 font-black rounded shrink-0">Bug</span>
+                        <span *ngIf="t.type !== 'Bug' && t.id" class="text-[9px] px-1.5 py-0.2 bg-slate-200 text-slate-700 font-bold rounded shrink-0">#{{ t.id }}</span>
+                        <span class="font-bold text-slate-800 truncate" [title]="t.title">
+                          {{ t.title }}
+                        </span>
+                      </div>
+                      <span class="font-black text-slate-900 shrink-0 ml-1 text-[11px] bg-white px-1.5 py-0.2 rounded border border-slate-200">
+                        {{ formatHours(t.hours) }}h
+                      </span>
+                    </div>
+
+                    <!-- Bottom line: project name + state -->
+                    <div class="flex items-center justify-between text-[9px] text-slate-500">
+                      <span class="truncate text-slate-600 font-medium" [title]="t.projectName">
+                        {{ t.projectName }}
+                      </span>
+                      <span class="px-1.5 py-0.2 rounded font-semibold shrink-0"
+                        [ngClass]="t.state === 'Closed' || t.state === 'Done' || t.state === 'Resolved' ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' : 'bg-amber-50 text-amber-700 border border-amber-200'">
+                        {{ t.state }}
+                      </span>
+                    </div>
+                  </div>
+
+                  <!-- Expand/Collapse Button if more than 3 tasks -->
+                  <button
+                    *ngIf="member.tasks && member.tasks.length > 3"
+                    type="button"
+                    (click)="toggleMemberTasks(member.name)"
+                    class="w-full py-1 text-center text-[10px] font-bold text-indigo-600 hover:text-indigo-800 hover:bg-indigo-50/70 rounded-lg transition cursor-pointer">
+                    {{ isMemberExpanded(member.name) ? '▲ Ocultar tarefas extras' : '▼ Ver mais ' + (member.tasks.length - 3) + ' tarefas' }}
+                  </button>
+
+                  <div *ngIf="!member.tasks || member.tasks.length === 0" class="p-2 rounded-xl bg-slate-50 border border-dashed border-slate-200 text-center text-[10px] text-slate-400 italic">
+                    Nenhuma task detalhada registrada neste período.
+                  </div>
+                </div>
+              </div>
+
             </div>
 
             <!-- Footer: Tasks Count & Projects Count -->
@@ -434,11 +492,26 @@ export class TeamAllocationComponent implements OnInit {
   profileFilter = 'all'; // 'all' | 'new_only' | 'maint_only' | 'mixed'
   searchQuery = '';
   sortMode = 'hours';
+  expandedMembers = signal<Set<string>>(new Set());
 
   report = computed(() => this.service.teamAllocationReport());
 
   ngOnInit() {
     this.refreshData();
+  }
+
+  toggleMemberTasks(memberName: string) {
+    const next = new Set(this.expandedMembers());
+    if (next.has(memberName)) {
+      next.delete(memberName);
+    } else {
+      next.add(memberName);
+    }
+    this.expandedMembers.set(next);
+  }
+
+  isMemberExpanded(memberName: string): boolean {
+    return this.expandedMembers().has(memberName);
   }
 
   async refreshData() {
@@ -492,12 +565,13 @@ export class TeamAllocationComponent implements OnInit {
 
     let result = list;
 
-    // Filter by query
+    // Filter by query (name, role, allocated project or task title/ID)
     if (query) {
       result = result.filter(m =>
         m.name.toLowerCase().includes(query) ||
         (m.role || '').toLowerCase().includes(query) ||
-        (m.allocatedProjects || []).some(ap => ap.toLowerCase().includes(query))
+        (m.allocatedProjects || []).some(ap => ap.toLowerCase().includes(query)) ||
+        (m.tasks || []).some(t => t.title.toLowerCase().includes(query) || String(t.id).includes(query) || (t.projectName || '').toLowerCase().includes(query))
       );
     }
 

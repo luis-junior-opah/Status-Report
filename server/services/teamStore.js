@@ -229,6 +229,7 @@ class TeamStore {
           totalHours: 0,
           maintenancePercent: 0,
           tasksCount: 0,
+          tasks: [],
           projectsMap: new Map()
         });
       }
@@ -283,6 +284,19 @@ class TeamStore {
                   pEntry.hours = Math.round((pEntry.hours + tHours) * 10) / 10;
                   pEntry.tasksCount++;
                   m.projectsMap.set(p.name, pEntry);
+
+                  m.tasks.push({
+                    id: t.id,
+                    title: t.title || 'Tarefa sem título',
+                    type: t.type || 'Task',
+                    state: t.state || 'Active',
+                    hours: tHours,
+                    projectId: p.id,
+                    projectName: p.name,
+                    client: p.client,
+                    category: isMaint ? 'maintenance' : 'new_project',
+                    date: tDate
+                  });
                 }
               }
             }
@@ -316,6 +330,19 @@ class TeamStore {
                   pEntry.hours = Math.round((pEntry.hours + aHours) * 10) / 10;
                   pEntry.tasksCount++;
                   m.projectsMap.set(p.name, pEntry);
+
+                  m.tasks.push({
+                    id: a.id || a.azureId || '',
+                    title: a.title || a.fullTitle || a.rawTitle || 'Demanda sem título',
+                    type: a.type || 'Activity',
+                    state: a.state || 'Active',
+                    hours: aHours,
+                    projectId: p.id,
+                    projectName: p.name,
+                    client: p.client,
+                    category: isMaint ? 'maintenance' : 'new_project',
+                    date: aDate
+                  });
                 }
               }
             }
@@ -329,6 +356,7 @@ class TeamStore {
       m.maintenancePercent = m.totalHours > 0 ? Math.round((m.maintenanceHours / m.totalHours) * 100) : 0;
       m.avatarColor = avatarColors[idx % avatarColors.length];
       m.projects = Array.from(m.projectsMap.values()).sort((a, b) => b.hours - a.hours);
+      m.tasks.sort((a, b) => b.hours - a.hours);
       delete m.projectsMap;
       return m;
     });
