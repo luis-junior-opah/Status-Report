@@ -544,28 +544,15 @@ import { Project } from '../../models/project.model';
         <!-- ROW 3: LISTA DE SISTEMAS / PROJETOS CADASTRADOS EM SUSTENTAÇÃO -->
         <div class="bg-white rounded-2xl border border-slate-200/90 shadow-sm p-5 md:p-6">
           <div class="flex items-center justify-between pb-4 border-b border-slate-100 mb-5">
-            <div>
-              <div class="flex items-center gap-2">
-                <span class="text-xl">🛠️</span>
-                <h3 class="text-base font-black text-slate-900 tracking-tight">
-                  Projetos & Sistemas em Sustentação
-                </h3>
-                <span class="text-xs font-bold px-2 py-0.5 rounded-full bg-purple-100 text-purple-800 border border-purple-200">
-                  {{ metrics()?.activeMaintenanceProjects?.length || 0 }} cadastrados
-                </span>
-              </div>
-              <p class="text-xs text-slate-500 font-medium mt-0.5">
-                Projetos marcados como Sustentação na curadoria. Demandas e entregas de suporte contínuo.
-              </p>
+            <div class="flex items-center gap-2">
+              <span class="text-xl">🛠️</span>
+              <h3 class="text-base font-black text-slate-900 tracking-tight">
+                Projetos de Sustentação
+              </h3>
+              <span class="text-xs font-bold px-2 py-0.5 rounded-full bg-purple-100 text-purple-800 border border-purple-200">
+                {{ metrics()?.activeMaintenanceProjects?.length || 0 }} cadastrados
+              </span>
             </div>
-
-            <!-- Manage in Curator Button -->
-            <button
-              type="button"
-              (click)="service.isAdminOpen.set(true)"
-              class="px-3 py-1.5 bg-slate-900 hover:bg-slate-800 text-white rounded-xl text-xs font-bold transition flex items-center gap-1.5 cursor-pointer shadow-xs">
-              <span>✍️ Curadoria</span>
-            </button>
           </div>
 
           <!-- Project Cards Grid -->
