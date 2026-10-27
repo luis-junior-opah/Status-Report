@@ -106,7 +106,7 @@ import { Project } from '../../models/project.model';
                 <span>🛠️</span> Esforço em Sustentação
               </span>
               <span class="text-[10px] font-black px-2 py-0.5 rounded-full bg-purple-200 text-purple-900">
-                {{ metrics()?.maintenancePercent || 0 }}% do total
+                {{ metrics()?.maintenancePercent || 0 }}%
               </span>
             </div>
             <div class="flex items-baseline gap-1 mt-1">
@@ -132,7 +132,7 @@ import { Project } from '../../models/project.model';
                 <span>🚀</span> Novos Projetos
               </span>
               <span class="text-[10px] font-black px-2 py-0.5 rounded-full bg-blue-200 text-blue-900">
-                {{ 100 - (metrics()?.maintenancePercent || 0) }}% do total
+                {{ 100 - (metrics()?.maintenancePercent || 0) }}%
               </span>
             </div>
             <div class="flex items-baseline gap-1 mt-1">
@@ -158,7 +158,7 @@ import { Project } from '../../models/project.model';
                 <span>⏱️</span> Capacidade Computada
               </span>
               <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-200 text-slate-700">
-                100% Execução
+                100%
               </span>
             </div>
             <div class="flex items-baseline gap-1 mt-1">
@@ -177,9 +177,6 @@ import { Project } from '../../models/project.model';
             <div class="flex items-center justify-between mb-1.5">
               <span class="text-xs font-extrabold text-emerald-900 uppercase tracking-wider flex items-center gap-1.5">
                 <span>📂</span> Sistemas em Suporte
-              </span>
-              <span class="text-[10px] font-black px-2 py-0.5 rounded-full bg-emerald-200 text-emerald-900">
-                {{ metrics()?.activeMaintenanceProjects?.length || 0 }} sistemas
               </span>
             </div>
             <div class="flex items-baseline gap-1.5 mt-1">
