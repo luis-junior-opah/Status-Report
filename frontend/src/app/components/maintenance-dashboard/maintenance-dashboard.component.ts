@@ -23,13 +23,10 @@ import { Project } from '../../models/project.model';
               <h2 class="text-xl font-black text-slate-900 tracking-tight">
                 Painel de Sustentação & Manutenção de Projetos
               </h2>
-              <span class="text-[10px] font-black uppercase px-2 py-0.5 rounded-full bg-purple-100 text-purple-800 border border-purple-200">
-                Módulo Dedicado
-              </span>
             </div>
             <p class="text-xs text-slate-500 max-w-2xl">
-              Acompanhamento histórico de horas dedicadas à sustentação/suporte contínuo de sistemas concluídos,
-              comparativo de capacidade com novos projetos e mapa de alocação por integrante da equipe.
+              Acompanhamento histórico de horas dedicadas à sustentação/suporte contínuo de sistemas concluídos
+              e comparativo de capacidade com novos projetos.
             </p>
           </div>
 
@@ -439,146 +436,7 @@ import { Project } from '../../models/project.model';
 
         </div>
 
-        <!-- ROW 3: MAPA DE ESFORÇO POR INTEGRANTE DA EQUIPE (TEAM ALLOCATION MAP) -->
-        <div class="bg-white rounded-2xl border border-slate-200/90 shadow-sm p-5 md:p-6">
-          
-          <!-- Section Header & Member Filters -->
-          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-slate-100 mb-5">
-            <div>
-              <div class="flex items-center gap-2">
-                <span class="text-xl">👥</span>
-                <h3 class="text-base font-black text-slate-900 tracking-tight">
-                  Mapa de Esforço por Integrante da Equipe
-                </h3>
-                <span class="text-xs font-bold px-2 py-0.5 rounded-full bg-slate-100 text-slate-700 border border-slate-200">
-                  {{ filteredTeamMembers().length }} colaboradores
-                </span>
-              </div>
-              <p class="text-xs text-slate-500 font-medium mt-0.5">
-                Alocação de horas e divisão entre novos projetos e demandas de sustentação por membro da equipe.
-              </p>
-            </div>
-
-            <!-- Search and Sort -->
-            <div class="flex items-center gap-2 flex-wrap">
-              <!-- Search Input -->
-              <div class="relative">
-                <input
-                  type="text"
-                  [(ngModel)]="teamSearch"
-                  placeholder="Buscar colaborador..."
-                  class="text-xs bg-slate-50 border border-slate-300 rounded-xl pl-7 pr-3 py-1.5 font-medium outline-none focus:ring-2 focus:ring-purple-500 w-44">
-                <span class="absolute left-2.5 top-2 text-slate-400 text-xs">🔍</span>
-              </div>
-
-              <!-- Sort Selector -->
-              <select
-                [(ngModel)]="teamSort"
-                class="text-xs bg-slate-50 border border-slate-300 rounded-xl px-2.5 py-1.5 font-bold text-slate-700 outline-none cursor-pointer">
-                <option value="hours">Mais Horas Totais</option>
-                <option value="maint_desc">Maior % Sustentação</option>
-                <option value="new_desc">Maior % Novos Projetos</option>
-                <option value="name">Nome (A-Z)</option>
-              </select>
-            </div>
-          </div>
-
-          <!-- Team Cards Grid -->
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            
-            <div
-              *ngFor="let member of filteredTeamMembers()"
-              class="p-4 rounded-2xl border border-slate-200/90 hover:border-purple-300 bg-white hover:shadow-md transition flex flex-col justify-between">
-              
-              <div>
-                <!-- Member Card Top: Avatar, Name & Profile Badge -->
-                <div class="flex items-start justify-between gap-2 mb-3">
-                  <div class="flex items-center gap-2.5 min-w-0">
-                    <div class="w-9 h-9 rounded-xl flex items-center justify-center font-black text-xs text-white shadow-xs shrink-0"
-                      [ngClass]="member.avatarColor || 'bg-purple-600'">
-                      {{ getInitials(member.name) }}
-                    </div>
-                    <div class="min-w-0">
-                      <h4 class="text-xs font-black text-slate-900 truncate leading-snug" [title]="member.name">
-                        {{ member.name }}
-                      </h4>
-                      <span class="text-[10px] text-slate-500 font-semibold block">
-                        Total apontado: <strong>{{ formatHours(member.totalHours) }}h</strong>
-                      </span>
-                    </div>
-                  </div>
-
-                  <!-- Dedication Profile Badge -->
-                  <span
-                    class="text-[9px] font-black px-2 py-0.5 rounded-full shrink-0 border"
-                    [ngClass]="getMemberBadgeClass(member.maintenancePercent)">
-                    {{ getMemberBadgeLabel(member.maintenancePercent) }}
-                  </span>
-                </div>
-
-                <!-- Bicolor Horizontal Bar: Blue (New) vs Purple (Maintenance) -->
-                <div class="mb-3">
-                  <div class="w-full bg-slate-100 rounded-full h-2.5 overflow-hidden flex shadow-2xs">
-                    <!-- Blue segment (Novos) -->
-                    <div
-                      class="bg-blue-600 h-full transition-all"
-                      [style.width.%]="100 - member.maintenancePercent"
-                      [title]="'Novos Projetos: ' + formatHours(member.newProjectHours) + 'h (' + (100 - member.maintenancePercent) + '%)'">
-                    </div>
-                    <!-- Purple segment (Sustentação) -->
-                    <div
-                      class="bg-purple-600 h-full transition-all"
-                      [style.width.%]="member.maintenancePercent"
-                      [title]="'Sustentação: ' + formatHours(member.maintenanceHours) + 'h (' + member.maintenancePercent + '%)'">
-                    </div>
-                  </div>
-
-                  <!-- Numeric breakdown row -->
-                  <div class="flex items-center justify-between text-[10px] font-bold mt-1.5 text-slate-600">
-                    <span class="flex items-center gap-1 text-blue-700">
-                      <span class="w-1.5 h-1.5 rounded-full bg-blue-600"></span>
-                      Novos: <strong>{{ formatHours(member.newProjectHours) }}h</strong> ({{ 100 - member.maintenancePercent }}%)
-                    </span>
-                    <span class="flex items-center gap-1 text-purple-700">
-                      <span class="w-1.5 h-1.5 rounded-full bg-purple-600"></span>
-                      Sustentação: <strong>{{ formatHours(member.maintenanceHours) }}h</strong> ({{ member.maintenancePercent }}%)
-                    </span>
-                  </div>
-                </div>
-
-                <!-- Projects Breakdown List -->
-                <div class="pt-2.5 border-t border-slate-100 space-y-1">
-                  <span class="text-[9px] font-extrabold uppercase text-slate-400 tracking-wider block">
-                    Principais Atuações no Período:
-                  </span>
-                  <div *ngFor="let p of member.topProjects?.slice(0, 3)" class="flex items-center justify-between text-[10px] py-0.5">
-                    <span class="truncate max-w-[180px] font-medium text-slate-700" [title]="p.projectName">
-                      <span *ngIf="p.category === 'maintenance'" class="text-purple-600 font-bold mr-0.5">🛠️</span>
-                      <span *ngIf="p.category !== 'maintenance'" class="text-blue-600 font-bold mr-0.5">🚀</span>
-                      {{ p.projectName }}
-                    </span>
-                    <span class="font-bold shrink-0 ml-1" [ngClass]="p.category === 'maintenance' ? 'text-purple-700' : 'text-blue-700'">
-                      {{ formatHours(p.hours) }}h
-                    </span>
-                  </div>
-                  <div *ngIf="member.topProjects && member.topProjects.length > 3" class="text-[9px] text-slate-400 italic">
-                    +{{ member.topProjects.length - 3 }} outros projetos
-                  </div>
-                </div>
-              </div>
-
-            </div>
-
-          </div>
-
-          <!-- Empty state when search doesn't match -->
-          <div *ngIf="filteredTeamMembers().length === 0" class="py-8 text-center text-xs text-slate-400 italic">
-            Nenhum colaborador encontrado com o termo "{{ teamSearch }}".
-          </div>
-
-        </div>
-
-        <!-- ROW 4: LISTA DE SISTEMAS / PROJETOS CADASTRADOS EM SUSTENTAÇÃO -->
+        <!-- ROW 3: LISTA DE SISTEMAS / PROJETOS CADASTRADOS EM SUSTENTAÇÃO -->
         <div class="bg-white rounded-2xl border border-slate-200/90 shadow-sm p-5 md:p-6">
           <div class="flex items-center justify-between pb-4 border-b border-slate-100 mb-5">
             <div>
@@ -699,8 +557,6 @@ import { Project } from '../../models/project.model';
 export class MaintenanceDashboardComponent implements OnInit {
   service = inject(ProjectService);
 
-  teamSearch = '';
-  teamSort = 'hours';
   hoveredMonth = signal<MonthlyEffort | null>(null);
 
   metrics = computed(() => this.service.maintenanceMetrics());
@@ -801,49 +657,5 @@ export class MaintenanceDashboardComponent implements OnInit {
     const pct = 100 - (this.metrics()?.maintenancePercent || 0);
     const circumference = 339.29;
     return circumference - (pct / 100) * circumference;
-  }
-
-  // Team allocation list & filters
-  filteredTeamMembers = computed(() => {
-    const members = this.metrics()?.teamMembers || [];
-    const query = this.teamSearch.toLowerCase().trim();
-    const sort = this.teamSort;
-
-    let list = members;
-    if (query) {
-      list = list.filter(m => m.name.toLowerCase().includes(query));
-    }
-
-    return list.slice().sort((a, b) => {
-      if (sort === 'hours') {
-        return b.totalHours - a.totalHours;
-      }
-      if (sort === 'maint_desc') {
-        return b.maintenancePercent - a.maintenancePercent;
-      }
-      if (sort === 'new_desc') {
-        return a.maintenancePercent - b.maintenancePercent;
-      }
-      return a.name.localeCompare(b.name, 'pt-BR');
-    });
-  });
-
-  getInitials(name: string): string {
-    if (!name) return 'IL';
-    const parts = name.trim().split(/\s+/);
-    if (parts.length === 1) return parts[0].substring(0, 2).toUpperCase();
-    return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
-  }
-
-  getMemberBadgeClass(percent: number): string {
-    if (percent === 100) return 'bg-purple-100 text-purple-900 border-purple-200';
-    if (percent === 0) return 'bg-blue-100 text-blue-900 border-blue-200';
-    return 'bg-indigo-50 text-indigo-900 border-indigo-200';
-  }
-
-  getMemberBadgeLabel(percent: number): string {
-    if (percent === 100) return '100% Sustentação';
-    if (percent === 0) return '100% Novos Projetos';
-    return `Misto (${percent}% Sustentação)`;
   }
 }
