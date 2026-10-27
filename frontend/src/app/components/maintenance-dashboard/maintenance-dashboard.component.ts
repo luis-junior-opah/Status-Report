@@ -205,38 +205,57 @@ import { Project } from '../../models/project.model';
                     <span>📈</span> Histórico de Esforço Mensal (2026)
                   </h3>
                   <p class="text-[11px] text-slate-500 font-medium mt-0.5">
-                    Volume mensal comparativo entre novos projetos e sustentação ao longo de 2026.
+                    Volume mensal de horas ao longo de 2026.
                   </p>
                 </div>
                 
-                <!-- Controls & Legend -->
-                <div class="flex items-center gap-2.5 flex-wrap">
-                  <!-- Mode Switcher -->
+                <!-- Controls: Series Filter & Mode Switcher -->
+                <div class="flex items-center gap-2 flex-wrap">
+                  <!-- Series Filter (Ambos | Novos | Sustentação) -->
                   <div class="flex items-center bg-slate-100 p-0.5 rounded-lg border border-slate-200 shadow-2xs">
+                    <button
+                      type="button"
+                      (click)="monthlySeriesFilter.set('all')"
+                      [ngClass]="monthlySeriesFilter() === 'all' ? 'bg-white text-slate-900 font-bold shadow-2xs' : 'text-slate-600 hover:text-slate-900'"
+                      class="px-2.5 py-1 rounded-md text-[10px] transition cursor-pointer">
+                      Ambos
+                    </button>
+                    <button
+                      type="button"
+                      (click)="monthlySeriesFilter.set('new_only')"
+                      [ngClass]="monthlySeriesFilter() === 'new_only' ? 'bg-blue-600 text-white font-bold shadow-2xs' : 'text-slate-600 hover:text-slate-900'"
+                      class="px-2.5 py-1 rounded-md text-[10px] transition cursor-pointer flex items-center gap-1">
+                      <span class="w-1.5 h-1.5 rounded-full" [ngClass]="monthlySeriesFilter() === 'new_only' ? 'bg-white' : 'bg-blue-600'"></span>
+                      Novos
+                    </button>
+                    <button
+                      type="button"
+                      (click)="monthlySeriesFilter.set('maintenance_only')"
+                      [ngClass]="monthlySeriesFilter() === 'maintenance_only' ? 'bg-purple-600 text-white font-bold shadow-2xs' : 'text-slate-600 hover:text-slate-900'"
+                      class="px-2.5 py-1 rounded-md text-[10px] transition cursor-pointer flex items-center gap-1">
+                      <span class="w-1.5 h-1.5 rounded-full" [ngClass]="monthlySeriesFilter() === 'maintenance_only' ? 'bg-white' : 'bg-purple-600'"></span>
+                      Sustentação
+                    </button>
+                  </div>
+
+                  <!-- Mode Switcher (only when showing Ambos) -->
+                  <div *ngIf="monthlySeriesFilter() === 'all'" class="flex items-center bg-slate-100 p-0.5 rounded-lg border border-slate-200 shadow-2xs">
                     <button
                       type="button"
                       (click)="chartMode.set('grouped')"
                       [ngClass]="chartMode() === 'grouped' ? 'bg-white text-slate-900 font-bold shadow-2xs' : 'text-slate-600 hover:text-slate-900'"
-                      class="px-2 py-0.5 rounded-md text-[10px] transition cursor-pointer">
+                      class="px-2 py-0.5 rounded-md text-[10px] transition cursor-pointer"
+                      title="Exibir barras lado a lado">
                       📊 Lado a Lado
                     </button>
                     <button
                       type="button"
                       (click)="chartMode.set('stacked')"
                       [ngClass]="chartMode() === 'stacked' ? 'bg-white text-slate-900 font-bold shadow-2xs' : 'text-slate-600 hover:text-slate-900'"
-                      class="px-2 py-0.5 rounded-md text-[10px] transition cursor-pointer">
+                      class="px-2 py-0.5 rounded-md text-[10px] transition cursor-pointer"
+                      title="Exibir barras empilhadas">
                       📶 Empilhado
                     </button>
-                  </div>
-
-                  <!-- Legend -->
-                  <div class="flex items-center gap-1.5">
-                    <span class="inline-flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 rounded bg-blue-50 text-blue-800 border border-blue-200">
-                      <span class="w-2 h-2 rounded-full bg-blue-600"></span> Novos
-                    </span>
-                    <span class="inline-flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 rounded bg-purple-50 text-purple-800 border border-purple-200">
-                      <span class="w-2 h-2 rounded-full bg-purple-600"></span> Sustentação
-                    </span>
                   </div>
                 </div>
               </div>
@@ -266,73 +285,116 @@ import { Project } from '../../models/project.model';
                     <!-- Bar Group with Hover -->
                     <g class="cursor-pointer group" (mouseenter)="hoveredMonth.set(m)" (mouseleave)="hoveredMonth.set(null)">
                       
-                      <!-- MODE 1: GROUPED (LADO A LADO) -->
-                      <g *ngIf="chartMode() === 'grouped'">
-                        <!-- Blue Bar (Novos Projetos) -->
+                      <!-- OPTION A: ALL (AMBOS) -->
+                      <ng-container *ngIf="monthlySeriesFilter() === 'all'">
+                        <!-- Grouped Mode -->
+                        <g *ngIf="chartMode() === 'grouped'">
+                          <rect
+                            [attr.x]="36 + idx * 45"
+                            [attr.y]="155 - getGroupedBarHeight(m.newProjectHours)"
+                            width="16"
+                            [attr.height]="getGroupedBarHeight(m.newProjectHours)"
+                            rx="3"
+                            fill="url(#blueBarGrad)"
+                            class="transition-all duration-200 group-hover:brightness-110" />
+
+                          <rect
+                            [attr.x]="54 + idx * 45"
+                            [attr.y]="155 - getGroupedBarHeight(m.maintenanceHours)"
+                            width="16"
+                            [attr.height]="getGroupedBarHeight(m.maintenanceHours)"
+                            rx="3"
+                            fill="url(#purpleBarGrad)"
+                            class="transition-all duration-200 group-hover:brightness-110" />
+
+                          <text
+                            *ngIf="m.totalHours > 0"
+                            [attr.x]="53 + idx * 45"
+                            [attr.y]="getGroupedTopY(m)"
+                            text-anchor="middle"
+                            font-size="8.5"
+                            font-weight="bold"
+                            fill="#475569">
+                            {{ formatHours(m.totalHours) }}h
+                          </text>
+                        </g>
+
+                        <!-- Stacked Mode -->
+                        <g *ngIf="chartMode() === 'stacked'">
+                          <rect
+                            [attr.x]="42 + idx * 45"
+                            [attr.y]="155 - getStackedBarHeight(m.newProjectHours)"
+                            width="24"
+                            [attr.height]="getStackedBarHeight(m.newProjectHours)"
+                            rx="3"
+                            fill="url(#blueBarGrad)"
+                            class="transition-all duration-200 group-hover:brightness-110" />
+
+                          <rect
+                            [attr.x]="42 + idx * 45"
+                            [attr.y]="155 - getStackedBarHeight(m.newProjectHours) - getStackedBarHeight(m.maintenanceHours)"
+                            width="24"
+                            [attr.height]="getStackedBarHeight(m.maintenanceHours)"
+                            rx="3"
+                            fill="url(#purpleBarGrad)"
+                            class="transition-all duration-200 group-hover:brightness-110" />
+
+                          <text
+                            *ngIf="m.totalHours > 0"
+                            [attr.x]="54 + idx * 45"
+                            [attr.y]="getStackedTopY(m)"
+                            text-anchor="middle"
+                            font-size="8.5"
+                            font-weight="bold"
+                            fill="#475569">
+                            {{ formatHours(m.totalHours) }}h
+                          </text>
+                        </g>
+                      </ng-container>
+
+                      <!-- OPTION B: NEW PROJECTS ONLY (SÓ NOVOS) -->
+                      <g *ngIf="monthlySeriesFilter() === 'new_only'">
                         <rect
-                          [attr.x]="36 + idx * 45"
-                          [attr.y]="155 - getGroupedBarHeight(m.newProjectHours)"
-                          width="16"
-                          [attr.height]="getGroupedBarHeight(m.newProjectHours)"
-                          rx="3"
+                          [attr.x]="41 + idx * 45"
+                          [attr.y]="155 - getSingleBarHeight(m.newProjectHours, maxNewMonthlyHours())"
+                          width="26"
+                          [attr.height]="getSingleBarHeight(m.newProjectHours, maxNewMonthlyHours())"
+                          rx="4"
                           fill="url(#blueBarGrad)"
                           class="transition-all duration-200 group-hover:brightness-110" />
 
-                        <!-- Purple Bar (Sustentação) -->
-                        <rect
-                          [attr.x]="54 + idx * 45"
-                          [attr.y]="155 - getGroupedBarHeight(m.maintenanceHours)"
-                          width="16"
-                          [attr.height]="getGroupedBarHeight(m.maintenanceHours)"
-                          rx="3"
-                          fill="url(#purpleBarGrad)"
-                          class="transition-all duration-200 group-hover:brightness-110" />
-
-                        <!-- Total Label above bar group -->
                         <text
-                          *ngIf="m.totalHours > 0"
-                          [attr.x]="53 + idx * 45"
-                          [attr.y]="getGroupedTopY(m)"
+                          *ngIf="m.newProjectHours > 0"
+                          [attr.x]="54 + idx * 45"
+                          [attr.y]="155 - getSingleBarHeight(m.newProjectHours, maxNewMonthlyHours()) - 5"
                           text-anchor="middle"
                           font-size="8.5"
                           font-weight="bold"
-                          fill="#475569">
-                          {{ formatHours(m.totalHours) }}h
+                          fill="#1d4ed8">
+                          {{ formatHours(m.newProjectHours) }}h
                         </text>
                       </g>
 
-                      <!-- MODE 2: STACKED (EMPILHADO) -->
-                      <g *ngIf="chartMode() === 'stacked'">
-                        <!-- Bottom Blue portion (Novos Projetos) -->
+                      <!-- OPTION C: MAINTENANCE ONLY (SÓ SUSTENTAÇÃO) -->
+                      <g *ngIf="monthlySeriesFilter() === 'maintenance_only'">
                         <rect
-                          [attr.x]="42 + idx * 45"
-                          [attr.y]="155 - getStackedBarHeight(m.newProjectHours)"
-                          width="24"
-                          [attr.height]="getStackedBarHeight(m.newProjectHours)"
-                          rx="3"
-                          fill="url(#blueBarGrad)"
-                          class="transition-all duration-200 group-hover:brightness-110" />
-
-                        <!-- Top Purple portion (Sustentação) -->
-                        <rect
-                          [attr.x]="42 + idx * 45"
-                          [attr.y]="155 - getStackedBarHeight(m.newProjectHours) - getStackedBarHeight(m.maintenanceHours)"
-                          width="24"
-                          [attr.height]="getStackedBarHeight(m.maintenanceHours)"
-                          rx="3"
+                          [attr.x]="41 + idx * 45"
+                          [attr.y]="155 - getSingleBarHeight(m.maintenanceHours, maxMaintenanceMonthlyHours())"
+                          width="26"
+                          [attr.height]="getSingleBarHeight(m.maintenanceHours, maxMaintenanceMonthlyHours())"
+                          rx="4"
                           fill="url(#purpleBarGrad)"
                           class="transition-all duration-200 group-hover:brightness-110" />
 
-                        <!-- Total Label on top of stack -->
                         <text
-                          *ngIf="m.totalHours > 0"
+                          *ngIf="m.maintenanceHours > 0"
                           [attr.x]="54 + idx * 45"
-                          [attr.y]="getStackedTopY(m)"
+                          [attr.y]="155 - getSingleBarHeight(m.maintenanceHours, maxMaintenanceMonthlyHours()) - 5"
                           text-anchor="middle"
                           font-size="8.5"
                           font-weight="bold"
-                          fill="#475569">
-                          {{ formatHours(m.totalHours) }}h
+                          fill="#7e22ce">
+                          {{ formatHours(m.maintenanceHours) }}h
                         </text>
                       </g>
 
@@ -375,12 +437,27 @@ import { Project } from '../../models/project.model';
 
             <!-- Footer summary -->
             <div class="pt-3 border-t border-slate-100 flex flex-wrap items-center justify-between gap-2 text-[11px] text-slate-500 font-medium">
-              <div class="flex items-center gap-3">
-                <span>Média Novos: <strong class="text-blue-700">{{ formatHours(averageMonthlyNewProjectHours()) }}h/mês</strong></span>
-                <span>•</span>
+              <!-- If Ambos -->
+              <ng-container *ngIf="monthlySeriesFilter() === 'all'">
+                <div class="flex items-center gap-3">
+                  <span>Média Novos: <strong class="text-blue-700">{{ formatHours(averageMonthlyNewProjectHours()) }}h/mês</strong></span>
+                  <span>•</span>
+                  <span>Média Sustentação: <strong class="text-purple-700">{{ formatHours(averageMonthlyMaintenanceHours()) }}h/mês</strong></span>
+                </div>
+                <span>Maior sustentação: <strong class="text-purple-700">{{ getPeakMaintenanceMonth() }}</strong></span>
+              </ng-container>
+
+              <!-- If Só Novos -->
+              <ng-container *ngIf="monthlySeriesFilter() === 'new_only'">
+                <span>Média Novos Projetos: <strong class="text-blue-700">{{ formatHours(averageMonthlyNewProjectHours()) }}h/mês</strong></span>
+                <span>Mês de maior esforço: <strong class="text-blue-700">{{ getPeakNewProjectsMonth() }}</strong></span>
+              </ng-container>
+
+              <!-- If Só Sustentação -->
+              <ng-container *ngIf="monthlySeriesFilter() === 'maintenance_only'">
                 <span>Média Sustentação: <strong class="text-purple-700">{{ formatHours(averageMonthlyMaintenanceHours()) }}h/mês</strong></span>
-              </div>
-              <span>Maior sustentação: <strong class="text-purple-700">{{ getPeakMaintenanceMonth() }}</strong></span>
+                <span>Mês de maior esforço: <strong class="text-purple-700">{{ getPeakMaintenanceMonth() }}</strong></span>
+              </ng-container>
             </div>
           </div>
 
@@ -638,6 +715,7 @@ export class MaintenanceDashboardComponent implements OnInit {
   }
 
   // Monthly Chart Calculations
+  monthlySeriesFilter = signal<'all' | 'new_only' | 'maintenance_only'>('all');
   chartMode = signal<'grouped' | 'stacked'>('grouped');
 
   maxGroupedMonthlyHours = computed(() => {
@@ -658,6 +736,29 @@ export class MaintenanceDashboardComponent implements OnInit {
     }
     return max;
   });
+
+  maxNewMonthlyHours = computed(() => {
+    const history = this.metrics()?.monthlyHistory || [];
+    let max = 50;
+    for (const m of history) {
+      if ((m.newProjectHours || 0) > max) max = m.newProjectHours;
+    }
+    return max;
+  });
+
+  maxMaintenanceMonthlyHours = computed(() => {
+    const history = this.metrics()?.monthlyHistory || [];
+    let max = 50;
+    for (const m of history) {
+      if ((m.maintenanceHours || 0) > max) max = m.maintenanceHours;
+    }
+    return max;
+  });
+
+  getSingleBarHeight(hours: number, max: number): number {
+    if (!hours || hours <= 0 || max <= 0) return 0;
+    return Math.max(3, Math.round((hours / max) * 128));
+  }
 
   averageMonthlyMaintenanceHours = computed(() => {
     const history = this.metrics()?.monthlyHistory || [];
@@ -700,6 +801,20 @@ export class MaintenanceDashboardComponent implements OnInit {
     const h1 = this.getStackedBarHeight(m.newProjectHours || 0);
     const h2 = this.getStackedBarHeight(m.maintenanceHours || 0);
     return Math.max(14, 155 - h1 - h2 - 4);
+  }
+
+  getPeakNewProjectsMonth(): string {
+    const history = this.metrics()?.monthlyHistory || [];
+    let top: MonthlyEffort | null = null;
+    for (const m of history) {
+      if (!top || (m.newProjectHours || 0) > (top.newProjectHours || 0)) {
+        top = m;
+      }
+    }
+    if (top && (top.newProjectHours || 0) > 0) {
+      return `${top.label} (${this.formatHours(top.newProjectHours)}h)`;
+    }
+    return 'Nenhum';
   }
 
   getPeakMaintenanceMonth(): string {
