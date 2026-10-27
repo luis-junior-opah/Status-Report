@@ -100,9 +100,9 @@ export class ProjectService {
     return 'bg-slate-100 text-slate-700 border border-slate-200';
   }
 
-  // Client-filtered or Custom-filtered list of public projects
+  // Client-filtered or Custom-filtered list of public projects (strictly excludes maintenance projects)
   clientProjects = computed(() => {
-    const list = this.projects();
+    const list = this.projects().filter(p => p.category !== 'maintenance');
     let result = list;
     if (this.isCustomView() && this.customProjectIds() && this.customProjectIds()!.length > 0) {
       const allowed = new Set(this.customProjectIds()!.map(id => id.trim().toLowerCase()));

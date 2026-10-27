@@ -1658,6 +1658,12 @@ export class ExecutiveReportComponent implements OnInit {
 
   currentReport = computed(() => this.service.currentWeeklyReport());
 
+  // Projects strictly for new initiatives (excludes maintenance projects)
+  reportNewProjects = computed(() => {
+    const list = this.currentReport()?.activeProjects || [];
+    return list.filter(p => (p as any).category !== 'maintenance');
+  });
+
   displayedProjects = computed(() => {
     const report = this.currentReport();
     if (!report || !report.activeProjects) return [];
@@ -1669,7 +1675,7 @@ export class ExecutiveReportComponent implements OnInit {
     const query = (this.service.searchQuery() || '').toLowerCase().trim();
     const sort = this.service.sortBy();
 
-    let list = report.activeProjects.slice();
+    let list = this.reportNewProjects().slice();
 
     // 1. Status Tab Filter (from FiltersComponent)
     if (status !== 'Todos') {
@@ -1874,9 +1880,8 @@ export class ExecutiveReportComponent implements OnInit {
   }
 
   topCriticalProjects = computed(() => {
-    const report = this.currentReport();
-    if (!report || !report.activeProjects) return [];
-    return report.activeProjects
+    const list = this.reportNewProjects();
+    return list
       .filter(p => p.ragStatus === 'red' || p.ragStatus === 'amber' || this.hasAttentionPoints(p))
       .sort((a, b) => {
         // Red first, then Amber, then Green with attention points
@@ -1900,37 +1905,37 @@ export class ExecutiveReportComponent implements OnInit {
   }
 
   getActiveCount(): number {
-    const list = this.currentReport()?.activeProjects || [];
+    const list = this.reportNewProjects();
     return list.filter(p => (p.status || 'Ativo') === 'Ativo').length;
   }
 
   getOnTrackCount(): number {
-    const list = this.currentReport()?.activeProjects || [];
+    const list = this.reportNewProjects();
     return list.filter(p => (p.status || 'Ativo') === 'Ativo' && p.ragStatus === 'green').length;
   }
 
   getAttentionCount(): number {
-    const list = this.currentReport()?.activeProjects || [];
+    const list = this.reportNewProjects();
     return list.filter(p => (p.status || 'Ativo') === 'Ativo' && p.ragStatus === 'amber').length;
   }
 
   getCriticalCount(): number {
-    const list = this.currentReport()?.activeProjects || [];
+    const list = this.reportNewProjects();
     return list.filter(p => (p.status || 'Ativo') === 'Ativo' && p.ragStatus === 'red').length;
   }
 
   getCompletedCount(): number {
-    const list = this.currentReport()?.activeProjects || [];
+    const list = this.reportNewProjects();
     return list.filter(p => p.status === 'Finalizado').length;
   }
 
   getFrozenCount(): number {
-    const list = this.currentReport()?.activeProjects || [];
+    const list = this.reportNewProjects();
     return list.filter(p => p.status === 'Congelado').length;
   }
 
   getPortfolioHealth(): number {
-    const list = this.currentReport()?.activeProjects || [];
+    const list = this.reportNewProjects();
     const activeList = list.filter(p => (p.status || 'Ativo') === 'Ativo');
     if (activeList.length === 0) return 100;
 
@@ -1948,7 +1953,7 @@ export class ExecutiveReportComponent implements OnInit {
   }
 
   getAverageProgress(): number {
-    const list = this.currentReport()?.activeProjects || [];
+    const list = this.reportNewProjects();
     const activeList = list.filter(p => (p.status || 'Ativo') === 'Ativo');
     if (activeList.length === 0) return this.currentReport()?.statusPulse?.averageProgress || 0;
     const total = activeList.reduce((acc, p) => acc + (p.progress || 0), 0);
@@ -1965,7 +1970,7 @@ export class ExecutiveReportComponent implements OnInit {
   }
 
   getHoursConsumption(): { percent: number; executed: number; agreed: number } {
-    const list = this.currentReport()?.activeProjects || [];
+    const list = this.reportNewProjects();
     const activeList = list.filter(p => (p.status || 'Ativo') === 'Ativo');
     const allProjects = this.service.projects() || [];
     let totalExec = 0;
@@ -1988,7 +1993,7 @@ export class ExecutiveReportComponent implements OnInit {
   }
 
   getAverageVarianceDays(): { avgDays: number; delayedCount: number } {
-    const list = this.currentReport()?.activeProjects || [];
+    const list = this.reportNewProjects();
     const today = new Date();
     today.setHours(0, 0, 0, 0);
 
@@ -2015,7 +2020,7 @@ export class ExecutiveReportComponent implements OnInit {
   }
 
   getDeliveriesThisMonthCount(): number {
-    const list = this.currentReport()?.activeProjects || [];
+    const list = this.reportNewProjects();
     const today = new Date();
     const curMonth = today.getMonth();
     const curYear = today.getFullYear();
@@ -2031,7 +2036,7 @@ export class ExecutiveReportComponent implements OnInit {
   }
 
   getPriorityCount(priority: string): number {
-    const list = this.currentReport()?.activeProjects || [];
+    const list = this.reportNewProjects();
     return list.filter(p => ((p.priority || 'P2').trim().toUpperCase()) === priority.toUpperCase()).length;
   }
 
@@ -2044,7 +2049,7 @@ export class ExecutiveReportComponent implements OnInit {
   }
 
   systemMetrics = computed(() => {
-    const list = this.currentReport()?.activeProjects || [];
+    const list = this.reportNewProjects();
     const map = new Map<string, number>();
 
     for (const p of list) {

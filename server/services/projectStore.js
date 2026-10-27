@@ -575,8 +575,11 @@ class ProjectStore {
     return this.projects.find(p => p.id === id) || null;
   }
 
-  getPublicProjects(filterClient = null) {
+  getPublicProjects(filterClient = null, includeMaintenance = false) {
     let list = this.projects.filter(p => p.isVisible);
+    if (!includeMaintenance) {
+      list = list.filter(p => p.category !== 'maintenance');
+    }
     if (filterClient && filterClient !== 'Todos') {
       list = list.filter(p => p.client.toLowerCase() === filterClient.toLowerCase());
     }

@@ -21,9 +21,10 @@ app.use('/assets/logos', express.static(publicLogos));
 // Public API endpoints
 app.get('/api/public/projects', (req, res) => {
   const clientFilter = req.query.client || null;
+  const includeMaintenance = req.query.includeMaintenance === 'true';
   res.json({
     success: true,
-    data: projectStore.getPublicProjects(clientFilter)
+    data: projectStore.getPublicProjects(clientFilter, includeMaintenance)
   });
 });
 

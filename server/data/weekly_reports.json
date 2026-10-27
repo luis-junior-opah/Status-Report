@@ -448,29 +448,177 @@
     ],
     "boardDecisions": [],
     "maintenanceSection": {
-      "totalProjects": 1,
-      "totalHours": 472,
+      "totalProjects": 4,
+      "totalHours": 1417.5,
       "periodLabel": "Semana 44 (2026-10-20 a 2026-10-27)",
       "projects": [
         {
-          "id": "71a23666-1dc1-44e7-a1c7-6eda5b1a578d",
-          "name": "Cockpit Petrobras",
-          "client": "Petrobras",
-          "status": "Finalizado",
+          "id": "a7d5d8e7-c1e1-4d14-9aac-746ea346ac02",
+          "name": "APP - SMART TRACKING",
+          "client": "ILC (Interno)",
+          "status": "Ativo",
           "ragStatus": "green",
-          "hoursExecuted": 472,
-          "hoursPlanned": 452,
+          "hoursExecuted": 720,
+          "hoursPlanned": 720,
           "recentActivities": [
             {
-              "id": "6077",
-              "title": "Criar Cockpit Petrobras",
-              "targetDate": "2026-06-30",
-              "hours": 472,
+              "id": "7119",
+              "title": "Versão 54",
+              "targetDate": null,
+              "hours": 300,
+              "status": "in-progress",
+              "assignedTo": "Mike Andrade"
+            },
+            {
+              "id": "6082",
+              "title": "Versão 52",
+              "targetDate": null,
+              "hours": 0,
               "status": "completed",
-              "assignedTo": "Lucas Maier Gomes Bruno"
+              "assignedTo": "Mike Andrade"
+            },
+            {
+              "id": "5277",
+              "title": "Versão 48",
+              "targetDate": null,
+              "hours": 0,
+              "status": "completed",
+              "assignedTo": "Mike Andrade"
+            },
+            {
+              "id": "5280",
+              "title": "Ajustes visuais e correções gerais",
+              "targetDate": null,
+              "hours": 0,
+              "status": "completed",
+              "assignedTo": "Mike Andrade"
+            },
+            {
+              "id": "5336",
+              "title": "Versão 49",
+              "targetDate": null,
+              "hours": 0,
+              "status": "completed",
+              "assignedTo": "Mike Andrade"
             }
           ],
           "summary": "Projeto integrado ao Azure DevOps. Iteração atual: Em andamento."
+        },
+        {
+          "id": "631642d0-4957-40cf-ae78-b62dd47af334",
+          "name": "INTEGRATOR",
+          "client": "ILC (Interno)",
+          "status": "Ativo",
+          "ragStatus": "red",
+          "hoursExecuted": 476.5,
+          "hoursPlanned": 1215.5,
+          "recentActivities": [
+            {
+              "id": "5152",
+              "title": "LAT LONG - SMART TRACKING X PORTAL ILC",
+              "targetDate": "2025-10-09",
+              "hours": 47,
+              "status": "planned",
+              "assignedTo": "Renata Dias de Avila Reis"
+            },
+            {
+              "id": "4766",
+              "title": "Desenvolvimento da Nova Área de Login — Portal Integrator",
+              "targetDate": "2025-09-04",
+              "hours": 0,
+              "status": "completed",
+              "assignedTo": "Anderson Rodrigo de Jesus Souza"
+            },
+            {
+              "id": "5153",
+              "title": "LAT LONG - SMART TRACKING X PORTAL ILC",
+              "targetDate": "2025-10-09",
+              "hours": 47,
+              "status": "planned",
+              "assignedTo": "Renata Dias de Avila Reis"
+            },
+            {
+              "id": "4469",
+              "title": "Sustentação",
+              "targetDate": "2026-09-16",
+              "hours": 382.5,
+              "status": "planned",
+              "assignedTo": null
+            }
+          ],
+          "summary": "Projeto integrado ao Azure DevOps. Iteração atual: SPRINT 7a."
+        },
+        {
+          "id": "a197458f-88c5-4fec-8ce7-a981ee3f6709",
+          "name": "SMART X",
+          "client": "ILC (Interno)",
+          "status": "Ativo",
+          "ragStatus": "amber",
+          "hoursExecuted": 50.5,
+          "hoursPlanned": 698,
+          "recentActivities": [
+            {
+              "id": "4971",
+              "title": "configuracao de sistema criacao se smart X V2 ( permanece V1)",
+              "targetDate": "2025-08-25",
+              "hours": 0,
+              "status": "completed",
+              "assignedTo": "Saddam José Viera Flores"
+            },
+            {
+              "id": "4970",
+              "title": "remover envio de email para motorista V1",
+              "targetDate": "2025-08-25",
+              "hours": 0,
+              "status": "completed",
+              "assignedTo": "Saddam José Viera Flores"
+            },
+            {
+              "id": "4679",
+              "title": "FORMULÁRIOS",
+              "targetDate": "2025-07-28",
+              "hours": 34,
+              "status": "planned",
+              "assignedTo": "Renata Dias de Avila Reis"
+            },
+            {
+              "id": "4177",
+              "title": "XFORMS",
+              "targetDate": "2025-07-14",
+              "hours": 16.5,
+              "status": "planned",
+              "assignedTo": "Tatiane Godinho Dutra"
+            }
+          ],
+          "summary": "Projeto integrado ao Azure DevOps. Iteração atual: Iteration 26."
+        },
+        {
+          "id": "09fbe35d-364d-4e90-b950-7aa9a5186dda",
+          "name": "GE - GESTÃO EMBARCADA",
+          "client": "John Deere",
+          "status": "Ativo",
+          "ragStatus": "red",
+          "hoursExecuted": 170.5,
+          "hoursPlanned": 327,
+          "recentActivities": [
+            {
+              "id": "880",
+              "title": "LANÇAMENTO VERSÃO ARM - GOOGLE",
+              "targetDate": "2021-10-22",
+              "hours": 0,
+              "status": "completed",
+              "assignedTo": "Filipe Andrade"
+            },
+            {
+              "id": "1056",
+              "title": "APP - GESTÃO EMBARCADA",
+              "targetDate": "2021-11-15",
+              "hours": 170.5,
+              "status": "planned",
+              "assignedTo": null
+            }
+          ],
+          "summary": "Projeto integrado ao Azure DevOps. Iteração atual: SPRINT JUL - 2022 - 1 QUINZENA."
         }
       ]
     }
@@ -923,29 +1071,177 @@
       }
     ],
     "maintenanceSection": {
-      "totalProjects": 1,
-      "totalHours": 472,
+      "totalProjects": 4,
+      "totalHours": 1417.5,
       "periodLabel": "Semana 43 (2026-10-15 a 2026-10-22)",
       "projects": [
         {
-          "id": "71a23666-1dc1-44e7-a1c7-6eda5b1a578d",
-          "name": "Cockpit Petrobras",
-          "client": "Petrobras",
-          "status": "Finalizado",
+          "id": "a7d5d8e7-c1e1-4d14-9aac-746ea346ac02",
+          "name": "APP - SMART TRACKING",
+          "client": "ILC (Interno)",
+          "status": "Ativo",
           "ragStatus": "green",
-          "hoursExecuted": 472,
-          "hoursPlanned": 452,
+          "hoursExecuted": 720,
+          "hoursPlanned": 720,
           "recentActivities": [
             {
-              "id": "6077",
-              "title": "Criar Cockpit Petrobras",
-              "targetDate": "2026-06-30",
-              "hours": 472,
+              "id": "7119",
+              "title": "Versão 54",
+              "targetDate": null,
+              "hours": 300,
+              "status": "in-progress",
+              "assignedTo": "Mike Andrade"
+            },
+            {
+              "id": "6082",
+              "title": "Versão 52",
+              "targetDate": null,
+              "hours": 0,
               "status": "completed",
-              "assignedTo": "Lucas Maier Gomes Bruno"
+              "assignedTo": "Mike Andrade"
+            },
+            {
+              "id": "5277",
+              "title": "Versão 48",
+              "targetDate": null,
+              "hours": 0,
+              "status": "completed",
+              "assignedTo": "Mike Andrade"
+            },
+            {
+              "id": "5280",
+              "title": "Ajustes visuais e correções gerais",
+              "targetDate": null,
+              "hours": 0,
+              "status": "completed",
+              "assignedTo": "Mike Andrade"
+            },
+            {
+              "id": "5336",
+              "title": "Versão 49",
+              "targetDate": null,
+              "hours": 0,
+              "status": "completed",
+              "assignedTo": "Mike Andrade"
             }
           ],
           "summary": "Projeto integrado ao Azure DevOps. Iteração atual: Em andamento."
+        },
+        {
+          "id": "631642d0-4957-40cf-ae78-b62dd47af334",
+          "name": "INTEGRATOR",
+          "client": "ILC (Interno)",
+          "status": "Ativo",
+          "ragStatus": "red",
+          "hoursExecuted": 476.5,
+          "hoursPlanned": 1215.5,
+          "recentActivities": [
+            {
+              "id": "5152",
+              "title": "LAT LONG - SMART TRACKING X PORTAL ILC",
+              "targetDate": "2025-10-09",
+              "hours": 47,
+              "status": "planned",
+              "assignedTo": "Renata Dias de Avila Reis"
+            },
+            {
+              "id": "4766",
+              "title": "Desenvolvimento da Nova Área de Login — Portal Integrator",
+              "targetDate": "2025-09-04",
+              "hours": 0,
+              "status": "completed",
+              "assignedTo": "Anderson Rodrigo de Jesus Souza"
+            },
+            {
+              "id": "5153",
+              "title": "LAT LONG - SMART TRACKING X PORTAL ILC",
+              "targetDate": "2025-10-09",
+              "hours": 47,
+              "status": "planned",
+              "assignedTo": "Renata Dias de Avila Reis"
+            },
+            {
+              "id": "4469",
+              "title": "Sustentação",
+              "targetDate": "2026-09-16",
+              "hours": 382.5,
+              "status": "planned",
+              "assignedTo": null
+            }
+          ],
+          "summary": "Projeto integrado ao Azure DevOps. Iteração atual: SPRINT 7a."
+        },
+        {
+          "id": "a197458f-88c5-4fec-8ce7-a981ee3f6709",
+          "name": "SMART X",
+          "client": "ILC (Interno)",
+          "status": "Ativo",
+          "ragStatus": "amber",
+          "hoursExecuted": 50.5,
+          "hoursPlanned": 698,
+          "recentActivities": [
+            {
+              "id": "4971",
+              "title": "configuracao de sistema criacao se smart X V2 ( permanece V1)",
+              "targetDate": "2025-08-25",
+              "hours": 0,
+              "status": "completed",
+              "assignedTo": "Saddam José Viera Flores"
+            },
+            {
+              "id": "4970",
+              "title": "remover envio de email para motorista V1",
+              "targetDate": "2025-08-25",
+              "hours": 0,
+              "status": "completed",
+              "assignedTo": "Saddam José Viera Flores"
+            },
+            {
+              "id": "4679",
+              "title": "FORMULÁRIOS",
+              "targetDate": "2025-07-28",
+              "hours": 34,
+              "status": "planned",
+              "assignedTo": "Renata Dias de Avila Reis"
+            },
+            {
+              "id": "4177",
+              "title": "XFORMS",
+              "targetDate": "2025-07-14",
+              "hours": 16.5,
+              "status": "planned",
+              "assignedTo": "Tatiane Godinho Dutra"
+            }
+          ],
+          "summary": "Projeto integrado ao Azure DevOps. Iteração atual: Iteration 26."
+        },
+        {
+          "id": "09fbe35d-364d-4e90-b950-7aa9a5186dda",
+          "name": "GE - GESTÃO EMBARCADA",
+          "client": "John Deere",
+          "status": "Ativo",
+          "ragStatus": "red",
+          "hoursExecuted": 170.5,
+          "hoursPlanned": 327,
+          "recentActivities": [
+            {
+              "id": "880",
+              "title": "LANÇAMENTO VERSÃO ARM - GOOGLE",
+              "targetDate": "2021-10-22",
+              "hours": 0,
+              "status": "completed",
+              "assignedTo": "Filipe Andrade"
+            },
+            {
+              "id": "1056",
+              "title": "APP - GESTÃO EMBARCADA",
+              "targetDate": "2021-11-15",
+              "hours": 170.5,
+              "status": "planned",
+              "assignedTo": null
+            }
+          ],
+          "summary": "Projeto integrado ao Azure DevOps. Iteração atual: SPRINT JUL - 2022 - 1 QUINZENA."
         }
       ]
     }
@@ -1378,29 +1674,177 @@
       }
     ],
     "maintenanceSection": {
-      "totalProjects": 1,
-      "totalHours": 472,
+      "totalProjects": 4,
+      "totalHours": 1417.5,
       "periodLabel": "Semana 42 (2026-10-09 a 2026-10-16)",
       "projects": [
         {
-          "id": "71a23666-1dc1-44e7-a1c7-6eda5b1a578d",
-          "name": "Cockpit Petrobras",
-          "client": "Petrobras",
-          "status": "Finalizado",
+          "id": "a7d5d8e7-c1e1-4d14-9aac-746ea346ac02",
+          "name": "APP - SMART TRACKING",
+          "client": "ILC (Interno)",
+          "status": "Ativo",
           "ragStatus": "green",
-          "hoursExecuted": 472,
-          "hoursPlanned": 452,
+          "hoursExecuted": 720,
+          "hoursPlanned": 720,
           "recentActivities": [
             {
-              "id": "6077",
-              "title": "Criar Cockpit Petrobras",
-              "targetDate": "2026-06-30",
-              "hours": 472,
+              "id": "7119",
+              "title": "Versão 54",
+              "targetDate": null,
+              "hours": 300,
+              "status": "in-progress",
+              "assignedTo": "Mike Andrade"
+            },
+            {
+              "id": "6082",
+              "title": "Versão 52",
+              "targetDate": null,
+              "hours": 0,
               "status": "completed",
-              "assignedTo": "Lucas Maier Gomes Bruno"
+              "assignedTo": "Mike Andrade"
+            },
+            {
+              "id": "5277",
+              "title": "Versão 48",
+              "targetDate": null,
+              "hours": 0,
+              "status": "completed",
+              "assignedTo": "Mike Andrade"
+            },
+            {
+              "id": "5280",
+              "title": "Ajustes visuais e correções gerais",
+              "targetDate": null,
+              "hours": 0,
+              "status": "completed",
+              "assignedTo": "Mike Andrade"
+            },
+            {
+              "id": "5336",
+              "title": "Versão 49",
+              "targetDate": null,
+              "hours": 0,
+              "status": "completed",
+              "assignedTo": "Mike Andrade"
             }
           ],
           "summary": "Projeto integrado ao Azure DevOps. Iteração atual: Em andamento."
+        },
+        {
+          "id": "631642d0-4957-40cf-ae78-b62dd47af334",
+          "name": "INTEGRATOR",
+          "client": "ILC (Interno)",
+          "status": "Ativo",
+          "ragStatus": "red",
+          "hoursExecuted": 476.5,
+          "hoursPlanned": 1215.5,
+          "recentActivities": [
+            {
+              "id": "5152",
+              "title": "LAT LONG - SMART TRACKING X PORTAL ILC",
+              "targetDate": "2025-10-09",
+              "hours": 47,
+              "status": "planned",
+              "assignedTo": "Renata Dias de Avila Reis"
+            },
+            {
+              "id": "4766",
+              "title": "Desenvolvimento da Nova Área de Login — Portal Integrator",
+              "targetDate": "2025-09-04",
+              "hours": 0,
+              "status": "completed",
+              "assignedTo": "Anderson Rodrigo de Jesus Souza"
+            },
+            {
+              "id": "5153",
+              "title": "LAT LONG - SMART TRACKING X PORTAL ILC",
+              "targetDate": "2025-10-09",
+              "hours": 47,
+              "status": "planned",
+              "assignedTo": "Renata Dias de Avila Reis"
+            },
+            {
+              "id": "4469",
+              "title": "Sustentação",
+              "targetDate": "2026-09-16",
+              "hours": 382.5,
+              "status": "planned",
+              "assignedTo": null
+            }
+          ],
+          "summary": "Projeto integrado ao Azure DevOps. Iteração atual: SPRINT 7a."
+        },
+        {
+          "id": "a197458f-88c5-4fec-8ce7-a981ee3f6709",
+          "name": "SMART X",
+          "client": "ILC (Interno)",
+          "status": "Ativo",
+          "ragStatus": "amber",
+          "hoursExecuted": 50.5,
+          "hoursPlanned": 698,
+          "recentActivities": [
+            {
+              "id": "4971",
+              "title": "configuracao de sistema criacao se smart X V2 ( permanece V1)",
+              "targetDate": "2025-08-25",
+              "hours": 0,
+              "status": "completed",
+              "assignedTo": "Saddam José Viera Flores"
+            },
+            {
+              "id": "4970",
+              "title": "remover envio de email para motorista V1",
+              "targetDate": "2025-08-25",
+              "hours": 0,
+              "status": "completed",
+              "assignedTo": "Saddam José Viera Flores"
+            },
+            {
+              "id": "4679",
+              "title": "FORMULÁRIOS",
+              "targetDate": "2025-07-28",
+              "hours": 34,
+              "status": "planned",
+              "assignedTo": "Renata Dias de Avila Reis"
+            },
+            {
+              "id": "4177",
+              "title": "XFORMS",
+              "targetDate": "2025-07-14",
+              "hours": 16.5,
+              "status": "planned",
+              "assignedTo": "Tatiane Godinho Dutra"
+            }
+          ],
+          "summary": "Projeto integrado ao Azure DevOps. Iteração atual: Iteration 26."
+        },
+        {
+          "id": "09fbe35d-364d-4e90-b950-7aa9a5186dda",
+          "name": "GE - GESTÃO EMBARCADA",
+          "client": "John Deere",
+          "status": "Ativo",
+          "ragStatus": "red",
+          "hoursExecuted": 170.5,
+          "hoursPlanned": 327,
+          "recentActivities": [
+            {
+              "id": "880",
+              "title": "LANÇAMENTO VERSÃO ARM - GOOGLE",
+              "targetDate": "2021-10-22",
+              "hours": 0,
+              "status": "completed",
+              "assignedTo": "Filipe Andrade"
+            },
+            {
+              "id": "1056",
+              "title": "APP - GESTÃO EMBARCADA",
+              "targetDate": "2021-11-15",
+              "hours": 170.5,
+              "status": "planned",
+              "assignedTo": null
+            }
+          ],
+          "summary": "Projeto integrado ao Azure DevOps. Iteração atual: SPRINT JUL - 2022 - 1 QUINZENA."
         }
       ]
     }

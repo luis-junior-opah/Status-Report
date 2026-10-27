@@ -337,7 +337,7 @@ class WeeklyReportStore {
     if (!report) return;
     const allProjects = projectStore.getAllProjects() || [];
     const visibleProjects = allProjects
-      .filter(p => p.isVisible)
+      .filter(p => p.isVisible && p.category !== 'maintenance')
       .sort((a, b) => projectStore.compareProjects(a, b));
 
     // Identify if this is the latest report and what the chronologically previous report is
@@ -553,7 +553,7 @@ class WeeklyReportStore {
 
     const allProjects = projectStore.getAllProjects() || [];
     const visibleProjects = allProjects
-      .filter(p => p.isVisible)
+      .filter(p => p.isVisible && p.category !== 'maintenance')
       .sort((a, b) => projectStore.compareProjects(a, b));
 
     let onTrack = 0;
@@ -604,7 +604,7 @@ class WeeklyReportStore {
 
     const avgProgress = totalActive > 0 ? Math.round(totalProgress / totalActive) : 0;
 
-    return {
+    const reportObj = {
       id: id,
       weekNumber: currentWeekNumber,
       year: year,
@@ -623,6 +623,8 @@ class WeeklyReportStore {
       roadmapProjects: DEFAULT_ROADMAP,
       boardDecisions: DEFAULT_DECISIONS
     };
+    this.syncReportWithProjects(reportObj);
+    return reportObj;
   }
 
   generateCurrentWeek() {
