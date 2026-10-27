@@ -27,6 +27,15 @@ export interface MemberTaskItem {
   date?: string;
 }
 
+export interface MemberProjectTasksGroup {
+  projectId?: string;
+  projectName: string;
+  client?: string;
+  category: 'new_project' | 'maintenance';
+  totalHours: number;
+  tasks: MemberTaskItem[];
+}
+
 export interface TeamMemberAllocation {
   name: string;
   isVisible: boolean;

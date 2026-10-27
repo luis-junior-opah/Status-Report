@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ProjectService } from '../../services/project.service';
 import { MaintenancePeriod } from '../../models/maintenance.model';
-import { TeamAllocationReport, TeamMemberAllocation, ProjectTeamAllocation } from '../../models/team.model';
+import { TeamAllocationReport, TeamMemberAllocation, ProjectTeamAllocation, MemberProjectTasksGroup } from '../../models/team.model';
 
 @Component({
   selector: 'app-team-allocation',
@@ -337,47 +337,75 @@ import { TeamAllocationReport, TeamMemberAllocation, ProjectTeamAllocation } fro
                 </div>
               </div>
 
-              <!-- Tasks List in Period -->
+              <!-- Tasks List in Period Grouped by Project -->
               <div class="pt-3 border-t border-slate-100 mt-3">
                 <div class="flex items-center justify-between mb-2">
                   <span class="text-[10px] font-extrabold uppercase text-slate-400 tracking-wider flex items-center gap-1">
-                    <span>📋</span> Tasks no Período:
+                    <span>📋</span> Tasks por Projeto:
                   </span>
                   <span class="text-[10px] font-black text-indigo-700 bg-indigo-50 px-2 py-0.5 rounded-full border border-indigo-200">
                     {{ member.tasks?.length || 0 }} {{ (member.tasks?.length || 0) === 1 ? 'task' : 'tasks' }}
                   </span>
                 </div>
 
-                <!-- Tasks items -->
-                <div class="space-y-1.5">
+                <!-- Grouped Project Tasks Container -->
+                <div class="space-y-2.5" [ngClass]="{'max-h-[420px] overflow-y-auto pr-1': isMemberExpanded(member.name)}">
                   <div
-                    *ngFor="let t of (isMemberExpanded(member.name) ? member.tasks : member.tasks?.slice(0, 3))"
-                    class="p-2 rounded-xl bg-slate-50/90 hover:bg-slate-100/90 border border-slate-200/90 flex flex-col gap-1 text-[11px] transition shadow-2xs">
+                    *ngFor="let group of getMemberTaskGroups(member, !isMemberExpanded(member.name))"
+                    class="rounded-xl border border-slate-200/90 bg-white overflow-hidden shadow-2xs">
                     
-                    <!-- Top line: ID/type badge + title + hours -->
-                    <div class="flex items-start justify-between gap-1.5">
-                      <div class="min-w-0 flex items-center gap-1.5">
-                        <span *ngIf="t.type === 'Bug'" class="text-[9px] px-1.5 py-0.2 bg-rose-100 text-rose-800 font-black rounded shrink-0">Bug</span>
-                        <span *ngIf="t.type !== 'Bug' && t.id" class="text-[9px] px-1.5 py-0.2 bg-slate-200 text-slate-700 font-bold rounded shrink-0">#{{ t.id }}</span>
-                        <span class="font-bold text-slate-800 truncate" [title]="t.title">
-                          {{ t.title }}
+                    <!-- Project Group Header -->
+                    <div class="px-2.5 py-1.5 bg-slate-100/80 border-b border-slate-200/70 flex items-center justify-between gap-2 text-[10px]">
+                      <div class="flex items-center gap-1.5 min-w-0">
+                        <span *ngIf="group.category === 'maintenance'" class="text-purple-600 font-bold shrink-0">🛠️</span>
+                        <span *ngIf="group.category !== 'maintenance'" class="text-blue-600 font-bold shrink-0">🚀</span>
+                        <span class="font-extrabold text-slate-900 truncate" [title]="group.projectName">
+                          {{ group.projectName }}
                         </span>
                       </div>
-                      <span class="font-black text-slate-900 shrink-0 ml-1 text-[11px] bg-white px-1.5 py-0.2 rounded border border-slate-200">
-                        {{ formatHours(t.hours) }}h
-                      </span>
+                      <div class="flex items-center gap-1.5 shrink-0">
+                        <span *ngIf="group.client" class="text-[9px] text-slate-400 font-medium hidden sm:inline truncate max-w-[80px]">
+                          {{ group.client }}
+                        </span>
+                        <span class="text-[9px] font-black px-1.5 py-0.2 rounded border bg-white text-slate-800 border-slate-200">
+                          {{ formatHours(group.totalHours) }}h
+                        </span>
+                      </div>
                     </div>
 
-                    <!-- Bottom line: project name + state -->
-                    <div class="flex items-center justify-between text-[9px] text-slate-500">
-                      <span class="truncate text-slate-600 font-medium" [title]="t.projectName">
-                        {{ t.projectName }}
-                      </span>
-                      <span class="px-1.5 py-0.2 rounded font-semibold shrink-0"
-                        [ngClass]="t.state === 'Closed' || t.state === 'Done' || t.state === 'Resolved' ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' : 'bg-amber-50 text-amber-700 border border-amber-200'">
-                        {{ t.state }}
-                      </span>
+                    <!-- Tasks in this Project -->
+                    <div class="p-1.5 space-y-1.5 bg-slate-50/50">
+                      <div
+                        *ngFor="let t of group.tasks"
+                        class="p-2 rounded-lg bg-white hover:bg-slate-50 border border-slate-200/70 flex flex-col gap-1 text-[11px] transition shadow-2xs">
+                        
+                        <!-- Top line: ID/type badge + title + hours -->
+                        <div class="flex items-start justify-between gap-1.5">
+                          <div class="min-w-0 flex items-center gap-1.5">
+                            <span *ngIf="t.type === 'Bug'" class="text-[9px] px-1.5 py-0.2 bg-rose-100 text-rose-800 font-black rounded shrink-0">Bug</span>
+                            <span *ngIf="t.type !== 'Bug' && t.id" class="text-[9px] px-1.5 py-0.2 bg-slate-200 text-slate-700 font-bold rounded shrink-0">#{{ t.id }}</span>
+                            <span class="font-bold text-slate-800 truncate" [title]="t.title">
+                              {{ t.title }}
+                            </span>
+                          </div>
+                          <span class="font-black text-slate-900 shrink-0 ml-1 text-[10px] bg-slate-50 px-1.5 py-0.2 rounded border border-slate-200">
+                            {{ formatHours(t.hours) }}h
+                          </span>
+                        </div>
+
+                        <!-- Bottom line: type + state badge -->
+                        <div class="flex items-center justify-between text-[9px] text-slate-400">
+                          <span class="text-[9px] text-slate-500 font-medium">
+                            {{ t.type || 'Task' }}
+                          </span>
+                          <span class="px-1.5 py-0.2 rounded font-semibold shrink-0"
+                            [ngClass]="t.state === 'Closed' || t.state === 'Done' || t.state === 'Resolved' ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' : 'bg-amber-50 text-amber-700 border border-amber-200'">
+                            {{ t.state }}
+                          </span>
+                        </div>
+                      </div>
                     </div>
+
                   </div>
 
                   <!-- Expand/Collapse Button if more than 3 tasks -->
@@ -385,8 +413,8 @@ import { TeamAllocationReport, TeamMemberAllocation, ProjectTeamAllocation } fro
                     *ngIf="member.tasks && member.tasks.length > 3"
                     type="button"
                     (click)="toggleMemberTasks(member.name)"
-                    class="w-full py-1 text-center text-[10px] font-bold text-indigo-600 hover:text-indigo-800 hover:bg-indigo-50/70 rounded-lg transition cursor-pointer">
-                    {{ isMemberExpanded(member.name) ? '▲ Ocultar tarefas extras' : '▼ Ver mais ' + (member.tasks.length - 3) + ' tarefas' }}
+                    class="w-full py-1.5 text-center text-[10px] font-bold text-indigo-700 hover:text-indigo-900 bg-indigo-50/50 hover:bg-indigo-100/70 rounded-xl transition cursor-pointer border border-indigo-100">
+                    {{ isMemberExpanded(member.name) ? '▲ Recolher tarefas' : '▼ Ver todas as ' + member.tasks.length + ' tarefas (' + getMemberTaskGroups(member).length + ' projetos)' }}
                   </button>
 
                   <div *ngIf="!member.tasks || member.tasks.length === 0" class="p-2 rounded-xl bg-slate-50 border border-dashed border-slate-200 text-center text-[10px] text-slate-400 italic">
@@ -512,6 +540,50 @@ export class TeamAllocationComponent implements OnInit {
 
   isMemberExpanded(memberName: string): boolean {
     return this.expandedMembers().has(memberName);
+  }
+
+  getMemberTaskGroups(member: TeamMemberAllocation, limit = false): MemberProjectTasksGroup[] {
+    if (!member.tasks || member.tasks.length === 0) return [];
+
+    const map = new Map<string, MemberProjectTasksGroup>();
+
+    for (const t of member.tasks) {
+      const pName = t.projectName || 'Outros Projetos';
+      if (!map.has(pName)) {
+        const projShare = (member.projects || []).find(p => p.projectName === pName || p.projectId === t.projectId);
+        map.set(pName, {
+          projectId: t.projectId || projShare?.projectId,
+          projectName: pName,
+          client: t.client || projShare?.client || '',
+          category: t.category || projShare?.category || 'new_project',
+          totalHours: 0,
+          tasks: []
+        });
+      }
+      const g = map.get(pName)!;
+      g.tasks.push(t);
+      g.totalHours = Math.round((g.totalHours + (t.hours || 0)) * 10) / 10;
+    }
+
+    const groups = Array.from(map.values()).sort((a, b) => b.totalHours - a.totalHours);
+
+    if (!limit) return groups;
+
+    // In collapsed preview mode, show top projects and up to 2 tasks per project (up to 3 total tasks)
+    let remainingBudget = 3;
+    const previewGroups: MemberProjectTasksGroup[] = [];
+
+    for (const g of groups) {
+      if (remainingBudget <= 0) break;
+      const countForThisGroup = Math.min(2, remainingBudget, g.tasks.length);
+      previewGroups.push({
+        ...g,
+        tasks: g.tasks.slice(0, countForThisGroup)
+      });
+      remainingBudget -= countForThisGroup;
+    }
+
+    return previewGroups;
   }
 
   async refreshData() {
