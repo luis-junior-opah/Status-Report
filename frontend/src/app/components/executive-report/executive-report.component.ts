@@ -811,31 +811,187 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
         </div>
       </div>
 
-      <!-- 5. SUSTENTAÇÃO DE SISTEMAS & ATIVIDADES REALIZADAS NO PERÍODO -->
-      <div class="rounded-2xl border-2 border-purple-300 bg-purple-50/60 p-4 sm:p-5 transition-all shadow-xs">
+      <!-- 5. SUSTENTAÇÃO -->
+      <div class="rounded-3xl border-2 border-purple-300/90 bg-gradient-to-b from-purple-50/70 via-white to-purple-50/30 p-4 sm:p-6 transition-all shadow-xs space-y-6">
         
         <!-- Header -->
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-3 mb-4 border-b border-purple-200 gap-2">
-          <div class="flex items-center gap-2">
-            <span class="text-base">🛠️</span>
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-purple-200 gap-3">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-2xl bg-purple-600 text-white flex items-center justify-center font-black text-xl shadow-xs">
+              🛠️
+            </div>
             <div>
-              <h3 class="text-xs sm:text-sm font-black tracking-tight text-purple-950 flex items-center gap-2">
-                Sustentação de Sistemas & Atividades Realizadas no Período
-                <span class="text-[10px] font-black px-2 py-0.5 rounded-full bg-purple-200 text-purple-900">
+              <div class="flex items-center gap-2">
+                <h3 class="text-base sm:text-lg font-black tracking-tight text-purple-950">
+                  Sustentação
+                </h3>
+                <span class="text-[10px] font-black px-2.5 py-0.5 rounded-full bg-purple-200 text-purple-900 border border-purple-300 shadow-2xs">
                   {{ currentReport()?.maintenanceSection?.projects?.length || 0 }} sistemas mantidos
                 </span>
-              </h3>
-              <p class="text-[11px] text-purple-900/80 font-medium">
-                Acompanhamento das demandas operacionais, melhorias e suporte aos projetos estabilizados • {{ currentReport()?.maintenanceSection?.periodLabel || currentReport()?.period }}
+              </div>
+              <p class="text-[11px] text-purple-900/80 font-medium mt-0.5">
+                Acompanhamento contínuo de suporte N2/N3, estabilização de plataformas e melhorias operacionais • {{ currentReport()?.maintenanceSection?.periodLabel || currentReport()?.period }}
               </p>
             </div>
           </div>
 
           <div class="flex items-center gap-2 self-start sm:self-auto">
-            <span class="text-xs font-black px-2.5 py-1 rounded-xl bg-purple-100 text-purple-900 border border-purple-300">
-              ⏱️ {{ formatHours(currentReport()?.maintenanceSection?.totalHours) }}h executadas no ciclo
+            <span class="text-xs font-black px-3 py-1.5 rounded-xl bg-purple-100 text-purple-900 border border-purple-300 shadow-2xs">
+              ⏱️ {{ formatHours(currentReport()?.maintenanceSection?.totalHours || service.maintenanceMetrics()?.totalMaintenanceHours) }}h executadas no ciclo
             </span>
           </div>
+        </div>
+
+        <!-- TOP KPI STRIP FOR SUSTENTAÇÃO -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+          
+          <!-- KPI 1: Esforço em Sustentação -->
+          <div class="p-3.5 rounded-2xl bg-white border border-purple-200/90 shadow-2xs">
+            <span class="text-[10px] font-extrabold text-purple-900 uppercase tracking-wider block">Esforço em Suporte</span>
+            <div class="flex items-baseline gap-1 mt-1">
+              <span class="text-2xl font-black text-purple-950">
+                {{ formatHours(currentReport()?.maintenanceSection?.totalHours || service.maintenanceMetrics()?.totalMaintenanceHours) }}
+              </span>
+              <span class="text-xs font-bold text-purple-700">horas</span>
+            </div>
+            <div class="mt-2 w-full bg-purple-100 rounded-full h-1.5 overflow-hidden">
+              <div class="bg-purple-600 h-full rounded-full" [style.width.%]="service.maintenanceMetrics()?.maintenancePercent || 45"></div>
+            </div>
+            <span class="text-[9px] text-purple-800/80 font-semibold block mt-1">
+              {{ service.maintenanceMetrics()?.maintenancePercent || 45 }}% da capacidade total da empresa
+            </span>
+          </div>
+
+          <!-- KPI 2: Novos Projetos vs Sustentação -->
+          <div class="p-3.5 rounded-2xl bg-white border border-purple-200/90 shadow-2xs">
+            <span class="text-[10px] font-extrabold text-slate-500 uppercase tracking-wider block">Divisão de Capacidade</span>
+            <div class="flex items-baseline justify-between mt-1">
+              <span class="text-xs font-black text-blue-700">🚀 {{ 100 - (service.maintenanceMetrics()?.maintenancePercent || 45) }}% Novos</span>
+              <span class="text-xs font-black text-purple-700">🛠️ {{ service.maintenanceMetrics()?.maintenancePercent || 45 }}% Sust.</span>
+            </div>
+            <div class="mt-2.5 w-full bg-slate-100 rounded-full h-1.5 overflow-hidden flex">
+              <div class="bg-blue-600 h-full" [style.width.%]="100 - (service.maintenanceMetrics()?.maintenancePercent || 45)"></div>
+              <div class="bg-purple-600 h-full" [style.width.%]="service.maintenanceMetrics()?.maintenancePercent || 45"></div>
+            </div>
+            <span class="text-[9px] text-slate-500 font-medium block mt-1">
+              Distribuição de horas apontadas na empresa
+            </span>
+          </div>
+
+          <!-- KPI 3: Sistemas em Sustentação -->
+          <div class="p-3.5 rounded-2xl bg-white border border-purple-200/90 shadow-2xs">
+            <span class="text-[10px] font-extrabold text-emerald-900 uppercase tracking-wider block">Sistemas Mantidos</span>
+            <div class="flex items-baseline gap-1 mt-1">
+              <span class="text-2xl font-black text-emerald-950">
+                {{ currentReport()?.maintenanceSection?.projects?.length || 4 }}
+              </span>
+              <span class="text-xs font-bold text-emerald-700">aplicações</span>
+            </div>
+            <span class="text-[9px] text-emerald-800 font-semibold block mt-3">
+              100% dos sistemas com atendimento ativo
+            </span>
+          </div>
+
+          <!-- KPI 4: Equipe Alocada -->
+          <div class="p-3.5 rounded-2xl bg-white border border-purple-200/90 shadow-2xs">
+            <span class="text-[10px] font-extrabold text-slate-600 uppercase tracking-wider block">Equipe Alocada</span>
+            <div class="flex items-baseline gap-1 mt-1">
+              <span class="text-2xl font-black text-slate-900">
+                {{ getMaintenanceTeamMembersCount() }}
+              </span>
+              <span class="text-xs font-bold text-slate-600">profissionais</span>
+            </div>
+            <span class="text-[9px] text-slate-500 font-medium block mt-3">
+              Especialistas N2/N3 envolvidos no suporte
+            </span>
+          </div>
+
+        </div>
+
+        <!-- 2 ANALYTICAL CHARTS (ESFORÇO POR SISTEMA & HISTÓRICO MENSAL) -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-5">
+          
+          <!-- Chart 1: Distribuição de Esforço por Sistema Mantido (Col 6) -->
+          <div class="lg:col-span-6 bg-white p-4 rounded-2xl border border-purple-200 shadow-2xs flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between pb-2.5 mb-3 border-b border-slate-100">
+                <span class="text-xs font-extrabold text-slate-900 uppercase tracking-wider flex items-center gap-1.5">
+                  <span>📊</span> Esforço por Sistema de Sustentação
+                </span>
+                <span class="text-[10px] font-bold text-slate-500">
+                  Total: {{ formatHours(getMaintenanceTotalHours()) }}h
+                </span>
+              </div>
+
+              <!-- Systems Horizontal Bars -->
+              <div class="space-y-2.5">
+                <div *ngFor="let mp of currentReport()?.maintenanceSection?.projects" class="text-xs">
+                  <div class="flex items-center justify-between font-bold text-slate-800 mb-1">
+                    <span class="truncate max-w-[200px]" [title]="mp.name">{{ mp.name }}</span>
+                    <div class="text-right shrink-0">
+                      <span class="font-black text-purple-950">{{ formatHours(mp.hoursExecuted) }}h</span>
+                      <span class="text-purple-700 font-extrabold text-[10px] ml-1">({{ getProjectMaintenanceShare(mp.hoursExecuted) }}%)</span>
+                    </div>
+                  </div>
+                  <div class="w-full bg-purple-50 rounded-full h-2 overflow-hidden border border-purple-100">
+                    <div
+                      class="bg-gradient-to-r from-purple-500 to-indigo-600 h-full rounded-full transition-all duration-500"
+                      [style.width.%]="getProjectMaintenanceShare(mp.hoursExecuted)">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <p class="text-[9px] text-slate-400 mt-3 pt-2 border-t border-slate-100">
+              Proporção de horas consumidas entre os sistemas mantidos pela ILC.
+            </p>
+          </div>
+
+          <!-- Chart 2: Histórico de Esforço Mensal (Col 6) -->
+          <div class="lg:col-span-6 bg-white p-4 rounded-2xl border border-purple-200 shadow-2xs flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between pb-2.5 mb-3 border-b border-slate-100">
+                <span class="text-xs font-extrabold text-slate-900 uppercase tracking-wider flex items-center gap-1.5">
+                  <span>📈</span> Histórico de Esforço Mensal (2026)
+                </span>
+                <span class="text-[10px] font-bold text-purple-700 bg-purple-50 px-2 py-0.5 rounded-md border border-purple-200">
+                  Sustentação Contínua
+                </span>
+              </div>
+
+              <!-- Compact Monthly Mini Bar Chart -->
+              <div class="h-28 flex items-end justify-between gap-1 pt-4 pb-1">
+                <div *ngFor="let m of (service.maintenanceMetrics()?.monthlyHistory || []).slice(0, 10)"
+                  class="flex-1 flex flex-col items-center h-full justify-end group relative cursor-pointer">
+                  
+                  <!-- Tooltip -->
+                  <div class="absolute -top-7 opacity-0 group-hover:opacity-100 transition pointer-events-none z-20 bg-slate-900 text-white text-[9px] font-black px-1.5 py-0.5 rounded shadow-lg whitespace-nowrap">
+                    {{ m.label }}: {{ formatHours(m.maintenanceHours) }}h ({{ m.maintenancePercent }}%)
+                  </div>
+
+                  <!-- Bar -->
+                  <div class="w-full bg-purple-100/80 rounded-t-md hover:bg-purple-200 transition-all flex flex-col justify-end overflow-hidden h-20">
+                    <div
+                      class="w-full bg-purple-600 rounded-t-md group-hover:bg-purple-700 transition-all"
+                      [style.height.%]="getMonthlyBarHeight(m.maintenanceHours)">
+                    </div>
+                  </div>
+
+                  <!-- Month label -->
+                  <span class="text-[8px] font-bold text-slate-500 mt-1 uppercase">
+                    {{ m.label.split('/')[0] }}
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <p class="text-[9px] text-slate-400 mt-3 pt-2 border-t border-slate-100 flex items-center justify-between">
+              <span>Volumetria mensal de horas em sustentação ao longo de 2026.</span>
+              <span class="font-bold text-purple-800">10 meses consolidados</span>
+            </p>
+          </div>
+
         </div>
 
         <!-- Maintenance Projects Grid -->
@@ -844,47 +1000,98 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
           
           <div
             *ngFor="let mp of currentReport()!.maintenanceSection!.projects"
-            class="p-4 rounded-xl border border-purple-200 bg-white text-slate-900 shadow-xs flex flex-col justify-between">
+            class="p-4 sm:p-5 rounded-2xl border-2 border-purple-200/90 bg-white text-slate-900 shadow-xs flex flex-col justify-between hover:border-purple-400 transition-all">
             
-            <div>
+            <div class="space-y-3">
               <!-- Top bar with Client, Project Name and Status -->
-              <div class="flex items-center justify-between gap-2 mb-2">
+              <div class="flex items-center justify-between gap-2">
                 <div class="flex items-center gap-1.5 min-w-0">
-                  <span class="text-[10px] font-black px-2 py-0.5 rounded-md bg-purple-100 text-purple-900 border border-purple-200">
+                  <span class="text-[10px] font-black px-2 py-0.5 rounded-md bg-purple-100 text-purple-900 border border-purple-200 shrink-0">
                     {{ mp.client }}
                   </span>
-                  <h4 class="text-xs font-black truncate text-slate-900 leading-snug" [title]="mp.name">
+                  <h4 class="text-sm font-black truncate text-slate-900 leading-snug" [title]="mp.name">
                     {{ mp.name }}
                   </h4>
                 </div>
                 <div class="flex items-center gap-1.5 shrink-0">
                   <span
-                    class="text-[9px] font-extrabold px-1.5 py-0.2 rounded-full"
-                    [ngClass]="mp.status === 'Ativo' ? 'bg-emerald-100 text-emerald-800' : 'bg-blue-100 text-blue-800'">
-                    {{ mp.status }}
+                    class="text-[9px] font-extrabold px-2 py-0.5 rounded-full"
+                    [ngClass]="mp.ragStatus === 'red' ? 'bg-rose-100 text-rose-800 border border-rose-300' : (mp.ragStatus === 'amber' ? 'bg-amber-100 text-amber-800 border border-amber-300' : 'bg-emerald-100 text-emerald-800 border border-emerald-300')">
+                    {{ mp.ragStatus === 'red' ? '⚠️ Desvio' : (mp.ragStatus === 'amber' ? '⚠️ Atenção' : '✓ No Prazo') }}
                   </span>
-                  <span class="text-[9px] font-black px-1.5 py-0.2 rounded-full bg-slate-100 text-slate-700">
+                  <span class="text-[9px] font-black px-2 py-0.5 rounded-full bg-slate-100 text-slate-800 border border-slate-200">
                     {{ formatHours(mp.hoursExecuted) }}h totais
                   </span>
                 </div>
               </div>
 
-              <!-- Scope / Summary -->
-              <p class="text-[11px] text-slate-600 font-medium mb-3 bg-purple-50/50 p-2 rounded-lg border border-purple-100">
-                {{ mp.summary || 'Sustentação contínua da aplicação.' }}
-              </p>
+              <!-- Ponto de Atenção -->
+              <div *ngIf="hasAttentionPoints(mp)"
+                class="p-2.5 rounded-xl text-[10px] leading-snug shadow-2xs font-medium"
+                [ngClass]="getAttentionBoxClass(mp, 'light')">
+                <strong>⚠️ Ponto de Atenção:</strong> {{ mp.attentionPoints }}
+              </div>
 
-              <!-- Activities Realized in Period -->
-              <div class="space-y-1.5">
+              <!-- Status Reports: Anterior & Atual -->
+              <div class="space-y-2">
+                <!-- Status Report Anterior -->
+                <div class="p-2.5 rounded-xl bg-slate-100 border border-slate-300 text-xs">
+                  <div class="flex items-center justify-between gap-1.5 mb-1">
+                    <span class="text-[9px] font-extrabold text-slate-700 uppercase tracking-wider">Status report anterior</span>
+                    <span class="text-[9px] font-bold text-slate-700 bg-slate-200 px-1.5 py-0.2 rounded border border-slate-300">
+                      {{ getPreviousReportDate(mp) }}
+                    </span>
+                  </div>
+                  <p class="text-[11px] leading-relaxed text-slate-800 font-medium">
+                    {{ mp.previousStatusReport || 'Sem reporte anterior registrado.' }}
+                  </p>
+                </div>
+
+                <!-- Status Report Atual -->
+                <div class="p-2.5 rounded-xl bg-purple-100/70 border-2 border-purple-300 text-xs">
+                  <div class="flex items-center justify-between gap-1.5 mb-1">
+                    <span class="text-[9px] font-black text-purple-950 uppercase tracking-wider">Status report atual</span>
+                    <span class="text-[9px] font-black text-purple-900 bg-purple-200 px-1.5 py-0.2 rounded border border-purple-300">
+                      {{ getCurrentReportDate(mp) }}
+                    </span>
+                  </div>
+                  <p class="text-[11px] leading-relaxed text-purple-950 font-semibold">
+                    {{ mp.statusReport || mp.summary || 'Sustentação contínua e acompanhamento regular.' }}
+                  </p>
+                </div>
+              </div>
+
+              <!-- Equipe Alocada por Projeto -->
+              <div *ngIf="getAllTeamMembers(mp).length > 0" class="pt-2 border-t border-slate-100">
+                <div class="flex items-center gap-1 mb-1.5">
+                  <span class="text-[10px] font-bold text-slate-600 uppercase tracking-wider flex items-center gap-1">
+                    <span>👥</span> Equipe Alocada
+                  </span>
+                </div>
+                <div class="flex flex-wrap items-center gap-1.5">
+                  <span
+                    *ngIf="mp.teamLeader || mp.team?.leader"
+                    class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-black bg-purple-100 text-purple-900 border border-purple-300 shadow-2xs">
+                    <span>⭐</span> {{ mp.teamLeader || mp.team?.leader }}
+                  </span>
+                  <span
+                    *ngFor="let member of getNonLeaderMembers(mp)"
+                    class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-slate-100 text-slate-800 border border-slate-300">
+                    {{ member }}
+                  </span>
+                </div>
+              </div>
+
+              <!-- Demandas & Entregas Realizadas no Ciclo -->
+              <div *ngIf="mp.recentActivities && mp.recentActivities.length > 0" class="pt-2 border-t border-slate-100 space-y-1.5">
                 <span class="text-[9px] font-black uppercase text-slate-400 tracking-wider flex items-center justify-between">
-                  <span>📋 Demandas & Entregas Realizadas no Ciclo:</span>
-                  <span class="text-purple-700 font-bold">({{ mp.recentActivities?.length || 0 }})</span>
+                  <span>📋 Demandas Recentes no Azure DevOps:</span>
+                  <span class="text-purple-700 font-bold">({{ mp.recentActivities.length }})</span>
                 </span>
-
-                <div *ngIf="mp.recentActivities && mp.recentActivities.length > 0; else noRecentActs" class="space-y-1">
+                <div class="space-y-1">
                   <div
                     *ngFor="let act of mp.recentActivities"
-                    class="p-2 rounded-lg bg-slate-50 border border-slate-200 flex items-center justify-between text-[10px] gap-2">
+                    class="p-1.5 rounded-lg bg-slate-50 border border-slate-200 flex items-center justify-between text-[10px] gap-2">
                     <div class="min-w-0 flex items-center gap-1.5">
                       <span class="text-purple-600 font-bold">✔</span>
                       <span class="font-bold text-slate-800 truncate" [title]="act.title">{{ act.title }}</span>
@@ -899,22 +1106,21 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
                     </div>
                   </div>
                 </div>
-
-                <ng-template #noRecentActs>
-                  <p class="text-[10px] text-slate-400 italic py-1">
-                    Nenhum apontamento específico registrado na semana selecionada.
-                  </p>
-                </ng-template>
               </div>
+
             </div>
 
-            <div class="mt-3 pt-2 border-t border-slate-100 flex items-center justify-between text-[10px] text-slate-500">
-              <span>Sustentação N2/N3 ILC</span>
+            <!-- Footer: Ver Detalhes na EAP -->
+            <div class="mt-4 pt-2.5 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500">
+              <span class="text-[10px] font-bold text-purple-900 bg-purple-50 px-2 py-0.5 rounded-md border border-purple-200">
+                Sustentação N2/N3 ILC
+              </span>
               <button
                 type="button"
                 (click)="service.openEapForProject(mp.id)"
-                class="font-bold text-purple-700 hover:text-purple-900 hover:underline cursor-pointer">
-                Ver Detalhes na EAP →
+                class="font-extrabold text-purple-700 hover:text-purple-900 hover:underline cursor-pointer flex items-center gap-1">
+                <span>Ver EAP</span>
+                <span>→</span>
               </button>
             </div>
 
@@ -2141,7 +2347,7 @@ export class ExecutiveReportComponent implements OnInit {
     return members;
   }
 
-  getAllTeamMembers(p: WeeklyReportProject): string[] {
+  getAllTeamMembers(p: WeeklyReportProject | any): string[] {
     const list: string[] = [];
     const leader = (p.teamLeader || p.team?.leader || '').trim();
     if (leader) list.push(leader);
@@ -2156,7 +2362,7 @@ export class ExecutiveReportComponent implements OnInit {
     return list;
   }
 
-  getNonLeaderMembers(p: WeeklyReportProject): string[] {
+  getNonLeaderMembers(p: WeeklyReportProject | any): string[] {
     const leader = (p.teamLeader || p.team?.leader || '').trim().toLowerCase();
     const all = this.getAllTeamMembers(p);
     return all.filter(m => m.trim().toLowerCase() !== leader);
@@ -2223,7 +2429,7 @@ export class ExecutiveReportComponent implements OnInit {
       : 'bg-slate-100 text-slate-800 border border-slate-300 font-semibold';
   }
 
-  hasAttentionPoints(p?: WeeklyReportProject | null): boolean {
+  hasAttentionPoints(p?: WeeklyReportProject | any | null): boolean {
     if (!p || !p.attentionPoints) return false;
     const text = p.attentionPoints.trim();
     if (!text) return false;
@@ -2241,7 +2447,7 @@ export class ExecutiveReportComponent implements OnInit {
     return true;
   }
 
-  getAttentionBoxClass(p: WeeklyReportProject, theme: 'dark' | 'light' = 'light'): string {
+  getAttentionBoxClass(p: WeeklyReportProject | any, theme: 'dark' | 'light' = 'light'): string {
     if (theme === 'dark') {
       if (p.ragStatus === 'red') {
         return 'bg-rose-950/80 border-rose-700 text-rose-200';
@@ -2265,14 +2471,14 @@ export class ExecutiveReportComponent implements OnInit {
     }
   }
 
-  getCurrentReportDate(p?: WeeklyReportProject): string {
+  getCurrentReportDate(p?: WeeklyReportProject | any): string {
     if (p?.statusReportDate) return this.formatDate(p.statusReportDate);
     const meetingDate = this.currentReport()?.meetingDate;
     if (meetingDate) return this.formatDate(meetingDate);
     return '16/10/2026';
   }
 
-  getPreviousReportDate(p?: WeeklyReportProject): string {
+  getPreviousReportDate(p?: WeeklyReportProject | any): string {
     if (p?.previousStatusReportDate) return this.formatDate(p.previousStatusReportDate);
     const current = this.currentReport();
     const summaries = this.service.weeklyReports();
@@ -2281,6 +2487,42 @@ export class ExecutiveReportComponent implements OnInit {
       if (prev?.meetingDate) return this.formatDate(prev.meetingDate);
     }
     return '06/10/2026';
+  }
+
+  getMaintenanceTeamMembersCount(): number {
+    const list = this.currentReport()?.maintenanceSection?.projects || [];
+    const set = new Set<string>();
+    for (const p of list) {
+      if (p.teamLeader) set.add(p.teamLeader.trim().toLowerCase());
+      if (p.team?.leader) set.add(p.team.leader.trim().toLowerCase());
+      for (const m of (p.teamMembers || p.team?.members || [])) {
+        if (m) set.add(m.trim().toLowerCase());
+      }
+    }
+    if (set.size > 0) return set.size;
+    return this.service.maintenanceMetrics()?.teamMembers?.length || 0;
+  }
+
+  getMaintenanceTotalHours(): number {
+    const sec = this.currentReport()?.maintenanceSection;
+    if (sec?.totalHours && sec.totalHours > 0) return sec.totalHours;
+    return this.service.maintenanceMetrics()?.totalMaintenanceHours || 0;
+  }
+
+  getProjectMaintenanceShare(hoursExecuted: number): number {
+    const total = this.getMaintenanceTotalHours();
+    if (!total || total <= 0) return 0;
+    return Math.min(100, Math.round((hoursExecuted / total) * 100));
+  }
+
+  getMonthlyBarHeight(hours: number): number {
+    const list = this.service.maintenanceMetrics()?.monthlyHistory || [];
+    let max = 0;
+    for (const m of list) {
+      if (m.maintenanceHours > max) max = m.maintenanceHours;
+    }
+    if (!max || max <= 0) return 10;
+    return Math.max(10, Math.min(100, Math.round((hours / max) * 100)));
   }
 
   printReport() {

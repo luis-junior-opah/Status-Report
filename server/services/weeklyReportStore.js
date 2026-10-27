@@ -470,6 +470,45 @@ class WeeklyReportStore {
       totalHours: allMaintenanceProjects.reduce((s, p) => s + (p.hours?.totalExecuted || 0), 0),
       periodLabel: `Semana ${report.weekNumber} (${periodStart} a ${periodEnd})`,
       projects: allMaintenanceProjects.map(p => {
+        const existing = (report.maintenanceSection?.projects || []).find(ep => (ep.id === p.id || ep.projectId === p.id || (ep.name && ep.name.toLowerCase() === (p.name || '').toLowerCase())));
+        const prevMaintProject = (prevReport?.maintenanceSection?.projects || []).find(ep => (ep.id === p.id || ep.projectId === p.id || (ep.name && ep.name.toLowerCase() === (p.name || '').toLowerCase())));
+        const details = resolveProjectWeeklyDetails(p);
+
+        // 1. STATUS REPORT ANTERIOR
+        let prevReportText = '';
+        let prevReportDate = '2026-10-06';
+        if (prevMaintProject && prevMaintProject.statusReport) {
+          prevReportText = prevMaintProject.statusReport;
+          prevReportDate = prevMaintProject.statusReportDate || prevReport?.meetingDate || '2026-10-16';
+        } else if (existing && existing.previousStatusReport) {
+          prevReportText = existing.previousStatusReport;
+          prevReportDate = existing.previousStatusReportDate || '2026-10-06';
+        } else {
+          prevReportText = details.previousStatusReport || 'Acompanhamento e suporte operacional contínuo no ciclo anterior.';
+        }
+
+        // 2. STATUS REPORT ATUAL
+        let currentReportText = '';
+        let currentReportDate = (existing && existing.statusReportDate) ? existing.statusReportDate : (report.meetingDate || new Date().toISOString().split('T')[0]);
+
+        if (isLatest) {
+          const hasRealSummary = p.executiveSummary && p.executiveSummary.trim() &&
+            !p.executiveSummary.includes('Projeto integrado ao Azure DevOps') &&
+            !p.executiveSummary.includes('Projeto cadastrado manualmente');
+
+          if (hasRealSummary) {
+            currentReportText = p.executiveSummary.trim();
+          } else if (existing && existing.statusReport) {
+            currentReportText = existing.statusReport;
+          } else {
+            currentReportText = details.statusReport || p.statusReport || p.executiveSummary || 'Sustentação regular e suporte contínuo às demandas de N2/N3.';
+          }
+        } else {
+          currentReportText = (existing && existing.statusReport) ? existing.statusReport : (details.statusReport || p.statusReport || p.executiveSummary || 'Sustentação regular.');
+        }
+
+        const attentionText = (existing && existing.attentionPoints) ? existing.attentionPoints : (details.attentionPoints || p.attentionPoints || '');
+
         const recentActs = (p.activities || [])
           .filter(a => {
             const d = a.targetDate || a.startDate;
@@ -487,14 +526,24 @@ class WeeklyReportStore {
 
         return {
           id: p.id,
+          projectId: p.id,
           name: p.name,
           client: p.client,
-          status: p.status,
+          status: p.status || 'Ativo',
           ragStatus: p.ragStatus || 'green',
           hoursExecuted: p.hours?.totalExecuted || 0,
           hoursPlanned: p.hours?.totalPlanned || 0,
+          hoursAgreed: p.hours?.agreed || p.agreedHours || 0,
+          statusReport: currentReportText,
+          statusReportDate: currentReportDate,
+          previousStatusReport: prevReportText,
+          previousStatusReportDate: prevReportDate,
+          attentionPoints: attentionText,
+          teamLeader: p.team?.leader || (p.team?.members ? p.team.members[0] : ''),
+          teamMembers: p.team?.members || [],
+          team: p.team || { leader: p.team?.leader || '', members: [] },
           recentActivities: recentActs,
-          summary: p.executiveSummary || 'Sustentação contínua da aplicação.'
+          summary: currentReportText
         };
       })
     };

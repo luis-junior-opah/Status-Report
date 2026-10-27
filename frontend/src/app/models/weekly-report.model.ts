@@ -100,12 +100,25 @@ export interface WeeklyReportMaintenanceActivity {
 
 export interface WeeklyReportMaintenanceProject {
   id: string;
+  projectId?: string;
   name: string;
   client: string;
   status: string;
   ragStatus: string;
   hoursExecuted: number;
   hoursPlanned: number;
+  hoursAgreed?: number;
+  attentionPoints?: string;
+  statusReport?: string;
+  statusReportDate?: string;
+  previousStatusReport?: string;
+  previousStatusReportDate?: string;
+  teamLeader?: string;
+  teamMembers?: string[];
+  team?: {
+    leader?: string;
+    members?: string[];
+  };
   recentActivities: WeeklyReportMaintenanceActivity[];
   summary?: string;
 }

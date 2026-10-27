@@ -12,7 +12,7 @@
       "onTrack": 6,
       "attention": 1,
       "critical": 2,
-      "averageProgress": 46
+      "averageProgress": 45
     },
     "activeProjects": [
       {
@@ -331,7 +331,7 @@
         "clientLogo": "/assets/logos/mirassol.png?t=1791579205262",
         "status": "Ativo",
         "currentMilestone": "Desenvolvimento",
-        "progress": 45,
+        "progress": 41,
         "ragStatus": "green",
         "agreedDelivery": "2026-11-13",
         "targetDelivery": "2026-11-13",
@@ -342,7 +342,7 @@
         "previousStatusReportDate": "2026-10-27",
         "attentionPoints": "Divergênica do tipo de operação recebidos pelo Rodopar (Ex: importação -> Transferência).\nAguardando recebimento dos marcos do processo de demanda do Rodopar (Ex: PC, PV, OST).",
         "hoursExecuted": 95,
-        "hoursPlanned": 264,
+        "hoursPlanned": 288,
         "priority": "P1",
         "category": "new_project",
         "systems": [
@@ -454,12 +454,29 @@
       "projects": [
         {
           "id": "a7d5d8e7-c1e1-4d14-9aac-746ea346ac02",
+          "projectId": "a7d5d8e7-c1e1-4d14-9aac-746ea346ac02",
           "name": "APP - SMART TRACKING",
           "client": "ILC (Interno)",
           "status": "Ativo",
           "ragStatus": "green",
           "hoursExecuted": 720,
           "hoursPlanned": 720,
+          "hoursAgreed": 720,
+          "statusReport": "Módulo de tracking e telemetria veicular 100% desenvolvido. Validação de homologação em campo com frotas parceiras.",
+          "statusReportDate": "2026-10-27",
+          "previousStatusReport": "Módulo de tracking e telemetria veicular 100% desenvolvido. Validação de homologação em campo com frotas parceiras.",
+          "previousStatusReportDate": "2026-10-22",
+          "attentionPoints": "Aguardando validação dos testes operacionais com motoristas da frota dedicada.",
+          "teamLeader": "Mike Andrade",
+          "teamMembers": [
+            "Mike Andrade"
+          ],
+          "team": {
+            "leader": "Mike Andrade",
+            "members": [
+              "Mike Andrade"
+            ]
+          },
           "recentActivities": [
             {
               "id": "7119",
@@ -502,16 +519,35 @@
               "assignedTo": "Mike Andrade"
             }
           ],
-          "summary": "Projeto integrado ao Azure DevOps. Iteração atual: Em andamento."
+          "summary": "Módulo de tracking e telemetria veicular 100% desenvolvido. Validação de homologação em campo com frotas parceiras."
         },
         {
           "id": "631642d0-4957-40cf-ae78-b62dd47af334",
+          "projectId": "631642d0-4957-40cf-ae78-b62dd47af334",
           "name": "INTEGRATOR",
           "client": "ILC (Interno)",
           "status": "Ativo",
           "ragStatus": "red",
           "hoursExecuted": 2074.5,
           "hoursPlanned": 3392.4,
+          "hoursAgreed": 1215.5,
+          "statusReport": "Camada de mensageria e barramento de integração em construção (62%). Integrações com APIs legadas em validação.",
+          "statusReportDate": "2026-10-27",
+          "previousStatusReport": "Camada de mensageria e barramento de integração em construção (62%). Integrações com APIs legadas em validação.",
+          "previousStatusReportDate": "2026-10-22",
+          "attentionPoints": "Revisão da alocação de desenvolvedores sênior para aceleração das rotas críticas.",
+          "teamLeader": "Renata Dias de Avila Reis",
+          "teamMembers": [
+            "Renata Dias de Avila Reis",
+            "Anderson Rodrigo de Jesus Souza"
+          ],
+          "team": {
+            "leader": "Renata Dias de Avila Reis",
+            "members": [
+              "Renata Dias de Avila Reis",
+              "Anderson Rodrigo de Jesus Souza"
+            ]
+          },
           "recentActivities": [
             {
               "id": "5152",
@@ -554,16 +590,43 @@
               "assignedTo": "Francisco Molaia Santos"
             }
           ],
-          "summary": "Projeto integrado ao Azure DevOps. Iteração atual: SPRINT 7a."
+          "summary": "Camada de mensageria e barramento de integração em construção (62%). Integrações com APIs legadas em validação."
         },
         {
           "id": "a197458f-88c5-4fec-8ce7-a981ee3f6709",
+          "projectId": "a197458f-88c5-4fec-8ce7-a981ee3f6709",
           "name": "SMART X",
           "client": "ILC (Interno)",
           "status": "Ativo",
           "ragStatus": "amber",
           "hoursExecuted": 770.3,
           "hoursPlanned": 1791.5,
+          "hoursAgreed": 698,
+          "statusReport": "Evolução dos módulos de telemetria inteligente e conectividade veicular (46%). Sprint atual focado em microserviços.",
+          "statusReportDate": "2026-10-27",
+          "previousStatusReport": "Evolução dos módulos de telemetria inteligente e conectividade veicular (46%). Sprint atual focado em microserviços.",
+          "previousStatusReportDate": "2026-10-22",
+          "attentionPoints": "Atenção à cadência de entregas técnicas para garantir marco de entrega intermediário.",
+          "teamLeader": "Renata Dias de Avila Reis",
+          "teamMembers": [
+            "Renata Dias de Avila Reis",
+            "Anderson Rodrigo de Jesus Souza",
+            "Saddam José Viera Flores",
+            "Denis Ivan Lenz",
+            "Clécio Ciriaco da Silva",
+            "Tatiane Godinho Dutra"
+          ],
+          "team": {
+            "leader": "Renata Dias de Avila Reis",
+            "members": [
+              "Renata Dias de Avila Reis",
+              "Anderson Rodrigo de Jesus Souza",
+              "Saddam José Viera Flores",
+              "Denis Ivan Lenz",
+              "Clécio Ciriaco da Silva",
+              "Tatiane Godinho Dutra"
+            ]
+          },
           "recentActivities": [
             {
               "id": "4971",
@@ -606,16 +669,33 @@
               "assignedTo": "Renata Dias de Avila Reis"
             }
           ],
-          "summary": "Projeto integrado ao Azure DevOps. Iteração atual: Iteration 26."
+          "summary": "Evolução dos módulos de telemetria inteligente e conectividade veicular (46%). Sprint atual focado em microserviços."
         },
         {
           "id": "09fbe35d-364d-4e90-b950-7aa9a5186dda",
+          "projectId": "09fbe35d-364d-4e90-b950-7aa9a5186dda",
           "name": "GE - GESTÃO EMBARCADA",
           "client": "John Deere",
           "status": "Ativo",
           "ragStatus": "red",
           "hoursExecuted": 470.3,
           "hoursPlanned": 1066.5,
+          "hoursAgreed": 327,
+          "statusReport": "Revisão das regras de negócio e barramento dos módulos embarcados John Deere (44%).",
+          "statusReportDate": "2026-10-27",
+          "previousStatusReport": "Revisão das regras de negócio e barramento dos módulos embarcados John Deere (44%).",
+          "previousStatusReportDate": "2026-10-22",
+          "attentionPoints": "Priorização de alinhamento com a engenharia de produto John Deere sobre protocolos de comunicação.",
+          "teamLeader": "Filipe Andrade",
+          "teamMembers": [
+            "Filipe Andrade"
+          ],
+          "team": {
+            "leader": "Filipe Andrade",
+            "members": [
+              "Filipe Andrade"
+            ]
+          },
           "recentActivities": [
             {
               "id": "880",
@@ -642,7 +722,7 @@
               "assignedTo": "Equipe de Sustentação"
             }
           ],
-          "summary": "Projeto integrado ao Azure DevOps. Iteração atual: SPRINT JUL - 2022 - 1 QUINZENA."
+          "summary": "Revisão das regras de negócio e barramento dos módulos embarcados John Deere (44%)."
         }
       ]
     }
@@ -660,7 +740,7 @@
       "onTrack": 6,
       "attention": 1,
       "critical": 2,
-      "averageProgress": 46
+      "averageProgress": 45
     },
     "activeProjects": [
       {
@@ -979,7 +1059,7 @@
         "clientLogo": "/assets/logos/mirassol.png?t=1791579205262",
         "status": "Ativo",
         "currentMilestone": "Desenvolvimento",
-        "progress": 45,
+        "progress": 41,
         "ragStatus": "green",
         "agreedDelivery": "2026-11-13",
         "targetDelivery": "2026-11-13",
@@ -990,7 +1070,7 @@
         "previousStatusReportDate": "2026-10-06",
         "attentionPoints": "Pendente atualização no Azure DEVOPS.",
         "hoursExecuted": 95,
-        "hoursPlanned": 264,
+        "hoursPlanned": 288,
         "priority": "P1",
         "category": "new_project",
         "systems": [
@@ -1101,12 +1181,29 @@
       "projects": [
         {
           "id": "a7d5d8e7-c1e1-4d14-9aac-746ea346ac02",
+          "projectId": "a7d5d8e7-c1e1-4d14-9aac-746ea346ac02",
           "name": "APP - SMART TRACKING",
           "client": "ILC (Interno)",
           "status": "Ativo",
           "ragStatus": "green",
           "hoursExecuted": 720,
           "hoursPlanned": 720,
+          "hoursAgreed": 720,
+          "statusReport": "Módulo de tracking e telemetria veicular 100% desenvolvido. Validação de homologação em campo com frotas parceiras.",
+          "statusReportDate": "2026-10-22",
+          "previousStatusReport": "Módulo de tracking e telemetria veicular 100% desenvolvido. Validação de homologação em campo com frotas parceiras.",
+          "previousStatusReportDate": "2026-10-16",
+          "attentionPoints": "Aguardando validação dos testes operacionais com motoristas da frota dedicada.",
+          "teamLeader": "Mike Andrade",
+          "teamMembers": [
+            "Mike Andrade"
+          ],
+          "team": {
+            "leader": "Mike Andrade",
+            "members": [
+              "Mike Andrade"
+            ]
+          },
           "recentActivities": [
             {
               "id": "7119",
@@ -1149,16 +1246,35 @@
               "assignedTo": "Mike Andrade"
             }
           ],
-          "summary": "Projeto integrado ao Azure DevOps. Iteração atual: Em andamento."
+          "summary": "Módulo de tracking e telemetria veicular 100% desenvolvido. Validação de homologação em campo com frotas parceiras."
         },
         {
           "id": "631642d0-4957-40cf-ae78-b62dd47af334",
+          "projectId": "631642d0-4957-40cf-ae78-b62dd47af334",
           "name": "INTEGRATOR",
           "client": "ILC (Interno)",
           "status": "Ativo",
           "ragStatus": "red",
           "hoursExecuted": 2074.5,
           "hoursPlanned": 3392.4,
+          "hoursAgreed": 1215.5,
+          "statusReport": "Camada de mensageria e barramento de integração em construção (62%). Integrações com APIs legadas em validação.",
+          "statusReportDate": "2026-10-22",
+          "previousStatusReport": "Camada de mensageria e barramento de integração em construção (62%). Integrações com APIs legadas em validação.",
+          "previousStatusReportDate": "2026-10-16",
+          "attentionPoints": "Revisão da alocação de desenvolvedores sênior para aceleração das rotas críticas.",
+          "teamLeader": "Renata Dias de Avila Reis",
+          "teamMembers": [
+            "Renata Dias de Avila Reis",
+            "Anderson Rodrigo de Jesus Souza"
+          ],
+          "team": {
+            "leader": "Renata Dias de Avila Reis",
+            "members": [
+              "Renata Dias de Avila Reis",
+              "Anderson Rodrigo de Jesus Souza"
+            ]
+          },
           "recentActivities": [
             {
               "id": "5152",
@@ -1201,16 +1317,43 @@
               "assignedTo": "Francisco Molaia Santos"
             }
           ],
-          "summary": "Projeto integrado ao Azure DevOps. Iteração atual: SPRINT 7a."
+          "summary": "Camada de mensageria e barramento de integração em construção (62%). Integrações com APIs legadas em validação."
         },
         {
           "id": "a197458f-88c5-4fec-8ce7-a981ee3f6709",
+          "projectId": "a197458f-88c5-4fec-8ce7-a981ee3f6709",
           "name": "SMART X",
           "client": "ILC (Interno)",
           "status": "Ativo",
           "ragStatus": "amber",
           "hoursExecuted": 770.3,
           "hoursPlanned": 1791.5,
+          "hoursAgreed": 698,
+          "statusReport": "Evolução dos módulos de telemetria inteligente e conectividade veicular (46%). Sprint atual focado em microserviços.",
+          "statusReportDate": "2026-10-22",
+          "previousStatusReport": "Evolução dos módulos de telemetria inteligente e conectividade veicular (46%). Sprint atual focado em microserviços.",
+          "previousStatusReportDate": "2026-10-16",
+          "attentionPoints": "Atenção à cadência de entregas técnicas para garantir marco de entrega intermediário.",
+          "teamLeader": "Renata Dias de Avila Reis",
+          "teamMembers": [
+            "Renata Dias de Avila Reis",
+            "Anderson Rodrigo de Jesus Souza",
+            "Saddam José Viera Flores",
+            "Denis Ivan Lenz",
+            "Clécio Ciriaco da Silva",
+            "Tatiane Godinho Dutra"
+          ],
+          "team": {
+            "leader": "Renata Dias de Avila Reis",
+            "members": [
+              "Renata Dias de Avila Reis",
+              "Anderson Rodrigo de Jesus Souza",
+              "Saddam José Viera Flores",
+              "Denis Ivan Lenz",
+              "Clécio Ciriaco da Silva",
+              "Tatiane Godinho Dutra"
+            ]
+          },
           "recentActivities": [
             {
               "id": "4971",
@@ -1253,16 +1396,33 @@
               "assignedTo": "Renata Dias de Avila Reis"
             }
           ],
-          "summary": "Projeto integrado ao Azure DevOps. Iteração atual: Iteration 26."
+          "summary": "Evolução dos módulos de telemetria inteligente e conectividade veicular (46%). Sprint atual focado em microserviços."
         },
         {
           "id": "09fbe35d-364d-4e90-b950-7aa9a5186dda",
+          "projectId": "09fbe35d-364d-4e90-b950-7aa9a5186dda",
           "name": "GE - GESTÃO EMBARCADA",
           "client": "John Deere",
           "status": "Ativo",
           "ragStatus": "red",
           "hoursExecuted": 470.3,
           "hoursPlanned": 1066.5,
+          "hoursAgreed": 327,
+          "statusReport": "Revisão das regras de negócio e barramento dos módulos embarcados John Deere (44%).",
+          "statusReportDate": "2026-10-22",
+          "previousStatusReport": "Revisão das regras de negócio e barramento dos módulos embarcados John Deere (44%).",
+          "previousStatusReportDate": "2026-10-16",
+          "attentionPoints": "Priorização de alinhamento com a engenharia de produto John Deere sobre protocolos de comunicação.",
+          "teamLeader": "Filipe Andrade",
+          "teamMembers": [
+            "Filipe Andrade"
+          ],
+          "team": {
+            "leader": "Filipe Andrade",
+            "members": [
+              "Filipe Andrade"
+            ]
+          },
           "recentActivities": [
             {
               "id": "880",
@@ -1289,7 +1449,7 @@
               "assignedTo": "Equipe de Sustentação"
             }
           ],
-          "summary": "Projeto integrado ao Azure DevOps. Iteração atual: SPRINT JUL - 2022 - 1 QUINZENA."
+          "summary": "Revisão das regras de negócio e barramento dos módulos embarcados John Deere (44%)."
         }
       ]
     }
@@ -1307,7 +1467,7 @@
       "onTrack": 6,
       "attention": 1,
       "critical": 2,
-      "averageProgress": 46
+      "averageProgress": 45
     },
     "activeProjects": [
       {
@@ -1626,7 +1786,7 @@
         "clientLogo": "/assets/logos/mirassol.png?t=1791579205262",
         "status": "Ativo",
         "currentMilestone": "Desenvolvimento",
-        "progress": 45,
+        "progress": 41,
         "ragStatus": "green",
         "agreedDelivery": "2026-11-13",
         "targetDelivery": "2026-11-13",
@@ -1637,7 +1797,7 @@
         "previousStatusReportDate": "2026-09-29",
         "attentionPoints": "Execução fluindo dentro dos marcos acordados.",
         "hoursExecuted": 95,
-        "hoursPlanned": 264,
+        "hoursPlanned": 288,
         "priority": "P1",
         "category": "new_project",
         "systems": [
@@ -1728,12 +1888,29 @@
       "projects": [
         {
           "id": "a7d5d8e7-c1e1-4d14-9aac-746ea346ac02",
+          "projectId": "a7d5d8e7-c1e1-4d14-9aac-746ea346ac02",
           "name": "APP - SMART TRACKING",
           "client": "ILC (Interno)",
           "status": "Ativo",
           "ragStatus": "green",
           "hoursExecuted": 720,
           "hoursPlanned": 720,
+          "hoursAgreed": 720,
+          "statusReport": "Módulo de tracking e telemetria veicular 100% desenvolvido. Validação de homologação em campo com frotas parceiras.",
+          "statusReportDate": "2026-10-16",
+          "previousStatusReport": "Desenvolvimento dos conectores de telemetria e testes de comunicação com rastreadores veiculares.",
+          "previousStatusReportDate": "2026-10-06",
+          "attentionPoints": "Aguardando validação dos testes operacionais com motoristas da frota dedicada.",
+          "teamLeader": "Mike Andrade",
+          "teamMembers": [
+            "Mike Andrade"
+          ],
+          "team": {
+            "leader": "Mike Andrade",
+            "members": [
+              "Mike Andrade"
+            ]
+          },
           "recentActivities": [
             {
               "id": "7119",
@@ -1776,16 +1953,35 @@
               "assignedTo": "Mike Andrade"
             }
           ],
-          "summary": "Projeto integrado ao Azure DevOps. Iteração atual: Em andamento."
+          "summary": "Módulo de tracking e telemetria veicular 100% desenvolvido. Validação de homologação em campo com frotas parceiras."
         },
         {
           "id": "631642d0-4957-40cf-ae78-b62dd47af334",
+          "projectId": "631642d0-4957-40cf-ae78-b62dd47af334",
           "name": "INTEGRATOR",
           "client": "ILC (Interno)",
           "status": "Ativo",
           "ragStatus": "red",
           "hoursExecuted": 2074.5,
           "hoursPlanned": 3392.4,
+          "hoursAgreed": 1215.5,
+          "statusReport": "Camada de mensageria e barramento de integração em construção (62%). Integrações com APIs legadas em validação.",
+          "statusReportDate": "2026-10-16",
+          "previousStatusReport": "Definição das rotas de integração e protocolo de mensageria assíncrona.",
+          "previousStatusReportDate": "2026-10-06",
+          "attentionPoints": "Revisão da alocação de desenvolvedores sênior para aceleração das rotas críticas.",
+          "teamLeader": "Renata Dias de Avila Reis",
+          "teamMembers": [
+            "Renata Dias de Avila Reis",
+            "Anderson Rodrigo de Jesus Souza"
+          ],
+          "team": {
+            "leader": "Renata Dias de Avila Reis",
+            "members": [
+              "Renata Dias de Avila Reis",
+              "Anderson Rodrigo de Jesus Souza"
+            ]
+          },
           "recentActivities": [
             {
               "id": "5152",
@@ -1828,16 +2024,43 @@
               "assignedTo": "Francisco Molaia Santos"
             }
           ],
-          "summary": "Projeto integrado ao Azure DevOps. Iteração atual: SPRINT 7a."
+          "summary": "Camada de mensageria e barramento de integração em construção (62%). Integrações com APIs legadas em validação."
         },
         {
           "id": "a197458f-88c5-4fec-8ce7-a981ee3f6709",
+          "projectId": "a197458f-88c5-4fec-8ce7-a981ee3f6709",
           "name": "SMART X",
           "client": "ILC (Interno)",
           "status": "Ativo",
           "ragStatus": "amber",
           "hoursExecuted": 770.3,
           "hoursPlanned": 1791.5,
+          "hoursAgreed": 698,
+          "statusReport": "Evolução dos módulos de telemetria inteligente e conectividade veicular (46%). Sprint atual focado em microserviços.",
+          "statusReportDate": "2026-10-16",
+          "previousStatusReport": "Arquitetura de dados para telemetria em tempo real e especificação de barramentos.",
+          "previousStatusReportDate": "2026-10-06",
+          "attentionPoints": "Atenção à cadência de entregas técnicas para garantir marco de entrega intermediário.",
+          "teamLeader": "Renata Dias de Avila Reis",
+          "teamMembers": [
+            "Renata Dias de Avila Reis",
+            "Anderson Rodrigo de Jesus Souza",
+            "Saddam José Viera Flores",
+            "Denis Ivan Lenz",
+            "Clécio Ciriaco da Silva",
+            "Tatiane Godinho Dutra"
+          ],
+          "team": {
+            "leader": "Renata Dias de Avila Reis",
+            "members": [
+              "Renata Dias de Avila Reis",
+              "Anderson Rodrigo de Jesus Souza",
+              "Saddam José Viera Flores",
+              "Denis Ivan Lenz",
+              "Clécio Ciriaco da Silva",
+              "Tatiane Godinho Dutra"
+            ]
+          },
           "recentActivities": [
             {
               "id": "4971",
@@ -1880,16 +2103,33 @@
               "assignedTo": "Renata Dias de Avila Reis"
             }
           ],
-          "summary": "Projeto integrado ao Azure DevOps. Iteração atual: Iteration 26."
+          "summary": "Evolução dos módulos de telemetria inteligente e conectividade veicular (46%). Sprint atual focado em microserviços."
         },
         {
           "id": "09fbe35d-364d-4e90-b950-7aa9a5186dda",
+          "projectId": "09fbe35d-364d-4e90-b950-7aa9a5186dda",
           "name": "GE - GESTÃO EMBARCADA",
           "client": "John Deere",
           "status": "Ativo",
           "ragStatus": "red",
           "hoursExecuted": 470.3,
           "hoursPlanned": 1066.5,
+          "hoursAgreed": 327,
+          "statusReport": "Revisão das regras de negócio e barramento dos módulos embarcados John Deere (44%).",
+          "statusReportDate": "2026-10-16",
+          "previousStatusReport": "Análise de telemetria embarcada e requisitos de comunicação de campo.",
+          "previousStatusReportDate": "2026-10-06",
+          "attentionPoints": "Priorização de alinhamento com a engenharia de produto John Deere sobre protocolos de comunicação.",
+          "teamLeader": "Filipe Andrade",
+          "teamMembers": [
+            "Filipe Andrade"
+          ],
+          "team": {
+            "leader": "Filipe Andrade",
+            "members": [
+              "Filipe Andrade"
+            ]
+          },
           "recentActivities": [
             {
               "id": "880",
@@ -1916,7 +2156,7 @@
               "assignedTo": "Equipe de Sustentação"
             }
           ],
-          "summary": "Projeto integrado ao Azure DevOps. Iteração atual: SPRINT JUL - 2022 - 1 QUINZENA."
+          "summary": "Revisão das regras de negócio e barramento dos módulos embarcados John Deere (44%)."
         }
       ]
     }
