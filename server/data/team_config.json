@@ -25,6 +25,14 @@
     ]
   },
   {
+    "name": "Carlos Henrique Romualdo",
+    "isVisible": true,
+    "role": "Especialista de Sistemas",
+    "allocatedProjects": [
+      "INTEGRATOR"
+    ]
+  },
+  {
     "name": "Cesar Augusto Rodrigues",
     "isVisible": true,
     "role": "Especialista de Sistemas",
@@ -46,6 +54,26 @@
     "role": "Especialista de Sistemas",
     "allocatedProjects": [
       "SMART X"
+    ]
+  },
+  {
+    "name": "Equipe de Sustentação",
+    "isVisible": true,
+    "role": "Especialista de Sistemas",
+    "allocatedProjects": [
+      "APP ILC MOBILE",
+      "INTEGRATOR",
+      "SMART X",
+      "GE - GESTÃO EMBARCADA",
+      "Mirassol - Input Gestão de demandas"
+    ]
+  },
+  {
+    "name": "Fabio Jose de Oliveira",
+    "isVisible": true,
+    "role": "Especialista de Sistemas",
+    "allocatedProjects": [
+      "INTEGRATOR"
     ]
   },
   {
@@ -147,6 +175,14 @@
     ]
   },
   {
+    "name": "Lucas Rafael dos Santos",
+    "isVisible": true,
+    "role": "Engenheiro de Software",
+    "allocatedProjects": [
+      "GE - GESTÃO EMBARCADA"
+    ]
+  },
+  {
     "name": "Luciana Melhado",
     "isVisible": true,
     "role": "Especialista de Sistemas",
@@ -209,6 +245,14 @@
     ]
   },
   {
+    "name": "Raimundo do Espirito Santo",
+    "isVisible": true,
+    "role": "Especialista de Sistemas",
+    "allocatedProjects": [
+      "GE - GESTÃO EMBARCADA"
+    ]
+  },
+  {
     "name": "Raul Machado",
     "isVisible": true,
     "role": "Especialista de Sistemas",
@@ -224,6 +268,14 @@
       "APP ILC MOBILE",
       "INTEGRATOR",
       "SMART X"
+    ]
+  },
+  {
+    "name": "Renata Reis",
+    "isVisible": true,
+    "role": "Especialista de Sistemas",
+    "allocatedProjects": [
+      "GE - GESTÃO EMBARCADA"
     ]
   },
   {
@@ -256,6 +308,14 @@
     "role": "Especialista de Sistemas",
     "allocatedProjects": [
       "SMART X"
+    ]
+  },
+  {
+    "name": "Tecnico Gestao Embarcada",
+    "isVisible": true,
+    "role": "Especialista de Sistemas",
+    "allocatedProjects": [
+      "GE - GESTÃO EMBARCADA"
     ]
   },
   {

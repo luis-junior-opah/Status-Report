@@ -183,8 +183,8 @@
         "previousStatusReport": "Projeto em fase de desenvolvimento backend volume total de horas acordado 157.",
         "previousStatusReportDate": "2026-10-06",
         "attentionPoints": "",
-        "hoursExecuted": 89,
-        "hoursPlanned": 184.7,
+        "hoursExecuted": 97,
+        "hoursPlanned": 210.9,
         "priority": "P1",
         "category": "new_project",
         "systems": [
@@ -225,8 +225,8 @@
         "previousStatusReport": "Pendente a homologção do processo Komatsu.",
         "previousStatusReportDate": "2026-10-06",
         "attentionPoints": "Pendente a homologção do processo Komatsu.",
-        "hoursExecuted": 619,
-        "hoursPlanned": 646,
+        "hoursExecuted": 645,
+        "hoursPlanned": 666,
         "priority": "P1",
         "category": "new_project",
         "systems": [
@@ -449,7 +449,7 @@
     "boardDecisions": [],
     "maintenanceSection": {
       "totalProjects": 4,
-      "totalHours": 1417.5,
+      "totalHours": 4035.1000000000004,
       "periodLabel": "Semana 44 (2026-10-20 a 2026-10-27)",
       "projects": [
         {
@@ -510,8 +510,8 @@
           "client": "ILC (Interno)",
           "status": "Ativo",
           "ragStatus": "red",
-          "hoursExecuted": 476.5,
-          "hoursPlanned": 1215.5,
+          "hoursExecuted": 2074.5,
+          "hoursPlanned": 3392.4,
           "recentActivities": [
             {
               "id": "5152",
@@ -544,6 +544,14 @@
               "hours": 382.5,
               "status": "planned",
               "assignedTo": null
+            },
+            {
+              "id": "4374",
+              "title": "Envio de e-mail frete expresso",
+              "targetDate": "2025-04-22",
+              "hours": 3.5,
+              "status": "completed",
+              "assignedTo": "Francisco Molaia Santos"
             }
           ],
           "summary": "Projeto integrado ao Azure DevOps. Iteração atual: SPRINT 7a."
@@ -554,8 +562,8 @@
           "client": "ILC (Interno)",
           "status": "Ativo",
           "ragStatus": "amber",
-          "hoursExecuted": 50.5,
-          "hoursPlanned": 698,
+          "hoursExecuted": 770.3,
+          "hoursPlanned": 1791.5,
           "recentActivities": [
             {
               "id": "4971",
@@ -588,6 +596,14 @@
               "hours": 16.5,
               "status": "planned",
               "assignedTo": "Tatiane Godinho Dutra"
+            },
+            {
+              "id": "4734",
+              "title": "TOKEN",
+              "targetDate": "2025-08-11",
+              "hours": 0,
+              "status": "completed",
+              "assignedTo": "Renata Dias de Avila Reis"
             }
           ],
           "summary": "Projeto integrado ao Azure DevOps. Iteração atual: Iteration 26."
@@ -598,8 +614,8 @@
           "client": "John Deere",
           "status": "Ativo",
           "ragStatus": "red",
-          "hoursExecuted": 170.5,
-          "hoursPlanned": 327,
+          "hoursExecuted": 470.3,
+          "hoursPlanned": 1066.5,
           "recentActivities": [
             {
               "id": "880",
@@ -616,6 +632,14 @@
               "hours": 170.5,
               "status": "planned",
               "assignedTo": null
+            },
+            {
+              "id": "ge---gest-o-embarcada-operacional",
+              "title": "Atividades Operacionais & Suporte",
+              "targetDate": "2022-06-30",
+              "hours": 299.8,
+              "status": "in_progress",
+              "assignedTo": "Equipe de Sustentação"
             }
           ],
           "summary": "Projeto integrado ao Azure DevOps. Iteração atual: SPRINT JUL - 2022 - 1 QUINZENA."
@@ -807,8 +831,8 @@
         "previousStatusReport": "Desenolvimento backend iniciado.",
         "previousStatusReportDate": "2026-10-06",
         "attentionPoints": "Disponibilização do usuário por parte da Mirassol para assinatura do subcontratante.",
-        "hoursExecuted": 89,
-        "hoursPlanned": 184.7,
+        "hoursExecuted": 97,
+        "hoursPlanned": 210.9,
         "priority": "P1",
         "category": "new_project",
         "systems": [
@@ -849,8 +873,8 @@
         "previousStatusReport": "Pendente a homologção do processo Komatsu.",
         "previousStatusReportDate": "2026-10-06",
         "attentionPoints": "Pendente a homologção do processo Komatsu.",
-        "hoursExecuted": 619,
-        "hoursPlanned": 646,
+        "hoursExecuted": 645,
+        "hoursPlanned": 666,
         "priority": "P1",
         "category": "new_project",
         "systems": [
@@ -1072,7 +1096,7 @@
     ],
     "maintenanceSection": {
       "totalProjects": 4,
-      "totalHours": 1417.5,
+      "totalHours": 4035.1000000000004,
       "periodLabel": "Semana 43 (2026-10-15 a 2026-10-22)",
       "projects": [
         {
@@ -1133,8 +1157,8 @@
           "client": "ILC (Interno)",
           "status": "Ativo",
           "ragStatus": "red",
-          "hoursExecuted": 476.5,
-          "hoursPlanned": 1215.5,
+          "hoursExecuted": 2074.5,
+          "hoursPlanned": 3392.4,
           "recentActivities": [
             {
               "id": "5152",
@@ -1167,6 +1191,14 @@
               "hours": 382.5,
               "status": "planned",
               "assignedTo": null
+            },
+            {
+              "id": "4374",
+              "title": "Envio de e-mail frete expresso",
+              "targetDate": "2025-04-22",
+              "hours": 3.5,
+              "status": "completed",
+              "assignedTo": "Francisco Molaia Santos"
             }
           ],
           "summary": "Projeto integrado ao Azure DevOps. Iteração atual: SPRINT 7a."
@@ -1177,8 +1209,8 @@
           "client": "ILC (Interno)",
           "status": "Ativo",
           "ragStatus": "amber",
-          "hoursExecuted": 50.5,
-          "hoursPlanned": 698,
+          "hoursExecuted": 770.3,
+          "hoursPlanned": 1791.5,
           "recentActivities": [
             {
               "id": "4971",
@@ -1211,6 +1243,14 @@
               "hours": 16.5,
               "status": "planned",
               "assignedTo": "Tatiane Godinho Dutra"
+            },
+            {
+              "id": "4734",
+              "title": "TOKEN",
+              "targetDate": "2025-08-11",
+              "hours": 0,
+              "status": "completed",
+              "assignedTo": "Renata Dias de Avila Reis"
             }
           ],
           "summary": "Projeto integrado ao Azure DevOps. Iteração atual: Iteration 26."
@@ -1221,8 +1261,8 @@
           "client": "John Deere",
           "status": "Ativo",
           "ragStatus": "red",
-          "hoursExecuted": 170.5,
-          "hoursPlanned": 327,
+          "hoursExecuted": 470.3,
+          "hoursPlanned": 1066.5,
           "recentActivities": [
             {
               "id": "880",
@@ -1239,6 +1279,14 @@
               "hours": 170.5,
               "status": "planned",
               "assignedTo": null
+            },
+            {
+              "id": "ge---gest-o-embarcada-operacional",
+              "title": "Atividades Operacionais & Suporte",
+              "targetDate": "2022-06-30",
+              "hours": 299.8,
+              "status": "in_progress",
+              "assignedTo": "Equipe de Sustentação"
             }
           ],
           "summary": "Projeto integrado ao Azure DevOps. Iteração atual: SPRINT JUL - 2022 - 1 QUINZENA."
@@ -1430,8 +1478,8 @@
         "previousStatusReport": "Inclusão do projeto na esteira de desenvolvimento.",
         "previousStatusReportDate": "2026-09-29",
         "attentionPoints": "Disponibilização do usuário por parte da Mirassol para assinatura do subcontratante.",
-        "hoursExecuted": 89,
-        "hoursPlanned": 184.7,
+        "hoursExecuted": 97,
+        "hoursPlanned": 210.9,
         "priority": "P1",
         "category": "new_project",
         "systems": [
@@ -1472,8 +1520,8 @@
         "previousStatusReport": "Homologação processos Komatsu",
         "previousStatusReportDate": "2026-09-29",
         "attentionPoints": "Pendente a homologção do processo Komatsu.",
-        "hoursExecuted": 619,
-        "hoursPlanned": 646,
+        "hoursExecuted": 645,
+        "hoursPlanned": 666,
         "priority": "P1",
         "category": "new_project",
         "systems": [
@@ -1675,7 +1723,7 @@
     ],
     "maintenanceSection": {
       "totalProjects": 4,
-      "totalHours": 1417.5,
+      "totalHours": 4035.1000000000004,
       "periodLabel": "Semana 42 (2026-10-09 a 2026-10-16)",
       "projects": [
         {
@@ -1736,8 +1784,8 @@
           "client": "ILC (Interno)",
           "status": "Ativo",
           "ragStatus": "red",
-          "hoursExecuted": 476.5,
-          "hoursPlanned": 1215.5,
+          "hoursExecuted": 2074.5,
+          "hoursPlanned": 3392.4,
           "recentActivities": [
             {
               "id": "5152",
@@ -1770,6 +1818,14 @@
               "hours": 382.5,
               "status": "planned",
               "assignedTo": null
+            },
+            {
+              "id": "4374",
+              "title": "Envio de e-mail frete expresso",
+              "targetDate": "2025-04-22",
+              "hours": 3.5,
+              "status": "completed",
+              "assignedTo": "Francisco Molaia Santos"
             }
           ],
           "summary": "Projeto integrado ao Azure DevOps. Iteração atual: SPRINT 7a."
@@ -1780,8 +1836,8 @@
           "client": "ILC (Interno)",
           "status": "Ativo",
           "ragStatus": "amber",
-          "hoursExecuted": 50.5,
-          "hoursPlanned": 698,
+          "hoursExecuted": 770.3,
+          "hoursPlanned": 1791.5,
           "recentActivities": [
             {
               "id": "4971",
@@ -1814,6 +1870,14 @@
               "hours": 16.5,
               "status": "planned",
               "assignedTo": "Tatiane Godinho Dutra"
+            },
+            {
+              "id": "4734",
+              "title": "TOKEN",
+              "targetDate": "2025-08-11",
+              "hours": 0,
+              "status": "completed",
+              "assignedTo": "Renata Dias de Avila Reis"
             }
           ],
           "summary": "Projeto integrado ao Azure DevOps. Iteração atual: Iteration 26."
@@ -1824,8 +1888,8 @@
           "client": "John Deere",
           "status": "Ativo",
           "ragStatus": "red",
-          "hoursExecuted": 170.5,
-          "hoursPlanned": 327,
+          "hoursExecuted": 470.3,
+          "hoursPlanned": 1066.5,
           "recentActivities": [
             {
               "id": "880",
@@ -1842,6 +1906,14 @@
               "hours": 170.5,
               "status": "planned",
               "assignedTo": null
+            },
+            {
+              "id": "ge---gest-o-embarcada-operacional",
+              "title": "Atividades Operacionais & Suporte",
+              "targetDate": "2022-06-30",
+              "hours": 299.8,
+              "status": "in_progress",
+              "assignedTo": "Equipe de Sustentação"
             }
           ],
           "summary": "Projeto integrado ao Azure DevOps. Iteração atual: SPRINT JUL - 2022 - 1 QUINZENA."

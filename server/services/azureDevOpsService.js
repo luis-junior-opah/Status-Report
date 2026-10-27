@@ -236,6 +236,7 @@ class AzureDevOpsService {
     let totalTaskCompletedWork = 0;
     const parentToTasksMap = {}; // parentId -> [ taskObj, ... ]
     const childToParentMap = {}; // childId -> parentId
+    const allCollectedTasks = [];
 
     try {
       const taskWiql = {
@@ -261,20 +262,23 @@ class AzureDevOpsService {
             totalTaskOriginalEstimate = this.roundHours(totalTaskOriginalEstimate + est);
             totalTaskCompletedWork = this.roundHours(totalTaskCompletedWork + comp);
 
+            const taskObj = {
+              id: item.id,
+              title: item.fields?.['System.Title'] || 'Tarefa',
+              type: item.fields?.['System.WorkItemType'] || 'Task',
+              state: item.fields?.['System.State'],
+              assignedTo: item.fields?.['System.AssignedTo']?.displayName || null,
+              originalEstimate: est,
+              completedWork: comp,
+              startDate: taskDates.startDate,
+              targetDate: taskDates.targetDate
+            };
+            allCollectedTasks.push(taskObj);
+
             if (parentId) {
               childToParentMap[item.id] = parentId;
               if (!parentToTasksMap[parentId]) parentToTasksMap[parentId] = [];
-              parentToTasksMap[parentId].push({
-                id: item.id,
-                title: item.fields?.['System.Title'] || 'Tarefa',
-                type: item.fields?.['System.WorkItemType'] || 'Task',
-                state: item.fields?.['System.State'],
-                assignedTo: item.fields?.['System.AssignedTo']?.displayName || null,
-                originalEstimate: est,
-                completedWork: comp,
-                startDate: taskDates.startDate,
-                targetDate: taskDates.targetDate
-              });
+              parentToTasksMap[parentId].push(taskObj);
             }
           }
         }
@@ -304,6 +308,8 @@ class AzureDevOpsService {
             storiesMap[item.id] = {
               id: item.id,
               title: item.fields?.['System.Title'] || '',
+              state: item.fields?.['System.State'] || 'Active',
+              assignedTo: item.fields?.['System.AssignedTo']?.displayName || null,
               parentId: parentId
             };
             if (parentId) {
@@ -491,6 +497,98 @@ class AzureDevOpsService {
           linkedTasks: childTasks
         };
       });
+
+      // Capture unparented User Stories and standalone tasks that have recorded hours
+      const capturedTaskIds = new Set();
+      activities.forEach(a => (a.linkedTasks || []).forEach(t => capturedTaskIds.add(t.id)));
+
+      const uncapturedTasks = allCollectedTasks.filter(t => !capturedTaskIds.has(t.id) && (t.completedWork > 0 || t.originalEstimate > 0));
+
+      if (uncapturedTasks.length > 0) {
+        const byStory = new Map();
+        const standaloneTasks = [];
+
+        for (const t of uncapturedTasks) {
+          const pId = childToParentMap[t.id];
+          if (pId && storiesMap[pId]) {
+            if (!byStory.has(pId)) byStory.set(pId, []);
+            byStory.get(pId).push(t);
+          } else {
+            standaloneTasks.push(t);
+          }
+        }
+
+        // Add activity for each unparented User Story with effort
+        byStory.forEach((tasks, sId) => {
+          const s = storiesMap[sId];
+          const sTitle = s?.title || `Demanda #${sId}`;
+          const validStarts = tasks.map(t => t.startDate).filter(Boolean).sort();
+          const validEnds = tasks.map(t => t.targetDate).filter(Boolean).sort();
+          const startDate = validStarts[0] || null;
+          const targetDate = validEnds[validEnds.length - 1] || null;
+          const eapPhase = this.classifyWorkItemToEap(sTitle, '', '');
+          const monthSlot = this.getMonthSlot(startDate, targetDate, '');
+          const ilcHours = this.roundHours(tasks.reduce((sum, t) => sum + (t.completedWork || 0), 0));
+          const ilcHoursTotal = this.roundHours(tasks.reduce((sum, t) => sum + (t.originalEstimate || 0), 0));
+
+          activities.push({
+            id: String(sId),
+            azureId: Number(sId),
+            title: this.cleanActivityTitle(sTitle),
+            fullTitle: `#${sId} ${sTitle}`,
+            rawTitle: sTitle,
+            type: 'User Story',
+            state: s?.state || 'Active',
+            assignedTo: s?.assignedTo || (tasks[0] ? tasks[0].assignedTo : null),
+            eapPhase,
+            month: monthSlot,
+            startDate,
+            targetDate,
+            dateStr: targetDate ? new Date(targetDate + 'T12:00:00').toLocaleDateString('pt-BR') : monthSlot,
+            ilcHours,
+            ilcHoursTotal: ilcHoursTotal || ilcHours,
+            clientHours: 0,
+            status: this.mapStatus(s?.state || 'Active'),
+            isDelayed: false,
+            isTightMargin: false,
+            linkedTasks: tasks
+          });
+        });
+
+        // Add grouped activity for standalone tasks with hours (avoid cluttering EAP)
+        if (standaloneTasks.length > 0) {
+          const validStarts = standaloneTasks.map(t => t.startDate).filter(Boolean).sort();
+          const validEnds = standaloneTasks.map(t => t.targetDate).filter(Boolean).sort();
+          const startDate = validStarts[0] || null;
+          const targetDate = validEnds[validEnds.length - 1] || null;
+          const ilcHours = this.roundHours(standaloneTasks.reduce((sum, t) => sum + (t.completedWork || 0), 0));
+          const ilcHoursTotal = this.roundHours(standaloneTasks.reduce((sum, t) => sum + (t.originalEstimate || 0), 0));
+          const monthSlot = this.getMonthSlot(startDate, targetDate, '');
+
+          activities.push({
+            id: `${pName.toLowerCase().replace(/[^a-z0-9]/g, '-')}-operacional`,
+            azureId: null,
+            title: 'Atividades Operacionais & Suporte',
+            fullTitle: 'Atividades Operacionais & Suporte',
+            rawTitle: 'Atividades Operacionais & Suporte',
+            type: 'TaskGroup',
+            state: 'Active',
+            assignedTo: 'Equipe de Sustentação',
+            eapPhase: 'Operação Assistida',
+            month: monthSlot,
+            startDate,
+            targetDate,
+            dateStr: targetDate ? new Date(targetDate + 'T12:00:00').toLocaleDateString('pt-BR') : monthSlot,
+            ilcHours,
+            ilcHoursTotal: ilcHoursTotal || ilcHours,
+            clientHours: 0,
+            status: 'in_progress',
+            isDelayed: false,
+            isTightMargin: false,
+            linkedTasks: standaloneTasks
+          });
+        }
+      }
     }
 
     // Progress percentage: Prioritize task hours executed vs planned, fallback to completed deliverables count
