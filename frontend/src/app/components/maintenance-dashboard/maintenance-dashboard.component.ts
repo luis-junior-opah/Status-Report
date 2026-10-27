@@ -471,24 +471,6 @@ import { Project } from '../../models/project.model';
 
               </div>
 
-              <!-- Monthly Stacked Breakdown Strip -->
-              <div class="mt-4 pt-3 border-t border-slate-100">
-                <span class="text-[10px] font-bold text-slate-500 uppercase tracking-wider block mb-2">
-                  Evolução Mensal (Barras Empilhadas):
-                </span>
-                <div class="grid grid-cols-6 sm:grid-cols-12 gap-1.5 text-center">
-                  <div *ngFor="let m of metrics()?.monthlyHistory || []" class="flex flex-col items-center">
-                    <div class="w-full h-14 bg-slate-100 rounded-md flex flex-col justify-end overflow-hidden p-0.5" [title]="m.label + ': ' + formatHours(m.newProjectHours) + 'h novos / ' + formatHours(m.maintenanceHours) + 'h sustentação'">
-                      <!-- Purple portion (Sustentação) -->
-                      <div class="w-full bg-purple-600 rounded-xs transition-all" [style.height.%]="m.totalHours > 0 ? (m.maintenanceHours / m.totalHours) * 100 : 0"></div>
-                      <!-- Blue portion (Novos) -->
-                      <div class="w-full bg-blue-500 rounded-xs transition-all mt-0.5" [style.height.%]="m.totalHours > 0 ? (m.newProjectHours / m.totalHours) * 100 : 0"></div>
-                    </div>
-                    <span class="text-[8px] font-bold text-slate-500 mt-1">{{ m.label.split('/')[0] }}</span>
-                  </div>
-                </div>
-              </div>
-
             </div>
 
             <p class="text-[10px] text-slate-400 font-medium text-center pt-3 border-t border-slate-100 mt-3">
