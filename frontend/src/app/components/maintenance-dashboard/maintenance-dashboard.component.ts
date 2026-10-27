@@ -203,25 +203,48 @@ import { Project } from '../../models/project.model';
         <!-- ROW 2: 2 ANALYTICAL CHARTS (SIDE BY SIDE) -->
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
           
-          <!-- CHART 1: HISTÓRICO DE ESFORÇO EM SUSTENTAÇÃO POR MÊS (COL-SPAN-7) -->
+          <!-- CHART 1: HISTÓRICO DE ESFORÇO MENSAL (NOVOS & SUSTENTAÇÃO) (COL-SPAN-7) -->
           <div class="lg:col-span-7 bg-white rounded-2xl border border-slate-200/90 shadow-sm p-5 flex flex-col justify-between">
             <div>
-              <div class="flex items-center justify-between pb-3 border-b border-slate-100 mb-4">
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-slate-100 mb-4 gap-3">
                 <div>
                   <h3 class="text-sm font-black text-slate-900 tracking-tight flex items-center gap-1.5">
-                    <span>📈</span> Histórico de Esforço em Sustentação por Mês (2026)
+                    <span>📈</span> Histórico de Esforço Mensal (2026)
                   </h3>
                   <p class="text-[11px] text-slate-500 font-medium mt-0.5">
-                    Volume mensal de horas dedicadas à sustentação ao longo de 2026.
+                    Volume mensal comparativo entre novos projetos e sustentação ao longo de 2026.
                   </p>
                 </div>
-                <div class="flex items-center gap-2">
-                  <span class="inline-flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 rounded bg-purple-100 text-purple-800 border border-purple-200">
-                    <span class="w-2 h-2 rounded-full bg-purple-600"></span> Horas Sustentação
-                  </span>
-                  <span class="inline-flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 rounded bg-slate-100 text-slate-700 border border-slate-200">
-                    - - Média Mensal ({{ formatHours(averageMonthlyMaintenanceHours()) }}h)
-                  </span>
+                
+                <!-- Controls & Legend -->
+                <div class="flex items-center gap-2.5 flex-wrap">
+                  <!-- Mode Switcher -->
+                  <div class="flex items-center bg-slate-100 p-0.5 rounded-lg border border-slate-200 shadow-2xs">
+                    <button
+                      type="button"
+                      (click)="chartMode.set('grouped')"
+                      [ngClass]="chartMode() === 'grouped' ? 'bg-white text-slate-900 font-bold shadow-2xs' : 'text-slate-600 hover:text-slate-900'"
+                      class="px-2 py-0.5 rounded-md text-[10px] transition cursor-pointer">
+                      📊 Lado a Lado
+                    </button>
+                    <button
+                      type="button"
+                      (click)="chartMode.set('stacked')"
+                      [ngClass]="chartMode() === 'stacked' ? 'bg-white text-slate-900 font-bold shadow-2xs' : 'text-slate-600 hover:text-slate-900'"
+                      class="px-2 py-0.5 rounded-md text-[10px] transition cursor-pointer">
+                      📶 Empilhado
+                    </button>
+                  </div>
+
+                  <!-- Legend -->
+                  <div class="flex items-center gap-1.5">
+                    <span class="inline-flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 rounded bg-blue-50 text-blue-800 border border-blue-200">
+                      <span class="w-2 h-2 rounded-full bg-blue-600"></span> Novos
+                    </span>
+                    <span class="inline-flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 rounded bg-purple-50 text-purple-800 border border-purple-200">
+                      <span class="w-2 h-2 rounded-full bg-purple-600"></span> Sustentação
+                    </span>
+                  </div>
                 </div>
               </div>
 
@@ -229,9 +252,13 @@ import { Project } from '../../models/project.model';
               <div class="relative w-full h-56 pt-2 select-none">
                 <svg class="w-full h-full overflow-visible" viewBox="0 0 600 200" preserveAspectRatio="none">
                   <defs>
+                    <linearGradient id="blueBarGrad" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stop-color="#2563eb" stop-opacity="0.95" />
+                      <stop offset="100%" stop-color="#3b82f6" stop-opacity="0.8" />
+                    </linearGradient>
                     <linearGradient id="purpleBarGrad" x1="0" y1="0" x2="0" y2="1">
                       <stop offset="0%" stop-color="#9333ea" stop-opacity="0.95" />
-                      <stop offset="100%" stop-color="#7c3aed" stop-opacity="0.75" />
+                      <stop offset="100%" stop-color="#7c3aed" stop-opacity="0.8" />
                     </linearGradient>
                   </defs>
 
@@ -241,51 +268,89 @@ import { Project } from '../../models/project.model';
                   <line x1="30" y1="110" x2="585" y2="110" stroke="#f1f5f9" stroke-width="1" />
                   <line x1="30" y1="155" x2="585" y2="155" stroke="#e2e8f0" stroke-width="1.5" />
 
-                  <!-- Average Baseline (Dashed Line) -->
-                  <line
-                    *ngIf="maxMonthlyHours() > 0 && averageMonthlyMaintenanceHours() > 0"
-                    x1="30"
-                    [attr.y1]="getAverageLineY()"
-                    x2="585"
-                    [attr.y2]="getAverageLineY()"
-                    stroke="#94a3b8"
-                    stroke-width="1.5"
-                    stroke-dasharray="4,4" />
-
                   <!-- Month Bars -->
                   <g *ngFor="let m of metrics()?.monthlyHistory || []; let idx = index">
-                    <!-- Bar Group -->
+                    <!-- Bar Group with Hover -->
                     <g class="cursor-pointer group" (mouseenter)="hoveredMonth.set(m)" (mouseleave)="hoveredMonth.set(null)">
-                      <!-- Bar Rect -->
-                      <rect
-                        [attr.x]="40 + idx * 45"
-                        [attr.y]="getBarY(m.maintenanceHours)"
-                        width="30"
-                        [attr.height]="getBarHeight(m.maintenanceHours)"
-                        rx="4"
-                        fill="url(#purpleBarGrad)"
-                        class="transition-all duration-200 group-hover:brightness-110" />
+                      
+                      <!-- MODE 1: GROUPED (LADO A LADO) -->
+                      <g *ngIf="chartMode() === 'grouped'">
+                        <!-- Blue Bar (Novos Projetos) -->
+                        <rect
+                          [attr.x]="36 + idx * 45"
+                          [attr.y]="155 - getGroupedBarHeight(m.newProjectHours)"
+                          width="16"
+                          [attr.height]="getGroupedBarHeight(m.newProjectHours)"
+                          rx="3"
+                          fill="url(#blueBarGrad)"
+                          class="transition-all duration-200 group-hover:brightness-110" />
 
-                      <!-- Hours text above bar (if > 0) -->
-                      <text
-                        *ngIf="m.maintenanceHours > 0"
-                        [attr.x]="55 + idx * 45"
-                        [attr.y]="getBarY(m.maintenanceHours) - 5"
-                        text-anchor="middle"
-                        font-size="9"
-                        font-weight="bold"
-                        fill="#6b21a8">
-                        {{ formatHours(m.maintenanceHours) }}h
-                      </text>
+                        <!-- Purple Bar (Sustentação) -->
+                        <rect
+                          [attr.x]="54 + idx * 45"
+                          [attr.y]="155 - getGroupedBarHeight(m.maintenanceHours)"
+                          width="16"
+                          [attr.height]="getGroupedBarHeight(m.maintenanceHours)"
+                          rx="3"
+                          fill="url(#purpleBarGrad)"
+                          class="transition-all duration-200 group-hover:brightness-110" />
+
+                        <!-- Total Label above bar group -->
+                        <text
+                          *ngIf="m.totalHours > 0"
+                          [attr.x]="53 + idx * 45"
+                          [attr.y]="getGroupedTopY(m)"
+                          text-anchor="middle"
+                          font-size="8.5"
+                          font-weight="bold"
+                          fill="#475569">
+                          {{ formatHours(m.totalHours) }}h
+                        </text>
+                      </g>
+
+                      <!-- MODE 2: STACKED (EMPILHADO) -->
+                      <g *ngIf="chartMode() === 'stacked'">
+                        <!-- Bottom Blue portion (Novos Projetos) -->
+                        <rect
+                          [attr.x]="42 + idx * 45"
+                          [attr.y]="155 - getStackedBarHeight(m.newProjectHours)"
+                          width="24"
+                          [attr.height]="getStackedBarHeight(m.newProjectHours)"
+                          rx="3"
+                          fill="url(#blueBarGrad)"
+                          class="transition-all duration-200 group-hover:brightness-110" />
+
+                        <!-- Top Purple portion (Sustentação) -->
+                        <rect
+                          [attr.x]="42 + idx * 45"
+                          [attr.y]="155 - getStackedBarHeight(m.newProjectHours) - getStackedBarHeight(m.maintenanceHours)"
+                          width="24"
+                          [attr.height]="getStackedBarHeight(m.maintenanceHours)"
+                          rx="3"
+                          fill="url(#purpleBarGrad)"
+                          class="transition-all duration-200 group-hover:brightness-110" />
+
+                        <!-- Total Label on top of stack -->
+                        <text
+                          *ngIf="m.totalHours > 0"
+                          [attr.x]="54 + idx * 45"
+                          [attr.y]="getStackedTopY(m)"
+                          text-anchor="middle"
+                          font-size="8.5"
+                          font-weight="bold"
+                          fill="#475569">
+                          {{ formatHours(m.totalHours) }}h
+                        </text>
+                      </g>
 
                       <!-- Month Label -->
                       <text
-                        [attr.x]="55 + idx * 45"
+                        [attr.x]="53 + idx * 45"
                         y="175"
                         text-anchor="middle"
                         font-size="9.5"
                         font-weight="bold"
-                        [attr.fill]="hoveredMonth()?.monthKey === m.monthKey ? '#7c3aed' : '#64748b'">
+                        [attr.fill]="hoveredMonth()?.monthKey === m.monthKey ? '#4f46e5' : '#64748b'">
                         {{ m.label.split('/')[0] }}
                       </text>
                     </g>
@@ -298,13 +363,13 @@ import { Project } from '../../models/project.model';
                   class="absolute top-2 right-4 bg-slate-900/95 text-white p-2.5 rounded-xl text-xs shadow-xl border border-slate-700 pointer-events-none backdrop-blur-xs z-20">
                   <span class="font-extrabold text-purple-300 block mb-1">📅 {{ hm.label }}</span>
                   <div class="space-y-0.5 text-[11px]">
-                    <div class="flex items-center justify-between gap-3 text-purple-200">
-                      <span>Horas Sustentação:</span>
-                      <strong class="font-black">{{ formatHours(hm.maintenanceHours) }}h</strong>
-                    </div>
                     <div class="flex items-center justify-between gap-3 text-blue-200">
                       <span>Novos Projetos:</span>
                       <strong class="font-black">{{ formatHours(hm.newProjectHours) }}h</strong>
+                    </div>
+                    <div class="flex items-center justify-between gap-3 text-purple-200">
+                      <span>Sustentação:</span>
+                      <strong class="font-black">{{ formatHours(hm.maintenanceHours) }}h</strong>
                     </div>
                     <div class="flex items-center justify-between gap-3 text-slate-300 pt-1 border-t border-slate-700 mt-1">
                       <span>Total no Mês:</span>
@@ -316,9 +381,13 @@ import { Project } from '../../models/project.model';
             </div>
 
             <!-- Footer summary -->
-            <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500 font-medium">
-              <span>Média mensal estimada: <strong class="text-slate-800">{{ formatHours(averageMonthlyMaintenanceHours()) }} horas</strong></span>
-              <span>Maior esforço em sustentação: <strong class="text-purple-700">{{ getPeakMaintenanceMonth() }}</strong></span>
+            <div class="pt-3 border-t border-slate-100 flex flex-wrap items-center justify-between gap-2 text-[11px] text-slate-500 font-medium">
+              <div class="flex items-center gap-3">
+                <span>Média Novos: <strong class="text-blue-700">{{ formatHours(averageMonthlyNewProjectHours()) }}h/mês</strong></span>
+                <span>•</span>
+                <span>Média Sustentação: <strong class="text-purple-700">{{ formatHours(averageMonthlyMaintenanceHours()) }}h/mês</strong></span>
+              </div>
+              <span>Maior sustentação: <strong class="text-purple-700">{{ getPeakMaintenanceMonth() }}</strong></span>
             </div>
           </div>
 
@@ -594,11 +663,23 @@ export class MaintenanceDashboardComponent implements OnInit {
   }
 
   // Monthly Chart Calculations
-  maxMonthlyHours = computed(() => {
+  chartMode = signal<'grouped' | 'stacked'>('grouped');
+
+  maxGroupedMonthlyHours = computed(() => {
     const history = this.metrics()?.monthlyHistory || [];
     let max = 50;
     for (const m of history) {
-      if (m.maintenanceHours > max) max = m.maintenanceHours;
+      if ((m.newProjectHours || 0) > max) max = m.newProjectHours;
+      if ((m.maintenanceHours || 0) > max) max = m.maintenanceHours;
+    }
+    return max;
+  });
+
+  maxStackedMonthlyHours = computed(() => {
+    const history = this.metrics()?.monthlyHistory || [];
+    let max = 50;
+    for (const m of history) {
+      if ((m.totalHours || 0) > max) max = m.totalHours;
     }
     return max;
   });
@@ -612,23 +693,38 @@ export class MaintenanceDashboardComponent implements OnInit {
     return Math.round((sum / divisor) * 10) / 10;
   });
 
-  getBarHeight(hours: number): number {
-    const max = this.maxMonthlyHours();
-    if (max <= 0) return 0;
-    return Math.max(3, Math.round((hours / max) * 135));
+  averageMonthlyNewProjectHours = computed(() => {
+    const history = this.metrics()?.monthlyHistory || [];
+    if (history.length === 0) return 0;
+    const activeMonths = history.filter(m => m.newProjectHours > 0);
+    const divisor = activeMonths.length > 0 ? activeMonths.length : 12;
+    const sum = history.reduce((acc, m) => acc + (m.newProjectHours || 0), 0);
+    return Math.round((sum / divisor) * 10) / 10;
+  });
+
+  getGroupedBarHeight(hours: number): number {
+    if (!hours || hours <= 0) return 0;
+    const max = this.maxGroupedMonthlyHours();
+    return Math.max(3, Math.round((hours / max) * 128));
   }
 
-  getBarY(hours: number): number {
-    const h = this.getBarHeight(hours);
-    return 155 - h;
+  getGroupedTopY(m: MonthlyEffort): number {
+    const h1 = this.getGroupedBarHeight(m.newProjectHours || 0);
+    const h2 = this.getGroupedBarHeight(m.maintenanceHours || 0);
+    const maxH = Math.max(h1, h2);
+    return Math.max(14, 155 - maxH - 4);
   }
 
-  getAverageLineY(): number {
-    const avg = this.averageMonthlyMaintenanceHours();
-    const max = this.maxMonthlyHours();
-    if (max <= 0) return 155;
-    const h = Math.round((avg / max) * 135);
-    return Math.max(20, 155 - h);
+  getStackedBarHeight(hours: number): number {
+    if (!hours || hours <= 0) return 0;
+    const max = this.maxStackedMonthlyHours();
+    return Math.max(2, Math.round((hours / max) * 128));
+  }
+
+  getStackedTopY(m: MonthlyEffort): number {
+    const h1 = this.getStackedBarHeight(m.newProjectHours || 0);
+    const h2 = this.getStackedBarHeight(m.maintenanceHours || 0);
+    return Math.max(14, 155 - h1 - h2 - 4);
   }
 
   getPeakMaintenanceMonth(): string {
