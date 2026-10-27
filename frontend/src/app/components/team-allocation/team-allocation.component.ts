@@ -26,21 +26,8 @@ import { TeamAllocationReport, TeamMemberAllocation, ProjectTeamAllocation } fro
             </div>
           </div>
 
-          <!-- Controls: Client, Period & Curadoria Link -->
-          <div class="flex flex-wrap items-center gap-2.5">
-            
-            <!-- Client Selector -->
-            <div class="flex items-center gap-1.5 bg-slate-50 border border-slate-300 rounded-xl px-2.5 py-1.5 shadow-2xs">
-              <span class="text-xs text-slate-400">🏢</span>
-              <select
-                [ngModel]="service.selectedClient()"
-                (ngModelChange)="onClientChange($event)"
-                class="bg-transparent text-xs font-bold text-slate-700 outline-none cursor-pointer">
-                <option value="Todos">Todos os Clientes</option>
-                <option *ngFor="let c of service.clients()" [value]="c.name">{{ c.name }}</option>
-              </select>
-            </div>
-
+          <!-- Controls: Period Selector -->
+          <div class="flex items-center gap-2.5">
             <!-- Period Selector Tabs -->
             <div class="flex items-center bg-slate-100 p-1 rounded-xl border border-slate-200 shadow-2xs">
               <button
@@ -72,16 +59,6 @@ import { TeamAllocationReport, TeamMemberAllocation, ProjectTeamAllocation } fro
                 🌐 Todo Período
               </button>
             </div>
-
-            <!-- Reload Button -->
-            <button
-              type="button"
-              (click)="refreshData()"
-              [disabled]="service.isLoadingTeam()"
-              class="p-2 bg-slate-800 hover:bg-slate-700 text-white rounded-xl transition text-xs font-bold cursor-pointer disabled:opacity-50"
-              title="Recarregar dados de alocação de equipe">
-              <span [class.animate-spin]="service.isLoadingTeam()">🔄</span>
-            </button>
           </div>
 
         </div>
@@ -362,10 +339,10 @@ import { TeamAllocationReport, TeamMemberAllocation, ProjectTeamAllocation } fro
 
             </div>
 
-            <!-- Footer: Tasks Count & Visibility Badge -->
+            <!-- Footer: Tasks Count & Projects Count -->
             <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-[10px] text-slate-400 mt-3">
               <span>{{ member.tasksCount }} tarefas registradas</span>
-              <span class="text-emerald-700 font-bold">👁️ Visível no Dashboard</span>
+              <span class="font-medium text-slate-500">{{ member.projects?.length || 0 }} projeto(s) com apontamento</span>
             </div>
 
           </div>
@@ -465,19 +442,15 @@ export class TeamAllocationComponent implements OnInit {
   }
 
   async refreshData() {
+    const client = this.service.isClientPortalMode() ? this.service.selectedClient() : 'Todos';
     await this.service.loadTeamAllocation(
-      this.service.selectedClient(),
+      client,
       this.service.selectedTeamPeriod()
     );
   }
 
   onPeriodChange(p: MaintenancePeriod) {
     this.service.selectedTeamPeriod.set(p);
-    this.refreshData();
-  }
-
-  onClientChange(clientName: string) {
-    this.service.selectedClient.set(clientName);
     this.refreshData();
   }
 
