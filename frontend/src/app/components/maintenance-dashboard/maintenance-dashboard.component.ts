@@ -352,9 +352,9 @@ import { Project } from '../../models/project.model';
                       stroke="#3b82f6"
                       stroke-width="16"
                       fill="transparent"
-                      stroke-dasharray="339.29"
+                      [attr.stroke-dasharray]="getNewProjectsDasharray()"
                       [attr.stroke-dashoffset]="getNewProjectsDashoffset()"
-                      stroke-linecap="round" />
+                      class="transition-all duration-500" />
                     <!-- Purple circle (Maintenance) -->
                     <circle
                       cx="70"
@@ -363,9 +363,9 @@ import { Project } from '../../models/project.model';
                       stroke="#9333ea"
                       stroke-width="16"
                       fill="transparent"
-                      stroke-dasharray="339.29"
+                      [attr.stroke-dasharray]="getMaintenanceDasharray()"
                       [attr.stroke-dashoffset]="getMaintenanceDashoffset()"
-                      stroke-linecap="round" />
+                      class="transition-all duration-500" />
                   </svg>
                   <!-- Center text -->
                   <div class="absolute inset-0 flex flex-col items-center justify-center text-center pointer-events-none">
@@ -645,17 +645,34 @@ export class MaintenanceDashboardComponent implements OnInit {
     return 'Nenhum';
   }
 
-  // Donut SVG Calculations
-  // Circumference = 2 * PI * 54 = ~339.29
-  getMaintenanceDashoffset(): number {
-    const pct = this.metrics()?.maintenancePercent || 0;
-    const circumference = 339.29;
-    return circumference - (pct / 100) * circumference;
+  // Donut SVG Calculations (Circumference = 2 * PI * 54 = ~339.292)
+  private readonly circumference = 339.292;
+
+  getNewProjectsDasharray(): string {
+    const totalHours = (this.metrics()?.totalNewProjectHours || 0) + (this.metrics()?.totalMaintenanceHours || 0);
+    if (totalHours <= 0) return `0 ${this.circumference.toFixed(2)}`;
+    const pctNew = 100 - (this.metrics()?.maintenancePercent || 0);
+    const len = (pctNew / 100) * this.circumference;
+    return `${len.toFixed(2)} ${this.circumference.toFixed(2)}`;
   }
 
   getNewProjectsDashoffset(): number {
-    const pct = 100 - (this.metrics()?.maintenancePercent || 0);
-    const circumference = 339.29;
-    return circumference - (pct / 100) * circumference;
+    return 0;
+  }
+
+  getMaintenanceDasharray(): string {
+    const totalHours = (this.metrics()?.totalNewProjectHours || 0) + (this.metrics()?.totalMaintenanceHours || 0);
+    if (totalHours <= 0) return `0 ${this.circumference.toFixed(2)}`;
+    const pctMaint = this.metrics()?.maintenancePercent || 0;
+    const len = (pctMaint / 100) * this.circumference;
+    return `${len.toFixed(2)} ${this.circumference.toFixed(2)}`;
+  }
+
+  getMaintenanceDashoffset(): number {
+    const totalHours = (this.metrics()?.totalNewProjectHours || 0) + (this.metrics()?.totalMaintenanceHours || 0);
+    if (totalHours <= 0) return 0;
+    const pctNew = 100 - (this.metrics()?.maintenancePercent || 0);
+    const lenNew = (pctNew / 100) * this.circumference;
+    return -lenNew;
   }
 }
