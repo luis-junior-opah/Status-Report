@@ -809,10 +809,10 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
           class="py-12 bg-white rounded-2xl border-2 border-slate-300 text-center text-slate-500 text-xs shadow-2xs">
           Nenhum projeto encontrado para os filtros selecionados.
         </div>
-      </div>
 
-      <!-- 5. SUSTENTAÇÃO -->
-      <div class="rounded-3xl border-2 border-purple-300/90 bg-gradient-to-b from-purple-50/70 via-white to-purple-50/30 p-4 sm:p-6 transition-all shadow-xs space-y-6">
+        <!-- 5. SUSTENTAÇÃO -->
+        <div class="pt-8 sm:pt-10">
+          <div class="rounded-3xl border-2 border-purple-300/90 bg-gradient-to-b from-purple-50/70 via-white to-purple-50/30 p-4 sm:p-6 transition-all shadow-xs space-y-6">
         
         <!-- Header -->
         <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-purple-200 gap-3">
@@ -1140,7 +1140,9 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
           </div>
         </ng-template>
 
+        </div>
       </div>
+    </div>
 
       <!-- ======================================================== -->
       <!-- INTERACTIVE PPT PRESENTER MODAL (SCREEN FULLSCREEN 16:9) -->
