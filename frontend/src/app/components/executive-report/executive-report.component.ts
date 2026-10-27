@@ -1082,32 +1082,6 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
                 </div>
               </div>
 
-              <!-- Demandas & Entregas Realizadas no Ciclo -->
-              <div *ngIf="mp.recentActivities && mp.recentActivities.length > 0" class="pt-2 border-t border-slate-100 space-y-1.5">
-                <span class="text-[9px] font-black uppercase text-slate-400 tracking-wider flex items-center justify-between">
-                  <span>📋 Demandas Recentes no Azure DevOps:</span>
-                  <span class="text-purple-700 font-bold">({{ mp.recentActivities.length }})</span>
-                </span>
-                <div class="space-y-1">
-                  <div
-                    *ngFor="let act of mp.recentActivities"
-                    class="p-1.5 rounded-lg bg-slate-50 border border-slate-200 flex items-center justify-between text-[10px] gap-2">
-                    <div class="min-w-0 flex items-center gap-1.5">
-                      <span class="text-purple-600 font-bold">✔</span>
-                      <span class="font-bold text-slate-800 truncate" [title]="act.title">{{ act.title }}</span>
-                    </div>
-                    <div class="flex items-center gap-2 shrink-0">
-                      <span *ngIf="act.assignedTo" class="text-[9px] font-semibold text-slate-500">
-                        👤 {{ act.assignedTo.split(' ')[0] }}
-                      </span>
-                      <span class="font-black text-purple-700 bg-purple-50 px-1.5 py-0.2 rounded border border-purple-200">
-                        {{ formatHours(act.hours) }}h
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
             </div>
 
             <!-- Footer: Ver Detalhes na EAP -->
