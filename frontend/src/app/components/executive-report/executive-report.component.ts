@@ -1085,10 +1085,7 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
             </div>
 
             <!-- Footer: Ver Detalhes na EAP -->
-            <div class="mt-4 pt-2.5 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500">
-              <span class="text-[10px] font-bold text-purple-900 bg-purple-50 px-2 py-0.5 rounded-md border border-purple-200">
-                Sustentação N2/N3 ILC
-              </span>
+            <div class="mt-4 pt-2.5 border-t border-slate-100 flex items-center justify-end text-[11px] text-slate-500">
               <button
                 type="button"
                 (click)="service.openEapForProject(mp.id)"
