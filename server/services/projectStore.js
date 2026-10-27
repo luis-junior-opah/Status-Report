@@ -72,6 +72,7 @@ class ProjectStore {
         this.projects = (data.projects || []).map(p => {
           if (!p.priority) p.priority = 'P2';
           if (!p.systems) p.systems = [];
+          if (!p.category) p.category = 'new_project';
           if (!p.team) {
             const uniqueAssigned = Array.from(new Set((p.activities || []).map(a => a.assignedTo).filter(Boolean)));
             p.team = {
@@ -521,6 +522,7 @@ class ProjectStore {
       name: data.name,
       description: data.description || 'Projeto cadastrado manualmente.',
       client,
+      category: data.category || 'new_project',
       status: data.status || 'Ativo',
       isVisible: data.isVisible !== false,
       currentMilestone: data.currentMilestone || 'Planejamento',
@@ -823,6 +825,7 @@ class ProjectStore {
     if (updates.name !== undefined && updates.name.trim()) proj.name = updates.name.trim();
     if (updates.description !== undefined) proj.description = updates.description;
     if (updates.client !== undefined) proj.client = this.mapClientName(updates.client);
+    if (updates.category !== undefined) proj.category = updates.category;
     if (updates.status !== undefined) proj.status = updates.status;
     if (updates.isVisible !== undefined) proj.isVisible = !!updates.isVisible;
     if (updates.currentMilestone !== undefined) proj.currentMilestone = updates.currentMilestone;
@@ -898,6 +901,193 @@ class ProjectStore {
     this.projects[index] = proj;
     this.save();
     return proj;
+  }
+
+  getMaintenanceMetrics(clientFilter = 'Todos', period = 'year_2026') {
+    let projs = this.projects || [];
+    if (clientFilter && clientFilter !== 'Todos') {
+      projs = projs.filter(p => p.client === clientFilter);
+    }
+
+    const maintenanceProjects = projs.filter(p => p.category === 'maintenance');
+    const newProjects = projs.filter(p => (p.category || 'new_project') !== 'maintenance');
+
+    const isDateInPeriod = (dateStr) => {
+      if (!dateStr) return period === 'all' || period === 'year_2026';
+      const d = dateStr.slice(0, 10);
+      if (period === 'current_month') {
+        return d.startsWith('2026-10');
+      } else if (period === 'last_quarter') {
+        return d >= '2026-08-01' && d <= '2026-10-31';
+      } else if (period === 'year_2026') {
+        return d.startsWith('2026');
+      }
+      return true; // 'all'
+    };
+
+    const monthDefs = [
+      { key: '2026-01', label: 'Jan/26' },
+      { key: '2026-02', label: 'Fev/26' },
+      { key: '2026-03', label: 'Mar/26' },
+      { key: '2026-04', label: 'Abr/26' },
+      { key: '2026-05', label: 'Mai/26' },
+      { key: '2026-06', label: 'Jun/26' },
+      { key: '2026-07', label: 'Jul/26' },
+      { key: '2026-08', label: 'Ago/26' },
+      { key: '2026-09', label: 'Set/26' },
+      { key: '2026-10', label: 'Out/26' },
+      { key: '2026-11', label: 'Nov/26' },
+      { key: '2026-12', label: 'Dez/26' }
+    ];
+
+    const monthlyMap = {};
+    monthDefs.forEach(m => {
+      monthlyMap[m.key] = {
+        monthKey: m.key,
+        label: m.label,
+        newProjectHours: 0,
+        maintenanceHours: 0,
+        totalHours: 0,
+        maintenancePercent: 0
+      };
+    });
+
+    let totalMaintHours = 0;
+    let totalNewHours = 0;
+    const memberMap = {};
+
+    const getOrCreateMember = (name) => {
+      if (!name) return null;
+      const cleanName = name.trim();
+      if (!cleanName) return null;
+      if (!memberMap[cleanName]) {
+        memberMap[cleanName] = {
+          name: cleanName,
+          newProjectHours: 0,
+          maintenanceHours: 0,
+          totalHours: 0,
+          maintenancePercent: 0,
+          projectsMap: {}
+        };
+      }
+      return memberMap[cleanName];
+    };
+
+    for (const p of projs) {
+      const isMaint = p.category === 'maintenance';
+      const acts = p.activities || [];
+
+      // Fallback para projetos sem tarefas detalhadas
+      if (acts.length === 0 && p.hours && (p.hours.totalExecuted || 0) > 0) {
+        const hours = this.roundHours(p.hours.totalExecuted);
+        if (isMaint) {
+          totalMaintHours = this.roundHours(totalMaintHours + hours);
+        } else {
+          totalNewHours = this.roundHours(totalNewHours + hours);
+        }
+      }
+
+      for (const a of acts) {
+        const actDate = a.targetDate || a.startDate;
+        const actMonth = actDate ? actDate.slice(0, 7) : null;
+        const hours = this.roundHours(a.ilcHours || 0);
+
+        if (actMonth && monthlyMap[actMonth]) {
+          if (isMaint) {
+            monthlyMap[actMonth].maintenanceHours = this.roundHours(monthlyMap[actMonth].maintenanceHours + hours);
+          } else {
+            monthlyMap[actMonth].newProjectHours = this.roundHours(monthlyMap[actMonth].newProjectHours + hours);
+          }
+        }
+
+        if (isDateInPeriod(actDate)) {
+          if (isMaint) {
+            totalMaintHours = this.roundHours(totalMaintHours + hours);
+          } else {
+            totalNewHours = this.roundHours(totalNewHours + hours);
+          }
+
+          if (a.assignedTo) {
+            const m = getOrCreateMember(a.assignedTo);
+            if (m) {
+              if (isMaint) {
+                m.maintenanceHours = this.roundHours(m.maintenanceHours + hours);
+              } else {
+                m.newProjectHours = this.roundHours(m.newProjectHours + hours);
+              }
+              m.projectsMap[p.name] = {
+                projectName: p.name,
+                client: p.client,
+                hours: this.roundHours((m.projectsMap[p.name]?.hours || 0) + hours),
+                category: isMaint ? 'maintenance' : 'new_project'
+              };
+            }
+          }
+        }
+
+        for (const t of (a.linkedTasks || [])) {
+          const tDate = t.targetDate || t.startDate || actDate;
+          const tHours = this.roundHours(t.completedWork || 0);
+
+          if (t.assignedTo && isDateInPeriod(tDate)) {
+            const m = getOrCreateMember(t.assignedTo);
+            if (m && (!a.assignedTo || a.assignedTo !== t.assignedTo)) {
+              if (isMaint) {
+                m.maintenanceHours = this.roundHours(m.maintenanceHours + tHours);
+              } else {
+                m.newProjectHours = this.roundHours(m.newProjectHours + tHours);
+              }
+              m.projectsMap[p.name] = {
+                projectName: p.name,
+                client: p.client,
+                hours: this.roundHours((m.projectsMap[p.name]?.hours || 0) + tHours),
+                category: isMaint ? 'maintenance' : 'new_project'
+              };
+            }
+          }
+        }
+      }
+    }
+
+    const monthlyHistory = monthDefs.map(m => {
+      const data = monthlyMap[m.key];
+      data.totalHours = this.roundHours(data.newProjectHours + data.maintenanceHours);
+      data.maintenancePercent = data.totalHours > 0 ? Math.round((data.maintenanceHours / data.totalHours) * 100) : 0;
+      return data;
+    });
+
+    const totalCompanyHours = this.roundHours(totalMaintHours + totalNewHours);
+    const maintenancePercent = totalCompanyHours > 0 ? Math.round((totalMaintHours / totalCompanyHours) * 100) : 0;
+
+    const avatarColors = [
+      'bg-blue-600', 'bg-emerald-600', 'bg-purple-600', 'bg-amber-600',
+      'bg-indigo-600', 'bg-rose-600', 'bg-cyan-600', 'bg-teal-600'
+    ];
+
+    const teamMembers = Object.values(memberMap)
+      .map((m, idx) => {
+        m.totalHours = this.roundHours(m.newProjectHours + m.maintenanceHours);
+        m.maintenancePercent = m.totalHours > 0 ? Math.round((m.maintenanceHours / m.totalHours) * 100) : 0;
+        m.avatarColor = avatarColors[idx % avatarColors.length];
+        m.topProjects = Object.values(m.projectsMap).sort((a, b) => b.hours - a.hours);
+        delete m.projectsMap;
+        return m;
+      })
+      .filter(m => m.totalHours > 0)
+      .sort((a, b) => b.totalHours - a.totalHours);
+
+    return {
+      period,
+      clientFilter,
+      totalMaintenanceHours: totalMaintHours,
+      totalNewProjectHours: totalNewHours,
+      totalCompanyHours,
+      maintenancePercent,
+      maintenanceProjectsCount: maintenanceProjects.length,
+      activeMaintenanceProjects: maintenanceProjects,
+      monthlyHistory,
+      teamMembers
+    };
   }
 
   deleteProject(id) {

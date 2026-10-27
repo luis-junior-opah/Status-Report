@@ -2,6 +2,7 @@ import { Injectable, signal, computed, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Project, ProjectStats, ClientConfig, EapPhase, AzureConfigStatus, AzureAuditReport } from '../models/project.model';
 import { WeeklyReport, WeeklyReportSummary, RoadmapProject, BoardDecision } from '../models/weekly-report.model';
+import { MaintenanceMetrics, MaintenancePeriod } from '../models/maintenance.model';
 import { firstValueFrom } from 'rxjs';
 
 @Injectable({
@@ -27,7 +28,12 @@ export class ProjectService {
   selectedSystem = signal<string>('Todos'); // 'Todos' | 'Portal Integrator' | 'App Smart Tracking' | 'Smart X' | 'App ILC'
   sortBy = signal<'targetDelivery' | 'client' | 'priority' | 'progress'>('targetDelivery');
   searchQuery = signal<string>('');
-  activeView = signal<'macro' | 'eap-gantt' | 'cards' | 'table' | 'report'>('macro');
+  activeView = signal<'macro' | 'eap-gantt' | 'cards' | 'table' | 'report' | 'maintenance'>('macro');
+
+  // Maintenance Dashboard signals
+  maintenanceMetrics = signal<MaintenanceMetrics | null>(null);
+  isLoadingMaintenance = signal<boolean>(false);
+  selectedMaintenancePeriod = signal<MaintenancePeriod>('year_2026');
 
   // Weekly Report signals (for Board Executive Presentation)
   weeklyReports = signal<WeeklyReportSummary[]>([]);
@@ -332,6 +338,7 @@ export class ProjectService {
       // Load weekly status reports list and current edition
       this.loadWeeklyReports();
       this.loadWeeklyReport('latest');
+      this.loadMaintenanceMetrics();
     } catch (err: any) {
       this.lastError.set('Falha ao conectar com a API do Dashboard.');
       console.error(err);
@@ -659,6 +666,26 @@ export class ProjectService {
       alert('Erro ao excluir relatório: ' + (err?.error?.message || err.message));
     }
     return false;
+  }
+
+  async loadMaintenanceMetrics(clientFilter?: string, period?: MaintenancePeriod): Promise<MaintenanceMetrics | null> {
+    const p = period || this.selectedMaintenancePeriod();
+    const c = clientFilter || this.selectedClient();
+    this.isLoadingMaintenance.set(true);
+    try {
+      const url = `/api/public/maintenance-metrics?client=${encodeURIComponent(c)}&period=${encodeURIComponent(p)}`;
+      const res = await firstValueFrom(this.http.get<{ success: boolean; data: MaintenanceMetrics }>(url));
+      if (res?.success && res.data) {
+        this.maintenanceMetrics.set(res.data);
+        return res.data;
+      }
+      return null;
+    } catch (err) {
+      console.error('Erro ao carregar métricas de sustentação:', err);
+      return null;
+    } finally {
+      this.isLoadingMaintenance.set(false);
+    }
   }
 
   togglePresentationMode() {

@@ -131,6 +131,7 @@ export interface Project {
   name: string;
   description: string;
   client: string;
+  category?: 'new_project' | 'maintenance';
   status: ProjectStatus;
   isVisible: boolean;
   currentMilestone: EapPhase;

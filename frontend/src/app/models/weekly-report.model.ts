@@ -86,4 +86,33 @@ export interface WeeklyReport {
   activeProjects: WeeklyReportProject[];
   roadmapProjects: RoadmapProject[];
   boardDecisions: BoardDecision[];
+  maintenanceSection?: WeeklyReportMaintenanceSection;
+}
+
+export interface WeeklyReportMaintenanceActivity {
+  id?: string | number;
+  title: string;
+  targetDate?: string | null;
+  hours?: number;
+  status?: string;
+  assignedTo?: string | null;
+}
+
+export interface WeeklyReportMaintenanceProject {
+  id: string;
+  name: string;
+  client: string;
+  status: string;
+  ragStatus: string;
+  hoursExecuted: number;
+  hoursPlanned: number;
+  recentActivities: WeeklyReportMaintenanceActivity[];
+  summary?: string;
+}
+
+export interface WeeklyReportMaintenanceSection {
+  totalProjects: number;
+  totalHours: number;
+  periodLabel: string;
+  projects: WeeklyReportMaintenanceProject[];
 }

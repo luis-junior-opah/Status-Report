@@ -441,6 +441,7 @@ class WeeklyReportStore {
         hoursExecuted: p.hours?.totalExecuted || 0,
         hoursPlanned: p.hours?.totalPlanned || 0,
         priority: p.priority || 'P2',
+        category: p.category || 'new_project',
         systems: p.systems || [],
         teamLeader: p.team?.leader || (p.team?.members ? p.team.members.join(', ') : ''),
         teamMembers: p.team?.members || [],
@@ -456,6 +457,46 @@ class WeeklyReportStore {
       attention: attention,
       critical: critical,
       averageProgress: avgProgress
+    };
+
+    // Sessão dedicada a Sustentação no Status Report
+    const allMaintenanceProjects = allProjects.filter(p => p.category === 'maintenance');
+    const meetingD = report.meetingDate ? new Date(report.meetingDate + 'T12:00:00') : new Date();
+    const periodStart = new Date(meetingD.getTime() - 7 * 24 * 3600 * 1000).toISOString().split('T')[0];
+    const periodEnd = report.meetingDate || new Date().toISOString().split('T')[0];
+
+    report.maintenanceSection = {
+      totalProjects: allMaintenanceProjects.length,
+      totalHours: allMaintenanceProjects.reduce((s, p) => s + (p.hours?.totalExecuted || 0), 0),
+      periodLabel: `Semana ${report.weekNumber} (${periodStart} a ${periodEnd})`,
+      projects: allMaintenanceProjects.map(p => {
+        const recentActs = (p.activities || [])
+          .filter(a => {
+            const d = a.targetDate || a.startDate;
+            return a.status === 'completed' || (d && d >= periodStart) || (a.ilcHours > 0);
+          })
+          .slice(0, 5)
+          .map(a => ({
+            id: a.id,
+            title: a.title,
+            targetDate: a.targetDate,
+            hours: a.ilcHours || 0,
+            status: a.status,
+            assignedTo: a.assignedTo
+          }));
+
+        return {
+          id: p.id,
+          name: p.name,
+          client: p.client,
+          status: p.status,
+          ragStatus: p.ragStatus || 'green',
+          hoursExecuted: p.hours?.totalExecuted || 0,
+          hoursPlanned: p.hours?.totalPlanned || 0,
+          recentActivities: recentActs,
+          summary: p.executiveSummary || 'Sustentação contínua da aplicação.'
+        };
+      })
     };
   }
 
@@ -553,6 +594,7 @@ class WeeklyReportStore {
         hoursExecuted: p.hours?.totalExecuted || 0,
         hoursPlanned: p.hours?.totalPlanned || 0,
         priority: p.priority || 'P2',
+        category: p.category || 'new_project',
         systems: p.systems || [],
         teamLeader: p.team?.leader || '',
         teamMembers: p.team?.members || [],

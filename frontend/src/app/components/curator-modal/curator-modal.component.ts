@@ -433,6 +433,12 @@ import { WeeklyReport, WeeklyReportProject, RoadmapProject, BoardDecision } from
                         [ngClass]="isManualProject(p) ? 'bg-amber-100 text-amber-800 border border-amber-200' : 'bg-sky-100 text-sky-800 border border-sky-200'">
                         {{ isManualProject(p) ? '✍️ Manual' : '☁️ Azure' }}
                       </span>
+                      <!-- Category Badge -->
+                      <span
+                        *ngIf="p.category === 'maintenance'"
+                        class="text-[9px] font-black px-1.5 py-0.2 rounded bg-purple-100 text-purple-800 border border-purple-200">
+                        🛠️ Sustentação
+                      </span>
                       <!-- Status Badge -->
                       <span
                         class="text-[9px] font-extrabold px-1.5 py-0.2 rounded uppercase"
@@ -588,6 +594,26 @@ import { WeeklyReport, WeeklyReportProject, RoadmapProject, BoardDecision } from
                       <option value="Finalizado">Finalizado</option>
                       <option value="Congelado">Congelado</option>
                     </select>
+                  </div>
+
+                  <div>
+                    <label class="block font-bold text-slate-600 mb-1">Natureza do Projeto:</label>
+                    <div class="flex items-center gap-1.5">
+                      <button
+                        type="button"
+                        (click)="p.category = 'new_project'"
+                        [ngClass]="p.category !== 'maintenance' ? 'bg-blue-600 text-white font-black shadow-xs' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'"
+                        class="flex-1 py-1.5 px-2 rounded-lg text-[11px] font-bold transition border border-transparent">
+                        🚀 Novo
+                      </button>
+                      <button
+                        type="button"
+                        (click)="p.category = 'maintenance'"
+                        [ngClass]="p.category === 'maintenance' ? 'bg-purple-600 text-white font-black shadow-xs' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'"
+                        class="flex-1 py-1.5 px-2 rounded-lg text-[11px] font-bold transition border border-transparent">
+                        🛠️ Sustentação
+                      </button>
+                    </div>
                   </div>
 
                   <div>
@@ -2648,6 +2674,7 @@ export class CuratorModalComponent implements OnInit {
         name: p.name,
         description: p.description,
         client: p.client,
+        category: p.category || 'new_project',
         status: p.status,
         isVisible: p.isVisible,
         currentMilestone: p.currentMilestone,
@@ -2726,6 +2753,7 @@ export class CuratorModalComponent implements OnInit {
     const created = await this.service.createManualProject({
       name: this.newProjData.name,
       client: this.newProjData.client,
+      category: 'new_project',
       executiveSummary: this.newProjData.executiveSummary || 'Projeto cadastrado manualmente.',
       agreedDates: {
         start: this.newProjData.startDate,

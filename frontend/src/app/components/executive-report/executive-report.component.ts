@@ -811,6 +811,131 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
         </div>
       </div>
 
+      <!-- 5. SUSTENTAÇÃO DE SISTEMAS & ATIVIDADES REALIZADAS NO PERÍODO -->
+      <div class="rounded-2xl border-2 border-purple-300 bg-purple-50/60 p-4 sm:p-5 transition-all shadow-xs">
+        
+        <!-- Header -->
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-3 mb-4 border-b border-purple-200 gap-2">
+          <div class="flex items-center gap-2">
+            <span class="text-base">🛠️</span>
+            <div>
+              <h3 class="text-xs sm:text-sm font-black tracking-tight text-purple-950 flex items-center gap-2">
+                Sustentação de Sistemas & Atividades Realizadas no Período
+                <span class="text-[10px] font-black px-2 py-0.5 rounded-full bg-purple-200 text-purple-900">
+                  {{ currentReport()?.maintenanceSection?.projects?.length || 0 }} sistemas mantidos
+                </span>
+              </h3>
+              <p class="text-[11px] text-purple-900/80 font-medium">
+                Acompanhamento das demandas operacionais, melhorias e suporte aos projetos estabilizados • {{ currentReport()?.maintenanceSection?.periodLabel || currentReport()?.period }}
+              </p>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-2 self-start sm:self-auto">
+            <span class="text-xs font-black px-2.5 py-1 rounded-xl bg-purple-100 text-purple-900 border border-purple-300">
+              ⏱️ {{ formatHours(currentReport()?.maintenanceSection?.totalHours) }}h executadas no ciclo
+            </span>
+          </div>
+        </div>
+
+        <!-- Maintenance Projects Grid -->
+        <div *ngIf="currentReport()?.maintenanceSection?.projects && currentReport()!.maintenanceSection!.projects.length > 0; else emptyMaintenance"
+          class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+          
+          <div
+            *ngFor="let mp of currentReport()!.maintenanceSection!.projects"
+            class="p-4 rounded-xl border border-purple-200 bg-white text-slate-900 shadow-xs flex flex-col justify-between">
+            
+            <div>
+              <!-- Top bar with Client, Project Name and Status -->
+              <div class="flex items-center justify-between gap-2 mb-2">
+                <div class="flex items-center gap-1.5 min-w-0">
+                  <span class="text-[10px] font-black px-2 py-0.5 rounded-md bg-purple-100 text-purple-900 border border-purple-200">
+                    {{ mp.client }}
+                  </span>
+                  <h4 class="text-xs font-black truncate text-slate-900 leading-snug" [title]="mp.name">
+                    {{ mp.name }}
+                  </h4>
+                </div>
+                <div class="flex items-center gap-1.5 shrink-0">
+                  <span
+                    class="text-[9px] font-extrabold px-1.5 py-0.2 rounded-full"
+                    [ngClass]="mp.status === 'Ativo' ? 'bg-emerald-100 text-emerald-800' : 'bg-blue-100 text-blue-800'">
+                    {{ mp.status }}
+                  </span>
+                  <span class="text-[9px] font-black px-1.5 py-0.2 rounded-full bg-slate-100 text-slate-700">
+                    {{ formatHours(mp.hoursExecuted) }}h totais
+                  </span>
+                </div>
+              </div>
+
+              <!-- Scope / Summary -->
+              <p class="text-[11px] text-slate-600 font-medium mb-3 bg-purple-50/50 p-2 rounded-lg border border-purple-100">
+                {{ mp.summary || 'Sustentação contínua da aplicação.' }}
+              </p>
+
+              <!-- Activities Realized in Period -->
+              <div class="space-y-1.5">
+                <span class="text-[9px] font-black uppercase text-slate-400 tracking-wider flex items-center justify-between">
+                  <span>📋 Demandas & Entregas Realizadas no Ciclo:</span>
+                  <span class="text-purple-700 font-bold">({{ mp.recentActivities?.length || 0 }})</span>
+                </span>
+
+                <div *ngIf="mp.recentActivities && mp.recentActivities.length > 0; else noRecentActs" class="space-y-1">
+                  <div
+                    *ngFor="let act of mp.recentActivities"
+                    class="p-2 rounded-lg bg-slate-50 border border-slate-200 flex items-center justify-between text-[10px] gap-2">
+                    <div class="min-w-0 flex items-center gap-1.5">
+                      <span class="text-purple-600 font-bold">✔</span>
+                      <span class="font-bold text-slate-800 truncate" [title]="act.title">{{ act.title }}</span>
+                    </div>
+                    <div class="flex items-center gap-2 shrink-0">
+                      <span *ngIf="act.assignedTo" class="text-[9px] font-semibold text-slate-500">
+                        👤 {{ act.assignedTo.split(' ')[0] }}
+                      </span>
+                      <span class="font-black text-purple-700 bg-purple-50 px-1.5 py-0.2 rounded border border-purple-200">
+                        {{ formatHours(act.hours) }}h
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                <ng-template #noRecentActs>
+                  <p class="text-[10px] text-slate-400 italic py-1">
+                    Nenhum apontamento específico registrado na semana selecionada.
+                  </p>
+                </ng-template>
+              </div>
+            </div>
+
+            <div class="mt-3 pt-2 border-t border-slate-100 flex items-center justify-between text-[10px] text-slate-500">
+              <span>Sustentação N2/N3 ILC</span>
+              <button
+                type="button"
+                (click)="service.openEapForProject(mp.id)"
+                class="font-bold text-purple-700 hover:text-purple-900 hover:underline cursor-pointer">
+                Ver Detalhes na EAP →
+              </button>
+            </div>
+
+          </div>
+
+        </div>
+
+        <ng-template #emptyMaintenance>
+          <div class="py-6 px-4 rounded-xl border border-dashed border-purple-200 bg-white text-center">
+            <span class="text-xl mb-1 block">🛠️</span>
+            <p class="text-xs text-slate-600 font-medium">
+              Nenhum projeto categorizado como Sustentação neste ciclo.
+            </p>
+            <p class="text-[11px] text-slate-400 mt-0.5">
+              Para incluir projetos nesta seção, acesse a Curadoria e selecione a natureza "🛠️ Sustentação".
+            </p>
+          </div>
+        </ng-template>
+
+      </div>
+
       <!-- ======================================================== -->
       <!-- INTERACTIVE PPT PRESENTER MODAL (SCREEN FULLSCREEN 16:9) -->
       <!-- ======================================================== -->

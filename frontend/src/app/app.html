@@ -5,11 +5,11 @@
 
   <!-- Main Content Container -->
   <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 print:p-0 print:m-0 print:max-w-none print:w-full">
-    <!-- Top KPIs (Hidden in Executive Report view which has dedicated KPIs) -->
-    <app-kpi-summary *ngIf="service.activeView() !== 'report'"></app-kpi-summary>
+    <!-- Top KPIs (Hidden in Executive Report and Maintenance views which have dedicated KPIs) -->
+    <app-kpi-summary *ngIf="service.activeView() !== 'report' && service.activeView() !== 'maintenance'"></app-kpi-summary>
 
-    <!-- Filters & Search Bar (Hidden in Executive Report view) -->
-    <app-filters *ngIf="service.activeView() !== 'report'"></app-filters>
+    <!-- Filters & Search Bar (Hidden in Executive Report and Maintenance views) -->
+    <app-filters *ngIf="service.activeView() !== 'report' && service.activeView() !== 'maintenance'"></app-filters>
 
     <!-- Loading State -->
     <div *ngIf="service.isLoading()" class="py-20 text-center">
@@ -51,6 +51,9 @@
 
       <!-- 5. Status Report Executivo (Reunião de Diretoria) -->
       <app-executive-report *ngIf="service.activeView() === 'report'"></app-executive-report>
+
+      <!-- 6. Painel de Sustentação & Manutenção -->
+      <app-maintenance-dashboard *ngIf="service.activeView() === 'maintenance'"></app-maintenance-dashboard>
     </div>
   </main>
 

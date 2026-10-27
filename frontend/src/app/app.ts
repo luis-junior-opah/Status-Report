@@ -10,6 +10,7 @@ import { ProjectCardsComponent } from './components/project-cards/project-cards.
 import { ProjectTableComponent } from './components/project-table/project-table.component';
 import { CuratorModalComponent } from './components/curator-modal/curator-modal.component';
 import { ExecutiveReportComponent } from './components/executive-report/executive-report.component';
+import { MaintenanceDashboardComponent } from './components/maintenance-dashboard/maintenance-dashboard.component';
 
 @Component({
   selector: 'app-root',
@@ -24,7 +25,8 @@ import { ExecutiveReportComponent } from './components/executive-report/executiv
     ProjectCardsComponent,
     ProjectTableComponent,
     CuratorModalComponent,
-    ExecutiveReportComponent
+    ExecutiveReportComponent,
+    MaintenanceDashboardComponent
   ],
   templateUrl: './app.html',
   styleUrl: './app.css'

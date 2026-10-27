@@ -1,5 +1,5 @@
 {
-  "lastSync": "2026-10-27T13:36:50.169Z",
+  "lastSync": "2026-10-27T16:52:18.369Z",
   "projects": [
     {
       "id": "a197458f-88c5-4fec-8ce7-a981ee3f6709",
@@ -25,7 +25,7 @@
       "progress": 46,
       "manualRagStatus": "amber",
       "executiveSummary": "Projeto integrado ao Azure DevOps. Iteração atual: Iteration 26.",
-      "azureLastUpdated": "2026-10-27T13:36:36.779Z",
+      "azureLastUpdated": "2026-10-27T16:52:07.007Z",
       "currentIterationName": "Iteration 26",
       "ragStatus": "amber",
       "varianceDays": 0,
@@ -4679,7 +4679,8 @@
           "Tatiane Godinho Dutra"
         ]
       },
-      "agreedHours": 698
+      "agreedHours": 698,
+      "category": "new_project"
     },
     {
       "id": "eb438ca6-f25e-4c5c-ab4b-a45e1b243ba1",
@@ -4705,7 +4706,7 @@
       "progress": 0,
       "manualRagStatus": "auto",
       "executiveSummary": "Projeto Safety está em fase de elicitação de requisitos.",
-      "azureLastUpdated": "2026-10-27T13:36:37.317Z",
+      "azureLastUpdated": "2026-10-27T16:52:07.294Z",
       "currentIterationName": null,
       "ragStatus": "red",
       "varianceDays": 0,
@@ -4947,7 +4948,8 @@
           "Mike Andrade"
         ]
       },
-      "agreedHours": 0
+      "agreedHours": 0,
+      "category": "new_project"
     },
     {
       "id": "9725bb95-eea2-4d9f-b0f8-bc83bc8b1aa6",
@@ -4973,7 +4975,7 @@
       "progress": 92,
       "manualRagStatus": "auto",
       "executiveSummary": "Projeto integrado ao Azure DevOps. Iteração atual: Em andamento.",
-      "azureLastUpdated": "2026-10-27T13:36:37.770Z",
+      "azureLastUpdated": "2026-10-27T16:52:07.718Z",
       "currentIterationName": null,
       "ragStatus": "red",
       "varianceDays": 0,
@@ -5324,7 +5326,8 @@
           "Vitor Neves"
         ]
       },
-      "agreedHours": 153
+      "agreedHours": 153,
+      "category": "new_project"
     },
     {
       "id": "5450faea-78d5-4c72-846d-56afa40ea98f",
@@ -5350,7 +5353,7 @@
       "progress": 0,
       "manualRagStatus": "auto",
       "executiveSummary": "Projeto integrado ao Azure DevOps. Iteração atual: Em andamento.",
-      "azureLastUpdated": "2026-10-27T13:36:38.233Z",
+      "azureLastUpdated": "2026-10-27T16:52:08.124Z",
       "currentIterationName": null,
       "ragStatus": "green",
       "varianceDays": 0,
@@ -5652,7 +5655,8 @@
         "leader": "",
         "members": []
       },
-      "agreedHours": 0
+      "agreedHours": 0,
+      "category": "new_project"
     },
     {
       "id": "1124ed6f-b9ad-4951-89c8-bf0bce11abde",
@@ -5678,7 +5682,7 @@
       "progress": 0,
       "manualRagStatus": "auto",
       "executiveSummary": "Projeto integrado ao Azure DevOps. Iteração atual: Em andamento.",
-      "azureLastUpdated": "2026-10-27T13:36:38.888Z",
+      "azureLastUpdated": "2026-10-27T16:52:08.877Z",
       "currentIterationName": null,
       "ragStatus": "green",
       "varianceDays": 0,
@@ -5758,7 +5762,8 @@
         "leader": "",
         "members": []
       },
-      "agreedHours": 0
+      "agreedHours": 0,
+      "category": "new_project"
     },
     {
       "id": "d71751f9-7b44-4e86-bd47-c89e64aabcd7",
@@ -5784,7 +5789,7 @@
       "progress": 41,
       "manualRagStatus": "auto",
       "executiveSummary": "Projeto integrado ao Azure DevOps. Iteração atual: Iteration 4.",
-      "azureLastUpdated": "2026-10-27T13:36:39.472Z",
+      "azureLastUpdated": "2026-10-27T16:52:09.286Z",
       "currentIterationName": "Iteration 4",
       "ragStatus": "red",
       "varianceDays": 0,
@@ -5999,7 +6004,8 @@
           "Renata Dias de Avila Reis"
         ]
       },
-      "agreedHours": 27
+      "agreedHours": 27,
+      "category": "new_project"
     },
     {
       "id": "a5fcfbb4-ab62-4aff-b0fa-3f623219a49c",
@@ -6025,7 +6031,7 @@
       "progress": 97,
       "manualRagStatus": "auto",
       "executiveSummary": "Pendente a homologção do processo Komatsu.",
-      "azureLastUpdated": "2026-10-27T13:36:40.697Z",
+      "azureLastUpdated": "2026-10-27T16:52:10.558Z",
       "currentIterationName": null,
       "ragStatus": "red",
       "varianceDays": 0,
@@ -7333,7 +7339,8 @@
           "Silvio Torres"
         ]
       },
-      "agreedHours": 646
+      "agreedHours": 646,
+      "category": "new_project"
     },
     {
       "id": "4d1d445e-584d-4bdb-a176-afce663b0300",
@@ -7358,8 +7365,8 @@
       },
       "progress": 75,
       "manualRagStatus": "auto",
-      "executiveSummary": "Desenvolvimento concluido, testes realizados. Homologado junto a John Deere, próximo passo treinar usuários.",
-      "azureLastUpdated": "2026-10-27T13:36:41.156Z",
+      "executiveSummary": "Treinamento realizado com sucesso, atualização do módulo em ambinete de produção e inicio da operação assistida.",
+      "azureLastUpdated": "2026-10-27T16:52:10.995Z",
       "currentIterationName": "Iteration 01",
       "ragStatus": "green",
       "varianceDays": 0,
@@ -7657,7 +7664,8 @@
           "Silvio Torres"
         ]
       },
-      "agreedHours": 120
+      "agreedHours": 120,
+      "category": "new_project"
     },
     {
       "id": "c99e39c8-2702-4961-8624-117ce09beac7",
@@ -7682,48 +7690,14 @@
       },
       "progress": 66,
       "manualRagStatus": "auto",
-      "executiveSummary": "Desenvolvimento concluido, testes realizados. Homologado junto a John Deere, próximo passo treinar usuários.",
-      "azureLastUpdated": "2026-10-27T13:36:41.834Z",
+      "executiveSummary": "Treinamento foi reagendado, aguardando confirmação de nova data.",
+      "azureLastUpdated": "2026-10-27T16:52:11.414Z",
       "currentIterationName": "Iteration 1",
-      "ragStatus": "red",
+      "ragStatus": "green",
       "varianceDays": 0,
       "hasManualProgress": false,
       "hasManualPlannedDates": true,
       "activities": [
-        {
-          "id": "7183",
-          "azureId": 7183,
-          "title": "Treinamento",
-          "fullTitle": "#7183 Treinamento",
-          "rawTitle": "Treinamento",
-          "type": "Feature",
-          "state": "New",
-          "assignedTo": "Luis Carlos Oliveira Santos Junior",
-          "eapPhase": "Treinamento",
-          "month": "OUT / 26",
-          "startDate": "2026-10-23",
-          "targetDate": "2026-10-24",
-          "dateStr": "24/10/2026",
-          "ilcHours": 0,
-          "ilcHoursTotal": 8,
-          "clientHours": 0,
-          "status": "planned",
-          "isDelayed": true,
-          "isTightMargin": false,
-          "linkedTasks": [
-            {
-              "id": 7196,
-              "title": "Capacitação (JD, Fornecedores, Transportadores)",
-              "type": "Task",
-              "state": "New",
-              "assignedTo": "Luis Carlos Oliveira Santos Junior",
-              "originalEstimate": 8,
-              "completedWork": 0,
-              "startDate": "2026-10-23",
-              "targetDate": "2026-10-24"
-            }
-          ]
-        },
         {
           "id": "7184",
           "azureId": 7184,
@@ -7735,7 +7709,7 @@
           "assignedTo": "Luis Carlos Oliveira Santos Junior",
           "eapPhase": "Operação Assistida",
           "month": "NOV / 26",
-          "startDate": "2026-10-26",
+          "startDate": "2026-10-30",
           "targetDate": "2026-11-17",
           "dateStr": "17/11/2026",
           "ilcHours": 0,
@@ -7753,8 +7727,42 @@
               "assignedTo": "Luis Carlos Oliveira Santos Junior",
               "originalEstimate": 32,
               "completedWork": 0,
-              "startDate": "2026-10-26",
+              "startDate": "2026-10-30",
               "targetDate": "2026-11-17"
+            }
+          ]
+        },
+        {
+          "id": "7183",
+          "azureId": 7183,
+          "title": "Treinamento",
+          "fullTitle": "#7183 Treinamento",
+          "rawTitle": "Treinamento",
+          "type": "Feature",
+          "state": "New",
+          "assignedTo": "Luis Carlos Oliveira Santos Junior",
+          "eapPhase": "Treinamento",
+          "month": "OUT / 26",
+          "startDate": "2026-10-29",
+          "targetDate": "2026-10-30",
+          "dateStr": "30/10/2026",
+          "ilcHours": 0,
+          "ilcHoursTotal": 8,
+          "clientHours": 0,
+          "status": "planned",
+          "isDelayed": false,
+          "isTightMargin": false,
+          "linkedTasks": [
+            {
+              "id": 7196,
+              "title": "Capacitação (JD, Fornecedores, Transportadores)",
+              "type": "Task",
+              "state": "New",
+              "assignedTo": "Luis Carlos Oliveira Santos Junior",
+              "originalEstimate": 8,
+              "completedWork": 0,
+              "startDate": "2026-10-29",
+              "targetDate": "2026-10-30"
             }
           ]
         },
@@ -7967,9 +7975,7 @@
         "progress": true,
         "dates": true
       },
-      "inconsistencies": [
-        "DELAYED_ITEMS"
-      ],
+      "inconsistencies": [],
       "hasManualIlcHours": false,
       "hasManualAgreedDates": false,
       "priority": "P2",
@@ -7983,7 +7989,8 @@
           "Silvio Torres"
         ]
       },
-      "agreedHours": 116
+      "agreedHours": 116,
+      "category": "new_project"
     },
     {
       "id": "a7d5d8e7-c1e1-4d14-9aac-746ea346ac02",
@@ -8009,7 +8016,7 @@
       "progress": 100,
       "manualRagStatus": "auto",
       "executiveSummary": "Projeto integrado ao Azure DevOps. Iteração atual: Em andamento.",
-      "azureLastUpdated": "2026-10-27T13:36:42.359Z",
+      "azureLastUpdated": "2026-10-27T16:52:11.911Z",
       "currentIterationName": null,
       "ragStatus": "green",
       "varianceDays": 0,
@@ -9197,7 +9204,8 @@
           "Mike Andrade"
         ]
       },
-      "agreedHours": 720
+      "agreedHours": 720,
+      "category": "new_project"
     },
     {
       "id": "c064a093-ea7c-45e6-8ec6-5bf10a5794a9",
@@ -9222,8 +9230,8 @@
       },
       "progress": 47,
       "manualRagStatus": "auto",
-      "executiveSummary": "Projeto em fase de desenvolvimento backend volume total de horas acordado 157.",
-      "azureLastUpdated": "2026-10-27T13:36:42.870Z",
+      "executiveSummary": "Desenvolvimento backend em andamento",
+      "azureLastUpdated": "2026-10-27T16:52:12.486Z",
       "currentIterationName": "Iteration 1",
       "ragStatus": "amber",
       "varianceDays": 0,
@@ -10173,7 +10181,8 @@
           "Mike Andrade"
         ]
       },
-      "agreedHours": 173.59999999999997
+      "agreedHours": 173.59999999999997,
+      "category": "new_project"
     },
     {
       "id": "7a1136ad-134c-41fe-a684-79e8b2ab5c93",
@@ -10198,8 +10207,8 @@
       },
       "progress": 59,
       "manualRagStatus": "auto",
-      "executiveSummary": "Etapa de gerenciamento de parâmetros em fase final de desenvolvimento.",
-      "azureLastUpdated": "2026-10-27T13:36:44.100Z",
+      "executiveSummary": "Fase final de ajustes e homologação das etapas solicitações, cotações, painel transportador e respostas cotações e inicio da etapa aprovação e custo extra.",
+      "azureLastUpdated": "2026-10-27T16:52:13.622Z",
       "currentIterationName": "Iteration 1",
       "ragStatus": "red",
       "varianceDays": 0,
@@ -10893,7 +10902,8 @@
           "Silvio Torres"
         ]
       },
-      "agreedHours": 750
+      "agreedHours": 750,
+      "category": "new_project"
     },
     {
       "id": "631642d0-4957-40cf-ae78-b62dd47af334",
@@ -10919,7 +10929,7 @@
       "progress": 64,
       "manualRagStatus": "auto",
       "executiveSummary": "Projeto integrado ao Azure DevOps. Iteração atual: SPRINT 7a.",
-      "azureLastUpdated": "2026-10-27T13:36:46.136Z",
+      "azureLastUpdated": "2026-10-27T16:52:15.140Z",
       "currentIterationName": "SPRINT 7a",
       "ragStatus": "red",
       "varianceDays": 0,
@@ -12642,8 +12652,8 @@
         ]
       },
       "azureOriginal": {
-        "ilcPlanned": 3131.4,
-        "ilcExecuted": 1997.5,
+        "ilcPlanned": 3145.4,
+        "ilcExecuted": 2027.5,
         "progress": 64,
         "agreedDates": {
           "start": "2025-05-14",
@@ -12672,7 +12682,8 @@
           "Anderson Rodrigo de Jesus Souza"
         ]
       },
-      "agreedHours": 1215.5
+      "agreedHours": 1215.5,
+      "category": "new_project"
     },
     {
       "id": "09fbe35d-364d-4e90-b950-7aa9a5186dda",
@@ -12698,7 +12709,7 @@
       "progress": 44,
       "manualRagStatus": "auto",
       "executiveSummary": "Projeto integrado ao Azure DevOps. Iteração atual: SPRINT JUL - 2022 - 1 QUINZENA.",
-      "azureLastUpdated": "2026-10-27T13:36:47.500Z",
+      "azureLastUpdated": "2026-10-27T16:52:16.282Z",
       "currentIterationName": "SPRINT JUL - 2022 - 1 QUINZENA",
       "ragStatus": "red",
       "varianceDays": 0,
@@ -13739,7 +13750,8 @@
           "Filipe Andrade"
         ]
       },
-      "agreedHours": 327
+      "agreedHours": 327,
+      "category": "new_project"
     },
     {
       "id": "71a23666-1dc1-44e7-a1c7-6eda5b1a578d",
@@ -13765,7 +13777,7 @@
       "progress": 100,
       "manualRagStatus": "auto",
       "executiveSummary": "Projeto integrado ao Azure DevOps. Iteração atual: Em andamento.",
-      "azureLastUpdated": "2026-10-27T13:36:48.193Z",
+      "azureLastUpdated": "2026-10-27T16:52:16.803Z",
       "currentIterationName": null,
       "ragStatus": "green",
       "varianceDays": 0,
@@ -14583,7 +14595,8 @@
           "Lucas Maier Gomes Bruno"
         ]
       },
-      "agreedHours": 452
+      "agreedHours": 452,
+      "category": "maintenance"
     },
     {
       "id": "e89f3868-5d0e-49da-8b15-decf3fea11bc",
@@ -14609,7 +14622,7 @@
       "progress": 94,
       "manualRagStatus": "auto",
       "executiveSummary": "Projeto integrado ao Azure DevOps. Iteração atual: Iteration 20.",
-      "azureLastUpdated": "2026-10-27T13:36:49.594Z",
+      "azureLastUpdated": "2026-10-27T16:52:17.914Z",
       "currentIterationName": "Iteration 20",
       "ragStatus": "red",
       "varianceDays": 0,
@@ -19427,7 +19440,8 @@
           "Silvio Torres"
         ]
       },
-      "agreedHours": 2497.5
+      "agreedHours": 2497.5,
+      "category": "new_project"
     },
     {
       "id": "142cf5ca-cb09-457b-9675-eeae95487cc4",
@@ -19453,7 +19467,7 @@
       "progress": 69,
       "manualRagStatus": "auto",
       "executiveSummary": "Projeto integrado ao Azure DevOps. Iteração atual: Sprint 5.",
-      "azureLastUpdated": "2026-10-27T13:36:50.169Z",
+      "azureLastUpdated": "2026-10-27T16:52:18.368Z",
       "currentIterationName": "Sprint 6",
       "ragStatus": "red",
       "varianceDays": 0,
@@ -19979,7 +19993,8 @@
           "Luis Carlos Oliveira Santos Junior"
         ]
       },
-      "agreedHours": 128
+      "agreedHours": 128,
+      "category": "new_project"
     },
     {
       "id": "8bcd36f6-678a-4d3c-a0a6-40a92b5ea91a",
@@ -19993,38 +20008,105 @@
       "currentMilestone": "Planejamento",
       "agreedDates": {
         "start": "2026-10-05",
-        "end": "2026-11-28"
+        "end": "2026-12-01"
       },
       "plannedDates": {
         "start": "2026-10-05",
-        "end": "2026-11-28"
+        "end": "2026-12-01"
       },
       "executedDates": {
         "start": "2026-10-05",
         "end": null
       },
-      "progress": 16,
+      "progress": 9,
       "manualRagStatus": "auto",
-      "executiveSummary": "Desenvolvimento das telas operacionais e serviços offline (41% concluído). Ajuste no fluxo de autenticação e validação técnica.",
-      "azureLastUpdated": "2026-10-27T13:36:46.803Z",
+      "executiveSummary": "Conclusão do desenvolvimento to protótipo, alinhamento para refinamento e estruturação dos pacotes de entregas.",
+      "azureLastUpdated": "2026-10-27T16:52:15.616Z",
       "currentIterationName": "Iteration 1",
       "activities": [
         {
-          "id": "7323",
-          "azureId": 7323,
+          "id": "7336",
+          "azureId": 7336,
+          "title": "Desenvolvimento Gestão de Demandas",
+          "fullTitle": "#7336 Desenvolvimento Gestão de Demandas",
+          "rawTitle": "Desenvolvimento Gestão de Demandas",
+          "type": "User Story",
+          "state": "New",
+          "assignedTo": "Luis Carlos Oliveira Santos Junior",
+          "eapPhase": "Desenvolvimento",
+          "month": "NOV / 26",
+          "startDate": "2026-11-11",
+          "targetDate": "2026-11-27",
+          "dateStr": "27/11/2026",
+          "ilcHours": 0,
+          "ilcHoursTotal": 108,
+          "clientHours": 0,
+          "status": "planned",
+          "isDelayed": false,
+          "isTightMargin": false,
+          "linkedTasks": [
+            {
+              "id": 7343,
+              "title": "[FE] Desenvolvimento Gestão de Demandas",
+              "type": "Task",
+              "state": "New",
+              "assignedTo": "Mike Andrade",
+              "originalEstimate": 40,
+              "completedWork": 0,
+              "startDate": "2026-11-11",
+              "targetDate": "2026-11-18"
+            },
+            {
+              "id": 7478,
+              "title": "[FE] Documentação Técnica API",
+              "type": "Task",
+              "state": "New",
+              "assignedTo": "Mike Andrade",
+              "originalEstimate": 16,
+              "completedWork": 0,
+              "startDate": "2026-11-16",
+              "targetDate": "2026-11-18"
+            },
+            {
+              "id": 7479,
+              "title": "[FE] Integrações (frontend + backend)",
+              "type": "Task",
+              "state": "New",
+              "assignedTo": "Mike Andrade",
+              "originalEstimate": 40,
+              "completedWork": 0,
+              "startDate": "2026-11-18",
+              "targetDate": "2026-11-25"
+            },
+            {
+              "id": 7480,
+              "title": "[BE] Desenvolvimentos adicionais backend",
+              "type": "Task",
+              "state": "New",
+              "assignedTo": "Francisco Molaia Santos",
+              "originalEstimate": 12,
+              "completedWork": 0,
+              "startDate": "2026-11-24",
+              "targetDate": "2026-11-27"
+            }
+          ]
+        },
+        {
+          "id": "7334",
+          "azureId": 7334,
           "title": "Desenvolvimento login, home, tela de módulos e perfil",
-          "fullTitle": "#7323 Desenvolvimento login, home, tela de módulos e perfil",
+          "fullTitle": "#7334 Desenvolvimento login, home, tela de módulos e perfil",
           "rawTitle": "Desenvolvimento login, home, tela de módulos e perfil",
-          "type": "Feature",
+          "type": "User Story",
           "state": "New",
           "assignedTo": "Luis Carlos Oliveira Santos Junior",
           "eapPhase": "Desenvolvimento",
           "month": "NOV / 26",
           "startDate": "2026-10-29",
-          "targetDate": "2026-11-21",
-          "dateStr": "21/11/2026",
+          "targetDate": "2026-11-14",
+          "dateStr": "14/11/2026",
           "ilcHours": 0,
-          "ilcHoursTotal": 96,
+          "ilcHoursTotal": 54,
           "clientHours": 0,
           "status": "planned",
           "isDelayed": false,
@@ -20036,21 +20118,66 @@
               "type": "Task",
               "state": "New",
               "assignedTo": "Mike Andrade",
-              "originalEstimate": 12,
+              "originalEstimate": 20,
               "completedWork": 0,
               "startDate": "2026-10-29",
-              "targetDate": "2026-11-21"
+              "targetDate": "2026-11-05"
             },
             {
               "id": 7473,
-              "title": "[BE] Desenvolvimento login, home, tela de módulos e perfil",
+              "title": "[BE] Desenvolvimentos adicionais backend + BD (Em análise)",
               "type": "Task",
               "state": "New",
               "assignedTo": "Francisco Molaia Santos",
-              "originalEstimate": 12,
+              "originalEstimate": 6,
+              "completedWork": 0,
+              "startDate": "2026-11-13",
+              "targetDate": "2026-11-18"
+            },
+            {
+              "id": 7475,
+              "title": "[BE] Integrações (frontend + backend)",
+              "type": "Task",
+              "state": "New",
+              "assignedTo": "Mike Andrade",
+              "originalEstimate": 28,
+              "completedWork": 0,
+              "startDate": "2026-11-05",
+              "targetDate": "2026-11-14"
+            }
+          ]
+        },
+        {
+          "id": "7337",
+          "azureId": 7337,
+          "title": "Desenvolvimento Tracking + Cokpit",
+          "fullTitle": "#7337 Desenvolvimento Tracking + Cokpit",
+          "rawTitle": "Desenvolvimento Tracking + Cokpit",
+          "type": "User Story",
+          "state": "New",
+          "assignedTo": "Luis Carlos Oliveira Santos Junior",
+          "eapPhase": "Desenvolvimento",
+          "month": "NOV / 26",
+          "startDate": "2026-10-29",
+          "targetDate": "2026-11-14",
+          "dateStr": "14/11/2026",
+          "ilcHours": 0,
+          "ilcHoursTotal": 70,
+          "clientHours": 0,
+          "status": "planned",
+          "isDelayed": false,
+          "isTightMargin": false,
+          "linkedTasks": [
+            {
+              "id": 7344,
+              "title": "[FE] Desenvolvimento Tracking + Cockpit",
+              "type": "Task",
+              "state": "New",
+              "assignedTo": "Mike Andrade",
+              "originalEstimate": 20,
               "completedWork": 0,
               "startDate": "2026-10-29",
-              "targetDate": "2026-11-21"
+              "targetDate": "2026-11-05"
             },
             {
               "id": 7474,
@@ -20064,71 +20191,116 @@
               "targetDate": "2026-11-05"
             },
             {
-              "id": 7475,
+              "id": 7476,
+              "title": "[BE] Desenvolvimentos adicionais backend + BD (Em análise)",
+              "type": "Task",
+              "state": "New",
+              "assignedTo": "Francisco Molaia Santos",
+              "originalEstimate": 6,
+              "completedWork": 0,
+              "startDate": "2026-11-13",
+              "targetDate": "2026-11-18"
+            },
+            {
+              "id": 7477,
               "title": "[BE] Integrações (frontend + backend)",
               "type": "Task",
               "state": "New",
               "assignedTo": "Mike Andrade",
-              "originalEstimate": 56,
+              "originalEstimate": 28,
               "completedWork": 0,
-              "startDate": "2026-11-10",
-              "targetDate": "2026-11-20"
+              "startDate": "2026-11-05",
+              "targetDate": "2026-11-14"
             }
           ]
         },
         {
-          "id": "7327",
-          "azureId": 7327,
-          "title": "Desenvolvimento Tracking + Cockpit",
-          "fullTitle": "#7327 Desenvolvimento Tracking + Cockpit",
-          "rawTitle": "Desenvolvimento Tracking + Cockpit",
-          "type": "Feature",
+          "id": "7481",
+          "azureId": 7481,
+          "title": "Homologação Gestão de Demandas",
+          "fullTitle": "#7481 Homologação Gestão de Demandas",
+          "rawTitle": "Homologação Gestão de Demandas",
+          "type": "User Story",
           "state": "New",
           "assignedTo": "Luis Carlos Oliveira Santos Junior",
-          "eapPhase": "Desenvolvimento",
-          "month": "OUT / 26",
-          "startDate": "2026-10-21",
-          "targetDate": "2026-10-31",
-          "dateStr": "31/10/2026",
+          "eapPhase": "Homologação",
+          "month": "NOV / 26",
+          "startDate": "2026-11-24",
+          "targetDate": "2026-11-28",
+          "dateStr": "28/11/2026",
           "ilcHours": 0,
-          "ilcHoursTotal": 12,
+          "ilcHoursTotal": 16,
           "clientHours": 0,
           "status": "planned",
           "isDelayed": false,
           "isTightMargin": false,
           "linkedTasks": [
             {
-              "id": 7344,
-              "title": "Desenvolvimento Tracking + Cockpit",
+              "id": 7482,
+              "title": "Homologação Gestão de Demandas",
               "type": "Task",
               "state": "New",
-              "assignedTo": "Mike Andrade",
-              "originalEstimate": 12,
+              "assignedTo": "Luis Carlos Oliveira Santos Junior",
+              "originalEstimate": 16,
               "completedWork": 0,
-              "startDate": "2026-10-21",
-              "targetDate": "2026-10-31"
+              "startDate": "2026-11-24",
+              "targetDate": "2026-11-28"
             }
           ]
         },
         {
-          "id": "7322",
-          "azureId": 7322,
-          "title": "Documentação e Prototipação",
-          "fullTitle": "#7322 Documentação e Prototipação",
-          "rawTitle": "Documentação e Prototipação",
-          "type": "Feature",
+          "id": "7340",
+          "azureId": 7340,
+          "title": "Publicação na loja (Cockpit + Tracking + Telas comuns)",
+          "fullTitle": "#7340 Publicação na loja (Cockpit + Tracking + Telas comuns)",
+          "rawTitle": "Publicação na loja (Cockpit + Tracking + Telas comuns)",
+          "type": "User Story",
+          "state": "New",
+          "assignedTo": "Luis Carlos Oliveira Santos Junior",
+          "eapPhase": "Operação Assistida",
+          "month": "NOV / 26",
+          "startDate": "2026-11-19",
+          "targetDate": "2026-11-21",
+          "dateStr": "21/11/2026",
+          "ilcHours": 0,
+          "ilcHoursTotal": 16,
+          "clientHours": 0,
+          "status": "planned",
+          "isDelayed": false,
+          "isTightMargin": false,
+          "linkedTasks": [
+            {
+              "id": 7347,
+              "title": "[FE] Publicação na loja (Cockpit + Tracking + Telas comuns)",
+              "type": "Task",
+              "state": "New",
+              "assignedTo": "Mike Andrade",
+              "originalEstimate": 16,
+              "completedWork": 0,
+              "startDate": "2026-11-19",
+              "targetDate": "2026-11-21"
+            }
+          ]
+        },
+        {
+          "id": "7330",
+          "azureId": 7330,
+          "title": "Protótipo + Documentação",
+          "fullTitle": "#7330 Protótipo + Documentação",
+          "rawTitle": "Protótipo + Documentação",
+          "type": "User Story",
           "state": "Active",
           "assignedTo": "Luis Carlos Oliveira Santos Junior",
           "eapPhase": "Planejamento",
           "month": "OUT / 26",
           "startDate": "2026-10-05",
-          "targetDate": "2026-10-21",
-          "dateStr": "21/10/2026",
+          "targetDate": "2026-10-29",
+          "dateStr": "29/10/2026",
           "ilcHours": 32,
           "ilcHoursTotal": 40,
           "clientHours": 0,
           "status": "in-progress",
-          "isDelayed": true,
+          "isDelayed": false,
           "isTightMargin": false,
           "linkedTasks": [
             {
@@ -20140,24 +20312,58 @@
               "originalEstimate": 40,
               "completedWork": 32,
               "startDate": "2026-10-05",
-              "targetDate": "2026-10-21"
+              "targetDate": "2026-10-29"
             }
           ]
         },
         {
-          "id": "7329",
-          "azureId": 7329,
-          "title": "Operação Assistida",
-          "fullTitle": "#7329 Operação Assistida",
-          "rawTitle": "Operação Assistida",
-          "type": "Feature",
+          "id": "7483",
+          "azureId": 7483,
+          "title": "Publicação na loja (Gestão de Demandas)",
+          "fullTitle": "#7483 Publicação na loja (Gestão de Demandas)",
+          "rawTitle": "Publicação na loja (Gestão de Demandas)",
+          "type": "User Story",
           "state": "New",
           "assignedTo": "Luis Carlos Oliveira Santos Junior",
           "eapPhase": "Operação Assistida",
           "month": "NOV / 26",
-          "startDate": "2026-11-02",
-          "targetDate": "2026-11-28",
-          "dateStr": "28/11/2026",
+          "startDate": "2026-11-27",
+          "targetDate": "2026-12-01",
+          "dateStr": "01/12/2026",
+          "ilcHours": 0,
+          "ilcHoursTotal": 16,
+          "clientHours": 0,
+          "status": "planned",
+          "isDelayed": false,
+          "isTightMargin": false,
+          "linkedTasks": [
+            {
+              "id": 7484,
+              "title": "Publicação na loja (Gestão de Demandas)",
+              "type": "Task",
+              "state": "New",
+              "assignedTo": "Mike Andrade",
+              "originalEstimate": 16,
+              "completedWork": 0,
+              "startDate": "2026-11-27",
+              "targetDate": "2026-12-01"
+            }
+          ]
+        },
+        {
+          "id": "7339",
+          "azureId": 7339,
+          "title": "Homologação  (Cockpit + Tracking + Telas comuns)",
+          "fullTitle": "#7339 Homologação  (Cockpit + Tracking + Telas comuns)",
+          "rawTitle": "Homologação  (Cockpit + Tracking + Telas comuns)",
+          "type": "User Story",
+          "state": "New",
+          "assignedTo": "Luis Carlos Oliveira Santos Junior",
+          "eapPhase": "Homologação",
+          "month": "NOV / 26",
+          "startDate": "2026-11-13",
+          "targetDate": "2026-11-20",
+          "dateStr": "20/11/2026",
           "ilcHours": 0,
           "ilcHoursTotal": 20,
           "clientHours": 0,
@@ -20166,83 +20372,15 @@
           "isTightMargin": false,
           "linkedTasks": [
             {
-              "id": 7347,
-              "title": "Operação Assistida",
+              "id": 7346,
+              "title": "[QA] Homologação Tracking + Cockipit + Módulos Comuns",
               "type": "Task",
               "state": "New",
               "assignedTo": "Luis Carlos Oliveira Santos Junior",
               "originalEstimate": 20,
               "completedWork": 0,
-              "startDate": "2026-11-02",
-              "targetDate": "2026-11-28"
-            }
-          ]
-        },
-        {
-          "id": "7326",
-          "azureId": 7326,
-          "title": "Desenvolvimento Gestão de Demandas",
-          "fullTitle": "#7326 Desenvolvimento Gestão de Demandas",
-          "rawTitle": "Desenvolvimento Gestão de Demandas",
-          "type": "Feature",
-          "state": "New",
-          "assignedTo": "Luis Carlos Oliveira Santos Junior",
-          "eapPhase": "Desenvolvimento",
-          "month": "OUT / 26",
-          "startDate": "2026-10-21",
-          "targetDate": "2026-10-31",
-          "dateStr": "31/10/2026",
-          "ilcHours": 0,
-          "ilcHoursTotal": 12,
-          "clientHours": 0,
-          "status": "planned",
-          "isDelayed": false,
-          "isTightMargin": false,
-          "linkedTasks": [
-            {
-              "id": 7343,
-              "title": "Desenvolvimento Gestão de Demandas",
-              "type": "Task",
-              "state": "New",
-              "assignedTo": "Mike Andrade",
-              "originalEstimate": 12,
-              "completedWork": 0,
-              "startDate": "2026-10-21",
-              "targetDate": "2026-10-31"
-            }
-          ]
-        },
-        {
-          "id": "7324",
-          "azureId": 7324,
-          "title": "Homologação",
-          "fullTitle": "#7324 Homologação",
-          "rawTitle": "Homologação",
-          "type": "Feature",
-          "state": "New",
-          "assignedTo": "Luis Carlos Oliveira Santos Junior",
-          "eapPhase": "Homologação",
-          "month": "OUT / 26",
-          "startDate": "2026-10-26",
-          "targetDate": "2026-10-31",
-          "dateStr": "31/10/2026",
-          "ilcHours": 0,
-          "ilcHoursTotal": 15,
-          "clientHours": 0,
-          "status": "planned",
-          "isDelayed": false,
-          "isTightMargin": false,
-          "linkedTasks": [
-            {
-              "id": 7346,
-              "title": "Homologação",
-              "type": "Task",
-              "state": "New",
-              "assignedTo": "Luis Carlos Oliveira Santos Junior",
-              "originalEstimate": 15,
-              "completedWork": 0,
-              "startDate": "2026-10-26",
-              "targetDate": "2026-10-31"
+              "startDate": "2026-11-13",
+              "targetDate": "2026-11-20"
             }
           ]
         }
@@ -20253,28 +20391,28 @@
         "dates": true
       },
       "azureOriginal": {
-        "ilcPlanned": 195,
+        "ilcPlanned": 340,
         "ilcExecuted": 32,
-        "progress": 16,
+        "progress": 9,
         "agreedDates": {
           "start": "2026-10-05",
-          "end": "2026-11-28"
+          "end": "2026-12-01"
         },
         "plannedDates": {
           "start": "2026-10-05",
-          "end": "2026-11-28"
+          "end": "2026-12-01"
         }
       },
       "hours": {
-        "agreed": 138,
-        "agreedHours": 138,
-        "planned": 195,
+        "agreed": 340,
+        "agreedHours": 340,
+        "planned": 340,
         "executed": 32,
         "clientPlanned": 0,
         "clientExecuted": 0,
-        "ilcPlanned": 195,
+        "ilcPlanned": 340,
         "ilcExecuted": 32,
-        "totalPlanned": 195,
+        "totalPlanned": 340,
         "totalExecuted": 32,
         "distribution": [
           {
@@ -20285,13 +20423,13 @@
           },
           {
             "phase": "Desenvolvimento",
-            "planned": 120,
+            "planned": 232,
             "executed": 0,
             "percentage": 0
           },
           {
             "phase": "Homologação",
-            "planned": 15,
+            "planned": 36,
             "executed": 0,
             "percentage": 0
           },
@@ -20303,17 +20441,15 @@
           },
           {
             "phase": "Operação Assistida",
-            "planned": 20,
+            "planned": 32,
             "executed": 0,
             "percentage": 0
           }
         ]
       },
-      "ragStatus": "red",
+      "ragStatus": "green",
       "varianceDays": 0,
-      "inconsistencies": [
-        "DELAYED_ITEMS"
-      ],
+      "inconsistencies": [],
       "hasManualIlcHours": false,
       "hasManualProgress": false,
       "priority": "P2",
@@ -20329,7 +20465,8 @@
         ]
       },
       "hasManualAgreedDates": false,
-      "agreedHours": 138
+      "agreedHours": 340,
+      "category": "new_project"
     },
     {
       "id": "caaaa6c3-0dd9-49bb-81c4-a7b757102304",
@@ -20355,8 +20492,8 @@
       },
       "progress": 26,
       "manualRagStatus": "auto",
-      "executiveSummary": "Projeto sincronizado com o Azure DevOps. Iteração: Em andamento.",
-      "azureLastUpdated": "2026-10-27T13:36:40.140Z",
+      "executiveSummary": "VERIFICAR",
+      "azureLastUpdated": "2026-10-27T16:52:09.833Z",
       "currentIterationName": "Iteration 1",
       "activities": [
         {
@@ -21300,7 +21437,8 @@
       "hasManualIlcHours": false,
       "hasManualProgress": false,
       "hasManualAgreedDates": false,
-      "agreedHours": 264
+      "agreedHours": 264,
+      "category": "new_project"
     },
     {
       "id": "75c1273d-4e9b-4b34-a534-15b868dccf3c",
@@ -21310,7 +21448,7 @@
       "description": "Migração servidor",
       "client": "ILC (Interno)",
       "status": "Finalizado",
-      "isVisible": true,
+      "isVisible": false,
       "currentMilestone": "Operação Assistida",
       "agreedDates": {
         "start": "2026-09-01",
@@ -21327,7 +21465,7 @@
       "progress": 100,
       "manualRagStatus": "auto",
       "executiveSummary": "Pendente atualização do projeto no Azure",
-      "azureLastUpdated": "2026-10-27T13:36:43.564Z",
+      "azureLastUpdated": "2026-10-27T16:52:13.086Z",
       "currentIterationName": "Iteration 1",
       "activities": [
         {
@@ -21852,7 +21990,8 @@
       "hasManualIlcHours": false,
       "hasManualProgress": false,
       "hasManualAgreedDates": false,
-      "agreedHours": 416
+      "agreedHours": 416,
+      "category": "new_project"
     },
     {
       "id": "53f7da8a-e2d4-4a4a-bdcf-5a8d4a8bfad6",
@@ -21878,8 +22017,8 @@
       },
       "progress": 0,
       "manualRagStatus": "auto",
-      "executiveSummary": "Projeto sincronizado com o Azure DevOps. Iteração: Em andamento.",
-      "azureLastUpdated": "2026-10-27T13:36:38.587Z",
+      "executiveSummary": "VERIFICAR",
+      "azureLastUpdated": "2026-10-27T16:52:08.404Z",
       "currentIterationName": null,
       "activities": [],
       "priority": "P2",
@@ -21964,7 +22103,8 @@
       "hasManualIlcHours": false,
       "hasManualProgress": false,
       "agreedHours": 0,
-      "hasManualAgreedDates": false
+      "hasManualAgreedDates": false,
+      "category": "new_project"
     }
   ]
 }

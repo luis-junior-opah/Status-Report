@@ -42,6 +42,15 @@ app.get('/api/public/stats', (req, res) => {
   });
 });
 
+app.get('/api/public/maintenance-metrics', (req, res) => {
+  const clientFilter = req.query.client || null;
+  const period = req.query.period || 'year_2026';
+  res.json({
+    success: true,
+    data: projectStore.getMaintenanceMetrics(clientFilter, period)
+  });
+});
+
 // Client Portal Endpoint (Secure Token-gated view)
 app.get('/api/public/client-portal/:slug', (req, res) => {
   const { slug } = req.params;
