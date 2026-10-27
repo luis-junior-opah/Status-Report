@@ -285,7 +285,7 @@ import { Project, ProjectActivity, EapPhase, AzureAuditReport } from '../../mode
           <div class="bg-slate-50/80 rounded-2xl p-3 border border-slate-200/80">
             <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">Esforço Azure DevOps</span>
             <span class="text-xs font-black text-slate-900 block mt-0.5">
-              {{ project.hours.totalExecuted }}h <span class="text-slate-400 font-normal">/</span> {{ project.hours.totalPlanned }}h
+              {{ formatHours(project.hours.totalExecuted) }}h <span class="text-slate-400 font-normal">/</span> {{ formatHours(project.hours.totalPlanned) }}h
             </span>
             <span class="text-[10px] text-blue-700 font-bold block mt-0.5">
               {{ getPercent(project.hours.totalExecuted, project.hours.totalPlanned) }}% da estimativa apontada
@@ -296,11 +296,11 @@ import { Project, ProjectActivity, EapPhase, AzureAuditReport } from '../../mode
           <div class="bg-slate-50/80 rounded-2xl p-3 border border-slate-200/80">
             <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">Acordo com Cliente</span>
             <div class="flex items-center justify-between text-[11px] font-black mt-0.5">
-              <span class="text-emerald-700">{{ getAgreedHours(project) }}h firmadas</span>
+              <span class="text-emerald-700">{{ formatHours(getAgreedHours(project)) }}h firmadas</span>
               <span
                 [ngClass]="getAgreedBalance(project) >= 0 ? 'text-emerald-600' : 'text-rose-600'"
                 class="text-[10px] font-extrabold">
-                {{ getAgreedBalance(project) >= 0 ? '+' + getAgreedBalance(project) + 'h saldo' : getAgreedBalance(project) + 'h saldo' }}
+                {{ getAgreedBalance(project) >= 0 ? '+' + formatHours(getAgreedBalance(project)) + 'h saldo' : formatHours(getAgreedBalance(project)) + 'h saldo' }}
               </span>
             </div>
             <span
@@ -439,7 +439,7 @@ import { Project, ProjectActivity, EapPhase, AzureAuditReport } from '../../mode
                       {{ getActivitiesForPhase(project, phase.name).length }} {{ getActivitiesForPhase(project, phase.name).length === 1 ? 'entrega' : 'entregas' }}
                     </span>
                     <span class="text-blue-700 font-black bg-blue-50 px-2 py-0.5 rounded-md border border-blue-100">
-                      {{ getPhaseHours(project, phase.name) }}h
+                      {{ formatHours(getPhaseHours(project, phase.name)) }}h
                     </span>
                   </div>
                 </div>
@@ -517,7 +517,7 @@ import { Project, ProjectActivity, EapPhase, AzureAuditReport } from '../../mode
                 Distribuição de Horas por Etapa da EAP
               </h3>
               <span class="text-xs font-bold text-slate-500">
-                Total: {{ project.hours.totalPlanned }}h
+                Total: {{ formatHours(project.hours.totalPlanned) }}h
               </span>
             </div>
 
@@ -531,8 +531,8 @@ import { Project, ProjectActivity, EapPhase, AzureAuditReport } from '../../mode
                     <span>{{ dist.phase }}</span>
                   </div>
                   <div class="text-right">
-                    <span class="text-slate-900 font-extrabold">{{ dist.executed }}h</span>
-                    <span class="text-slate-400 font-normal"> / {{ dist.planned }}h</span>
+                    <span class="text-slate-900 font-extrabold">{{ formatHours(dist.executed) }}h</span>
+                    <span class="text-slate-400 font-normal"> / {{ formatHours(dist.planned) }}h</span>
                     <span class="text-blue-700 font-bold ml-1.5">({{ dist.percentage }}%)</span>
                   </div>
                 </div>
@@ -583,7 +583,7 @@ import { Project, ProjectActivity, EapPhase, AzureAuditReport } from '../../mode
                 </div>
                 <div class="my-1">
                   <span class="text-2xl font-black text-emerald-700 tracking-tight leading-none">
-                    {{ getAgreedHours(project) }}<span class="text-xs font-normal text-emerald-600">h</span>
+                    {{ formatHours(getAgreedHours(project)) }}<span class="text-xs font-normal text-emerald-600">h</span>
                   </span>
                 </div>
                 <span class="text-[9px] text-emerald-700 font-semibold block">
@@ -598,7 +598,7 @@ import { Project, ProjectActivity, EapPhase, AzureAuditReport } from '../../mode
                 </div>
                 <div class="my-1">
                   <span class="text-2xl font-black text-blue-700 tracking-tight leading-none">
-                    {{ project.hours.totalPlanned }}<span class="text-xs font-normal text-blue-600">h</span>
+                    {{ formatHours(project.hours.totalPlanned) }}<span class="text-xs font-normal text-blue-600">h</span>
                   </span>
                 </div>
                 <span class="text-[9px] text-blue-700 font-semibold block">
@@ -613,7 +613,7 @@ import { Project, ProjectActivity, EapPhase, AzureAuditReport } from '../../mode
                 </div>
                 <div class="my-1">
                   <span class="text-2xl font-black text-slate-900 tracking-tight leading-none">
-                    {{ project.hours.totalExecuted }}<span class="text-xs font-normal text-slate-500">h</span>
+                    {{ formatHours(project.hours.totalExecuted) }}<span class="text-xs font-normal text-slate-500">h</span>
                   </span>
                 </div>
                 <span class="text-[9px] text-slate-600 font-semibold block">
@@ -627,7 +627,7 @@ import { Project, ProjectActivity, EapPhase, AzureAuditReport } from '../../mode
               <div class="flex items-center justify-between text-xs">
                 <span class="font-bold text-slate-700">Consumo do Volume Contratual</span>
                 <span class="font-black text-slate-900">
-                  {{ project.hours.totalExecuted }}h de {{ getAgreedHours(project) }}h
+                  {{ formatHours(project.hours.totalExecuted) }}h de {{ formatHours(getAgreedHours(project)) }}h
                 </span>
               </div>
 
@@ -651,7 +651,7 @@ import { Project, ProjectActivity, EapPhase, AzureAuditReport } from '../../mode
                   <span
                     [ngClass]="getAgreedBalance(project) >= 0 ? 'text-emerald-700 bg-emerald-50 border-emerald-200' : 'text-rose-700 bg-rose-50 border-rose-200'"
                     class="font-extrabold px-1.5 py-0.2 rounded-md border text-[10px]">
-                    {{ getAgreedBalance(project) >= 0 ? '+' + getAgreedBalance(project) + 'h disponíveis' : getAgreedBalance(project) + 'h excedidas' }}
+                    {{ getAgreedBalance(project) >= 0 ? '+' + formatHours(getAgreedBalance(project)) + 'h disponíveis' : formatHours(getAgreedBalance(project)) + 'h excedidas' }}
                   </span>
                 </div>
                 
@@ -668,7 +668,7 @@ import { Project, ProjectActivity, EapPhase, AzureAuditReport } from '../../mode
                 *ngIf="project.hours.totalPlanned > getAgreedHours(project)"
                 class="flex items-center gap-1.5 text-[10px] text-amber-800 bg-amber-50/90 border border-amber-200 rounded-lg px-2.5 py-1">
                 <span>⚠️</span>
-                <span>A estimativa técnica no Azure ({{ project.hours.totalPlanned }}h) excede o acordo firmado em +{{ project.hours.totalPlanned - getAgreedHours(project) }}h.</span>
+                <span>A estimativa técnica no Azure ({{ formatHours(project.hours.totalPlanned) }}h) excede o acordo firmado em +{{ formatHours(project.hours.totalPlanned - getAgreedHours(project)) }}h.</span>
               </div>
             </div>
           </div>
@@ -756,7 +756,7 @@ import { Project, ProjectActivity, EapPhase, AzureAuditReport } from '../../mode
             <div class="bg-slate-50 p-3.5 rounded-2xl border border-slate-100">
               <div class="flex items-center justify-between mb-2">
                 <span class="font-bold text-slate-700 text-xs uppercase tracking-wider">Esforço em Horas (Tasks Vinculadas)</span>
-                <span class="font-black text-sm text-slate-900">{{ act.ilcHours }}h / {{ act.ilcHoursTotal }}h</span>
+                <span class="font-black text-sm text-slate-900">{{ formatHours(act.ilcHours) }}h / {{ formatHours(act.ilcHoursTotal) }}h</span>
               </div>
               <div class="w-full bg-slate-200 rounded-full h-2 overflow-hidden mb-1">
                 <div
@@ -1275,7 +1275,8 @@ export class EapGanttComponent {
 
   getPhaseHours(project: Project, phaseName: EapPhase): number {
     const acts = this.getActivitiesForPhase(project, phaseName);
-    return acts.reduce((sum, a) => sum + (a.ilcHoursTotal || 0), 0);
+    const sum = acts.reduce((acc, a) => acc + (a.ilcHoursTotal || 0), 0);
+    return Math.round(Number(sum) * 10) / 10;
   }
 
   // Parse date range for activity
@@ -1502,14 +1503,22 @@ export class EapGanttComponent {
 
   Math = Math;
 
+  formatHours(val?: number | null): string {
+    if (val === null || val === undefined || isNaN(val)) return '0';
+    const rounded = Math.round(Number(val) * 10) / 10;
+    return rounded.toLocaleString('pt-BR', { minimumFractionDigits: 0, maximumFractionDigits: 1 });
+  }
+
   getAgreedHours(project?: Project | null): number {
     if (!project) return 0;
-    return project.hours?.agreed || project.agreedHours || project.hours?.totalPlanned || 0;
+    const h = project.hours?.agreed ?? project.agreedHours ?? project.hours?.totalPlanned ?? 0;
+    return Math.round(Number(h) * 10) / 10;
   }
 
   getAgreedBalance(project?: Project | null): number {
     if (!project) return 0;
-    return this.getAgreedHours(project) - (project.hours?.totalExecuted || 0);
+    const balance = this.getAgreedHours(project) - (project.hours?.totalExecuted || 0);
+    return Math.round(Number(balance) * 10) / 10;
   }
 
   getAgreedPercent(executed: number, agreed: number): number {

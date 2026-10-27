@@ -451,7 +451,7 @@ import { WeeklyReport, WeeklyReportProject, RoadmapProject, BoardDecision } from
 
                   <div class="flex items-center justify-between text-[10px] text-slate-500 font-medium">
                     <span class="font-bold text-slate-700 truncate max-w-[140px]">{{ p.client }}</span>
-                    <span>{{ (p.activities?.length || 0) }} entregas • {{ p.hours.totalPlanned }}h (Azure)</span>
+                    <span>{{ (p.activities?.length || 0) }} entregas • {{ formatHours(p.hours.totalPlanned) }}h (Azure)</span>
                   </div>
 
                   <!-- Inconsistency Badges -->
@@ -893,6 +893,7 @@ import { WeeklyReport, WeeklyReportProject, RoadmapProject, BoardDecision } from
                       </label>
                       <input
                         type="number"
+                        step="0.1"
                         min="0"
                         [(ngModel)]="p.hours.agreed"
                         placeholder="Ex: 250"
@@ -906,6 +907,7 @@ import { WeeklyReport, WeeklyReportProject, RoadmapProject, BoardDecision } from
                       </label>
                       <input
                         type="number"
+                        step="0.1"
                         [(ngModel)]="p.hours.totalPlanned"
                         [disabled]="isFieldLocked(p, 'ilcHours')"
                         class="w-full border border-slate-300 rounded-lg px-2.5 py-1.5 bg-white disabled:bg-slate-100 disabled:text-slate-500 font-bold">
@@ -918,6 +920,7 @@ import { WeeklyReport, WeeklyReportProject, RoadmapProject, BoardDecision } from
                       </label>
                       <input
                         type="number"
+                        step="0.1"
                         [(ngModel)]="p.hours.totalExecuted"
                         [disabled]="isFieldLocked(p, 'ilcHours')"
                         class="w-full border border-slate-300 rounded-lg px-2.5 py-1.5 bg-white disabled:bg-slate-100 disabled:text-slate-500 font-bold">
@@ -1008,6 +1011,7 @@ import { WeeklyReport, WeeklyReportProject, RoadmapProject, BoardDecision } from
                             <div class="flex items-center gap-1">
                               <input
                                 type="number"
+                                step="0.1"
                                 [(ngModel)]="act.ilcHours"
                                 placeholder="0"
                                 class="w-12 border border-slate-300 rounded-lg px-1.5 py-1 text-xs text-center"
@@ -1015,6 +1019,7 @@ import { WeeklyReport, WeeklyReportProject, RoadmapProject, BoardDecision } from
                               <span class="text-slate-400">/</span>
                               <input
                                 type="number"
+                                step="0.1"
                                 [(ngModel)]="act.ilcHoursTotal"
                                 placeholder="0"
                                 class="w-12 border border-slate-300 rounded-lg px-1.5 py-1 text-xs text-center"
@@ -2102,8 +2107,8 @@ import { WeeklyReport, WeeklyReportProject, RoadmapProject, BoardDecision } from
                     <div class="flex items-center gap-1.5" [ngClass]="item.category === 'Task / Bug' && (item.originalEstimate === null || item.originalEstimate === 0) ? 'text-amber-700 font-bold' : 'text-slate-600'">
                       <span>⏱️ Horas:</span>
                       <span>
-                        Plan: <strong>{{ item.originalEstimate ?? 0 }}h</strong> |
-                        Exec: <strong>{{ item.completedWork ?? 0 }}h</strong>
+                        Plan: <strong>{{ formatHours(item.originalEstimate) }}h</strong> |
+                        Exec: <strong>{{ formatHours(item.completedWork) }}h</strong>
                       </span>
                     </div>
                   </div>
@@ -2622,10 +2627,22 @@ export class CuratorModalComponent implements OnInit {
     try {
       if (p.hours) {
         if (p.hours.agreed !== undefined) {
-          p.hours.agreed = Number(p.hours.agreed) || 0;
+          p.hours.agreed = Math.round((Number(p.hours.agreed) || 0) * 10) / 10;
           p.hours.agreedHours = p.hours.agreed;
           p.agreedHours = p.hours.agreed;
         }
+        if (p.hours.totalPlanned !== undefined) {
+          p.hours.totalPlanned = Math.round((Number(p.hours.totalPlanned) || 0) * 10) / 10;
+        }
+        if (p.hours.totalExecuted !== undefined) {
+          p.hours.totalExecuted = Math.round((Number(p.hours.totalExecuted) || 0) * 10) / 10;
+        }
+      }
+      if (p.activities) {
+        p.activities.forEach(a => {
+          if (a.ilcHours !== undefined) a.ilcHours = Math.round((Number(a.ilcHours) || 0) * 10) / 10;
+          if (a.ilcHoursTotal !== undefined) a.ilcHoursTotal = Math.round((Number(a.ilcHoursTotal) || 0) * 10) / 10;
+        });
       }
       await this.service.updateProject(p.id, {
         name: p.name,
@@ -2808,6 +2825,10 @@ export class CuratorModalComponent implements OnInit {
     } finally {
       this.isUpdatingPat.set(false);
     }
+  }
+
+  formatHours(val?: number | null): string {
+    return this.service.formatHours(val);
   }
 
   getInconsistencyLabel(inc: string): string {

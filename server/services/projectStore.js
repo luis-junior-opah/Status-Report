@@ -79,6 +79,13 @@ class ProjectStore {
               members: uniqueAssigned
             };
           }
+          if (p.activities) {
+            p.activities.forEach(a => {
+              if (a.ilcHours !== undefined) a.ilcHours = this.roundHours(a.ilcHours);
+              if (a.ilcHoursTotal !== undefined) a.ilcHoursTotal = this.roundHours(a.ilcHoursTotal);
+            });
+          }
+          p.hours = this.calculateHours(p);
           p.ragStatus = this.calculateRagStatus(p);
           return p;
         });
@@ -244,6 +251,11 @@ class ProjectStore {
     return list;
   }
 
+  roundHours(val) {
+    if (val === null || val === undefined || isNaN(val)) return 0;
+    return Math.round(Number(val) * 10) / 10;
+  }
+
   // Calculates hours breakdown - Option B: Client hours edited in Curator, ILC hours from Tasks or Curator
   // ZERO mock: If project has no activities and no manual hours, planned hours remain 0!
   calculateHours(project) {
@@ -265,37 +277,41 @@ class ProjectStore {
     };
 
     for (const act of activities) {
-      const exec = Number(act.ilcHours) || 0;
-      const plan = Number(act.ilcHoursTotal) || exec;
-      ilcExecuted += exec;
-      ilcPlanned += plan;
+      const exec = this.roundHours(act.ilcHours);
+      const plan = this.roundHours(act.ilcHoursTotal || exec);
+      act.ilcHours = exec;
+      act.ilcHoursTotal = plan;
+      ilcExecuted = this.roundHours(ilcExecuted + exec);
+      ilcPlanned = this.roundHours(ilcPlanned + plan);
 
       if (distribution[act.eapPhase]) {
-        distribution[act.eapPhase].executed += exec;
-        distribution[act.eapPhase].planned += plan;
+        distribution[act.eapPhase].executed = this.roundHours(distribution[act.eapPhase].executed + exec);
+        distribution[act.eapPhase].planned = this.roundHours(distribution[act.eapPhase].planned + plan);
       }
     }
 
     // If manual override for hours was explicitly set in Curator AND the field is unlocked
     if (project.lockedFields?.ilcHours === false && project.hasManualIlcHours && project.hours?.ilcPlanned !== undefined) {
-      ilcPlanned = Number(project.hours.ilcPlanned) || 0;
-      ilcExecuted = Number(project.hours.ilcExecuted) || 0;
+      ilcPlanned = this.roundHours(project.hours.ilcPlanned);
+      ilcExecuted = this.roundHours(project.hours.ilcExecuted);
     } else if (ilcPlanned === 0 && ilcExecuted === 0) {
       // If activities don't have individual rolled-up hours, fallback to project-level task hours
       if (project.azureOriginal?.ilcPlanned || project.azureOriginal?.ilcExecuted) {
-        ilcPlanned = project.azureOriginal.ilcPlanned;
-        ilcExecuted = project.azureOriginal.ilcExecuted;
+        ilcPlanned = this.roundHours(project.azureOriginal.ilcPlanned);
+        ilcExecuted = this.roundHours(project.azureOriginal.ilcExecuted);
       } else if (project.hours?.ilcPlanned || project.hours?.ilcExecuted) {
-        ilcPlanned = Number(project.hours.ilcPlanned) || 0;
-        ilcExecuted = Number(project.hours.ilcExecuted) || 0;
+        ilcPlanned = this.roundHours(project.hours.ilcPlanned);
+        ilcExecuted = this.roundHours(project.hours.ilcExecuted);
       }
     }
 
-    const totalPlanned = ilcPlanned;
-    const totalExecuted = ilcExecuted;
+    const totalPlanned = this.roundHours(ilcPlanned);
+    const totalExecuted = this.roundHours(ilcExecuted);
 
     if (agreedHours === null || isNaN(agreedHours)) {
       agreedHours = totalPlanned;
+    } else {
+      agreedHours = this.roundHours(agreedHours);
     }
 
     return {
@@ -305,14 +321,14 @@ class ProjectStore {
       executed: totalExecuted,
       clientPlanned: 0,
       clientExecuted: 0,
-      ilcPlanned,
-      ilcExecuted,
+      ilcPlanned: totalPlanned,
+      ilcExecuted: totalExecuted,
       totalPlanned,
       totalExecuted,
       distribution: Object.entries(distribution).map(([phase, data]) => ({
         phase,
-        planned: data.planned,
-        executed: data.executed,
+        planned: this.roundHours(data.planned),
+        executed: this.roundHours(data.executed),
         percentage: data.planned > 0 ? Math.min(100, Math.round((data.executed / data.planned) * 100)) : 0
       }))
     };

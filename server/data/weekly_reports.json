@@ -9,10 +9,10 @@
     "executiveSummary": "Concluímos com sucesso a migração dos servidores e retomamos o desenvolvimento do aplicativo ILC, priorizando as funcionalidades de Frete Expresso, Tracking e Gestão de Demandas. Paralelamente, iniciamos o backend do projeto de Assinatura de Contratos via ZapSign e avançamos na Torre de Controle 4.0 (Gestão de Demandas). Também estamos conduzindo o desenvolvimento e a homologação simultânea do Frete Expresso 2.0, abrangendo os fluxos de solicitação, cotação e o painel do transportador para resposta de propostas.",
     "statusPulse": {
       "totalActive": 9,
-      "onTrack": 4,
-      "attention": 2,
-      "critical": 3,
-      "averageProgress": 49
+      "onTrack": 3,
+      "attention": 1,
+      "critical": 5,
+      "averageProgress": 43
     },
     "activeProjects": [
       {
@@ -22,7 +22,7 @@
         "clientLogo": "/assets/logos/ilc.png?t=1791579200206",
         "status": "Ativo",
         "currentMilestone": "Planejamento",
-        "progress": 23,
+        "progress": 16,
         "ragStatus": "red",
         "agreedDelivery": "2026-11-28",
         "targetDelivery": "2026-11-28",
@@ -33,7 +33,7 @@
         "previousStatusReportDate": "2026-10-06",
         "attentionPoints": "Pendente atualização no Azure DEVOPS.",
         "hoursExecuted": 32,
-        "hoursPlanned": 138,
+        "hoursPlanned": 195,
         "priority": "P2",
         "systems": [
           "App ILC"
@@ -95,9 +95,9 @@
         "client": "John Deere",
         "clientLogo": "/assets/logos/john-deere.png?t=1791579235167",
         "status": "Ativo",
-        "currentMilestone": "Treinamento",
-        "progress": 68,
-        "ragStatus": "amber",
+        "currentMilestone": "Operação Assistida",
+        "progress": 75,
+        "ragStatus": "green",
         "agreedDelivery": "2026-11-30",
         "targetDelivery": "2026-11-30",
         "varianceDays": 0,
@@ -106,7 +106,7 @@
         "previousStatusReport": "Treinamento junto aos stakeholders será realizado no dia 23/10.",
         "previousStatusReportDate": "2026-10-06",
         "attentionPoints": "Execução fluindo dentro dos marcos acordados.",
-        "hoursExecuted": 82,
+        "hoursExecuted": 90,
         "hoursPlanned": 120,
         "priority": "P2",
         "systems": [
@@ -132,8 +132,8 @@
         "clientLogo": "/assets/logos/john-deere.png?t=1791579235167",
         "status": "Ativo",
         "currentMilestone": "Desenvolvimento",
-        "progress": 47,
-        "ragStatus": "green",
+        "progress": 59,
+        "ragStatus": "red",
         "agreedDelivery": "2027-01-16",
         "targetDelivery": "2027-01-16",
         "varianceDays": 0,
@@ -142,7 +142,7 @@
         "previousStatusReport": "Desenvolvimento e homologação das etapas solicitações, cotações, painel transportador e respostas cotações em andamento.",
         "previousStatusReportDate": "2026-10-06",
         "attentionPoints": "Execução fluindo dentro dos marcos acordados.",
-        "hoursExecuted": 349,
+        "hoursExecuted": 444,
         "hoursPlanned": 750,
         "priority": "P1",
         "systems": [
@@ -170,7 +170,7 @@
         "status": "Ativo",
         "currentMilestone": "Treinamento",
         "progress": 66,
-        "ragStatus": "amber",
+        "ragStatus": "red",
         "agreedDelivery": "2026-11-17",
         "targetDelivery": "2026-11-17",
         "varianceDays": 0,
@@ -205,8 +205,8 @@
         "clientLogo": "/assets/logos/mirassol.png?t=1791579205262",
         "status": "Ativo",
         "currentMilestone": "Desenvolvimento",
-        "progress": 40,
-        "ragStatus": "green",
+        "progress": 47,
+        "ragStatus": "amber",
         "agreedDelivery": "2026-12-05",
         "targetDelivery": "2026-12-05",
         "varianceDays": 0,
@@ -215,8 +215,8 @@
         "previousStatusReport": "Desenolvimento backend iniciado.",
         "previousStatusReportDate": "2026-10-06",
         "attentionPoints": "Disponibilização do usuário por parte da Mirassol para assinatura do subcontratante.",
-        "hoursExecuted": 76,
-        "hoursPlanned": 173.59999999999997,
+        "hoursExecuted": 89,
+        "hoursPlanned": 184.7,
         "priority": "P1",
         "systems": [
           "App Smart Tracking",
@@ -289,7 +289,7 @@
         "targetDelivery": "2027-01-31",
         "varianceDays": 0,
         "statusReport": "Projeto sincronizado com o Azure DevOps. Iteração: Em andamento.",
-        "statusReportDate": "2026-10-22",
+        "statusReportDate": "2026-10-27",
         "previousStatusReport": "Projeto iniciado e sincronizado com o Azure DevOps. ",
         "previousStatusReportDate": "2026-10-22",
         "attentionPoints": "Execução fluindo dentro dos marcos acordados.",
@@ -297,11 +297,21 @@
         "hoursPlanned": 0,
         "priority": "P2",
         "systems": [],
-        "teamLeader": "",
-        "teamMembers": [],
+        "teamLeader": "Vitor Neves",
+        "teamMembers": [
+          "Vitor Neves",
+          "Luis Santos",
+          "Thiago Rodrigues",
+          "Mike Andrade"
+        ],
         "team": {
-          "leader": "",
-          "members": []
+          "leader": "Vitor Neves",
+          "members": [
+            "Vitor Neves",
+            "Luis Santos",
+            "Thiago Rodrigues",
+            "Mike Andrade"
+          ]
         }
       },
       {
@@ -348,19 +358,19 @@
         "client": "Mirassol",
         "clientLogo": "/assets/logos/mirassol.png?t=1791579205262",
         "status": "Ativo",
-        "currentMilestone": "Planejamento",
-        "progress": 100,
+        "currentMilestone": "Desenvolvimento",
+        "progress": 26,
         "ragStatus": "green",
-        "agreedDelivery": "2026-10-31",
-        "targetDelivery": "2026-10-31",
+        "agreedDelivery": "2026-11-13",
+        "targetDelivery": "2026-11-13",
         "varianceDays": 0,
         "statusReport": "Projeto sincronizado com o Azure DevOps. Iteração: Em andamento.",
-        "statusReportDate": "2026-10-06",
+        "statusReportDate": "2026-10-27",
         "previousStatusReport": "Desenvolvimento da interface de gestão de demandas. Pendente desenvolvimento da Proc para consulta dos marcos das demandas.",
         "previousStatusReportDate": "2026-10-06",
         "attentionPoints": "Pendente atualização no Azure DEVOPS.",
-        "hoursExecuted": 2,
-        "hoursPlanned": 2,
+        "hoursExecuted": 69,
+        "hoursPlanned": 264,
         "priority": "P1",
         "systems": [
           "Portal Integrator"
@@ -368,13 +378,15 @@
         "teamLeader": "Vitor Neves",
         "teamMembers": [
           "Vitor Neves",
-          "Silvio Torres"
+          "Silvio Torres",
+          "Luis Santos"
         ],
         "team": {
           "leader": "Vitor Neves",
           "members": [
             "Vitor Neves",
-            "Silvio Torres"
+            "Silvio Torres",
+            "Luis Santos"
           ]
         }
       }
@@ -472,10 +484,10 @@
     "executiveSummary": "Concluímos com sucesso a migração dos servidores e retomamos o desenvolvimento do aplicativo ILC, priorizando as funcionalidades de Frete Expresso, Tracking e Gestão de Demandas. Paralelamente, iniciamos o backend do projeto de Assinatura de Contratos via ZapSign e avançamos na Torre de Controle 4.0 (Gestão de Demandas). Também estamos conduzindo o desenvolvimento e a homologação simultânea do Frete Expresso 2.0, abrangendo os fluxos de solicitação, cotação e o painel do transportador para resposta de propostas.",
     "statusPulse": {
       "totalActive": 9,
-      "onTrack": 4,
-      "attention": 2,
-      "critical": 3,
-      "averageProgress": 49
+      "onTrack": 3,
+      "attention": 1,
+      "critical": 5,
+      "averageProgress": 43
     },
     "activeProjects": [
       {
@@ -485,7 +497,7 @@
         "clientLogo": "/assets/logos/ilc.png?t=1791579200206",
         "status": "Ativo",
         "currentMilestone": "Planejamento",
-        "progress": 23,
+        "progress": 16,
         "ragStatus": "red",
         "agreedDelivery": "2026-11-28",
         "targetDelivery": "2026-11-28",
@@ -496,7 +508,7 @@
         "previousStatusReportDate": "2026-09-29",
         "attentionPoints": "Execução fluindo dentro dos marcos acordados.",
         "hoursExecuted": 32,
-        "hoursPlanned": 138,
+        "hoursPlanned": 195,
         "priority": "P2",
         "systems": [
           "App ILC"
@@ -558,9 +570,9 @@
         "client": "John Deere",
         "clientLogo": "/assets/logos/john-deere.png?t=1791579235167",
         "status": "Ativo",
-        "currentMilestone": "Treinamento",
-        "progress": 68,
-        "ragStatus": "amber",
+        "currentMilestone": "Operação Assistida",
+        "progress": 75,
+        "ragStatus": "green",
         "agreedDelivery": "2026-11-30",
         "targetDelivery": "2026-11-30",
         "varianceDays": 0,
@@ -569,7 +581,7 @@
         "previousStatusReport": "Fase de homologação realizada e validada junto ao cliente.",
         "previousStatusReportDate": "2026-09-29",
         "attentionPoints": "Execução fluindo dentro dos marcos acordados.",
-        "hoursExecuted": 82,
+        "hoursExecuted": 90,
         "hoursPlanned": 120,
         "priority": "P2",
         "systems": [
@@ -595,8 +607,8 @@
         "clientLogo": "/assets/logos/john-deere.png?t=1791579235167",
         "status": "Ativo",
         "currentMilestone": "Desenvolvimento",
-        "progress": 47,
-        "ragStatus": "green",
+        "progress": 59,
+        "ragStatus": "red",
         "agreedDelivery": "2027-01-16",
         "targetDelivery": "2027-01-16",
         "varianceDays": 0,
@@ -605,7 +617,7 @@
         "previousStatusReport": "Desenvolvimento e homologação da arquitetura e base operacional concluídos.",
         "previousStatusReportDate": "2026-09-29",
         "attentionPoints": "Execução fluindo dentro dos marcos acordados.",
-        "hoursExecuted": 349,
+        "hoursExecuted": 444,
         "hoursPlanned": 750,
         "priority": "P1",
         "systems": [
@@ -633,7 +645,7 @@
         "status": "Ativo",
         "currentMilestone": "Treinamento",
         "progress": 66,
-        "ragStatus": "amber",
+        "ragStatus": "red",
         "agreedDelivery": "2026-11-17",
         "targetDelivery": "2026-11-17",
         "varianceDays": 0,
@@ -668,8 +680,8 @@
         "clientLogo": "/assets/logos/mirassol.png?t=1791579205262",
         "status": "Ativo",
         "currentMilestone": "Desenvolvimento",
-        "progress": 40,
-        "ragStatus": "green",
+        "progress": 47,
+        "ragStatus": "amber",
         "agreedDelivery": "2026-12-05",
         "targetDelivery": "2026-12-05",
         "varianceDays": 0,
@@ -678,8 +690,8 @@
         "previousStatusReport": "Inclusão do projeto na esteira de desenvolvimento.",
         "previousStatusReportDate": "2026-09-29",
         "attentionPoints": "Disponibilização do usuário por parte da Mirassol para assinatura do subcontratante.",
-        "hoursExecuted": 76,
-        "hoursPlanned": 173.59999999999997,
+        "hoursExecuted": 89,
+        "hoursPlanned": 184.7,
         "priority": "P1",
         "systems": [
           "App Smart Tracking",
@@ -760,11 +772,21 @@
         "hoursPlanned": 0,
         "priority": "P2",
         "systems": [],
-        "teamLeader": "",
-        "teamMembers": [],
+        "teamLeader": "Vitor Neves",
+        "teamMembers": [
+          "Vitor Neves",
+          "Luis Santos",
+          "Thiago Rodrigues",
+          "Mike Andrade"
+        ],
         "team": {
-          "leader": "",
-          "members": []
+          "leader": "Vitor Neves",
+          "members": [
+            "Vitor Neves",
+            "Luis Santos",
+            "Thiago Rodrigues",
+            "Mike Andrade"
+          ]
         }
       },
       {
@@ -811,19 +833,19 @@
         "client": "Mirassol",
         "clientLogo": "/assets/logos/mirassol.png?t=1791579205262",
         "status": "Ativo",
-        "currentMilestone": "Planejamento",
-        "progress": 100,
+        "currentMilestone": "Desenvolvimento",
+        "progress": 26,
         "ragStatus": "green",
-        "agreedDelivery": "2026-10-31",
-        "targetDelivery": "2026-10-31",
+        "agreedDelivery": "2026-11-13",
+        "targetDelivery": "2026-11-13",
         "varianceDays": 0,
         "statusReport": "Desenvolvimento da interface de gestão de demandas. Pendente desenvolvimento da Proc para consulta dos marcos das demandas.",
         "statusReportDate": "2026-10-06",
         "previousStatusReport": "Apresentação do projeto a Mirassol.",
         "previousStatusReportDate": "2026-09-29",
         "attentionPoints": "Execução fluindo dentro dos marcos acordados.",
-        "hoursExecuted": 2,
-        "hoursPlanned": 2,
+        "hoursExecuted": 69,
+        "hoursPlanned": 264,
         "priority": "P1",
         "systems": [
           "Portal Integrator"
@@ -831,13 +853,15 @@
         "teamLeader": "Vitor Neves",
         "teamMembers": [
           "Vitor Neves",
-          "Silvio Torres"
+          "Silvio Torres",
+          "Luis Santos"
         ],
         "team": {
           "leader": "Vitor Neves",
           "members": [
             "Vitor Neves",
-            "Silvio Torres"
+            "Silvio Torres",
+            "Luis Santos"
           ]
         }
       }

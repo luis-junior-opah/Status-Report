@@ -182,7 +182,7 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
               </span>
               <span class="text-[9px] sm:text-[10px] font-semibold block truncate mt-0.5"
                 [ngClass]="getHoursConsumption().percent <= 85 ? 'text-sky-800' : (getHoursConsumption().percent <= 100 ? 'text-amber-800' : 'text-rose-800')">
-                {{ getHoursConsumption().executed }}h / {{ getHoursConsumption().agreed }}h
+                {{ formatHours(getHoursConsumption().executed) }}h / {{ formatHours(getHoursConsumption().agreed) }}h
               </span>
 
               <!-- Floating Tooltip -->
@@ -1835,6 +1835,10 @@ export class ExecutiveReportComponent implements OnInit {
     return Math.round((count / total) * 100);
   }
 
+  formatHours(val?: number | null): string {
+    return this.service.formatHours(val);
+  }
+
   getHoursConsumption(): { percent: number; executed: number; agreed: number } {
     const list = this.currentReport()?.activeProjects || [];
     const activeList = list.filter(p => (p.status || 'Ativo') === 'Ativo');
@@ -1846,12 +1850,16 @@ export class ExecutiveReportComponent implements OnInit {
       const origProj = allProjects.find(x => x.id === p.projectId);
       const agreedH = origProj?.agreedHours ?? (origProj as any)?.hours?.agreed ?? p.hoursPlanned ?? 0;
       const execH = p.hoursExecuted || 0;
-      totalExec += execH;
-      totalAgreed += agreedH;
+      totalExec += Number(execH) || 0;
+      totalAgreed += Number(agreedH) || 0;
     }
 
     const percent = totalAgreed > 0 ? Math.round((totalExec / totalAgreed) * 100) : 0;
-    return { percent, executed: Math.round(totalExec), agreed: Math.round(totalAgreed) };
+    return {
+      percent,
+      executed: Math.round(totalExec * 10) / 10,
+      agreed: Math.round(totalAgreed * 10) / 10
+    };
   }
 
   getAverageVarianceDays(): { avgDays: number; delayedCount: number } {

@@ -131,10 +131,10 @@ import { ProjectService } from '../../services/project.service';
               </td>
               <td class="py-3 px-4 whitespace-nowrap text-slate-700">
                 <div>
-                  <span class="font-bold">{{ p.hours.totalExecuted }}h</span> / {{ p.hours.totalPlanned }}h
+                  <span class="font-bold">{{ formatHours(p.hours.totalExecuted) }}h</span> / {{ formatHours(p.hours.totalPlanned) }}h
                 </div>
                 <div *ngIf="p.hours.agreed" class="text-[10px] text-emerald-700 font-bold">
-                  Acordo: {{ p.hours.agreed }}h
+                  Acordo: {{ formatHours(p.hours.agreed) }}h
                 </div>
               </td>
               <td class="py-3 px-4 whitespace-nowrap text-center">
@@ -153,6 +153,10 @@ import { ProjectService } from '../../services/project.service';
 })
 export class ProjectTableComponent {
   service = inject(ProjectService);
+
+  formatHours(val?: number | null): string {
+    return this.service.formatHours(val);
+  }
 
   formatDate(dateStr?: string | null) {
     if (!dateStr) return '-';

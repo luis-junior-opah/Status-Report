@@ -28,6 +28,11 @@ class AzureDevOpsService {
     }
   }
 
+  roundHours(val) {
+    if (val === null || val === undefined || isNaN(val)) return 0;
+    return Math.round(Number(val) * 10) / 10;
+  }
+
   async fetchApi(endpoint, options = {}) {
     const url = `${this.orgUrl}/${endpoint.replace(/^\//, '')}`;
     const res = await fetch(url, {
@@ -248,13 +253,13 @@ class AzureDevOpsService {
           const chunkIds = taskItems.slice(i, i + 100).map(t => t.id).join(',');
           const chunkRes = await this.fetchApi(`_apis/wit/workitems?ids=${chunkIds}&$expand=relations&api-version=7.0`);
           for (const item of (chunkRes.value || [])) {
-            const est = Number(item.fields?.['Microsoft.VSTS.Scheduling.OriginalEstimate']) || 0;
-            const comp = Number(item.fields?.['Microsoft.VSTS.Scheduling.CompletedWork']) || 0;
+            const est = this.roundHours(Number(item.fields?.['Microsoft.VSTS.Scheduling.OriginalEstimate']) || 0);
+            const comp = this.roundHours(Number(item.fields?.['Microsoft.VSTS.Scheduling.CompletedWork']) || 0);
             const parentId = this.extractParentId(item);
             const taskDates = this.extractWorkItemDates(item.fields, iterMap, item.fields?.['System.IterationPath']);
 
-            totalTaskOriginalEstimate += est;
-            totalTaskCompletedWork += comp;
+            totalTaskOriginalEstimate = this.roundHours(totalTaskOriginalEstimate + est);
+            totalTaskCompletedWork = this.roundHours(totalTaskCompletedWork + comp);
 
             if (parentId) {
               childToParentMap[item.id] = parentId;
@@ -432,12 +437,12 @@ class AzureDevOpsService {
         const cardStatus = this.mapStatus(state);
 
         // Hours rollup from descendant tasks or item itself if it's a task
-        let ilcHours = childTasks.reduce((s, t) => s + (t.completedWork || 0), 0);
-        let ilcHoursTotal = childTasks.reduce((s, t) => s + (t.originalEstimate || 0), 0);
+        let ilcHours = this.roundHours(childTasks.reduce((s, t) => s + (t.completedWork || 0), 0));
+        let ilcHoursTotal = this.roundHours(childTasks.reduce((s, t) => s + (t.originalEstimate || 0), 0));
 
         if (childTasks.length === 0 && ['task', 'bug'].includes(type.toLowerCase())) {
-          ilcHours = Number(item.fields?.['Microsoft.VSTS.Scheduling.CompletedWork']) || 0;
-          ilcHoursTotal = Number(item.fields?.['Microsoft.VSTS.Scheduling.OriginalEstimate']) || 0;
+          ilcHours = this.roundHours(Number(item.fields?.['Microsoft.VSTS.Scheduling.CompletedWork']) || 0);
+          ilcHoursTotal = this.roundHours(Number(item.fields?.['Microsoft.VSTS.Scheduling.OriginalEstimate']) || 0);
         }
 
         if (ilcHoursTotal === 0 && cardStatus === 'completed') {
@@ -533,8 +538,8 @@ class AzureDevOpsService {
       progress,
       activities,
       taskHours: {
-        totalPlanned: totalTaskOriginalEstimate,
-        totalExecuted: totalTaskCompletedWork
+        totalPlanned: this.roundHours(totalTaskOriginalEstimate),
+        totalExecuted: this.roundHours(totalTaskCompletedWork)
       },
       azureLastUpdated: new Date().toISOString()
     };
@@ -591,10 +596,10 @@ class AzureDevOpsService {
         const { startDate, targetDate } = this.extractWorkItemDates(item.fields, {}, iterationPath);
 
         const originalEstimate = item.fields?.['Microsoft.VSTS.Scheduling.OriginalEstimate'] !== undefined 
-          ? Number(item.fields['Microsoft.VSTS.Scheduling.OriginalEstimate']) 
+          ? this.roundHours(item.fields['Microsoft.VSTS.Scheduling.OriginalEstimate']) 
           : null;
         const completedWork = item.fields?.['Microsoft.VSTS.Scheduling.CompletedWork'] !== undefined 
-          ? Number(item.fields['Microsoft.VSTS.Scheduling.CompletedWork']) 
+          ? this.roundHours(item.fields['Microsoft.VSTS.Scheduling.CompletedWork']) 
           : null;
 
         const lowerType = type.toLowerCase();

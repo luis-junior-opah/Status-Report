@@ -276,16 +276,22 @@ export class ProjectService {
         'Operação Assistida'
       ],
       hoursSummary: {
-        totalPlanned,
-        totalExecuted,
-        agreedHours,
-        clientPlanned,
-        clientExecuted,
-        ilcPlanned,
-        ilcExecuted
+        totalPlanned: Math.round(totalPlanned * 10) / 10,
+        totalExecuted: Math.round(totalExecuted * 10) / 10,
+        agreedHours: Math.round(agreedHours * 10) / 10,
+        clientPlanned: Math.round(clientPlanned * 10) / 10,
+        clientExecuted: Math.round(clientExecuted * 10) / 10,
+        ilcPlanned: Math.round(ilcPlanned * 10) / 10,
+        ilcExecuted: Math.round(ilcExecuted * 10) / 10
       }
     };
   });
+
+  formatHours(val?: number | null): string {
+    if (val === null || val === undefined || isNaN(val)) return '0';
+    const rounded = Math.round(Number(val) * 10) / 10;
+    return rounded.toLocaleString('pt-BR', { minimumFractionDigits: 0, maximumFractionDigits: 1 });
+  }
 
   // Active project for EAP Gantt
   activeEapProject = computed(() => {
