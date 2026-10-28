@@ -131,13 +131,31 @@ class ProjectStore {
     return 'Mirassol';
   }
 
+  parseLocalDate(dateInput) {
+    if (!dateInput) return null;
+    if (dateInput instanceof Date) {
+      const d = new Date(dateInput);
+      d.setHours(12, 0, 0, 0);
+      return d;
+    }
+    const str = String(dateInput).split('T')[0];
+    const parts = str.split('-');
+    if (parts.length === 3) {
+      return new Date(Number(parts[0]), Number(parts[1]) - 1, Number(parts[2]), 12, 0, 0);
+    }
+    const d = new Date(dateInput);
+    d.setHours(12, 0, 0, 0);
+    return d;
+  }
+
   // Helper to count business days (Monday-Friday) between two dates
   getBusinessDaysDiff(startDate, endDate) {
-    const start = new Date(startDate);
+    const start = this.parseLocalDate(startDate);
+    const end = this.parseLocalDate(endDate);
+    if (!start || !end) return 0;
     start.setHours(0, 0, 0, 0);
-    const end = new Date(endDate);
     end.setHours(0, 0, 0, 0);
-    if (end < start) return Math.round((end.getTime() - start.getTime()) / (1000 * 3600 * 24));
+    if (end < start) return -Math.round((start.getTime() - end.getTime()) / (1000 * 3600 * 24));
     let count = 0;
     const cur = new Date(start);
     cur.setDate(cur.getDate() + 1);
@@ -179,13 +197,50 @@ class ProjectStore {
     return activity;
   }
 
-  calculateVariance(agreedEnd, executedEnd, plannedEnd) {
+  calculateVariance(agreedEnd, executedEnd, plannedEnd, project = null) {
+    if (project) {
+      if (project.status === 'Finalizado' || (project.progress || 0) >= 100) {
+        return 0;
+      }
+      if ((project.status || 'Ativo') !== 'Ativo') {
+        return 0;
+      }
+    }
+
     const targetEnd = executedEnd || plannedEnd || agreedEnd;
-    if (!agreedEnd || !targetEnd) return 0;
-    const agreedDate = new Date(agreedEnd);
-    const actualDate = new Date(targetEnd);
-    const diffTime = actualDate.getTime() - agreedDate.getTime();
-    return Math.round(diffTime / (1000 * 3600 * 24));
+    let endVariance = 0;
+    if (agreedEnd && targetEnd) {
+      const agreedDate = this.parseLocalDate(agreedEnd);
+      const actualDate = this.parseLocalDate(targetEnd);
+      if (agreedDate && actualDate) {
+        const diffTime = actualDate.getTime() - agreedDate.getTime();
+        endVariance = Math.round(diffTime / (1000 * 3600 * 24));
+      }
+    }
+
+    let activityVariance = 0;
+    if (project && Array.isArray(project.activities)) {
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+
+      for (const act of project.activities) {
+        if (act.status === 'completed' || !act.targetDate) continue;
+        const target = this.parseLocalDate(act.targetDate);
+        if (!target) continue;
+        target.setHours(0, 0, 0, 0);
+
+        if (target < today) {
+          const bDays = this.getBusinessDaysDiff(act.targetDate, today);
+          const cDays = Math.max(0, Math.round((today.getTime() - target.getTime()) / (1000 * 3600 * 24)));
+          const delay = (cDays <= 3) ? cDays : bDays;
+          if (delay > activityVariance) {
+            activityVariance = delay;
+          }
+        }
+      }
+    }
+
+    return Math.max(endVariance, activityVariance, 0);
   }
 
   calculateRagStatus(project) {
@@ -208,7 +263,8 @@ class ProjectStore {
     const variance = this.calculateVariance(
       project.agreedDates?.end,
       project.executedDates?.end,
-      project.plannedDates?.end
+      project.plannedDates?.end,
+      project
     );
 
     // Desvio crítico a partir de 2 dias de atraso ou variância >= 2 dias
@@ -414,7 +470,7 @@ class ProjectStore {
         };
         newProj.hours = this.calculateHours(newProj);
         newProj.ragStatus = this.calculateRagStatus(newProj);
-        newProj.varianceDays = this.calculateVariance(newProj.agreedDates.end, newProj.executedDates?.end, newProj.plannedDates?.end);
+        newProj.varianceDays = this.calculateVariance(newProj.agreedDates.end, newProj.executedDates?.end, newProj.plannedDates?.end, newProj);
         newProj.inconsistencies = this.computeInconsistencies(newProj);
         this.projects.push(newProj);
       } else {
@@ -528,7 +584,7 @@ class ProjectStore {
 
         existing.hours = this.calculateHours(existing);
         existing.ragStatus = this.calculateRagStatus(existing);
-        existing.varianceDays = this.calculateVariance(existing.agreedDates?.end, existing.executedDates?.end, existing.plannedDates?.end);
+        existing.varianceDays = this.calculateVariance(existing.agreedDates?.end, existing.executedDates?.end, existing.plannedDates?.end, existing);
         existing.inconsistencies = this.computeInconsistencies(existing);
       }
     }
@@ -585,7 +641,7 @@ class ProjectStore {
 
     newProj.hours = this.calculateHours(newProj);
     newProj.ragStatus = this.calculateRagStatus(newProj);
-    newProj.varianceDays = this.calculateVariance(newProj.agreedDates.end, newProj.executedDates?.end, newProj.plannedDates?.end);
+    newProj.varianceDays = this.calculateVariance(newProj.agreedDates.end, newProj.executedDates?.end, newProj.plannedDates?.end, newProj);
     newProj.inconsistencies = this.computeInconsistencies(newProj);
 
     this.projects.push(newProj);
@@ -616,7 +672,7 @@ class ProjectStore {
         ...p,
         hours: this.calculateHours(p),
         ragStatus: this.calculateRagStatus(p),
-        varianceDays: this.calculateVariance(p.agreedDates?.end, p.executedDates?.end, p.plannedDates?.end),
+        varianceDays: this.calculateVariance(p.agreedDates?.end, p.executedDates?.end, p.plannedDates?.end, p),
         inconsistencies: this.computeInconsistencies(p),
         lockedFields: p.lockedFields || { ilcHours: true, progress: true, dates: true }
       }))
@@ -629,7 +685,7 @@ class ProjectStore {
         ...p,
         hours: this.calculateHours(p),
         ragStatus: this.calculateRagStatus(p),
-        varianceDays: this.calculateVariance(p.agreedDates?.end, p.executedDates?.end, p.plannedDates?.end),
+        varianceDays: this.calculateVariance(p.agreedDates?.end, p.executedDates?.end, p.plannedDates?.end, p),
         inconsistencies: this.computeInconsistencies(p),
         lockedFields: p.lockedFields || { ilcHours: true, progress: true, dates: true }
       }))
@@ -926,7 +982,7 @@ class ProjectStore {
 
     proj.hours = this.calculateHours(proj);
     proj.ragStatus = this.calculateRagStatus(proj);
-    proj.varianceDays = this.calculateVariance(proj.agreedDates?.end, proj.executedDates?.end, proj.plannedDates?.end);
+    proj.varianceDays = this.calculateVariance(proj.agreedDates?.end, proj.executedDates?.end, proj.plannedDates?.end, proj);
     proj.inconsistencies = this.computeInconsistencies(proj);
 
     this.projects[index] = proj;

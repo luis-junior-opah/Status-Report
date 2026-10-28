@@ -284,11 +284,11 @@ import { WeeklyReportProject, RoadmapProject, BoardDecision } from '../../models
               </span>
 
               <!-- Floating Tooltip -->
-              <div class="pointer-events-none absolute bottom-full left-0 mb-2 hidden group-hover:flex flex-col items-start w-60 p-2.5 bg-slate-950/95 text-white text-[10px] leading-snug rounded-xl shadow-2xl z-50 text-left border border-slate-700 backdrop-blur-xs">
+              <div class="pointer-events-none absolute bottom-full left-0 mb-2 hidden group-hover:flex flex-col items-start w-64 p-2.5 bg-slate-950/95 text-white text-[10px] leading-snug rounded-xl shadow-2xl z-50 text-left border border-slate-700 backdrop-blur-xs">
                 <span class="font-extrabold text-amber-300 mb-0.5 block">⏳ Desvio Médio de Prazo</span>
-                <span class="text-slate-300 font-normal block">Média de dias de atraso das entregas entre os projetos que estão com prazo estourado.</span>
+                <span class="text-slate-300 font-normal block">Média de dias de atraso calculada dinamicamente sobre todos os projetos ativos da esteira com entregas em desvio.</span>
                 <span class="text-[9px] text-emerald-300 mt-1.5 pt-1 border-t border-slate-800 font-medium block">
-                  <strong>Cálculo:</strong> Soma de (Data Prevista - Data Acordada em dias) ÷ Quantidade de Projetos com Desvio.
+                  <strong>Cálculo:</strong> Soma dos dias de desvio dos projetos ativos ÷ Quantidade de Projetos com Desvio.
                 </span>
                 <div class="absolute top-full left-4 border-4 border-transparent border-t-slate-950/95"></div>
               </div>
@@ -2169,9 +2169,12 @@ export class ExecutiveReportComponent implements OnInit {
     let delayedCount = 0;
 
     for (const p of list) {
-      if ((p.status || 'Ativo') !== 'Ativo') continue;
+      // Analisar sempre todos os projetos ativos da esteira (desconsiderando projetos concluídos 100% ou finalizados)
+      const isFinished = p.status === 'Finalizado' || (p.progress || 0) >= 100;
+      if (isFinished || (p.status || 'Ativo') !== 'Ativo') continue;
+
       let days = p.varianceDays || 0;
-      if (days === 0 && p.agreedDelivery) {
+      if (days === 0 && p.agreedDelivery && (p.progress || 0) < 100) {
         const agreed = new Date(p.agreedDelivery + 'T00:00:00');
         if (!isNaN(agreed.getTime()) && agreed < today) {
           days = Math.max(0, Math.ceil((today.getTime() - agreed.getTime()) / (1000 * 3600 * 24)));
@@ -2337,7 +2340,9 @@ export class ExecutiveReportComponent implements OnInit {
   getRagLabel(p: WeeklyReportProject): string {
     if (p.status === 'Congelado') return 'Congelado';
     if (p.status === 'Finalizado') return 'Finalizado';
-    if (p.ragStatus === 'red') return 'Desvio';
+    if (p.ragStatus === 'red') {
+      return (p.varianceDays && p.varianceDays > 0) ? `+${p.varianceDays}d Desvio` : 'Desvio';
+    }
     if (p.ragStatus === 'amber') return 'Atenção';
     return 'No Prazo';
   }

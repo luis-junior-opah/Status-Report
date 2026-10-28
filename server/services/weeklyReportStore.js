@@ -451,6 +451,49 @@ class WeeklyReportStore {
     };
   }
 
+  calculateProjectVarianceDays(project, referenceDate = null) {
+    if (!project) return 0;
+    if (project.status === 'Finalizado' || (project.progress || 0) >= 100) return 0;
+    if ((project.status || 'Ativo') !== 'Ativo') return 0;
+
+    const refDate = (projectStore.parseLocalDate ? projectStore.parseLocalDate(referenceDate) : new Date(referenceDate + 'T12:00:00')) || new Date();
+    refDate.setHours(0, 0, 0, 0);
+
+    let maxVariance = 0;
+
+    // 1. Uncompleted activities in EAP
+    if (Array.isArray(project.activities)) {
+      for (const act of project.activities) {
+        if (act.status === 'completed' || !act.targetDate) continue;
+        const target = projectStore.parseLocalDate ? projectStore.parseLocalDate(act.targetDate) : new Date(act.targetDate + 'T12:00:00');
+        if (!target) continue;
+        target.setHours(0, 0, 0, 0);
+
+        if (target < refDate) {
+          const bDays = projectStore.getBusinessDaysDiff ? projectStore.getBusinessDaysDiff(act.targetDate, referenceDate || new Date().toISOString().split('T')[0]) : Math.round((refDate - target) / 86400000);
+          const cDays = Math.max(0, Math.round((new Date().getTime() - target.getTime()) / (1000 * 3600 * 24)));
+          const delay = (cDays <= 3) ? cDays : bDays;
+          if (delay > maxVariance) maxVariance = delay;
+        }
+      }
+    }
+
+    // 2. Project agreed delivery date
+    const agreedEnd = project.agreedDates?.end || project.agreedDelivery;
+    if (agreedEnd) {
+      const agreed = projectStore.parseLocalDate ? projectStore.parseLocalDate(agreedEnd) : new Date(agreedEnd + 'T12:00:00');
+      if (agreed) {
+        agreed.setHours(0, 0, 0, 0);
+        if (agreed < refDate) {
+          const bDays = projectStore.getBusinessDaysDiff ? projectStore.getBusinessDaysDiff(agreedEnd, referenceDate || new Date().toISOString().split('T')[0]) : Math.round((refDate - agreed) / 86400000);
+          if (bDays > maxVariance) maxVariance = bDays;
+        }
+      }
+    }
+
+    return maxVariance;
+  }
+
   syncReportWithProjects(report) {
     if (!report) return;
     const allProjects = projectStore.getAllProjects() || [];
@@ -550,7 +593,7 @@ class WeeklyReportStore {
         ragStatus: p.ragStatus || 'green',
         agreedDelivery: p.agreedDates ? p.agreedDates.end : null,
         targetDelivery: p.executedDates?.end || p.plannedDates?.end || null,
-        varianceDays: p.varianceDays || 0,
+        varianceDays: this.calculateProjectVarianceDays(p, report.meetingDate),
         statusReport: currentReportText,
         statusReportDate: currentReportDate,
         previousStatusReport: prevReportText,
@@ -765,7 +808,7 @@ class WeeklyReportStore {
         ragStatus: p.ragStatus || 'green',
         agreedDelivery: p.agreedDates ? p.agreedDates.end : null,
         targetDelivery: p.executedDates?.end || p.plannedDates?.end || null,
-        varianceDays: p.varianceDays || 0,
+        varianceDays: this.calculateProjectVarianceDays(p, now.toISOString().split('T')[0]),
         statusReport: details.statusReport,
         statusReportDate: now.toISOString().split('T')[0],
         previousStatusReport: details.previousStatusReport || 'Sem reporte anterior registrado.',
